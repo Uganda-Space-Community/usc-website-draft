@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uganda Space Community — The Constellation</title>
+<meta name="description" content="The national platform for Uganda's space ecosystem. Connect, discover, and contribute to Uganda's growing space sector.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══ Light mode (default) ═══ */
+:root {
+  --bg:          #F7F8FA;
+  --bg-alt:      #FFFFFF;
+  --bg-alt-subtle: #F2F3F6;
+  --text:        #0C1A2E;
+  --text-2:      #5C6678;
+  --text-3:      #8A91A0;
+  --border:      #E4E6EA;
+  --border-hover:#D0D3D8;
+  --gold:        #B8953F;
+  --gold-grad:   linear-gradient(135deg, #B8953F, #a6862e);
+  --gold-dim:    rgba(184,149,63,0.08);
+  --red:         #D94F3D;
+  --red-dim:     rgba(217,79,61,0.08);
+  --crimson:     #B5342E;
+  --crimson-dim: rgba(181,52,46,0.06);
+  --emerald:     #1F8A5B;
+  --emerald-dim: rgba(31,138,91,0.06);
+  --star-color:  rgba(150,155,165,0.18);
+  --radius:      8px;
+  --radius-lg:   12px;
+  --ease:        cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ═══ Dark mode ═══ */
+body.dark-mode {
+  --bg:          #0A1628;
+  --bg-alt:      #0F1F35;
+  --bg-alt-subtle: #0C1929;
+  --text:        #EAECF0;
+  --text-2:      #7A8498;
+  --text-3:      #5C6678;
+  --border:      rgba(255,255,255,0.06);
+  --border-hover:rgba(255,255,255,0.12);
+  --gold:        #C9A84C;
+  --gold-grad:   linear-gradient(135deg, #C9A84C, #d4b358);
+  --gold-dim:    rgba(201,168,76,0.10);
+  --red:         #E05A4A;
+  --red-dim:     rgba(224,90,74,0.10);
+  --crimson-dim: rgba(181,52,46,0.08);
+  --emerald-dim: rgba(31,138,91,0.08);
+  --star-color:  rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+.skip-link {
+  position: absolute; top: -100%; left: 12px; z-index: 999;
+  padding: 8px 16px; background: var(--gold); color: #fff;
+  font-size: 0.8rem; font-weight: 600; border-radius: 0 0 6px 6px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+.ico { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; flex-shrink: 0; }
+.ico-sm { width: 18px; height: 18px; }
+
+/* ═══ Buttons ═══ */
+.btn {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.82rem;
+  padding: 10px 24px; border-radius: 6px; cursor: pointer;
+  transition: all 0.2s var(--ease); border: none;
+  display: inline-flex; align-items: center; gap: 7px; line-height: 1;
+}
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { filter: brightness(1.1); box-shadow: 0 2px 12px rgba(184,149,63,0.3); }
+body.dark-mode .btn-gold { color: #0A1628; }
+body.dark-mode .btn-gold:hover { box-shadow: 0 2px 12px rgba(201,168,76,0.3); }
+
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { filter: brightness(1.1); box-shadow: 0 2px 12px rgba(217,79,61,0.3); }
+
+.btn-hero {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #EAECF0;
+  transition: color 0.2s;
+}
+.btn-hero:hover { color: #C9A84C; }
+.btn-circle {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.btn-hero:hover .btn-circle { border-color: var(--red); color: var(--red); }
+
+/* ═══ Theme Toggle ═══ */
+.theme-toggle {
+  background: none; border: none; color: var(--nav-text);
+  cursor: pointer; padding: 6px; line-height: 0;
+  transition: color 0.3s; display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle:hover { color: var(--nav-text-hover); }
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+body.dark-mode .icon-sun { display: block; }
+body.dark-mode .icon-moon { display: none; }
+
+/* ═══ Nav ═══ */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: transparent; border: none;
+  --nav-text: rgba(234,236,240,0.7);
+  --nav-text-hover: #EAECF0;
+  transition: background 0.3s;
+}
+.nav-bar.nav-scrolled {
+  background: var(--bg-alt); border-bottom: 1px solid var(--border);
+  --nav-text: var(--text-2);
+  --nav-text-hover: var(--text);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; position: relative; }
+.nav-l { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-dim);
+  overflow: hidden;
+  animation: logoFloat 4s ease-in-out infinite;
+}
+.logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(1deg); }
+}
+.logo-txt {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 0.92rem; color: var(--nav-text-hover); letter-spacing: -0.01em;
+  transition: color 0.3s;
+}
+.logo-txt span { color: var(--gold); }
+.nav-c {
+  display: flex; gap: 32px; list-style: none;
+  margin-left: auto; margin-right: 24px;
+}
+.nav-c a { font-size: 0.8rem; font-weight: 500; color: var(--nav-text); transition: color 0.3s; letter-spacing: 0.02em; }
+.nav-c a:hover { color: var(--nav-text-hover); }
+.nav-r { display: flex; gap: 8px; align-items: center; }
+.nav-toggle {
+  display: none; background: none; border: none; color: var(--nav-text-hover);
+  cursor: pointer; padding: 4px; line-height: 0; transition: color 0.3s;
+}
+
+/* ═══ Hero (always dark) ═══ */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; align-items: center; overflow: hidden;
+  color: #EAECF0;
+}
+.hero-image {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0;
+}
+.hero-img-1 {
+  background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
+  animation: fade1 18s infinite, heroZoom 18s ease-in-out infinite alternate;
+}
+.hero-img-2 {
+  background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=80');
+  animation: fade2 18s infinite, heroZoom 18s ease-in-out infinite alternate;
+}
+.hero-img-3 {
+  background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&q=80');
+  animation: fade3 18s infinite, heroZoom 18s ease-in-out infinite alternate;
+}
+@keyframes fade1 {
+  0% { opacity: 1; }
+  28% { opacity: 1; }
+  33% { opacity: 0; }
+  95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade2 {
+  0% { opacity: 0; }
+  28% { opacity: 0; }
+  33% { opacity: 1; }
+  61% { opacity: 1; }
+  66% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes fade3 {
+  0% { opacity: 0; }
+  61% { opacity: 0; }
+  66% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes heroZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 30% at 85% 80%, rgba(217,79,61,0.06), transparent),
+    linear-gradient(90deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.75) 35%, rgba(10,22,40,0.45) 65%, rgba(10,22,40,0.25) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 580px; margin-left: max(32px, calc((100vw - 1280px) / 2 + 32px)); }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.68rem; font-weight: 500; color: var(--text-2);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0;
+}
+.hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3.2rem, 7vw, 5.2rem); font-weight: 300;
+  letter-spacing: -0.02em; line-height: 1.02; margin-bottom: 20px;
+}
+.hero h1 .hl { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 300; color: rgba(234,236,240,0.55); line-height: 1.8; margin-bottom: 32px; }
+.hero-sub::after {
+  content: ''; display: block; width: 40px; height: 2px;
+  background: #C9A84C; margin-top: 28px;
+}
+.scroll-indicator {
+  position: absolute; bottom: 40px; z-index: 3;
+  margin-left: max(32px, calc((100vw - 1280px) / 2 + 32px));
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(234,236,240,0.4); font-size: 0.58rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.scroll-indicator:hover { color: var(--red); }
+
+/* ═══ Sections ═══ */
+.section { padding: 112px 0; position: relative; }
+.section--tight { padding: 80px 0; }
+.section-head { margin-bottom: 52px; max-width: 620px; }
+.section-head .label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.16em;
+  margin-bottom: 16px; display: block;
+}
+.section-head h2 { font-family: 'Inter', sans-serif; font-size: 2.2rem; font-weight: 300; letter-spacing: -0.015em; margin-bottom: 14px; }
+.section-head p { font-size: 0.95rem; color: var(--text-2); line-height: 1.7; font-weight: 300; }
+.section-head--accent { border-left: 3px solid var(--red); padding-left: 20px; }
+
+/* ═══ Mission Statement ═══ */
+.mission-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.mission { border-left: 2px solid var(--gold); padding-left: 28px; }
+.mission p { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 300; color: var(--text); line-height: 1.8; margin-bottom: 28px; }
+.mission .tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.mission .tags span { font-size: 0.76rem; color: var(--text-3); font-weight: 500; }
+.mission .tags span::after { content: '·'; margin-left: 8px; color: var(--text-3); }
+.mission .tags span:last-child::after { content: ''; }
+
+/* Mission Slideshow */
+.mission-slideshow { position: relative; min-height: 240px; padding-bottom: 48px; }
+.slideshow-item {
+  position: absolute; inset: 0; bottom: 48px; opacity: 0;
+  transition: opacity 0.6s ease; pointer-events: none;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.slideshow-item.active { opacity: 1; pointer-events: auto; }
+.slideshow-item.has-image {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  align-items: stretch;
+}
+.slideshow-text {
+  display: flex; flex-direction: column; justify-content: center;
+}
+.slideshow-label {
+  font-size: 0.62rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; display: block;
+}
+.slideshow-text h4 { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 400; margin-bottom: 8px; }
+.slideshow-text p { font-size: 0.88rem; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; font-weight: 300; }
+.slideshow-meta { font-size: 0.73rem; color: var(--text-3); display: flex; align-items: center; gap: 8px; }
+.slideshow-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+.slideshow-img {
+  border-radius: var(--radius-lg); background-size: cover; background-position: center;
+  position: relative; overflow: hidden;
+}
+.slideshow-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.02) 100%);
+  border-radius: inherit;
+}
+
+/* Merged dots + progress track */
+.slideshow-track {
+  display: flex; align-items: center; gap: 4px;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  width: 100%;
+}
+.slideshow-dot {
+  flex: 1; height: 3px; border-radius: 2px; border: none;
+  background: var(--border); cursor: pointer; padding: 0;
+  transition: background 0.3s;
+  position: relative; overflow: hidden;
+}
+.slideshow-dot.active {
+  background: var(--border);
+}
+.slideshow-dot.active::after {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); border-radius: inherit;
+  transform-origin: left; animation: dotFill var(--dur, 4s) linear forwards;
+}
+@keyframes dotFill {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+.slideshow-dot:hover:not(.active) { background: var(--gold); opacity: 0.3; }
+
+/* ═══ Pillars ═══ */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.pillar {
+  padding: 32px 28px; border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 60%);
+  border: 1px solid var(--border); transition: all 0.3s;
+}
+.pillar:hover { border-color: rgba(201,168,76,0.2); box-shadow: 0 4px 24px rgba(201,168,76,0.06); }
+.pillar-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
+  font-weight: 500; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 18px;
+}
+.pillar-icon {
+  margin-bottom: 20px; width: 56px; height: 56px;
+  background: var(--gold-dim); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; color: var(--gold);
+}
+.pillar h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
+.pillar p { font-size: 0.88rem; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; font-weight: 300; }
+.pillar-stat {
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600;
+  color: var(--gold); margin-bottom: 18px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.pillar a {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.pillar a:hover { gap: 9px; }
+
+/* ═══ Two-Column Section Pattern ═══ */
+.tc-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+.tc-grid.tc-fixed { max-height: 450px; }
+.tc-featured {
+  display: flex; flex-direction: column; gap: 16px;
+  overflow-y: auto; padding-right: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.tc-featured::-webkit-scrollbar { width: 4px; }
+.tc-featured::-webkit-scrollbar-track { background: transparent; }
+.tc-featured::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.tc-fixed .tc-featured, .events-featured { max-height: 450px; }
+
+/* Event card — background image with text overlay */
+.tc-event-card {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end;
+  background-size: cover; background-position: center;
+  cursor: pointer; transition: transform 0.3s;
+}
+.tc-event-card:first-child { margin-top: 10px; }
+.tc-event-card:hover { transform: translateY(-2px); }
+.tc-event-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.85) 100%);
+}
+.tc-event-card-body { position: relative; z-index: 1; padding: 24px; }
+.tc-event-card-body .tc-card-label {
+  font-size: 0.6rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; display: inline-block;
+  background: rgba(10,22,40,0.5); padding: 3px 10px; border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.tc-event-card-body h4 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 6px; color: #fff; }
+.tc-event-card-body p { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 8px; font-weight: 300; }
+.tc-event-card-body .tc-card-meta { font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+
+/* Update card — article style (image left, text right) */
+.tc-update-card {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; align-items: start;
+  padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border);
+  transition: border-color 0.2s; cursor: pointer; flex-shrink: 0;
+}
+.tc-update-card:hover { border-color: var(--border-hover); }
+.tc-update-img {
+  border-radius: var(--radius); background-size: cover; background-position: center;
+  min-height: 140px; position: relative; overflow: hidden;
+}
+.tc-update-img::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(10,22,40,0.08), transparent);
+}
+.tc-update-body { display: flex; flex-direction: column; justify-content: center; }
+.tc-update-source {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.tc-update-source-icon {
+  width: 20px; height: 20px; border-radius: 4px; background: var(--gold-dim);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.tc-update-source-icon .ico { width: 12px; height: 12px; }
+.tc-update-source span { font-size: 0.7rem; color: var(--text-3); font-weight: 500; }
+.tc-update-body h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; margin-bottom: 6px; }
+.tc-update-body .meta { font-size: 0.7rem; color: var(--text-3); }
+
+.tc-headlines {
+  display: flex; flex-direction: column;
+  overflow-y: auto; padding-right: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.tc-headlines::-webkit-scrollbar { width: 4px; }
+.tc-headlines::-webkit-scrollbar-track { background: transparent; }
+.tc-headlines::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.headline-item {
+  padding: 14px 0 14px 16px; border-left: 2px solid var(--border);
+  cursor: pointer; transition: all 0.2s;
+}
+.headline-item:hover { border-left-color: var(--gold); padding-left: 20px; }
+.headline-item.cat-gold { border-left-color: var(--gold); }
+.headline-item.cat-crimson { border-left-color: var(--red); }
+.headline-item.cat-emerald { border-left-color: var(--emerald); }
+.headline-item-type {
+  font-size: 0.58rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; display: block;
+}
+.headline-item h5 { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 400; margin-bottom: 2px; }
+.headline-item .meta { font-size: 0.68rem; color: var(--text-3); }
+.tc-view-all {
+  margin-top: 16px; font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.tc-view-all:hover { gap: 9px; }
+
+/* Events compact list (right side) */
+.events-compact { display: flex; flex-direction: column; }
+.event-compact {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+}
+.event-compact:last-child { border-bottom: none; }
+.event-compact .date {
+  font-size: 0.78rem; font-weight: 600; color: var(--gold);
+  white-space: nowrap; min-width: 48px; padding-top: 2px;
+}
+.event-compact h4 { font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 400; margin-bottom: 2px; }
+.event-compact .meta { font-size: 0.74rem; color: var(--text-3); }
+
+/* ═══ Updates 3-Column Layout ═══ */
+.updates-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 32px; }
+
+/* Fade edges for scrollable containers */
+.scroll-fade {
+  position: relative;
+  mask-image: linear-gradient(to bottom, transparent 0px, black 20px, black calc(100% - 20px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0px, black 20px, black calc(100% - 20px), transparent 100%);
+}
+
+.updates-featured {
+  display: flex; flex-direction: column; gap: 16px;
+  overflow-y: auto; max-height: 400px; padding-right: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.updates-featured::-webkit-scrollbar { width: 4px; }
+.updates-featured::-webkit-scrollbar-track { background: transparent; }
+.updates-featured::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.updates-feat-card {
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--border); transition: border-color 0.2s;
+  cursor: pointer; flex-shrink: 0;
+}
+.updates-feat-card:first-child { margin-top: 10px; }
+.updates-feat-card:hover { border-color: var(--border-hover); }
+.updates-feat-img {
+  width: 100%; height: 200px; background-size: cover; background-position: center;
+}
+.updates-feat-body { padding: 20px; }
+.updates-feat-body h4 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; }
+.updates-feat-body p { font-size: 0.84rem; color: var(--text-2); line-height: 1.65; margin-bottom: 12px; font-weight: 300; }
+.updates-feat-body .read-more {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; margin-bottom: 12px;
+}
+.updates-feat-body .read-more:hover { gap: 9px; }
+.updates-feat-meta { font-size: 0.7rem; color: var(--text-3); }
+
+.updates-col-head {
+  font-size: 0.68rem; font-weight: 600; color: var(--text);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.updates-col-head::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.updates-col-head a {
+  font-size: 0.68rem; font-weight: 500; color: var(--gold);
+  text-transform: none; letter-spacing: 0; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s;
+}
+.updates-col-head a:hover { gap: 6px; }
+
+.updates-list {
+  display: flex; flex-direction: column; gap: 0;
+  overflow-y: auto; max-height: 400px; padding-right: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.updates-list::-webkit-scrollbar { width: 4px; }
+.updates-list::-webkit-scrollbar-track { background: transparent; }
+.updates-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.updates-list-item {
+  display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: start;
+  padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer;
+  transition: border-color 0.2s;
+}
+.updates-list-item:last-child { border-bottom: none; }
+.updates-list-item:hover { border-color: var(--border-hover); }
+.updates-list-img {
+  width: 72px; height: 54px; border-radius: 6px; background-size: cover;
+  background-position: center; flex-shrink: 0;
+}
+.updates-list-body h5 { font-family: 'Inter', sans-serif; font-size: 0.84rem; font-weight: 400; margin-bottom: 3px; }
+.updates-list-body .source { font-size: 0.68rem; color: var(--text-3); }
+.updates-list-body h5 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; line-height: 1.4;
+}
+.updates-list-body .list-category {
+  font-size: 0.58rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; display: block;
+}
+.external-indicator {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 0.6rem; color: var(--text-3); margin-top: 2px;
+}
+.external-indicator svg { width: 10px; height: 10px; }
+
+/* Filter chips */
+.filter-chips { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-chip {
+  font-size: 0.72rem; font-weight: 500; padding: 6px 14px; border-radius: 100px;
+  border: 1px solid var(--border); background: transparent; color: var(--text-2);
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--gold); color: var(--gold); }
+.filter-chip.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* ═══ Missions ═══ */
+.missions-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; }
+.mission-featured { display: flex; flex-direction: column; gap: 24px; }
+.mission-card-lg { padding: 28px; border-left: 3px solid var(--border); }
+.mission-card-lg.border-emerald { border-left-color: var(--emerald); }
+.mission-card-lg.border-gold { border-left-color: var(--gold); }
+.mission-card-lg.border-crimson { border-left-color: var(--crimson); }
+.mission-status {
+  display: inline-flex; align-items: center;
+  font-size: 0.66rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 10px;
+}
+.status-active { color: var(--emerald); }
+.status-progress { color: #9a7a2e; }
+.status-seeking { color: var(--red); }
+.mission-card-lg h4 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; }
+.mission-card-lg p { font-size: 0.88rem; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; font-weight: 300; }
+.mission-card-lg .meta {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.73rem; color: var(--text-3);
+}
+.mission-card-lg .link {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  margin-left: auto; display: inline-flex; align-items: center;
+  gap: 4px; transition: gap 0.2s;
+}
+.mission-card-lg .link:hover { gap: 8px; }
+
+.mission-list { display: flex; flex-direction: column; }
+.mission-row {
+  padding: 16px 0; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  transition: border-color 0.2s;
+}
+.mission-row:hover { border-color: var(--border-hover); }
+.mission-row:last-child { border-bottom: none; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.mission-row h5 {
+  font-size: 0.88rem; flex: 1; font-weight: 400;
+  font-family: 'Inter', sans-serif; letter-spacing: -0.01em;
+}
+.mission-row .members { font-size: 0.68rem; color: var(--text-3); flex-shrink: 0; }
+.mission-row .arrow { color: var(--text-3); font-size: 0.8rem; opacity: 0; flex-shrink: 0; transition: opacity 0.2s; }
+.mission-row:hover .arrow { opacity: 1; }
+.missions-all {
+  margin-top: 24px; font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.missions-all:hover { gap: 9px; }
+
+/* ═══ Community ═══ */
+.community-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.community-block { min-width: 0; }
+.community-block h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 400; margin-bottom: 22px; color: var(--text); }
+.group-scroll {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  max-width: 100%;
+}
+.group-scroll::-webkit-scrollbar { height: 4px; }
+.group-scroll::-webkit-scrollbar-track { background: transparent; }
+.group-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.group-pill {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px; border: 1px solid var(--border);
+  border-radius: 100px; white-space: nowrap; flex-shrink: 0;
+  cursor: pointer; transition: all 0.2s;
+}
+.group-pill:hover { border-color: var(--gold); background: var(--gold-dim); }
+.group-pill .icon {
+  width: 28px; height: 28px; background: var(--gold-dim);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--gold);
+}
+.group-pill .icon .ico { width: 14px; height: 14px; }
+.group-pill h4 { font-size: 0.8rem; font-weight: 500; }
+.group-pill .count { font-size: 0.68rem; color: var(--text-3); }
+
+.chapter-divider { width: 1px; background: var(--border); margin: 0 -24px; }
+.chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chapter-card { cursor: pointer; padding: 16px; border-radius: var(--radius); transition: background 0.2s; }
+.chapter-card:hover { background: var(--gold-dim); }
+.chapter-card h4 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 400; margin-bottom: 4px; }
+.chapter-card p { font-size: 0.78rem; color: var(--text-3); line-height: 1.5; margin-bottom: 6px; }
+.chapter-card .count { font-size: 0.7rem; color: var(--gold); font-weight: 500; }
+
+/* ═══ Updates (legacy — kept for reference) ═══ */
+.featured-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+.featured-card { border-top: 2px solid var(--gold); padding-top: 24px; }
+.featured-card .cat {
+  font-size: 0.62rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; display: block;
+}
+.featured-card h3 { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 10px; }
+.featured-card p { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; font-weight: 300; }
+.featured-card .meta { font-size: 0.73rem; color: var(--text-3); }
+.featured-card .read-more {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.82rem; font-weight: 500; color: var(--gold); margin-top: 18px;
+  transition: gap 0.2s;
+}
+.featured-card .read-more:hover { gap: 9px; }
+
+.feed { display: flex; flex-direction: column; }
+.feed-item {
+  padding: 18px 0 18px 20px; border-left: 2px solid var(--border);
+  cursor: pointer; transition: all 0.2s;
+}
+.feed-item:hover { border-left-color: var(--gold); padding-left: 24px; }
+.feed-item.cat-gold { border-left-color: var(--gold); }
+.feed-item.cat-crimson { border-left-color: var(--red); }
+.feed-item.cat-emerald { border-left-color: var(--emerald); }
+.feed-item .cat-label {
+  font-size: 0.6rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; display: block;
+}
+.feed-item h4 { font-family: 'Inter', sans-serif; font-size: 0.88rem; margin-bottom: 3px; font-weight: 400; }
+.feed-item .meta { font-size: 0.68rem; color: var(--text-3); }
+
+/* ═══ Events ═══ */
+.events-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+.event-featured { padding: 0; }
+.event-featured .cat {
+  font-size: 0.66rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.event-featured .date { font-size: 0.82rem; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+.event-featured h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 300; margin-bottom: 10px; }
+.event-featured p { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; font-weight: 300; }
+.event-featured .loc {
+  font-size: 0.76rem; color: var(--text-3); display: flex; align-items: center; gap: 5px; margin-bottom: 18px;
+}
+.event-featured .event-link {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.event-featured .event-link:hover { gap: 9px; }
+
+.events-compact { display: flex; flex-direction: column; }
+.event-compact {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+}
+.event-compact:last-child { border-bottom: none; }
+.event-compact .date {
+  font-size: 0.78rem; font-weight: 600; color: var(--gold);
+  white-space: nowrap; min-width: 48px; padding-top: 2px;
+}
+.event-compact h4 { font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 400; margin-bottom: 2px; }
+.event-compact .meta { font-size: 0.74rem; color: var(--text-3); }
+
+/* ═══ Programs ═══ */
+.program-list { display: flex; flex-direction: column; gap: 18px; }
+.program-card {
+  padding: 32px; border: none; border-left: 3px solid var(--gold);
+  background: var(--gold-dim); border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  transition: background 0.2s; cursor: pointer;
+}
+.program-card:hover { background: var(--gold-dim); filter: brightness(0.97); }
+.program-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.program-meta { display: flex; align-items: center; gap: 10px; }
+.status-pill {
+  font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 3px 10px; border-radius: 100px;
+}
+.status-pill.active { color: var(--emerald); background: var(--emerald-dim); }
+.status-pill.completed { color: var(--text-3); background: var(--border); }
+.program-date { font-size: 0.73rem; color: var(--text-3); }
+.program-count { font-size: 0.73rem; color: var(--text-3); }
+.program-card h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 8px; }
+.program-card p { font-size: 0.88rem; color: var(--text-2); line-height: 1.65; margin-bottom: 18px; font-weight: 300; }
+.program-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.progress-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.4s; }
+.progress-text { font-size: 0.68rem; color: var(--text-3); white-space: nowrap; }
+.program-link {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.program-link:hover { gap: 9px; }
+
+/* ═══ Spotlight ═══ */
+.spotlight { display: flex; flex-direction: column; gap: 48px; }
+.spotlight-profile { max-width: 640px; }
+.spotlight-profile .label {
+  font-size: 0.62rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; display: block;
+}
+.spotlight-profile h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 300; margin-bottom: 4px; }
+.spotlight-profile .role { font-size: 0.82rem; color: var(--text-3); margin-bottom: 18px; }
+.spotlight-profile blockquote {
+  font-size: 0.95rem; color: var(--text-2); line-height: 1.75;
+  font-style: italic; border-left: 2px solid var(--gold);
+  padding-left: 20px; margin-bottom: 20px; font-weight: 300;
+}
+.spotlight-profile .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.spotlight-profile .tags span {
+  background: var(--gold-dim); color: var(--gold);
+  padding: 4px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 500;
+}
+.spotlight-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.spotlight-stat { padding: 28px 18px; text-align: center; border: none; background: var(--gold-dim); border-radius: var(--radius-lg); }
+.spotlight-stat .n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--gold);
+}
+.spotlight-stat .l {
+  font-size: 0.68rem; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;
+}
+
+/* ═══ Partners ═══ */
+.partner-strip { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
+.partner-item { display: flex; align-items: center; gap: 14px; }
+.partner-item .icon {
+  width: 44px; height: 44px; background: var(--gold-dim); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0;
+}
+.partner-item h4 { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 400; }
+.partner-item .type { font-size: 0.7rem; color: var(--text-3); }
+
+/* ═══ CTA ═══ */
+.cta-banner { text-align: center; position: relative; padding: 0 20px; }
+.cta-banner::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background:
+    radial-gradient(circle at 30% 40%, var(--gold-dim) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, var(--red-dim) 0%, transparent 50%);
+  pointer-events: none; opacity: 0.5;
+}
+.cta-banner h2 { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 300; letter-spacing: -0.015em; margin-bottom: 14px; position: relative; }
+.cta-banner h2 .hl { color: var(--gold); }
+.cta-banner p {
+  font-size: 0.95rem; color: var(--text-2);
+  max-width: 480px; margin: 0 auto 32px; line-height: 1.7; position: relative; font-weight: 300;
+}
+.cta-banner .btn { position: relative; }
+
+/* ═══ Projects + Programs Bundle ═══ */
+.pc-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+.pc-programs { position: relative; min-height: 460px; padding-bottom: 40px; }
+.pc-program {
+  position: absolute; top: 50px; left: 0; right: 0; bottom: 10px; opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease; display: flex; flex-direction: column;
+  justify-content: flex-end; border-radius: var(--radius-lg); overflow: hidden;
+  background-size: cover; background-position: center;
+}
+.pc-program::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.85) 100%);
+}
+.pc-program.active { opacity: 1; pointer-events: auto; }
+.pc-program-body { position: relative; z-index: 1; padding: 28px; word-wrap: break-word; overflow-wrap: break-word; }
+.pc-program-label {
+  font-size: 0.62rem; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; display: inline-block;
+  background: rgba(10,22,40,0.5); padding: 3px 10px; border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.pc-program-body h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 8px; color: #fff; }
+.pc-program-body p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 12px; font-weight: 300; }
+.pc-program-meta { font-size: 0.73rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.pc-program .pc-progress { margin-bottom: 8px; }
+.pc-program .pc-progress-text { color: rgba(255,255,255,0.5); }
+.pc-program-link {
+  font-size: 0.82rem; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.pc-program-link:hover { gap: 9px; }
+.pc-program-track { display: flex; align-items: center; gap: 4px; position: absolute; bottom: 0; left: 0; right: 0; }
+.pc-program-dot { flex: 1; height: 3px; border-radius: 2px; border: none; background: rgba(255,255,255,0.2); cursor: pointer; padding: 0; position: relative; overflow: hidden; transition: background 0.3s; }
+.pc-program-dot.active { background: rgba(255,255,255,0.2); }
+.pc-program-dot.active::after { content: ''; position: absolute; inset: 0; background: var(--gold); border-radius: inherit; transform-origin: left; animation: dotFill var(--dur, 5s) linear forwards; }
+.pc-program-dot:hover:not(.active) { background: rgba(255,255,255,0.4); }
+.pc-program-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+.pc-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.pc-progress-bar { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.pc-progress-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+.pc-progress-text { font-size: 0.68rem; color: var(--text-3); white-space: nowrap; }
+.pc-program-link { font-size: 0.82rem; font-weight: 500; color: var(--gold); display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
+.pc-program-link:hover { gap: 9px; }
+
+.pc-projects { display: flex; flex-direction: column; align-items: stretch; min-width: 0; }
+.pc-projects-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.pc-projects-head h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 400; }
+.pc-projects-head a { font-size: 0.82rem; font-weight: 500; color: var(--gold); display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
+.pc-projects-head a:hover { gap: 9px; }
+.pc-project-row {
+  padding: 16px 0; display: flex; align-items: flex-start; gap: 12px;
+  border-bottom: 1px solid var(--border); transition: border-color 0.2s; cursor: pointer;
+}
+.pc-project-row:last-child { border-bottom: none; }
+.pc-project-row:hover { border-color: var(--border-hover); }
+.pc-project-icon {
+  width: 36px; height: 36px; background: var(--gold-dim); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold);
+}
+.pc-project-icon .ico { width: 16px; height: 16px; }
+.pc-project-info { flex: 1; min-width: 0; }
+.pc-program-info h5 { font-family: 'Inter', sans-serif; font-size: 0.84rem; font-weight: 400; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-project-info p { font-size: 0.76rem; color: var(--text-2); line-height: 1.4; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.pc-project-info .pc-project-meta { font-size: 0.68rem; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-project-members { font-size: 0.68rem; color: var(--text-3); flex-shrink: 0; }
+.pc-project-arrow { color: var(--text-3); font-size: 0.8rem; opacity: 0; flex-shrink: 0; transition: opacity 0.2s; }
+.pc-project-row:hover .pc-project-arrow { opacity: 1; }
+
+/* ═══ Marquee Ribbon ═══ */
+.marquee-ribbon { padding: 40px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.marquee-track { display: flex; width: max-content; animation: marqueeScroll 40s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-content { display: flex; align-items: center; gap: 12px; padding-right: 12px; flex-shrink: 0; }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.stat-chip { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gold-dim); border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.stat-chip .n { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+.stat-chip .l { font-size: 0.72rem; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.community-chip { display: flex; align-items: center; padding: 8px 16px; border: 1px solid var(--border); border-radius: 100px; white-space: nowrap; flex-shrink: 0; font-size: 0.78rem; color: var(--text-2); font-weight: 400; transition: all 0.2s; cursor: pointer; }
+.community-chip:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.partner-chip { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 100px; white-space: nowrap; flex-shrink: 0; font-size: 0.78rem; color: var(--text); font-weight: 400; }
+.partner-chip .ico { width: 16px; height: 16px; color: var(--gold); }
+.ribbon-divider { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
+
+/* ═══ Alternating Section Backgrounds ═══ */
+.section--alt { background: var(--bg-alt-subtle); }
+
+/* ═══ Star Field (both modes) ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 10% 20%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 30% 50%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 70% 40%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 90% 70%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 20% 80%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 60% 90%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 85% 15%, var(--star-color), transparent),
+    radial-gradient(1.2px 1.2px at 45% 65%, var(--star-color), transparent),
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(217,79,61,0.04), transparent),
+    radial-gradient(ellipse 40% 35% at 80% 60%, rgba(184,149,63,0.04), transparent);
+}
+
+/* ═══ Section Decorative Elements ═══ */
+.section-decor {
+  position: absolute;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--text);
+}
+.section-decor svg {
+  width: 100%; height: 100%;
+}
+.section-decor--orbital { top: 40px; right: 40px; width: 220px; height: 220px; }
+.section-decor--constellation { bottom: 60px; right: 60px; width: 180px; height: 180px; }
+.section-decor--satellite { top: 60px; right: 80px; width: 160px; height: 160px; }
+.section-decor--planet { bottom: 40px; left: 40px; width: 200px; height: 200px; }
+.section-decor--rocket { top: 50px; right: 40px; width: 140px; height: 180px; }
+.section-decor--starburst { bottom: 50px; right: 50px; width: 150px; height: 150px; }
+
+/* ═══ Spacey Section Dividers ═══ */
+.section-divider {
+  display: flex; justify-content: center; align-items: center;
+  padding: 8px 0; position: relative;
+}
+.section-divider-line {
+  flex: 1; height: 1px; background: var(--border);
+}
+.section-divider-star {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red); margin: 0 16px;
+  box-shadow: 0 0 12px rgba(217,79,61,0.4);
+  position: relative;
+}
+.section-divider-star::before {
+  content: ''; position: absolute; inset: -6px;
+  border-radius: 50%; border: 1px solid rgba(217,79,61,0.2);
+}
+.section-divider-dots {
+  display: flex; gap: 6px; margin: 0 12px;
+}
+.section-divider-dots span {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--text-3); opacity: 0.4;
+}
+
+/* ═══ Footer ═══ */
+.footer {
+  background: var(--bg-alt); border-top: 1px solid var(--border);
+  padding: 64px 0 32px; transition: background 0.3s;
+  position: relative; overflow: hidden;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -40px;
+  width: 320px; height: 320px;
+  background: url('emblem.png') center/contain no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand p { font-size: 0.82rem; color: var(--text-2); margin-top: 14px; line-height: 1.7; max-width: 280px; font-weight: 300; }
+.footer-brand .email { margin-top: 16px; font-size: 0.82rem; color: var(--gold); }
+.footer-social { display: flex; gap: 10px; margin-top: 16px; }
+.footer-social a {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  color: var(--text-3); transition: all 0.2s;
+}
+.footer-social a:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.footer-col h5 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem; font-weight: 500; color: var(--text);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;
+}
+.footer-col a { display: block; font-size: 0.82rem; color: var(--text-2); padding: 5px 0; transition: color 0.2s; font-weight: 300; }
+.footer-col a:hover { color: var(--text); }
+.footer-bot {
+  text-align: center; padding-top: 28px; border-top: 1px solid var(--border);
+  font-size: 0.74rem; color: var(--text-3);
+}
+.footer-bot .hl { color: var(--gold); }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav { position: relative; }
+  .nav-c {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: #0A1628; border-bottom: 1px solid rgba(255,255,255,0.06);
+    flex-direction: column; padding: 16px 28px; gap: 14px; z-index: 100;
+    margin: 0;
+  }
+  .nav-open .nav-c { display: flex; }
+  .mission-split { grid-template-columns: 1fr; gap: 40px; }
+  .mission-slideshow { min-height: 320px; padding-bottom: 48px; }
+  .slideshow-item { bottom: 48px; }
+  .slideshow-item.has-image { grid-template-columns: 1fr; gap: 0; }
+  .slideshow-img { min-height: 160px; border-radius: var(--radius-lg); }
+  .pillars { grid-template-columns: 1fr; gap: 20px; }
+  .tc-grid { grid-template-columns: 1fr; gap: 32px; height: auto; }
+  .tc-featured { max-height: none; }
+  .tc-headlines { max-height: 300px; }
+  .tc-update-card { grid-template-columns: 1fr; }
+  .updates-grid { grid-template-columns: 1fr; gap: 28px; }
+  .updates-featured { max-height: none; }
+  .updates-list { max-height: 300px; }
+  .pc-grid { display: block; }
+  .pc-programs { min-height: 460px; overflow: hidden; border-radius: var(--radius-lg); bottom: 30px; }
+  .pc-projects-head { margin-bottom: 12px; }
+  .missions-grid { grid-template-columns: 1fr; gap: 32px; }
+  .community-split { grid-template-columns: 1fr; gap: 32px; }
+  .featured-grid { grid-template-columns: 1fr; gap: 28px; }
+  .events-layout { grid-template-columns: 1fr; gap: 28px; }
+  .spotlight-stats { grid-template-columns: repeat(2, 1fr); }
+  .partner-strip { gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .scroll-indicator { display: none; }
+  .hero { min-height: 500px; }
+}
+@media (max-width: 640px) {
+  .wrapper { padding: 0 18px; }
+  .nav-bar .wrapper { padding: 0 16px; }
+  .section { padding: 72px 0; }
+  .hero { min-height: 480px; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-content { margin-left: 16px; max-width: calc(100vw - 32px); }
+  .spotlight-stats { grid-template-columns: 1fr 1fr; }
+  .partner-strip { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+  .chapter-grid { grid-template-columns: 1fr; }
+  .group-pill { padding: 8px 12px; }
+}
+@media (max-width: 380px) {
+  .wrapper { padding: 0 12px; }
+  .nav-bar .wrapper { padding: 0 12px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero-content { margin-left: 12px; max-width: calc(100vw - 24px); }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ═══ NAV ═══ -->
+<div class="nav-bar">
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-l">
+        <a href="#" class="logo-icon">
+          <img src="emblem.png" alt="Uganda Space Community" />
+        </a>
+        <span class="logo-txt">Uganda <span>Space</span></span>
+      </div>
+      <ul class="nav-c">
+        <li><a href="#">Missions</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Updates</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Opportunities</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-image hero-img-1"></div>
+  <div class="hero-image hero-img-2"></div>
+  <div class="hero-image hero-img-3"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" id="main">
+    <div class="hero-badge"><span class="badge-dot"></span> The Community</div>
+    <h1>charting Uganda's path <span class="hl"> beyond Earth.</span></h1>
+    <p class="hero-sub">Connecting students, researchers, professionals, and organizations across Uganda's growing space ecosystem.</p>
+    <a href="#" class="btn-hero">
+      <span class="btn-circle">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8l4 4-4 4"/><path d="M8 12h8"/>
+        </svg>
+      </span>
+      <span>Join The Constellation</span>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.5" fill="none">
+      <path d="M12 5v14"/><path d="M5 12l7 7 7-7"/>
+    </svg>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ═══ MISSION ═══ -->
+<section class="section--tight">
+  <div class="section-decor section-decor--orbital">
+    <svg viewBox="0 0 220 220" fill="none" stroke="currentColor"><circle cx="110" cy="110" r="90" stroke-width="0.8"/><circle cx="110" cy="20" r="5" fill="currentColor" stroke="none"/><circle cx="110" cy="110" r="60" stroke-width="0.4" stroke-dasharray="4 6"/></svg>
+  </div>
+  <div class="wrapper">
+    <div class="section-head" style="margin-bottom: 40px;">
+      <div class="label">Welcome</div>
+      <h2>The Community</h2>
+    </div>
+    <div class="mission-split">
+      <div class="mission">
+        <p>The Uganda Space Community Platform brings together everyone working in or interested in Uganda's space sector — from enthusiasts to students to researchers to professionals. Discover events, share knowledge, find opportunities, and connect with the people shaping the country's space future.</p>
+        <div class="tags">
+          <span>Scientific</span>
+          <span>Community-driven</span>
+          <span>Proudly Ugandan</span>
+          <span>Educational</span>
+          <span>Aspirational</span>
+        </div>
+      </div>
+      <div class="mission-slideshow" id="mission-slideshow">
+        <div class="slideshow-item active has-image" data-duration="6000">
+          <div class="slideshow-text">
+            <div class="slideshow-label">Featured Event</div>
+            <h4>Satellite Applications Workshop</h4>
+            <p>Hands-on satellite data processing and Earth observation. Learn to work with Sentinel-2 imagery.</p>
+            <div class="slideshow-meta">12 Jul 2026 <span class="dot-sep"></span> Makerere University</div>
+          </div>
+          <div class="slideshow-img" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80')"></div>
+        </div>
+        <div class="slideshow-item has-image" data-duration="6000">
+          <div class="slideshow-text">
+            <div class="slideshow-label">Program</div>
+            <h4>National Astronomy Week 2026</h4>
+            <p>A week of telescopes, talks, and stargazing across 5 Ugandan cities.</p>
+            <div class="slideshow-meta">14–20 Jul 2026 <span class="dot-sep"></span> 4/7 events completed</div>
+          </div>
+          <div class="slideshow-img" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80')"></div>
+        </div>
+        <div class="slideshow-item has-image" data-duration="4000">
+          <div class="slideshow-text">
+            <div class="slideshow-label">Update</div>
+            <h4>Uganda Signs Artemis Accords</h4>
+            <p>Uganda commits to responsible space exploration principles.</p>
+            <div class="slideshow-meta">15 Jul 2026 <span class="dot-sep"></span> Ministry of Science &amp; Technology</div>
+          </div>
+          <div class="slideshow-img" style="background-image: url('https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=800&q=80')"></div>
+        </div>
+        <div class="slideshow-item has-image" data-duration="4000">
+          <div class="slideshow-text">
+            <div class="slideshow-label">Event</div>
+            <h4>Community Rocketry Challenge</h4>
+            <p>Student teams design and launch model rockets.</p>
+            <div class="slideshow-meta">5 Aug 2026 <span class="dot-sep"></span> Kampala</div>
+          </div>
+          <div class="slideshow-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80')"></div>
+        </div>
+        <div class="slideshow-item has-image" data-duration="4000">
+          <div class="slideshow-text">
+            <div class="slideshow-label">Program</div>
+            <h4>CubeSat Build Series</h4>
+            <p>Monthly hands-on workshops building Uganda's first university CubeSat.</p>
+            <div class="slideshow-meta">Jun–Dec 2026 <span class="dot-sep"></span> 2/6 completed</div>
+          </div>
+          <div class="slideshow-img" style="background-image: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=800&q=80')"></div>
+        </div>
+        <div class="slideshow-track">
+          <button class="slideshow-dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="slideshow-dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="slideshow-dot" data-index="2" aria-label="Slide 3"></button>
+          <button class="slideshow-dot" data-index="3" aria-label="Slide 4"></button>
+          <button class="slideshow-dot" data-index="4" aria-label="Slide 5"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-star"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-line"></div>
+</div>
+
+<!-- ═══ PILLARS ═══ -->
+<section class="section">
+  <div class="section-decor section-decor--constellation">
+    <svg viewBox="0 0 180 180" fill="none" stroke="currentColor"><circle cx="30" cy="30" r="2.5" fill="currentColor" stroke="none"/><circle cx="100" cy="20" r="2" fill="currentColor" stroke="none"/><circle cx="60" cy="80" r="2.5" fill="currentColor" stroke="none"/><circle cx="140" cy="50" r="2" fill="currentColor" stroke="none"/><circle cx="120" cy="120" r="2.5" fill="currentColor" stroke="none"/><circle cx="50" cy="140" r="2" fill="currentColor" stroke="none"/><line x1="30" y1="30" x2="100" y2="20" stroke-width="0.5"/><line x1="100" y1="20" x2="140" y2="50" stroke-width="0.5"/><line x1="30" y1="30" x2="60" y2="80" stroke-width="0.5"/><line x1="60" y1="80" x2="120" y2="120" stroke-width="0.5"/><line x1="120" y1="120" x2="50" y2="140" stroke-width="0.5"/></svg>
+  </div>
+  <div class="wrapper">
+    <div class="section-head">
+      <div class="label">Get Involved</div>
+      <h2>What you can do here</h2>
+      <p>Three ways to engage with Uganda's space community.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-icon">
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg>
+        </div>
+        <h3>Discover</h3>
+        <p>Browse events, news, and mission updates from across Uganda's space sector.</p>
+        <div class="pillar-stat">120+ events · 50+ articles · 20+ opportunities</div>
+        <a href="#">Explore the calendar →</a>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-icon">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Contribute</h3>
+        <p>Share your work, submit opportunities, write articles, and help grow the knowledge base.</p>
+        <div class="pillar-stat">50+ articles · 30+ Q&A answered</div>
+        <a href="#">Start contributing →</a>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-icon">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Connect</h3>
+        <p>Join the Constellation — build your profile, find collaborators, and work together.</p>
+        <div class="pillar-stat">340+ members · 28 organizations · 4 regions</div>
+        <a href="#">Join the community →</a>
+      </div>
+    </div>
+  </div>
+ </section>
+
+<div class="section-divider" aria-hidden="true">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-star"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-line"></div>
+</div>
+
+<!-- ═══ EVENTS ═══ -->
+<section class="section section--alt">
+  <div class="section-decor section-decor--satellite">
+    <svg viewBox="0 0 160 160" fill="none" stroke="currentColor"><rect x="65" y="65" width="30" height="20" rx="2" stroke-width="0.8"/><rect x="35" y="70" width="28" height="10" rx="1" stroke-width="0.5"/><rect x="97" y="70" width="28" height="10" rx="1" stroke-width="0.5"/><line x1="80" y1="45" x2="80" y2="65" stroke-width="0.5"/><circle cx="80" cy="42" r="4" stroke-width="0.5"/><line x1="80" y1="85" x2="80" y2="110" stroke-width="0.3"/><circle cx="80" cy="112" r="2" fill="currentColor" stroke="none"/></svg>
+  </div>
+  <div class="wrapper">
+    <div class="section-head">
+      <div class="label">Upcoming</div>
+      <h2>Events</h2>
+      <p>Workshops, conferences, and community activities.</p>
+    </div>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="all">All Events</button>
+      <button class="filter-chip" data-filter="physical">Physical</button>
+      <button class="filter-chip" data-filter="webinar">Webinar</button>
+      <button class="filter-chip" data-filter="competition">Competition</button>
+    </div>
+    <div class="tc-grid">
+      <div class="tc-featured events-featured scroll-fade">
+        <div class="tc-event-card" data-cat="physical" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80')">
+          <div class="tc-event-card-body">
+            <div class="tc-card-label">Physical</div>
+            <h4>Satellite Applications Workshop</h4>
+            <p>Hands-on satellite data processing and Earth observation with Sentinel-2 imagery.</p>
+            <div class="tc-card-meta">12 Jul 2026 · 09:00 EAT · Makerere University</div>
+          </div>
+        </div>
+        <div class="tc-event-card" data-cat="webinar" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80')">
+          <div class="tc-event-card-body">
+            <div class="tc-card-label">Webinar</div>
+            <h4>Uganda Space Pioneers — Ep. 4</h4>
+            <p>Dr. Sarah Nabukenya on Uganda's first CubeSat mission.</p>
+            <div class="tc-card-meta">18 Jul 2026 · 18:00 EAT · Online</div>
+          </div>
+        </div>
+        <div class="tc-event-card" data-cat="competition" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80')">
+          <div class="tc-event-card-body">
+            <div class="tc-card-label">Competition</div>
+            <h4>Community Rocketry Challenge</h4>
+            <p>Student teams design and launch model rockets.</p>
+            <div class="tc-card-meta">5 Aug 2026 · 10:00 EAT · Kampala</div>
+          </div>
+        </div>
+        <div class="tc-event-card" data-cat="physical" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80')">
+          <div class="tc-event-card-body">
+            <div class="tc-card-label">Physical</div>
+            <h4>Observation Night</h4>
+            <p>Public stargazing event with telescopes at Makerere Observatory.</p>
+            <div class="tc-card-meta">12 Aug 2026 · 19:00 EAT · Makerere University</div>
+          </div>
+        </div>
+      </div>
+      <div class="events-compact">
+        <div class="event-compact">
+          <div class="date">18 Jul</div>
+          <div class="info">
+            <h4>Uganda Space Pioneers — Ep. 4</h4>
+            <div class="meta">Webinar · 18:00 · Online</div>
+          </div>
+        </div>
+        <div class="event-compact">
+          <div class="date">5 Aug</div>
+          <div class="info">
+            <h4>Community Rocketry Challenge</h4>
+            <div class="meta">Competition · 10:00 · Kampala</div>
+          </div>
+        </div>
+        <div class="event-compact">
+          <div class="date">12 Aug</div>
+          <div class="info">
+            <h4>Observation Night</h4>
+            <div class="meta">Physical · 19:00 · Makerere</div>
+          </div>
+        </div>
+        <div class="event-compact">
+          <div class="date">20 Aug</div>
+          <div class="info">
+            <h4>Space Policy Roundtable</h4>
+            <div class="meta">Webinar · 17:00 · Online</div>
+          </div>
+        </div>
+        <div class="event-compact">
+          <div class="date">1 Sep</div>
+          <div class="info">
+            <h4>CubeSat Integration Workshop</h4>
+            <div class="meta">Physical · 09:00 · Makerere</div>
+          </div>
+        </div>
+        <a href="#" class="tc-view-all">Open Calendar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-star"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-line"></div>
+</div>
+
+<!-- ═══ UPDATES ═══ -->
+<section class="section">
+  <div class="section-decor section-decor--planet">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor"><circle cx="100" cy="100" r="35" stroke-width="0.8"/><ellipse cx="100" cy="100" rx="80" ry="22" stroke-width="0.5" transform="rotate(-15 100 100)"/><circle cx="100" cy="100" r="3" fill="currentColor" stroke="none"/></svg>
+  </div>
+  <div class="wrapper">
+    <div class="section-head section-head--accent">
+      <div class="label">Latest</div>
+      <h2>News, Updates &amp; Insights</h2>
+      <p>Announcements, articles, and developments from Uganda's space sector and beyond.</p>
+    </div>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="university">University</button>
+      <button class="filter-chip" data-filter="infrastructure">Infrastructure</button>
+      <button class="filter-chip" data-filter="policy">Policy</button>
+    </div>
+    <div class="updates-grid">
+      <!-- Featured (authored, scrollable) -->
+      <div>
+        <div class="updates-col-head">Featured</div>
+        <div class="updates-featured scroll-fade">
+        <div class="updates-feat-card" data-cat="policy">
+          <div class="updates-feat-img" style="background-image: url('https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=800&q=80')"></div>
+          <div class="updates-feat-body">
+            <h4>Uganda Signs Artemis Accords</h4>
+            <p>Uganda becomes the latest African nation to commit to responsible space exploration principles, marking a significant milestone for the country's growing space program.</p>
+            <a href="#" class="read-more">Read More →</a>
+            <div class="updates-feat-meta">15 Jul 2026 · Ministry of Science &amp; Technology</div>
+          </div>
+        </div>
+        <div class="updates-feat-card" data-cat="university">
+          <div class="updates-feat-img" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80')"></div>
+          <div class="updates-feat-body">
+            <h4>Makerere Space Lab Opens</h4>
+            <p>New dedicated laboratory for satellite design and testing at Makerere University opens its doors to students and researchers.</p>
+            <a href="#" class="read-more">Read More →</a>
+            <div class="updates-feat-meta">10 Jul 2026 · Makerere University</div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Latest (authored, scrollable list) -->
+      <div>
+        <div class="updates-col-head">Latest <a href="#">View All →</a></div>
+        <div class="updates-list scroll-fade">
+          <div class="updates-list-item" data-cat="university">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <span class="list-category">University</span>
+              <h5>Makerere Space Lab Opens</h5>
+              <div class="source">Makerere University · 10 Jul</div>
+            </div>
+          </div>
+          <div class="updates-list-item" data-cat="infrastructure">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <span class="list-category">Infrastructure</span>
+              <h5>Ground Station Network Expands</h5>
+              <div class="source">Uganda Met Authority · 8 Jul</div>
+            </div>
+          </div>
+          <div class="updates-list-item" data-cat="university">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <span class="list-category">University</span>
+              <h5>Busitema Launches Aerospace Engineering Program</h5>
+              <div class="source">Busitema University · 1 Jul</div>
+            </div>
+          </div>
+          <div class="updates-list-item" data-cat="infrastructure">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <span class="list-category">Infrastructure</span>
+              <h5>New Telescope Installed at Entebbe Observatory</h5>
+              <div class="source">Uganda Observatory · 28 Jun</div>
+            </div>
+          </div>
+          <div class="updates-list-item" data-cat="policy">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <span class="list-category">Policy</span>
+              <h5>Uganda Signs Artemis Accords</h5>
+              <div class="source">Ministry of Science · 15 Jul</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- External News (from around the world) -->
+      <div>
+        <div class="updates-col-head">From Around the World <a href="#">Open →</a></div>
+        <div class="updates-list scroll-fade">
+          <div class="updates-list-item">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <h5>Artemis III Crew Selection Announced</h5>
+              <div class="source">Space.com · 2 days ago</div>
+              <div class="external-indicator">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                External
+              </div>
+            </div>
+          </div>
+          <div class="updates-list-item">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <h5>Mars Sample Return Mission Update</h5>
+              <div class="source">NASA.gov · 3 days ago</div>
+              <div class="external-indicator">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                External
+              </div>
+            </div>
+          </div>
+          <div class="updates-list-item">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <h5>Europa Clipper Launch Date Confirmed</h5>
+              <div class="source">ESA.int · 5 days ago</div>
+              <div class="external-indicator">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                External
+              </div>
+            </div>
+          </div>
+          <div class="updates-list-item">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <h5>Commercial Space Growth in Africa</h5>
+              <div class="source">SpaceNews · 1 week ago</div>
+              <div class="external-indicator">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                External
+              </div>
+            </div>
+          </div>
+          <div class="updates-list-item">
+            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&q=60')"></div>
+            <div class="updates-list-body">
+              <h5>New Exoplanet Discovery in Habitable Zone</h5>
+              <div class="source">Nature · 1 week ago</div>
+              <div class="external-indicator">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                External
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-star"></div>
+  <div class="section-divider-dots"><span></span><span></span><span></span></div>
+  <div class="section-divider-line"></div>
+</div>
+
+<!-- ═══ PROJECTS ═══ -->
+<section class="section section--alt">
+  <div class="wrapper">
+    <div class="section-head">
+      <div class="label">Active Work</div>
+      <h2>Projects &amp; Opportunities</h2>
+      <p>Ongoing programs you can join and opportunities to participate.</p>
+    </div>
+    <div class="pc-grid">
+        <div class="pc-programs" id="pc-programs">
+        <div class="pc-projects-head" style="margin-bottom: 16px; position: relative; z-index: 1;">
+          <h3>Key Activities</h3>
+        </div>
+        <div class="pc-program active" data-duration="6000" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80')">
+          <div class="pc-program-body">
+            <div class="pc-program-label">Program · Active</div>
+            <h3>National Astronomy Week 2026</h3>
+            <p>A week-long celebration of astronomy across Uganda featuring public telescope viewings, expert talks, school visits, and stargazing events in 5 cities.</p>
+            <div class="pc-program-meta">14–20 Jul 2026 <span class="dot-sep"></span> 7 events <span class="dot-sep"></span> 5 cities</div>
+            <div class="pc-progress"><div class="pc-progress-bar"><div class="pc-progress-fill" style="width:57%"></div></div><div class="pc-progress-text">4/7 completed</div></div>
+            <a href="#" class="pc-program-link">View Program →</a>
+          </div>
+        </div>
+        <div class="pc-program" data-duration="5000" style="background-image: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=800&q=80')">
+          <div class="pc-program-body">
+            <div class="pc-program-label">Program · Active</div>
+            <h3>CubeSat Build Series</h3>
+            <p>Monthly hands-on workshops where students design, build, and test Uganda's first university CubeSat. Covers orbital mechanics, payload design, and ground station operations.</p>
+            <div class="pc-program-meta">Jun–Dec 2026 <span class="dot-sep"></span> 6 workshops <span class="dot-sep"></span> Makerere</div>
+            <div class="pc-progress"><div class="pc-progress-bar"><div class="pc-progress-fill" style="width:33%"></div></div><div class="pc-progress-text">2/6 completed</div></div>
+            <a href="#" class="pc-program-link">View Program →</a>
+          </div>
+        </div>
+        <div class="pc-program" data-duration="5000" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80')">
+          <div class="pc-program-body">
+            <div class="pc-program-label">Program · Completed</div>
+            <h3>Space Outreach Tour</h3>
+            <p>Bringing telescopes, rocket kits, and space education workshops to schools across all 4 regions of Uganda. Reached over 2,000 students in rural communities.</p>
+            <div class="pc-program-meta">Mar–Jun 2026 <span class="dot-sep"></span> 8 visits <span class="dot-sep"></span> 4 regions</div>
+            <div class="pc-progress"><div class="pc-progress-bar"><div class="pc-progress-fill" style="width:100%"></div></div><div class="pc-progress-text">8/8 completed</div></div>
+            <a href="#" class="pc-program-link">View Program →</a>
+          </div>
+        </div>
+        <div class="pc-program-track">
+          <button class="pc-program-dot active" data-index="0" aria-label="Program 1"></button>
+          <button class="pc-program-dot" data-index="1" aria-label="Program 2"></button>
+          <button class="pc-program-dot" data-index="2" aria-label="Program 3"></button>
+        </div>
+      </div>
+      <div class="pc-projects">
+        <div class="pc-projects-head">
+          <h3>Opportunities</h3>
+          <a href="#">View All →</a>
+        </div>
+        <div class="pc-project-row">
+          <div class="pc-project-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+          </div>
+          <div class="pc-project-info">
+            <h5>African Space Agency Scholarship</h5>
+            <p>Full scholarship for African students pursuing space science and engineering degrees.</p>
+            <div class="pc-project-meta">Deadline 30 Sep · Undergraduate</div>
+          </div>
+          <div class="pc-project-arrow">→</div>
+        </div>
+        <div class="pc-project-row">
+          <div class="pc-project-icon">
+            <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <div class="pc-project-info">
+            <h5>Uganda Space Agency Internship</h5>
+            <p>6-month internship at the Uganda Space Agency working on satellite operations.</p>
+            <div class="pc-project-meta">Deadline 15 Aug · Graduate</div>
+          </div>
+          <div class="pc-project-arrow">→</div>
+        </div>
+        <div class="pc-project-row">
+          <div class="pc-project-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="pc-project-info">
+            <h5>Community Space Innovation Fund</h5>
+            <p>Grants up to UGX 50M for space-related innovation projects.</p>
+            <div class="pc-project-meta">Deadline 1 Oct · Organizations</div>
+          </div>
+          <div class="pc-project-arrow">→</div>
+        </div>
+        <div class="pc-project-row">
+          <div class="pc-project-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="pc-project-info">
+            <h5>Space Research Fellowship</h5>
+            <p>2-year research fellowship in satellite communications and Earth observation.</p>
+            <div class="pc-project-meta">Deadline 30 Nov · PhD candidates</div>
+          </div>
+          <div class="pc-project-arrow">→</div>
+        </div>
+        <div class="pc-project-row">
+          <div class="pc-project-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="pc-project-info">
+            <h5>African Space Research Conference</h5>
+            <p>Submit abstracts for the annual African space research conference.</p>
+            <div class="pc-project-meta">Deadline 1 Sep · Researchers</div>
+          </div>
+          <div class="pc-project-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE RIBBON ═══ -->
+<section class="marquee-ribbon">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      <div class="stat-chip"><span class="n">340+</span><span class="l">Members</span></div>
+      <div class="stat-chip"><span class="n">28</span><span class="l">Organizations</span></div>
+      <div class="stat-chip"><span class="n">6</span><span class="l">Universities</span></div>
+      <div class="stat-chip"><span class="n">42</span><span class="l">Events</span></div>
+      <div class="ribbon-divider"></div>
+      <div class="community-chip">Earth Observation</div>
+      <div class="community-chip">Astrophysics</div>
+      <div class="community-chip">Satellite Tech</div>
+      <div class="community-chip">Data Science</div>
+      <div class="community-chip">Robotics</div>
+      <div class="community-chip">Central</div>
+      <div class="community-chip">Eastern</div>
+      <div class="ribbon-divider"></div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+        Uganda Space Agency
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+        Makerere University
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/><circle cx="12" cy="15" r="2"/></svg>
+        Busitema University
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Space Hub Uganda
+      </div>
+    </div>
+    <div class="marquee-content" aria-hidden="true">
+      <div class="stat-chip"><span class="n">340+</span><span class="l">Members</span></div>
+      <div class="stat-chip"><span class="n">28</span><span class="l">Organizations</span></div>
+      <div class="stat-chip"><span class="n">6</span><span class="l">Universities</span></div>
+      <div class="stat-chip"><span class="n">42</span><span class="l">Events</span></div>
+      <div class="ribbon-divider"></div>
+      <div class="community-chip">Earth Observation</div>
+      <div class="community-chip">Astrophysics</div>
+      <div class="community-chip">Satellite Tech</div>
+      <div class="community-chip">Data Science</div>
+      <div class="community-chip">Robotics</div>
+      <div class="community-chip">Central</div>
+      <div class="community-chip">Eastern</div>
+      <div class="ribbon-divider"></div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+        Uganda Space Agency
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+        Makerere University
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/><circle cx="12" cy="15" r="2"/></svg>
+        Busitema University
+      </div>
+      <div class="partner-chip">
+        <svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Space Hub Uganda
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section">
+  <div class="section-decor section-decor--starburst">
+    <svg viewBox="0 0 150 150" fill="none" stroke="currentColor"><circle cx="75" cy="75" r="4" fill="currentColor" stroke="none"/><line x1="75" y1="75" x2="75" y2="30" stroke-width="0.5"/><line x1="75" y1="75" x2="115" y2="50" stroke-width="0.5"/><line x1="75" y1="75" x2="120" y2="90" stroke-width="0.5"/><line x1="75" y1="75" x2="75" y2="120" stroke-width="0.5"/><line x1="75" y1="75" x2="35" y2="100" stroke-width="0.5"/><line x1="75" y1="75" x2="30" y2="60" stroke-width="0.5"/><circle cx="75" cy="30" r="2" fill="currentColor" stroke="none"/><circle cx="115" cy="50" r="1.5" fill="currentColor" stroke="none"/><circle cx="120" cy="90" r="1.5" fill="currentColor" stroke="none"/></svg>
+  </div>
+  <div class="wrapper">
+    <div class="cta-banner">
+      <h2>Join <span class="hl">The Constellation</span></h2>
+      <p>Create your profile and become part of Uganda's growing space community. Share your work, find collaborators, and help shape the future of space in Uganda.</p>
+      <a href="#" class="btn btn-gold">Create Your Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="wrapper">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-txt" style="font-size:0.88rem;">Uganda <span>Space</span> Community</span>
+        <p>Rooted in Uganda, reaching beyond Earth. A national platform for Uganda's space ecosystem.</p>
+        <div class="email">hello@ugandaspace.ug</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46L20 4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="#">Mission Calendar</a>
+        <a href="#">Mission Updates</a>
+        <a href="#">Launchpad</a>
+        <a href="#">Knowledge Base</a>
+        <a href="#">Q&A</a>
+      </div>
+      <div class="footer-col">
+        <h5>Community</h5>
+        <a href="#">The Constellation</a>
+        <a href="#">Organizations</a>
+        <a href="#">Projects</a>
+        <a href="#">Code of Conduct</a>
+      </div>
+      <div class="footer-col">
+        <h5>More</h5>
+        <a href="#">About</a>
+        <a href="#">Partner With Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      © 2026 Uganda Space Community <span style="color: var(--red);">·</span> <span class="hl">The Constellation</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+  document.querySelector('.nav').classList.toggle('nav-open');
+});
+
+// Theme toggle
+const body = document.body;
+const themeToggle = document.querySelector('.theme-toggle');
+
+if (localStorage.getItem('usc-theme') === 'dark') {
+  body.classList.add('dark-mode');
+}
+
+themeToggle?.addEventListener('click', function() {
+  body.classList.toggle('dark-mode');
+  localStorage.setItem('usc-theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+});
+
+// Nav scroll effect — show background when scrolling past hero
+const navBar = document.querySelector('.nav-bar');
+const hero = document.querySelector('.hero');
+function updateNav() {
+  const heroBottom = hero ? hero.offsetHeight : 600;
+  if (window.scrollY > heroBottom - 80) {
+    navBar.classList.add('nav-scrolled');
+  } else {
+    navBar.classList.remove('nav-scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav);
+updateNav();
+
+// Close mobile nav on outside click
+document.addEventListener('click', function(e) {
+  const nav = document.querySelector('.nav');
+  if (nav && !nav.contains(e.target) && nav.classList.contains('nav-open')) {
+    nav.classList.remove('nav-open');
+  }
+});
+
+// Mission Slideshow — loads from content.json
+(function() {
+  const container = document.getElementById('mission-slideshow');
+  if (!container) return;
+
+  function initSlideshow(items) {
+    // Build HTML
+    container.innerHTML = items.map(renderSlide).join('') +
+      '<div class="slideshow-track">' + renderDots(items.length) + '</div>';
+    bindSlideshow();
+  }
+
+  function renderSlide(item) {
+    const hasImage = item.image && item.image.length > 0;
+    const imgHtml = hasImage
+      ? `<div class="slideshow-img" style="background-image: url('${item.image}')" onerror="this.style.display='none'"></div>`
+      : '';
+    const imageClass = hasImage ? ' has-image' : '';
+
+    return `
+      <div class="slideshow-item${imageClass}" data-duration="${item.duration || 4000}">
+        <div class="slideshow-text">
+          <div class="slideshow-label">${item.type}</div>
+          <h4>${item.title}</h4>
+          <p>${item.description}</p>
+          <div class="slideshow-meta">${item.date} <span class="dot-sep"></span> ${item.location}</div>
+        </div>
+        ${imgHtml}
+      </div>`;
+  }
+
+  function renderDots(count) {
+    let html = '';
+    for (let i = 0; i < count; i++) {
+      html += `<button class="slideshow-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`;
+    }
+    return html;
+  }
+
+  function bindSlideshow() {
+    const slideItems = container.querySelectorAll('.slideshow-item');
+    const dots = container.querySelectorAll('.slideshow-dot');
+    if (!slideItems.length) return;
+
+    let current = 0;
+    let timer = null;
+
+    function goTo(index) {
+      slideItems[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].style.removeProperty('--dur');
+
+      current = index;
+
+      slideItems[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      const duration = parseInt(slideItems[current].dataset.duration) || 4000;
+      dots[current].style.setProperty('--dur', duration + 'ms');
+
+      const dot = dots[current];
+      dot.style.animation = 'none';
+      dot.offsetHeight;
+      dot.style.animation = '';
+
+      clearTimeout(timer);
+      timer = setTimeout(() => goTo((current + 1) % slideItems.length), duration);
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    goTo(0);
+  }
+
+  // Try loading from JSON; fall back to hardcoded HTML
+  if (location.protocol === 'file:') {
+    // Can't fetch on file:// — init from existing hardcoded HTML
+    bindSlideshow();
+  } else {
+    fetch('data/content.json')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data && data.mission && data.mission.slideshow) {
+          initSlideshow(data.mission.slideshow);
+        } else {
+          bindSlideshow(); // JSON missing slideshow — use hardcoded
+        }
+      })
+      .catch(() => bindSlideshow()); // Fetch failed — use hardcoded HTML
+  }
+})();
+
+// Programs Slideshow
+(function() {
+  const container = document.getElementById('pc-programs');
+  if (!container) return;
+  const items = container.querySelectorAll('.pc-program');
+  const dots = container.querySelectorAll('.pc-program-dot');
+  if (!items.length) return;
+
+  let current = 0;
+  let timer = null;
+
+  function goTo(index) {
+    items[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    dots[current].style.removeProperty('--dur');
+
+    current = index;
+
+    items[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    const duration = parseInt(items[current].dataset.duration) || 5000;
+    dots[current].style.setProperty('--dur', duration + 'ms');
+
+    const dot = dots[current];
+    dot.style.animation = 'none';
+    dot.offsetHeight;
+    dot.style.animation = '';
+
+    clearTimeout(timer);
+    timer = setTimeout(() => goTo((current + 1) % items.length), duration);
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  goTo(0);
+})();
+
+// Filter chips for Events and Updates sections
+document.querySelectorAll('.filter-chips').forEach(chipGroup => {
+  const chips = chipGroup.querySelectorAll('.filter-chip');
+  const section = chipGroup.closest('.section');
+  if (!section) return;
+  const featured = section.querySelector('.tc-featured');
+  const headlines = section.querySelector('.tc-headlines');
+  if (!featured || !headlines) return;
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+
+      featured.querySelectorAll('.tc-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
+      });
+      headlines.querySelectorAll('.headline-item').forEach(item => {
+        item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>

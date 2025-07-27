@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "title": "Uganda Space Community",
+    "tagline": "The Constellation",
+    "email": "hello@ugandaspace.ug",
+    "description": "The national platform for Uganda's space ecosystem. Connect, discover, and contribute to Uganda's growing space sector."
+  },
+
+  "hero": {
+    "heading": "Charting Uganda's path {accent:beyond Earth}.",
+    "subtitle": "Connecting students, researchers, professionals, and organizations across Uganda's growing space ecosystem.",
+    "cta": "Join The Constellation",
+    "images": [
+      { "src": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80", "alt": "Earth from space at night" },
+      { "src": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=80", "alt": "Deep space nebula" },
+      { "src": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&q=80", "alt": "Moon surface" }
+    ],
+    "scrollText": "SCROLL"
+  },
+
+  "mission": {
+    "text": "The Uganda Space Community Platform brings together everyone working in or interested in Uganda's space sector — from students at Makerere to researchers at the Uganda Space Agency. Discover events, share knowledge, find opportunities, and connect with the people shaping the country's space future.",
+    "tags": ["Scientific", "Community-driven", "Proudly Ugandan", "Educational", "Aspirational"],
+    "slideshow": [
+      {
+        "type": "Featured Event",
+        "title": "Satellite Applications Workshop",
+        "description": "Hands-on satellite data processing and Earth observation. Learn to work with Sentinel-2 imagery and extract meaningful insights for agricultural monitoring.",
+        "date": "12 Jul 2026",
+        "location": "Makerere University",
+        "duration": 6000,
+        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80"
+      },
+      {
+        "type": "Campaign",
+        "title": "National Astronomy Week 2026",
+        "description": "A week of telescopes, talks, and stargazing across 5 Ugandan cities.",
+        "date": "14–20 Jul 2026",
+        "location": "4/7 events completed",
+        "duration": 6000,
+        "image": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+      },
+      {
+        "type": "Update",
+        "title": "Uganda Signs Artemis Accords",
+        "description": "Uganda becomes the latest African nation to commit to responsible space exploration principles.",
+        "date": "15 Jul 2026",
+        "location": "Ministry of Science & Technology",
+        "duration": 4000,
+        "image": "https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=800&q=80"
+      },
+      {
+        "type": "Event",
+        "title": "Community Rocketry Challenge",
+        "description": "Student teams design and launch model rockets in this annual competition.",
+        "date": "5 Aug 2026",
+        "location": "Kampala",
+        "duration": 4000,
+        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80"
+      },
+      {
+        "type": "Campaign",
+        "title": "CubeSat Build Series",
+        "description": "Monthly hands-on workshops building Uganda's first university CubeSat.",
+        "date": "Jun–Dec 2026",
+        "location": "2/6 completed",
+        "duration": 4000,
+        "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=800&q=80"
+      }
+    ]
+  },
+
+  "pillars": [
+    {
+      "num": "01",
+      "title": "Discover",
+      "text": "Browse events, news, and mission updates from across Uganda's space sector. Stay current with what's happening.",
+      "link": "Explore the calendar",
+      "icon": "globe",
+      "stat": "120+ events · 50+ articles · 20+ opportunities"
+    },
+    {
+      "num": "02",
+      "title": "Contribute",
+      "text": "Share your work, submit opportunities, write articles, answer questions, and help grow the knowledge base.",
+      "link": "Start contributing",
+      "icon": "pen",
+      "stat": "50+ articles · 30+ Q&A answered"
+    },
+    {
+      "num": "03",
+      "title": "Connect",
+      "text": "Join the Constellation — build your profile, find collaborators, and work together on projects that matter.",
+      "link": "Join the community",
+      "icon": "users",
+      "stat": "340+ members · 28 organizations · 4 regions"
+    }
+  ],
+
+  "missions": {
+    "featured": [
+      {
+        "status": "active",
+        "statusLabel": "Active",
+        "title": "Uganda CubeSat Program",
+        "text": "Student-led initiative to design, build, and launch Uganda's first university CubeSat. Open to engineering, physics, and computer science students.",
+        "meta": ["14 members", "Launch Q4 2027"],
+        "link": "Join Mission"
+      },
+      {
+        "status": "progress",
+        "statusLabel": "In Progress",
+        "title": "National Astronomy Outreach",
+        "text": "School visit program bringing telescopes and space education to rural communities across Uganda.",
+        "meta": ["8 members", "22 schools visited"],
+        "link": "Join Mission"
+      },
+      {
+        "status": "seeking",
+        "statusLabel": "Seeking Members",
+        "title": "Ground Station Network",
+        "text": "Building a distributed satellite ground station network across Ugandan universities.",
+        "meta": ["5 members", "3 stations planned"],
+        "link": "Join Mission"
+      }
+    ],
+    "list": [
+      { "status": "emerald", "title": "Earth Observation Data Hub", "members": 12 },
+      { "status": "gold", "title": "Astrophotography Gallery", "members": 31 },
+      { "status": "emerald", "title": "Space Policy Research Group", "members": 7 },
+      { "status": "crimson", "title": "Satellite Tracker App", "members": 4 },
+      { "status": "emerald", "title": "STEM School Kits", "members": 9 },
+      { "status": "gold", "title": "Rocketry Design Challenge", "members": 18 },
+      { "status": "emerald", "title": "Space History Archive", "members": 6 }
+    ]
+  },
+
+  "community": {
+    "groups": [
+      { "title": "Earth Observation", "members": 48, "icon": "globe" },
+      { "title": "Astrophysics", "members": 32, "icon": "layers" },
+      { "title": "Satellite Tech", "members": 27, "icon": "monitor" },
+      { "title": "Space Policy", "members": 19, "icon": "flag" },
+      { "title": "Data Science", "members": 36, "icon": "stack" },
+      { "title": "Robotics", "members": 21, "icon": "wrench" },
+      { "title": "Education", "members": 44, "icon": "book" },
+      { "title": "Defense & Security", "members": 14, "icon": "shield" }
+    ],
+    "chapters": [
+      { "region": "Central", "cities": "Kampala, Wakiso, Mukono, Mpigi", "members": 124, "orgs": 8 },
+      { "region": "Eastern", "cities": "Jinja, Mbale, Tororo, Iganga", "members": 68, "orgs": 4 },
+      { "region": "Western", "cities": "Mbarara, Fort Portal, Kasese", "members": 52, "orgs": 3 },
+      { "region": "Northern", "cities": "Gulu, Lira, Arua, Kitgum", "members": 38, "orgs": 2 }
+    ]
+  },
+
+  "updates": {
+    "featured": [
+      {
+        "category": "Policy",
+        "title": "Uganda Signs Artemis Accords",
+        "text": "Uganda becomes the latest African nation to commit to responsible space exploration principles.",
+        "date": "15 Jul 2026",
+        "source": "Ministry of Science & Technology",
+        "image": "https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=600&q=80"
+      },
+      {
+        "category": "University",
+        "title": "Makerere Space Lab Opens",
+        "text": "New dedicated laboratory for satellite design and testing at Makerere University.",
+        "date": "10 Jul 2026",
+        "source": "Makerere University",
+        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=600&q=80"
+      },
+      {
+        "category": "Infrastructure",
+        "title": "Ground Station Network Expands",
+        "text": "Two new ground stations added to the national satellite receiving network.",
+        "date": "8 Jul 2026",
+        "source": "Uganda National Meteorology Authority",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+      },
+      {
+        "category": "Competition",
+        "title": "Rocketry Challenge Registration Open",
+        "text": "Student teams invited to compete in the annual rocketry challenge.",
+        "date": "3 Jul 2026",
+        "source": "Kampala",
+        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=600&q=80"
+      }
+    ],
+    "headlines": [
+      { "category": "University", "title": "Busitema Launches Aerospace Engineering Program", "date": "1 Jul 2026" },
+      { "category": "Infrastructure", "title": "New Telescope Installed at Entebbe Observatory", "date": "28 Jun 2026" }
+    ]
+  },
+
+  "events": {
+    "featured": [
+      {
+        "type": "Physical",
+        "title": "Satellite Applications Workshop",
+        "text": "Hands-on satellite data processing and Earth observation with Sentinel-2 imagery.",
+        "date": "12 Jul 2026",
+        "location": "Makerere University",
+        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=600&q=80"
+      },
+      {
+        "type": "Webinar",
+        "title": "Uganda Space Pioneers — Ep. 4",
+        "text": "Dr. Sarah Nabukenya on Uganda's first CubeSat mission.",
+        "date": "18 Jul 2026",
+        "location": "Online",
+        "image": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80"
+      },
+      {
+        "type": "Competition",
+        "title": "Community Rocketry Challenge",
+        "text": "Student teams design and launch model rockets.",
+        "date": "5 Aug 2026",
+        "location": "Kampala",
+        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=600&q=80"
+      },
+      {
+        "type": "Physical",
+        "title": "Observation Night",
+        "text": "Public stargazing event with telescopes at Makerere Observatory.",
+        "date": "12 Aug 2026",
+        "location": "Makerere University",
+        "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80"
+      }
+    ],
+    "headlines": [
+      { "type": "Webinar", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
+      { "type": "Physical", "title": "CubeSat Integration Workshop", "date": "1 Sep 2026" }
+    ]
+  },
+
+  "programs": [
+    {
+      "status": "active",
+      "title": "National Astronomy Week 2026",
+      "text": "A week of telescopes, talks, and stargazing across 5 Ugandan cities.",
+      "start": "14 Jul",
+      "end": "20 Jul 2026",
+      "totalEvents": 7,
+      "completedEvents": 4
+    },
+    {
+      "status": "active",
+      "title": "CubeSat Build Series",
+      "text": "Monthly hands-on workshops building Uganda's first university CubeSat.",
+      "start": "Jun",
+      "end": "Dec 2026",
+      "totalEvents": 6,
+      "completedEvents": 2
+    },
+    {
+      "status": "completed",
+      "title": "Space Outreach Tour",
+      "text": "Bringing space education to schools across all 4 regions of Uganda.",
+      "start": "15 Mar",
+      "end": "30 Jun 2026",
+      "totalEvents": 8,
+      "completedEvents": 8
+    }
+  ],
+
+  "opportunities": [
+    {
+      "type": "Scholarship",
+      "title": "African Space Agency Scholarship 2026",
+      "organization": "African Space Agency",
+      "deadline": "30 Sep 2026",
+      "eligible": "Undergraduate students",
+      "description": "Full scholarship for African students pursuing space science and engineering degrees."
+    },
+    {
+      "type": "Internship",
+      "title": "Uganda Space Agency Internship",
+      "organization": "Uganda Space Agency",
+      "deadline": "15 Aug 2026",
+      "eligible": "Graduate students",
+      "description": "6-month internship at the Uganda Space Agency working on satellite operations."
+    },
+    {
+      "type": "Grant",
+      "title": "Community Space Innovation Fund",
+      "organization": "Ministry of Science & Technology",
+      "deadline": "1 Oct 2026",
+      "eligible": "Organizations",
+      "description": "Grants up to UGX 50M for space-related innovation projects."
+    },
+    {
+      "type": "Fellowship",
+      "title": "Space Research Fellowship",
+      "organization": "Makerere University",
+      "deadline": "30 Nov 2026",
+      "eligible": "PhD candidates",
+      "description": "2-year research fellowship in satellite communications and Earth observation."
+    },
+    {
+      "type": "Call for Papers",
+      "title": "African Space Research Conference",
+      "organization": "Uganda Space Community",
+      "deadline": "1 Sep 2026",
+      "eligible": "Researchers",
+      "description": "Submit abstracts for the annual African space research conference."
+    }
+  ],
+
+  "spotlight": {
+    "label": "Featured Member",
+    "name": "Dr. Sarah Nabukenya",
+    "role": "Senior Lecturer, Department of Physics — Makerere University",
+    "quote": "The Uganda Space Community has connected me with collaborators across the continent. It's becoming the central hub for everything space in Uganda.",
+    "tags": ["Earth Observation", "Satellite Comms", "GIS"],
+    "stats": [
+      { "value": "42", "label": "Events This Year" },
+      { "value": "8+", "label": "Countries" },
+      { "value": "6", "label": "Universities" },
+      { "value": "12", "label": "Active Projects" }
+    ]
+  },
+
+  "partners": [
+    { "name": "Uganda Space Agency", "type": "Government Agency", "icon": "building" },
+    { "name": "Makerere University", "type": "University", "icon": "layers" },
+    { "name": "Busitema University", "type": "University", "icon": "box" },
+    { "name": "Space Hub Uganda", "type": "Innovation Hub", "icon": "stack" }
+  ],
+
+  "cta": {
+    "heading": "Join {accent:The Constellation}",
+    "text": "Create your profile and become part of Uganda's growing space community. Share your work, find collaborators, and help shape the future of space in Uganda.",
+    "button": "Create Your Profile"
+  },
+
+  "footer": {
+    "links": {
+      "Platform": ["Mission Calendar", "Mission Updates", "Launchpad", "Knowledge Base", "Q&A"],
+      "Community": ["The Constellation", "Organizations", "Projects", "Code of Conduct"],
+      "More": ["About", "Partner With Us", "Privacy Policy", "Terms of Use"]
+    },
+    "social": [
+      { "platform": "Twitter", "url": "#" },
+      { "platform": "LinkedIn", "url": "#" },
+      { "platform": "GitHub", "url": "#" }
+    ],
+    "copyright": "© 2026 Uganda Space Community · The Constellation"
+  }
+}
