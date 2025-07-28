@@ -269,3 +269,66 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 - "The Constellation" kept for tagline/footer only
 - Section labels: gold uppercase (Discover, Get Involved, Latest, etc.)
 - CTA language: action-oriented (Join, Explore, Register, View)
+
+---
+
+## 12. Discover Page
+
+### Layout
+- 3-column: Filters (220px) | Main View (1fr) | Sidebar (280px)
+- Featured story slideshow at top (full width, fade transitions)
+- Card grid below (2 columns)
+- Sidebar: Quick Stats, Pinned Items, Calendar Heatmap, Quick Actions
+
+### Tabs
+- All, Events, News, Opportunities, Projects
+- Tab active state: gold underline
+- Tabs control card filtering
+
+### Filters
+- Type: Radio buttons (All, Events, News, Opportunities, Projects)
+- Campaign: Checkboxes (Space Week, CubeSat, Outreach)
+- Date Range: Two date inputs
+
+### Calendar Heatmap
+- GitHub-style colored squares
+- 4 levels: empty, light, medium, dark, gold
+- Interactive: click to filter events by date
+
+### Expand Mode
+- "View More" button expands main view
+- Sidebar stays visible
+- "Back to Overview" to collapse
+
+### Card Grid
+- 2 columns on desktop, 1 on mobile
+- Each card: image + category label + title + description + date
+- Hover: border highlight + shadow
+
+---
+
+## 13. Navigation Structure
+
+### Homepage Nav
+- Discover → discover.html
+- Calendar → discover.html#events
+- Updates → discover.html#news
+- Opportunities → discover.html#opportunities
+- Community → community.html
+
+### Discover Page Nav
+- Home → index.html
+- Discover → discover.html (active)
+- Community → community.html
+- Opportunities → discover.html#opportunities
+
+---
+
+## 14. Content Types
+
+| Type | Label Color | Icon |
+|---|---|---|
+| Event | Gold | Calendar |
+| News | Gold | Newspaper |
+| Opportunity | Gold | Briefcase/Document |
+| Project | Gold | Layers/Box |
