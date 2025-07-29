@@ -488,21 +488,27 @@ const cards=[
   {type:'events',title:'Satellite Applications Workshop',desc:'Hands-on satellite data processing and Earth observation.',date:'12 Jul 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80'},
   {type:'events',title:'Uganda Space Pioneers — Ep. 4',desc:'Dr. Sarah Nabukenya on Uganda\'s first CubeSat mission.',date:'18 Jul 2026',cat:'Webinar',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80'},
   {type:'events',title:'Community Rocketry Challenge',desc:'Student teams design and launch model rockets.',date:'5 Aug 2026',cat:'Competition',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80'},
+  {type:'events',title:'Observation Night',desc:'Public stargazing event with telescopes at Makerere Observatory.',date:'12 Aug 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80'},
   {type:'news',title:'Uganda Signs Artemis Accords',desc:'Uganda becomes the latest African nation to commit to responsible space exploration principles.',date:'15 Jul 2026',cat:'Policy',img:'https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=400&q=80'},
   {type:'news',title:'Makerere Space Lab Opens',desc:'New dedicated laboratory for satellite design and testing at Makerere University.',date:'10 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80'},
   {type:'news',title:'Ground Station Network Expands',desc:'Two new ground stations added to the national satellite receiving network.',date:'8 Jul 2026',cat:'Infrastructure',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80'},
+  {type:'news',title:'Busitema Launches Aerospace Program',desc:'New aerospace engineering program at Busitema University.',date:'1 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80'},
   {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'Deadline 30 Sep',cat:'Scholarship',img:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80'},
   {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'Deadline 15 Aug',cat:'Internship',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80'},
+  {type:'opportunities',title:'Community Space Innovation Fund',desc:'Grants up to UGX 50M for space innovation projects.',date:'Deadline 1 Oct',cat:'Grant',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80'},
   {type:'projects',title:'National Astronomy Week',desc:'Week-long celebration of astronomy across Uganda.',date:'14–20 Jul 2026',cat:'Program',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80'},
   {type:'projects',title:'CubeSat Build Series',desc:'Monthly workshops building Uganda\'s first university CubeSat.',date:'Jun–Dec 2026',cat:'Program',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80'},
+  {type:'projects',title:'Earth Observation Data Hub',desc:'Open platform for satellite imagery analysis.',date:'Ongoing',cat:'Project',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80'},
 ];
 
-function filterCards(){
-  const activeTab=document.querySelector('.tab.active')?.dataset.tab||'all';
-  const activeType=document.querySelector('.filter-option[data-filter="type"].active')?.dataset.value||'all';
-  const type=activeTab==='all'?activeType:activeTab;
+let expanded=false;
+const layout=document.getElementById('discover-layout');
+const viewMoreBtn=document.getElementById('view-more-btn');
+const sidebar=document.querySelector('.sidebar');
+
+function renderCards(filter){
   const grid=document.getElementById('card-grid');
-  const filtered=type==='all'?cards:cards.filter(c=>c.type===type);
+  const filtered=filter==='all'?cards:cards.filter(c=>c.type===filter);
   grid.innerHTML=filtered.map(c=>`
     <div class="content-card" data-type="${c.type}">
       <div class="content-card-img" style="background-image:url('${c.img}')"></div>
@@ -515,6 +521,47 @@ function filterCards(){
     </div>
   `).join('');
 }
+
+function filterCards(){
+  const activeTab=document.querySelector('.tab.active')?.dataset.tab||'all';
+  const activeType=document.querySelector('.filter-option[data-filter="type"].active')?.dataset.value||'all';
+  const type=activeTab==='all'?activeType:activeTab;
+  renderCards(type);
+}
+
+// Expand/collapse
+viewMoreBtn?.addEventListener('click',()=>{
+  expanded=!expanded;
+  layout.classList.toggle('expanded',expanded);
+  viewMoreBtn.textContent=expanded?'← Back to Overview':'View More →';
+  if(expanded&&sidebar) sidebar.style.display='none';
+  else if(sidebar) sidebar.style.display='';
+  filterCards();
+});
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    filterCards();
+  });
+});
+
+// Filter options
+document.querySelectorAll('.filter-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    const group=opt.dataset.filter;
+    if(group==='type'){
+      document.querySelectorAll('.filter-option[data-filter="type"]').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+    }else{
+      opt.classList.toggle('active');
+    }
+    filterCards();
+  });
+});
+
 filterCards();
 
 // Calendar heatmap
