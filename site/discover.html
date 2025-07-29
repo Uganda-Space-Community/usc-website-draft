@@ -52,6 +52,10 @@ a{color:inherit;text-decoration:none}
 .nav-c a:hover{color:var(--text)}
 .nav-r{display:flex;gap:8px;align-items:center}
 .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:4px;line-height:0}
+.theme-toggle{background:none;border:none;color:var(--text-2);cursor:pointer;padding:6px;line-height:0;transition:color 0.2s;display:flex;align-items:center;justify-content:center}
+.theme-toggle:hover{color:var(--text)}
+.icon-sun{display:none}.icon-moon{display:block}
+body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 /* ═══ Page Header ═══ */
 .page-header{padding:100px 0 0;position:relative}
@@ -129,6 +133,19 @@ a{color:inherit;text-decoration:none}
 .cal-day.l3{background:rgba(201,168,76,0.6)}
 .cal-day.l4{background:var(--gold)}
 .cal-day:hover{outline:2px solid var(--gold);outline-offset:1px}
+.calendar-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.calendar-nav .cal-month{font-size:0.82rem;font-weight:600;color:var(--text)}
+.cal-nav-btn{background:none;border:1px solid var(--border);border-radius:var(--radius);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-2);font-size:1rem;transition:all 0.2s}
+.cal-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.cal-header{text-align:center;font-size:0.6rem;font-weight:600;color:var(--text-3);text-transform:uppercase;padding:4px 0}
+.calendar-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-cell{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;cursor:pointer;transition:all 0.2s;color:var(--text-3)}
+.cal-cell:hover{background:var(--gold-dim);color:var(--gold)}
+.cal-cell.today{background:var(--gold);color:#fff;font-weight:600}
+.cal-cell.has-event{position:relative}
+.cal-cell.has-event::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.cal-cell.empty{pointer-events:none}
 .quick-actions{display:flex;flex-direction:column;gap:8px}
 .quick-action{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.82rem;color:var(--text-2);cursor:pointer;transition:all 0.2s}
 .quick-action:hover{border-color:var(--gold);color:var(--gold)}
@@ -200,11 +217,11 @@ a{color:inherit;text-decoration:none}
         <li><a href="#">Opportunities</a></li>
       </ul>
       <div class="nav-r">
-        <a href="#" class="btn btn-gold">Join Now</a>
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
+        <a href="#" class="btn btn-gold">Join Now</a>
         <button class="nav-toggle" aria-label="Toggle menu">
           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -227,6 +244,11 @@ a{color:inherit;text-decoration:none}
       <button class="tab" data-tab="opportunities" role="tab">Opportunities</button>
       <button class="tab" data-tab="projects" role="tab">Projects</button>
     </div>
+  </div>
+
+  <!-- ═══ INTRO ═══ -->
+  <div style="padding:32px 0 0">
+    <p style="font-size:1.1rem;color:var(--text-2);font-weight:300;line-height:1.7;max-width:720px">Browse everything happening in Uganda's space sector — from workshops and conferences to scholarships and research programs. Use the filters and tabs to find exactly what you're looking for.</p>
   </div>
 
   <!-- ═══ FEATURED STORY ═══ -->
@@ -299,10 +321,15 @@ a{color:inherit;text-decoration:none}
       </div>
       <div class="filter-section">
         <h4>Date Range</h4>
-        <div style="display:flex;gap:8px;align-items:center">
-          <input type="date" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
-          <span style="color:var(--text-3)">–</span>
-          <input type="date" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div>
+            <label style="font-size:0.68rem;color:var(--text-3);display:block;margin-bottom:4px">From</label>
+            <input type="date" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
+          </div>
+          <div>
+            <label style="font-size:0.68rem;color:var(--text-3);display:block;margin-bottom:4px">To</label>
+            <input type="date" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
+          </div>
         </div>
       </div>
     </aside>
@@ -347,17 +374,34 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <!-- Calendar Heatmap -->
+      <!-- Calendar -->
       <div class="sidebar-section">
-        <h4>Activity</h4>
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-          <span style="font-size:0.66rem;color:var(--text-3)">Less</span>
-          <span style="font-size:0.66rem;color:var(--text-3)">More</span>
+        <h4>Calendar</h4>
+        <div class="calendar-nav">
+          <button class="cal-nav-btn" id="cal-prev">‹</button>
+          <span class="cal-month" id="cal-month">July 2026</span>
+          <button class="cal-nav-btn" id="cal-next">›</button>
         </div>
-        <div class="calendar-heatmap" id="calendar-heatmap"></div>
-        <div style="display:flex;gap:4px;align-items:center;margin-top:8px;justify-content:flex-end">
-          <span style="font-size:0.6rem;color:var(--text-3)">Event on click</span>
-          <div class="cal-day" style="width:10px;height:10px"></div>
+        <div class="calendar-grid">
+          <div class="cal-header">Su</div><div class="cal-header">Mo</div><div class="cal-header">Tu</div><div class="cal-header">We</div><div class="cal-header">Th</div><div class="cal-header">Fr</div><div class="cal-header">Sa</div>
+        </div>
+        <div class="calendar-days" id="calendar-days"></div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="sidebar-section">
+        <h4>Upcoming</h4>
+        <div class="pinned-item">
+          <h5>Satellite Applications Workshop</h5>
+          <div class="meta">Event · 12 Jul 2026 · Makerere</div>
+        </div>
+        <div class="pinned-item">
+          <h5>Uganda Space Pioneers — Ep. 4</h5>
+          <div class="meta">Webinar · 18 Jul 2026 · Online</div>
+        </div>
+        <div class="pinned-item">
+          <h5>Community Rocketry Challenge</h5>
+          <div class="meta">Competition · 5 Aug 2026 · Kampala</div>
         </div>
       </div>
 
@@ -564,18 +608,45 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
 
 filterCards();
 
-// Calendar heatmap
+// Calendar
 (function(){
-  const cal=document.getElementById('calendar-heatmap');
-  if(!cal) return;
-  const levels=[0,0,1,0,2,0,0,3,0,0,1,0,0,0,2,0,1,0,0,4,0,0,1,0,0,0,3,0,0,0,1,0,0,2,0,0,0,0,1,0,0,0];
-  levels.forEach((l,i)=>{
-    const day=document.createElement('div');
-    day.className='cal-day'+(l?' l'+l:'');
-    day.title=l?`${l} events`:'No events';
-    day.addEventListener('click',()=>{if(l)alert(`Filtering to ${l} event(s) on this day`)});
-    cal.appendChild(day);
-  });
+  const calDays=document.getElementById('calendar-days');
+  const calMonth=document.getElementById('cal-month');
+  const calPrev=document.getElementById('cal-prev');
+  const calNext=document.getElementById('cal-next');
+  if(!calDays) return;
+
+  const eventDates={3:1,12:2,14:3,15:1,18:2,20:1};
+  let currentMonth=6,currentYear=2026;
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function render(){
+    calMonth.textContent=months[currentMonth]+' '+currentYear;
+    calDays.innerHTML='';
+    const first=new Date(currentYear,currentMonth,1).getDay();
+    const daysInMonth=new Date(currentYear,currentMonth+1,0).getDate();
+    const today=new Date();
+    for(let i=0;i<first;i++){
+      const cell=document.createElement('div');
+      cell.className='cal-cell empty';
+      calDays.appendChild(cell);
+    }
+    for(let d=1;d<=daysInMonth;d++){
+      const cell=document.createElement('div');
+      cell.className='cal-cell';
+      cell.textContent=d;
+      if(currentMonth===today.getMonth()&&currentYear===today.getFullYear()&&d===today.getDate()) cell.classList.add('today');
+      if(eventDates[d]) cell.classList.add('has-event');
+      cell.addEventListener('click',()=>{
+        if(eventDates[d]) alert(`Filtering to ${eventDates[d]} event(s) on ${months[currentMonth]} ${d}`);
+      });
+      calDays.appendChild(cell);
+    }
+  }
+
+  calPrev?.addEventListener('click',()=>{currentMonth--;if(currentMonth<0){currentMonth=11;currentYear--}render()});
+  calNext?.addEventListener('click',()=>{currentMonth++;if(currentMonth>11){currentMonth=0;currentYear++}render()});
+  render();
 })();
 </script>
 </body>
