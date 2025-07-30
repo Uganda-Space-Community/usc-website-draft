@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — Uganda Space Community</title>
+<meta name="description" content="Connect with Uganda's space community — members, organizations, chapters, and interest groups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F8FA;--bg-alt:#FFFFFF;--bg-alt-subtle:#F2F3F6;
+  --text:#0C1A2E;--text-2:#5C6678;--text-3:#8A91A0;
+  --border:#E4E6EA;--border-hover:#D0D3D8;
+  --gold:#B8953F;--gold-grad:linear-gradient(135deg,#B8953F,#a6862e);
+  --gold-dim:rgba(184,149,63,0.08);--red:#D94F3D;--red-dim:rgba(217,79,61,0.08);
+  --emerald:#1F8A5B;--emerald-dim:rgba(31,138,91,0.06);
+  --star-color:rgba(150,155,165,0.18);--radius:8px;--radius-lg:12px;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+body.dark-mode{--bg:#0A1628;--bg-alt:#0F1F35;--bg-alt-subtle:#0C1929;--text:#EAECF0;--text-2:#7A8498;--text-3:#5C6678;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.10);--red:#E05A4A;--emerald-dim:rgba(31,138,91,0.08);--star-color:rgba(255,255,255,0.08)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s}
+h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.02em;line-height:1.18}
+a{color:inherit;text-decoration:none}
+.wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* Nav */
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--bg-alt);border-bottom:1px solid var(--border);transition:background 0.3s,border-color 0.3s}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;position:relative}
+.nav-l{display:flex;align-items:center;gap:12px}
+.logo-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:var(--gold-dim);overflow:hidden;animation:logoFloat 4s ease-in-out infinite}
+.logo-icon img{width:100%;height:100%;object-fit:cover}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.logo-txt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.92rem;color:var(--text)}
+.logo-txt span{color:var(--gold)}
+.nav-c{display:flex;gap:32px;list-style:none}
+.nav-c a{font-size:0.8rem;font-weight:500;color:var(--text-2);transition:color 0.2s}
+.nav-c a:hover,.nav-c a.active{color:var(--text)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.btn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{filter:brightness(1.1)}
+.theme-toggle{background:none;border:none;color:var(--text-2);cursor:pointer;padding:6px;line-height:0;transition:color 0.2s;display:flex;align-items:center;justify-content:center}
+.theme-toggle:hover{color:var(--text)}
+.icon-sun{display:none}.icon-moon{display:block}
+body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:4px;line-height:0}
+
+/* Page Header */
+.page-header{padding:100px 0 0;position:relative}
+.page-header h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:8px}
+.page-header p{font-size:0.95rem;color:var(--text-2);font-weight:300}
+.tabs{display:flex;gap:4px;margin-top:28px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:0.82rem;font-weight:500;color:var(--text-3);border:none;background:none;cursor:pointer;position:relative;white-space:nowrap;transition:color 0.2s}
+.tab:hover{color:var(--text)}.tab.active{color:var(--text)}
+.tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--gold)}
+
+/* Ecosystem Map */
+.ecosystem-section{padding:48px 0}
+.ecosystem-map{position:relative;width:100%;max-width:700px;margin:0 auto;aspect-ratio:1}
+.eco-ring{position:absolute;border-radius:50%;border:1px solid var(--border)}
+.eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:var(--gold-dim);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;z-index:2}
+.eco-center span{font-family:'Space Grotesk',sans-serif;font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.06em;text-align:center;line-height:1.3}
+.eco-sector{position:absolute;font-size:0.62rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap}
+.eco-node{position:absolute;display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);font-size:0.72rem;color:var(--text);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.eco-node:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.eco-node .icon{width:20px;height:20px;border-radius:4px;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
+.eco-node .icon svg{width:12px;height:12px}
+.eco-line{position:absolute;background:var(--border);transform-origin:left center}
+
+/* Members Grid */
+.section-head{margin-bottom:40px}
+.section-head .label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;display:block}
+.section-head h2{font-family:'Inter',sans-serif;font-size:2rem;font-weight:300;letter-spacing:-0.015em;margin-bottom:8px}
+.section-head p{font-size:0.9rem;color:var(--text-2);font-weight:300}
+.member-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.member-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;cursor:pointer}
+.member-card:hover{border-color:var(--border-hover);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.member-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.member-avatar svg{width:28px;height:28px}
+.member-card h4{font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:400;margin-bottom:4px}
+.member-card .role{font-size:0.76rem;color:var(--text-2);margin-bottom:12px}
+.member-card .tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.member-card .tags span{font-size:0.64rem;padding:2px 8px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
+
+/* Chapters */
+.chapters-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.chapter-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:border-color 0.2s;cursor:pointer}
+.chapter-card:hover{border-color:var(--gold)}
+.chapter-card h4{font-family:'Inter',sans-serif;font-size:1rem;font-weight:400;margin-bottom:4px}
+.chapter-card .cities{font-size:0.82rem;color:var(--text-2);margin-bottom:8px}
+.chapter-card .stats{font-size:0.73rem;color:var(--gold);font-weight:500}
+
+/* Interest Groups */
+.groups-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.groups-scroll::-webkit-scrollbar{height:4px}
+.groups-scroll::-webkit-scrollbar-track{background:transparent}
+.groups-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.group-pill{display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--border);border-radius:100px;white-space:nowrap;flex-shrink:0;cursor:pointer;transition:all 0.2s}
+.group-pill:hover{border-color:var(--gold);background:var(--gold-dim)}
+.group-pill .icon{width:32px;height:32px;background:var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.group-pill .icon svg{width:16px;height:16px}
+.group-pill h4{font-size:0.84rem;font-weight:500}
+.group-pill .count{font-size:0.68rem;color:var(--text-3)}
+
+/* Stats Row */
+.stats-row{display:flex;gap:32px;padding:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:40px 0}
+.stat-item{text-align:center;flex:1}
+.stat-item .n{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.stat-item .l{font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+
+/* Footer */
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
+.footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.footer-brand p{font-size:0.8rem;color:var(--text-2);margin-top:12px;line-height:1.65;max-width:260px}
+.footer-brand .email{margin-top:14px;font-size:0.8rem;color:var(--gold)}
+.footer-social{display:flex;gap:10px;margin-top:14px}
+.footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.footer-col h5{font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px}
+.footer-col a{display:block;font-size:0.8rem;color:var(--text-2);padding:4px 0;transition:color 0.2s;font-weight:300}
+.footer-col a:hover{color:var(--text)}
+.footer-bot{text-align:center;padding-top:24px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-3)}
+.footer-bot .hl{color:var(--gold)}
+
+/* Responsive */
+@media(max-width:900px){
+  .nav-toggle{display:block}.nav{position:relative}
+  .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-alt);border-bottom:1px solid var(--border);flex-direction:column;padding:16px 28px;gap:14px;z-index:100}
+  .nav-open .nav-c{display:flex}
+  .member-grid{grid-template-columns:repeat(2,1fr)}
+  .chapters-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .eco-node{font-size:0.6rem;padding:4px 8px}
+}
+@media(max-width:640px){
+  .wrapper{padding:0 18px}
+  .page-header{padding:80px 0 0}
+  .page-header h1{font-size:2rem}
+  .member-grid{grid-template-columns:1fr}
+  .stats-row{flex-wrap:wrap;gap:16px}
+  .stat-item{min-width:calc(50% - 8px)}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+  .eco-node{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-l">
+        <a href="index.html" class="logo-icon"><img src="emblem.png" alt="Uganda Space Community"/></a>
+        <span class="logo-txt">Uganda <span>Space</span></span>
+      </div>
+      <ul class="nav-c">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="discover.html">Discover</a></li>
+        <li><a href="community.html" class="active">Community</a></li>
+        <li><a href="discover.html#opportunities">Opportunities</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a href="#" class="btn btn-gold">Join Now</a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="page-header">
+    <h1>The Constellation</h1>
+    <p>Connect with students, researchers, professionals, and organizations across Uganda's space ecosystem.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="overview" role="tab">Overview</button>
+      <button class="tab" data-tab="members" role="tab">Members</button>
+      <button class="tab" data-tab="organizations" role="tab">Organizations</button>
+      <button class="tab" data-tab="chapters" role="tab">Chapters</button>
+      <button class="tab" data-tab="groups" role="tab">Interest Groups</button>
+    </div>
+  </div>
+
+  <!-- ═══ OVERVIEW TAB ═══ -->
+  <div class="tab-content" id="tab-overview">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-item"><div class="n">340+</div><div class="l">Members</div></div>
+      <div class="stat-item"><div class="n">28</div><div class="l">Organizations</div></div>
+      <div class="stat-item"><div class="n">6</div><div class="l">Universities</div></div>
+      <div class="stat-item"><div class="n">4</div><div class="l">Regions</div></div>
+      <div class="stat-item"><div class="n">8</div><div class="l">Interest Groups</div></div>
+    </div>
+
+    <!-- Ecosystem Map -->
+    <div class="section-head" style="text-align:center;max-width:none">
+      <div class="label">Ecosystem</div>
+      <h2>Uganda Space Ecosystem Map</h2>
+      <p style="max-width:600px;margin:0 auto">A visual overview of the organizations, institutions, and stakeholders in Uganda's space sector.</p>
+    </div>
+    <div class="ecosystem-section">
+      <div class="ecosystem-map" id="ecosystem-map">
+        <!-- Rings -->
+        <div class="eco-ring" style="width:90%;height:90%;top:5%;left:5%"></div>
+        <div class="eco-ring" style="width:65%;height:65%;top:17.5%;left:17.5%"></div>
+        <div class="eco-ring" style="width:40%;height:40%;top:30%;left:30%"></div>
+
+        <!-- Center -->
+        <div class="eco-center"><span>Uganda<br>Space<br>Community</span></div>
+
+        <!-- Sectors -->
+        <div class="eco-sector" style="top:2%;left:50%;transform:translateX(-50%)">Universities</div>
+        <div class="eco-sector" style="top:15%;right:2%">Agencies</div>
+        <div class="eco-sector" style="bottom:15%;right:2%">Companies</div>
+        <div class="eco-sector" style="bottom:2%;left:50%;transform:translateX(-50%)">NGOs</div>
+        <div class="eco-sector" style="top:15%;left:2%">International</div>
+        <div class="eco-sector" style="bottom:15%;left:2%">Government</div>
+
+        <!-- Nodes -->
+        <div class="eco-node" style="top:18%;left:25%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div>Makerere University</div>
+        <div class="eco-node" style="top:8%;left:55%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div>Busitema University</div>
+        <div class="eco-node" style="top:25%;right:8%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>Uganda Space Agency</div>
+        <div class="eco-node" style="top:42%;right:5%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div>Space Hub Uganda</div>
+        <div class="eco-node" style="bottom:25%;right:8%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/></svg></div>UNOOSA</div>
+        <div class="eco-node" style="bottom:10%;left:55%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>Ministry of Science</div>
+        <div class="eco-node" style="bottom:25%;left:8%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>ESA Partnership</div>
+        <div class="eco-node" style="top:42%;left:5%"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>African Space Agency</div>
+      </div>
+    </div>
+
+    <!-- Interest Groups -->
+    <div class="section-head">
+      <div class="label">Community</div>
+      <h2>Interest Groups</h2>
+      <p>Join specialized groups based on your interests and expertise.</p>
+    </div>
+    <div class="groups-scroll">
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg></div>
+        <div><h4>Earth Observation</h4><div class="count">48 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div>
+        <div><h4>Astrophysics</h4><div class="count">32 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div>
+        <div><h4>Satellite Tech</h4><div class="count">27 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg></div>
+        <div><h4>Space Policy</h4><div class="count">19 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div>
+        <div><h4>Data Science</h4><div class="count">36 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div><h4>Robotics</h4><div class="count">21 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div>
+        <div><h4>Education</h4><div class="count">44 members</div></div>
+      </div>
+      <div class="group-pill">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><h4>Defense &amp; Security</h4><div class="count">14 members</div></div>
+      </div>
+    </div>
+
+    <!-- Chapters -->
+    <div class="section-head" style="margin-top:48px">
+      <div class="label">Regional</div>
+      <h2>Chapters</h2>
+      <p>Find your local chapter and connect with members in your region.</p>
+    </div>
+    <div class="chapters-grid">
+      <div class="chapter-card">
+        <h4>Central</h4>
+        <div class="cities">Kampala, Wakiso, Mukono, Mpigi</div>
+        <div class="stats">124 members · 8 organizations</div>
+      </div>
+      <div class="chapter-card">
+        <h4>Eastern</h4>
+        <div class="cities">Jinja, Mbale, Tororo, Iganga</div>
+        <div class="stats">68 members · 4 organizations</div>
+      </div>
+      <div class="chapter-card">
+        <h4>Western</h4>
+        <div class="cities">Mbarara, Fort Portal, Kasese</div>
+        <div class="stats">52 members · 3 organizations</div>
+      </div>
+      <div class="chapter-card">
+        <h4>Northern</h4>
+        <div class="cities">Gulu, Lira, Arua, Kitgum</div>
+        <div class="stats">38 members · 2 organizations</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MEMBERS TAB ═══ -->
+  <div class="tab-content" id="tab-members" style="display:none">
+    <div class="section-head">
+      <div class="label">Directory</div>
+      <h2>Members</h2>
+      <p>Students, researchers, professionals, and enthusiasts in Uganda's space community.</p>
+    </div>
+    <div class="member-grid" id="member-grid"></div>
+  </div>
+
+  <!-- ═══ ORGANIZATIONS TAB ═══ -->
+  <div class="tab-content" id="tab-organizations" style="display:none">
+    <div class="section-head">
+      <div class="label">Directory</div>
+      <h2>Organizations</h2>
+      <p>Universities, agencies, companies, and institutions in Uganda's space ecosystem.</p>
+    </div>
+    <div class="member-grid" id="org-grid"></div>
+  </div>
+
+  <!-- ═══ CHAPTERS TAB ═══ -->
+  <div class="tab-content" id="tab-chapters" style="display:none">
+    <div class="section-head">
+      <div class="label">Regional</div>
+      <h2>Chapters</h2>
+      <p>Find your local chapter and connect with members in your region.</p>
+    </div>
+    <div class="chapters-grid">
+      <div class="chapter-card"><h4>Central</h4><div class="cities">Kampala, Wakiso, Mukono, Mpigi</div><div class="stats">124 members · 8 organizations</div></div>
+      <div class="chapter-card"><h4>Eastern</h4><div class="cities">Jinja, Mbale, Tororo, Iganga</div><div class="stats">68 members · 4 organizations</div></div>
+      <div class="chapter-card"><h4>Western</h4><div class="cities">Mbarara, Fort Portal, Kasese</div><div class="stats">52 members · 3 organizations</div></div>
+      <div class="chapter-card"><h4>Northern</h4><div class="cities">Gulu, Lira, Arua, Kitgum</div><div class="stats">38 members · 2 organizations</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ GROUPS TAB ═══ -->
+  <div class="tab-content" id="tab-groups" style="display:none">
+    <div class="section-head">
+      <div class="label">Interest Groups</div>
+      <h2>Join a Group</h2>
+      <p>Connect with like-minded members in specialized interest areas.</p>
+    </div>
+    <div class="groups-scroll" style="flex-wrap:wrap">
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg></div><div><h4>Earth Observation</h4><div class="count">48 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><h4>Astrophysics</h4><div class="count">32 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div><h4>Satellite Tech</h4><div class="count">27 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg></div><div><h4>Space Policy</h4><div class="count">19 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div><div><h4>Data Science</h4><div class="count">36 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div><h4>Robotics</h4><div class="count">21 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div><div><h4>Education</h4><div class="count">44 members</div></div></div>
+      <div class="group-pill"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>Defense &amp; Security</h4><div class="count">14 members</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrapper">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
+        <p>Rooted in Uganda, reaching beyond Earth.</p>
+        <div class="email">hello@ugandaspace.ug</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="discover.html">Discover</a><a href="#">Calendar</a><a href="discover.html#news">Updates</a><a href="discover.html#opportunities">Opportunities</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html#chapters">Chapters</a></div>
+      <div class="footer-col"><h5>More</h5><a href="#">About</a><a href="#">Partner With Us</a><a href="#">Privacy</a></div>
+    </div>
+    <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
+  </div>
+</footer>
+
+<script>
+// Theme
+const body=document.body;
+if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
+document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
+
+// Nav
+document.querySelector('.nav-toggle')?.addEventListener('click',()=>document.querySelector('.nav').classList.toggle('nav-open'));
+document.addEventListener('click',e=>{const n=document.querySelector('.nav');if(n&&!n.contains(e.target))n.classList.remove('nav-open')});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(c=>c.style.display='none');
+    const target=document.getElementById('tab-'+tab.dataset.tab);
+    if(target)target.style.display='';
+  });
+});
+
+// Members data
+const members=[
+  {name:'Dr. Sarah Nabukenya',role:'Senior Lecturer, Physics — Makerere',tags:['Earth Observation','Satellite Comms']},
+  {name:'James Okello',role:'PhD Candidate, Astrophysics — Makerere',tags:['Astronomy','Data Science']},
+  {name:'Grace Nakamya',role:'Engineer, Satellite Systems — USA',tags:['Satellite Tech','Communications']},
+  {name:'Peter Ssemwanga',role:'Research Fellow, Space Policy — Makerere',tags:['Policy','International']},
+  {name:'Alice Nabukera',role:'MSc Student, Remote Sensing — Busitema',tags:['Earth Observation','GIS']},
+  {name:'David Mugisha',role:'Lecturer, Aerospace Engineering — Makerere',tags:['Aerospace','Robotics']},
+  {name:'Sarah Akello',role:'Program Manager, Outreach — USA',tags:['Outreach','Education']},
+  {name:'Michael Ochieng',role:'Data Scientist, EO Analytics — Space Hub',tags:['Data Science','AI']},
+  {name:'Fatuma Nakato',role:'PhD Student, Satellite Comms — Makerere',tags:['Communications','Research']},
+  {name:'Brian Ssemakula',role:'Software Engineer, Ground Stations — Tech',tags:['Software','Infrastructure']},
+  {name:'Esther Nabirye',role:'Policy Analyst, Space Law — Ministry',tags:['Policy','Legal']},
+  {name:'John Mukasa',role:'Observatory Director — Entebbe',tags:['Astronomy','Observation']},
+];
+
+const orgs=[
+  {name:'Uganda Space Agency',type:'Government Agency',members:45},
+  {name:'Makerere University',type:'University',members:89},
+  {name:'Busitema University',type:'University',members:34},
+  {name:'Space Hub Uganda',type:'Innovation Hub',members:28},
+  {name:'Uganda National Meteorology Authority',type:'Government Agency',members:12},
+  {name:'Entebbe Observatory',type:'Research Center',members:8},
+  {name:'Ministry of Science & Technology',type:'Government Ministry',members:15},
+  {name:'African Space Agency',type:'Continental Agency',members:6},
+];
+
+function renderMembers(){
+  const grid=document.getElementById('member-grid');
+  grid.innerHTML=members.map(m=>`
+    <div class="member-card">
+      <div class="member-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+      <h4>${m.name}</h4>
+      <div class="role">${m.role}</div>
+      <div class="tags">${m.tags.map(t=>'<span>'+t+'</span>').join('')}</div>
+    </div>
+  `).join('');
+}
+
+function renderOrgs(){
+  const grid=document.getElementById('org-grid');
+  grid.innerHTML=orgs.map(o=>`
+    <div class="member-card">
+      <div class="member-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg></div>
+      <h4>${o.name}</h4>
+      <div class="role">${o.type}</div>
+      <div class="tags"><span>${o.members} members</span></div>
+    </div>
+  `).join('');
+}
+
+renderMembers();
+renderOrgs();
+</script>
+</body>
+</html>
