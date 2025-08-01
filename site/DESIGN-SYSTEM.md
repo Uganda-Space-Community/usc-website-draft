@@ -56,8 +56,7 @@
 
 | Font | Usage |
 |---|---|
-| **Inter** | Body text, descriptions, UI elements |
-| **Space Grotesk** | Headings, numbers, navigation, labels |
+| **Inter** | Everything — body, headings, labels, buttons, numbers, navigation |
 
 ### Type Scale
 
@@ -70,9 +69,9 @@
 | Body text | Inter | 0.88-0.95rem | 300 | Line-height 1.65-1.8 |
 | Caption/meta | Inter | 0.68-0.76rem | 400 | Color: --text-3 |
 | Labels | Inter | 0.62-0.7rem | 600 | Uppercase, tracked 0.12em |
-| Navigation | Space Grotesk | 0.8-0.92rem | 500-700 | |
-| Numbers/stats | Space Grotesk | 1.3-2.2rem | 700 | |
-| Buttons | Space Grotesk | 0.76-0.82rem | 600 | Uppercase on hero buttons |
+| Navigation | Inter | 0.8-0.92rem | 500-600 | |
+| Numbers/stats | Inter | 1.3-2.2rem | 700 | |
+| Buttons | Inter | 0.76-0.82rem | 600 | Uppercase on hero buttons |
 
 ### Rules
 
