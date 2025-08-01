@@ -704,7 +704,7 @@ function buildMesh(){
         nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}" style="cursor:grab">
           <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r+4}" fill="${nd.color}" opacity="0.12"/>
           <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r}" fill="${nd.color}" opacity="0.85" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
-          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700">${nd.count}</text>
+          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Inter,sans-serif" font-size="13" font-weight="700">${nd.count}</text>
           <text x="${nd.x}" y="${nd.y+nd.r+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
         </g>`;
       });
@@ -716,7 +716,7 @@ function buildMesh(){
         nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}" style="cursor:grab">
           <circle cx="${nd.x}" cy="${nd.y}" r="${r2+4}" fill="${nd.color}" opacity="0.10"/>
           <circle cx="${nd.x}" cy="${nd.y}" r="${r2}" fill="${nd.color}" opacity="0.8" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
-          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700">${actCount}</text>
+          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Inter,sans-serif" font-size="12" font-weight="700">${actCount}</text>
           <text x="${nd.x}" y="${nd.y+r2+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
         </g>`;
       });
@@ -742,7 +742,7 @@ function buildMesh(){
       <g transform="translate(${meshOffset.x},${meshOffset.y})">
         ${edgesSvg}${nodesSvg}
         <circle cx="${cx}" cy="${cy}" r="24" fill="var(--gold)" opacity="0.08" stroke="var(--gold)" stroke-width="1" stroke-opacity="0.2"/>
-        <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
+        <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Inter,sans-serif" font-size="10" font-weight="700">USC</text>
         <text x="${cx}" y="${cy+9}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
       </g>
     </svg>`;
