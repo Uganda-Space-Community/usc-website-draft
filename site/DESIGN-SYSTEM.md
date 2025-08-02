@@ -309,17 +309,18 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 ## 13. Navigation Structure
 
 ### Homepage Nav
-- Discover → discover.html
-- Calendar → discover.html#events
-- Updates → discover.html#news
-- Opportunities → discover.html#opportunities
+- Updates → updates.html
+- Launchpad → launchpad.html
+- Knowledge → knowledge.html
 - Community → community.html
+- FAQ → faq.html
 
-### Discover Page Nav
+### Updates Page Nav
 - Home → index.html
-- Discover → discover.html (active)
+- Updates → updates.html (active)
+- Launchpad → launchpad.html
+- Knowledge → knowledge.html
 - Community → community.html
-- Opportunities → discover.html#opportunities
 
 ---
 
