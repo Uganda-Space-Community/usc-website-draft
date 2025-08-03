@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mission Calendar — Uganda Space Community</title>
+<meta name="description" content="Track events, opportunities, cosmic events, and holidays in Uganda's space ecosystem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F8FA;--bg-alt:#FFFFFF;--bg-alt-subtle:#F2F3F6;--text:#0C1A2E;--text-2:#5C6678;--text-3:#8A91A0;--border:#E4E6EA;--border-hover:#D0D3D8;--gold:#B8953F;--gold-grad:linear-gradient(135deg,#B8953F,#a6862e);--gold-dim:rgba(184,149,63,0.08);--red:#D94F3D;--red-dim:rgba(217,79,61,0.08);--emerald:#1F8A5B;--emerald-dim:rgba(31,138,91,0.06);--star-color:rgba(150,155,165,0.18);--radius:8px;--radius-lg:12px;--ease:cubic-bezier(0.25,0.46,0.45,0.94)}
+body.dark-mode{--bg:#0A1628;--bg-alt:#0F1F35;--bg-alt-subtle:#0C1929;--text:#EAECF0;--text-2:#7A8498;--text-3:#5C6678;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.10);--red:#E05A4A;--emerald-dim:rgba(31,138,91,0.08);--star-color:rgba(255,255,255,0.08)}
+.skip-link{position:absolute;top:-100%;left:12px;z-index:999;padding:8px 16px;background:var(--gold);color:#fff;font-size:0.8rem;font-weight:600;border-radius:0 0 6px 6px;transition:top 0.2s}
+.skip-link:focus{top:0}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s}
+h1,h2,h3,h4,h5{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-0.02em;line-height:1.18}
+a{color:inherit;text-decoration:none}
+.wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* Nav */
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;border:none;--nav-text:rgba(234,236,240,0.7);--nav-text-hover:#EAECF0;transition:background 0.3s}
+.nav-bar.nav-scrolled{background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative}
+.nav-l{display:flex;align-items:center;gap:12px}
+.logo-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:var(--gold-dim);overflow:hidden;animation:logoFloat 4s ease-in-out infinite}
+.logo-icon img{width:100%;height:100%;object-fit:cover}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-3px) rotate(1deg)}}
+.logo-txt{font-family:'Inter',sans-serif;font-weight:700;font-size:0.92rem;color:var(--nav-text-hover);letter-spacing:-0.01em;transition:color 0.3s}
+.logo-txt span{color:var(--gold)}
+.nav-c{display:flex;gap:32px;list-style:none;margin-left:auto;margin-right:24px}
+.nav-c a{font-size:0.8rem;font-weight:500;color:var(--nav-text);transition:color 0.3s;letter-spacing:0.02em}
+.nav-c a:hover{color:var(--nav-text-hover)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-toggle{display:none;background:none;border:none;color:var(--nav-text-hover);cursor:pointer;padding:4px;line-height:0;transition:color 0.3s}
+.theme-toggle{background:none;border:none;color:var(--nav-text);cursor:pointer;padding:6px;line-height:0;transition:color 0.3s;display:flex;align-items:center;justify-content:center}
+.theme-toggle:hover{color:var(--nav-text-hover)}
+.icon-sun{display:none}.icon-moon{display:block}
+body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
+
+/* Hero */
+.hero{position:relative;height:340px;overflow:hidden}
+.hero .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.15) 0%,rgba(10,22,40,0.8) 100%);z-index:1}
+.hero .wrapper{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:48px}
+.hero h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:8px;color:#fff}
+.hero .hero-desc{font-size:0.95rem;color:rgba(255,255,255,0.75);font-weight:300;max-width:560px;line-height:1.7}
+
+/* Stats Strip */
+.stats-strip{display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.stats-strip .stat-item{text-align:center;flex:1}
+.stats-strip .stat-item .n{font-family:'Inter',sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
+.stats-strip .stat-item .l{font-size:0.62rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
+
+/* Section Divider */
+.section-divider{display:flex;justify-content:center;align-items:center;padding:8px 0;position:relative}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-star{width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 16px;box-shadow:0 0 12px rgba(217,79,61,0.4);position:relative}
+.section-divider-star::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(217,79,61,0.2)}
+.section-divider-dots{display:flex;gap:6px;margin:0 12px}
+.section-divider-dots span{width:3px;height:3px;border-radius:50%;background:var(--text-3);opacity:0.4}
+
+/* View Toggle */
+.view-toggle{display:flex;gap:6px;margin:24px 0}
+.view-btn{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text-3);background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;padding:6px 16px;cursor:pointer;transition:all 0.2s}
+.view-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.view-btn:hover:not(.active){border-color:var(--border-hover);color:var(--text-2)}
+
+/* Filters */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.filter-chip{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:var(--bg-alt);font-size:0.78rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif}
+.filter-chip:hover{border-color:var(--border-hover);color:var(--text)}
+.filter-chip.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);font-weight:600}
+.filter-chip .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px}
+
+/* Month View */
+.month-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.month-nav .month-title{font-size:1.1rem;font-weight:600}
+.month-nav button{background:none;border:1px solid var(--border);border-radius:var(--radius);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-2);font-size:1rem;transition:all 0.2s}
+.month-nav button:hover{border-color:var(--gold);color:var(--gold)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:32px}
+.cal-header{text-align:center;font-size:0.62rem;font-weight:600;color:var(--text-3);text-transform:uppercase;padding:8px 0}
+.cal-cell{aspect-ratio:1;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.82rem;cursor:pointer;transition:all 0.2s;color:var(--text-3);position:relative;gap:3px}
+.cal-cell:hover{background:var(--gold-dim);color:var(--gold)}
+.cal-cell.today{background:var(--gold);color:#fff;font-weight:600}
+.cal-cell.today .event-dots span{background:#fff}
+.cal-cell.other-month{opacity:0.3}
+.cal-cell .day-num{font-weight:500}
+.cal-cell .event-dots{display:flex;gap:2px;position:absolute;bottom:4px}
+.cal-cell .event-dots span{width:4px;height:4px;border-radius:50%}
+.dot-event{background:var(--gold)}
+.dot-cosmic{background:var(--emerald)}
+.dot-holiday{background:var(--red)}
+.dot-deadline{background:var(--text-3)}
+
+/* List View */
+.list-view{padding-bottom:32px}
+.list-month{margin-bottom:24px}
+.list-month h3{font-size:0.82rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.list-item{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.list-item:last-child{border-bottom:none}
+.list-date{min-width:48px;text-align:center;flex-shrink:0}
+.list-date .day{font-size:1.2rem;font-weight:700;color:var(--gold);line-height:1}
+.list-date .month{font-size:0.62rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
+.list-info h4{font-size:0.92rem;font-weight:400;margin-bottom:2px}
+.list-info p{font-size:0.78rem;color:var(--text-2)}
+.list-info .type-badge{display:inline-block;font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:2px 8px;border-radius:100px;margin-top:4px}
+.badge-event{background:var(--gold-dim);color:var(--gold)}
+.badge-cosmic{background:var(--emerald-dim);color:var(--emerald)}
+.badge-holiday{background:var(--red-dim);color:var(--red)}
+.badge-deadline{background:var(--bg-alt-subtle);color:var(--text-3)}
+
+/* Year Heatmap */
+.year-grid{display:grid;grid-template-columns:repeat(53,1fr);gap:2px;padding-bottom:32px}
+.year-cell{aspect-ratio:1;border-radius:2px;cursor:pointer;transition:all 0.2s}
+.year-cell:hover{outline:2px solid var(--gold);outline-offset:1px}
+.year-cell.l0{background:var(--border)}
+.year-cell.l1{background:rgba(184,149,63,0.2)}
+.year-cell.l2{background:rgba(184,149,63,0.4)}
+.year-cell.l3{background:rgba(184,149,63,0.6)}
+.year-cell.l4{background:var(--gold)}
+.year-labels{display:flex;justify-content:space-between;margin-bottom:8px}
+.year-labels span{font-size:0.62rem;color:var(--text-3)}
+.year-months{display:flex;justify-content:space-between;margin-bottom:4px}
+.year-months span{font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
+.year-legend{display:flex;align-items:center;gap:4px;justify-content:flex-end;margin-top:8px;font-size:0.62rem;color:var(--text-3)}
+.year-legend .y-cell{width:10px;height:10px;border-radius:2px}
+
+/* Footer */
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:64px 0 32px;position:relative;overflow:hidden}
+.footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand p{font-size:0.82rem;color:var(--text-2);margin-top:14px;line-height:1.7;max-width:280px;font-weight:300}
+.footer-brand .email{margin-top:16px;font-size:0.82rem;color:var(--gold)}
+.footer-social{display:flex;gap:10px;margin-top:14px}
+.footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.footer-col h5{font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px}
+.footer-col a{display:block;font-size:0.8rem;color:var(--text-2);padding:4px 0;transition:color 0.2s;font-weight:300}
+.footer-col a:hover{color:var(--text)}
+.footer-bot{text-align:center;padding-top:24px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-3)}
+.footer-bot .hl{color:var(--gold)}
+
+/* Responsive */
+@media(max-width:900px){
+  .nav-toggle{display:block}.nav{position:relative}
+  .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
+  .nav-open .nav-c{display:flex}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .stats-strip{flex-wrap:wrap;gap:12px}
+  .stats-strip .stat-item{min-width:calc(33% - 8px)}
+  .year-grid{grid-template-columns:repeat(26,1fr)}
+}
+@media(max-width:640px){
+  .wrapper{padding:0 18px}
+  .hero{height:280px}
+  .hero h1{font-size:1.8rem}
+  .cal-grid{gap:1px}
+  .cal-cell{font-size:0.72rem}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+  .stats-strip .stat-item{min-width:calc(50% - 6px)}
+  .year-grid{grid-template-columns:repeat(13,1fr)}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="nav-bar nav-scrolled">
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-l">
+        <a href="index.html" class="logo-icon">
+          <img src="emblem.png" alt="Uganda Space Community" />
+        </a>
+        <span class="logo-txt">Uganda <span>Space</span></span>
+      </div>
+      <ul class="nav-c">
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="launchpad.html">Launchpad</a></li>
+        <li><a href="knowledge.html">Knowledge</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="main">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80')"></div>
+  <div class="wrapper">
+    <h1>Mission Calendar</h1>
+    <p class="hero-desc">Track events, opportunities, cosmic phenomena, and holidays across Uganda's space ecosystem.</p>
+  </div>
+</div>
+
+<div class="wrapper">
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stat-item"><div class="n" id="stat-month">0</div><div class="l">This Month</div></div>
+    <div class="stat-item"><div class="n" id="stat-upcoming">0</div><div class="l">Upcoming</div></div>
+    <div class="stat-item"><div class="n" id="stat-cosmic">11</div><div class="l">Cosmic Events</div></div>
+    <div class="stat-item"><div class="n" id="stat-holidays">11</div><div class="l">Holidays</div></div>
+    <div class="stat-item"><div class="n">2026</div><div class="l">Year</div></div>
+  </div>
+
+  <!-- View Toggle -->
+  <div class="view-toggle">
+    <button class="view-btn active" data-view="month">Month</button>
+    <button class="view-btn" data-view="list">List</button>
+    <button class="view-btn" data-view="year">Year</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-chip active" data-filter="all">All</button>
+    <button class="filter-chip" data-filter="event"><span class="dot dot-event"></span>Events</button>
+    <button class="filter-chip" data-filter="cosmic"><span class="dot dot-cosmic"></span>Cosmic</button>
+    <button class="filter-chip" data-filter="holiday"><span class="dot dot-holiday"></span>Holidays</button>
+    <button class="filter-chip" data-filter="deadline"><span class="dot dot-deadline"></span>Deadlines</button>
+  </div>
+
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- Calendar Views -->
+  <div id="view-month">
+    <div class="month-nav">
+      <button id="cal-prev">‹</button>
+      <span class="month-title" id="cal-title">July 2026</span>
+      <button id="cal-next">›</button>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-header">Sun</div><div class="cal-header">Mon</div><div class="cal-header">Tue</div><div class="cal-header">Wed</div><div class="cal-header">Thu</div><div class="cal-header">Fri</div><div class="cal-header">Sat</div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <div id="view-list" style="display:none"></div>
+  <div id="view-year" style="display:none"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrapper">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
+        <p>Rooted in Uganda, reaching beyond Earth. A national platform for Uganda's space ecosystem.</p>
+        <div class="email">hello@space.org.ug</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    </div>
+    <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
+  </div>
+</footer>
+
+<script>
+const body=document.body;
+if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
+document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
+document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
+document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
+
+const navBar=document.querySelector('.nav-bar');
+function updateNav(){navBar.classList.add('nav-scrolled')}
+window.addEventListener('scroll',updateNav);updateNav();
+
+// Event data
+const events=[
+  {date:'2026-01-01',title:"New Year's Day",type:'holiday'},
+  {date:'2026-01-03',title:'Quadrantid Meteor Shower Peak',type:'cosmic',desc:'Up to 120 meteors/hour'},
+  {date:'2026-01-26',title:'Liberation Day',type:'holiday'},
+  {date:'2026-03-08',title:"International Women's Day",type:'holiday'},
+  {date:'2026-03-20',title:'Vernal Equinox',type:'cosmic',desc:'Day and night nearly equal'},
+  {date:'2026-04-03',title:'Good Friday',type:'holiday'},
+  {date:'2026-04-06',title:'Easter Monday',type:'holiday'},
+  {date:'2026-04-22',title:'Lyrid Meteor Shower',type:'cosmic',desc:'15-20 meteors/hour'},
+  {date:'2026-04-26',title:"Heroes' Day",type:'holiday'},
+  {date:'2026-05-06',title:'Eta Aquariid Meteor Shower',type:'cosmic',desc:"Associated with Halley's Comet"},
+  {date:'2026-05-15',title:'Space Outreach Tour Ends',type:'deadline'},
+  {date:'2026-06-03',title:"Martyrs' Day",type:'holiday'},
+  {date:'2026-06-09',title:'National Heroes Day',type:'holiday'},
+  {date:'2026-06-21',title:'Summer Solstice',type:'cosmic',desc:'Longest day of the year'},
+  {date:'2026-06-30',title:'EO Training Program Deadline',type:'deadline'},
+  {date:'2026-07-14',title:'National Astronomy Week Starts',type:'event',desc:'Week-long astronomy celebration'},
+  {date:'2026-07-15',title:'Uganda Signs Artemis Accords',type:'event',desc:'Historic space policy milestone'},
+  {date:'2026-07-18',title:'Uganda Space Pioneers — Ep. 4',type:'event',desc:'Webinar series'},
+  {date:'2026-07-20',title:'National Astronomy Week Ends',type:'event'},
+  {date:'2026-08-05',title:'Community Rocketry Challenge',type:'event',desc:'Student competition'},
+  {date:'2026-08-12',title:'Perseid Meteor Shower Peak',type:'cosmic',desc:'Up to 100 meteors/hour, best viewing'},
+  {date:'2026-08-31',title:'EO Training Program Ends',type:'deadline'},
+  {date:'2026-09-21',title:'Independence Day',type:'holiday'},
+  {date:'2026-09-22',title:'Autumnal Equinox',type:'cosmic',desc:'Day and night nearly equal'},
+  {date:'2026-09-30',title:'Rocketry Challenge Deadline',type:'deadline'},
+  {date:'2026-10-21',title:'Orionid Meteor Shower',type:'cosmic',desc:"Associated with Halley's Comet"},
+  {date:'2026-10-30',title:'African Space Agency Scholarship Deadline',type:'deadline'},
+  {date:'2026-11-17',title:'Leonid Meteor Shower',type:'cosmic',desc:'Up to 15 meteors/hour'},
+  {date:'2026-12-14',title:'Geminid Meteor Shower Peak',type:'cosmic',desc:"Up to 150 meteors/hour, year's best"},
+  {date:'2026-12-21',title:'Winter Solstice',type:'cosmic',desc:'Shortest day of the year'},
+  {date:'2026-12-25',title:'Christmas Day',type:'holiday'},
+  {date:'2026-12-26',title:'Boxing Day',type:'holiday'}
+];
+
+const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+let curMonth=6,curYear=2026,activeFilter='all',currentView='month';
+
+function parseD(d){return new Date(d+'T00:00:00')}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function getEventsForDay(y,m,d){
+  const ds=curYear+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+  return events.filter(e=>{
+    if(activeFilter!=='all'&&e.type!==activeFilter)return false;
+    return e.date===ds;
+  });
+}
+function isFuture(y,m,d){const dt=new Date(y,m,d);const now=new Date();now.setHours(0,0,0,0);return dt>=now}
+
+// Stats
+function updateStats(){
+  const now=new Date();const cm=now.getMonth(),cy=now.getFullYear();
+  const thisMonth=events.filter(e=>{const d=parseD(e.date);return d.getMonth()===cm&&d.getFullYear()===cy}).length;
+  const upcoming=events.filter(e=>{const d=parseD(e.date);return d>=now}).length;
+  document.getElementById('stat-month').textContent=thisMonth;
+  document.getElementById('stat-upcoming').textContent=upcoming;
+}
+
+// Month View
+function renderMonth(){
+  const title=document.getElementById('cal-title');
+  const grid=document.getElementById('cal-grid');
+  title.textContent=months[curMonth]+' '+curYear;
+  grid.innerHTML='';
+  const first=new Date(curYear,curMonth,1).getDay();
+  const daysInMonth=new Date(curYear,curMonth+1,0).getDate();
+  const prevDays=new Date(curYear,curMonth,0).getDate();
+  const today=new Date();
+  for(let i=0;i<first;i++){
+    const d=prevDays-first+i+1;
+    const cell=document.createElement('div');cell.className='cal-cell other-month';
+    cell.innerHTML='<span class="day-num">'+d+'</span>';grid.appendChild(cell);
+  }
+  for(let d=1;d<=daysInMonth;d++){
+    const cell=document.createElement('div');cell.className='cal-cell';
+    if(today.getFullYear()===curYear&&today.getMonth()===curMonth&&d===today.getDate())cell.classList.add('today');
+    const evts=getEventsForDay(curYear,curMonth,d);
+    let dots='';if(evts.length){dots='<div class="event-dots">'+evts.slice(0,3).map(e=>'<span class="dot-'+e.type+'"></span>').join('')+'</div>'}
+    cell.innerHTML='<span class="day-num">'+d+'</span>'+dots;
+    if(evts.length){cell.title=evts.map(e=>e.title).join(', ')}
+    grid.appendChild(cell);
+  }
+  const total=first+daysInMonth;const rem=total%7===0?0:7-total%7;
+  for(let i=1;i<=rem;i++){
+    const cell=document.createElement('div');cell.className='cal-cell other-month';
+    cell.innerHTML='<span class="day-num">'+i+'</span>';grid.appendChild(cell);
+  }
+}
+
+// List View
+function renderList(){
+  const container=document.getElementById('view-list');
+  const now=new Date();now.setHours(0,0,0,0);
+  const filtered=events.filter(e=>{
+    if(activeFilter!=='all'&&e.type!==activeFilter)return false;
+    return parseD(e.date)>=now;
+  }).sort((a,b)=>a.date.localeCompare(b.date));
+  if(!filtered.length){container.innerHTML='<p style="text-align:center;color:var(--text-3);padding:40px 0">No upcoming events.</p>';return}
+  const grouped={};
+  filtered.forEach(e=>{const m=e.date.substring(0,7);if(!grouped[m])grouped[m]=[];grouped[m].push(e)});
+  container.innerHTML=Object.entries(grouped).map(([m,items])=>{
+    const dt=new Date(m+'-01');
+    return '<div class="list-month"><h3>'+months[dt.getMonth()]+' '+dt.getFullYear()+'</h3>'+
+      items.map(e=>{
+        const d=parseD(e.date);
+        const badge='badge-'+e.type;
+        return '<div class="list-item"><div class="list-date"><div class="day">'+d.getDate()+'</div><div class="month">'+months[d.getMonth()].substring(0,3)+'</div></div>'+
+          '<div class="list-info"><h4>'+e.title+'</h4>'+(e.desc?'<p>'+e.desc+'</p>':'')+
+          '<span class="type-badge '+badge+'">'+e.type+'</span></div></div>';
+      }).join('')+'</div>';
+  }).join('');
+}
+
+// Year View
+function renderYear(){
+  const container=document.getElementById('view-year');
+  let html='<div class="year-months">';
+  months.forEach(m=>html+='<span>'+m.substring(0,1)+'</span>');
+  html+='</div><div class="year-grid" id="year-grid"></div>';
+  html+='<div class="year-legend"><span>Less</span><div class="y-cell l0"></div><div class="y-cell l1"></div><div class="y-cell l2"></div><div class="y-cell l3"></div><div class="y-cell l4"></div><span>More</span></div>';
+  container.innerHTML=html;
+  const grid=document.getElementById('year-grid');
+  const start=new Date(curYear,0,1);
+  const end=new Date(curYear,11,31);
+  const dayOfWeek=start.getDay();
+  let d=new Date(start);
+  d.setDate(d.getDate()-dayOfWeek);
+  while(d<=end||d.getDay()!==0){
+    const cell=document.createElement('div');cell.className='year-cell';
+    if(d.getFullYear()===curYear){
+      const ds=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      const count=events.filter(e=>e.date===ds).length;
+      if(count>=4)cell.classList.add('l4');
+      else if(count>=3)cell.classList.add('l3');
+      else if(count>=2)cell.classList.add('l2');
+      else if(count>=1)cell.classList.add('l1');
+      else cell.classList.add('l0');
+      cell.title=d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+': '+count+' events';
+    }else{
+      cell.classList.add('l0');cell.style.opacity='0.2';
+    }
+    grid.appendChild(cell);
+    d.setDate(d.getDate()+1);
+  }
+}
+
+// View switching
+document.querySelectorAll('.view-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentView=btn.dataset.view;
+    document.getElementById('view-month').style.display=currentView==='month'?'block':'none';
+    document.getElementById('view-list').style.display=currentView==='list'?'block':'none';
+    document.getElementById('view-year').style.display=currentView==='year'?'block':'none';
+    if(currentView==='month')renderMonth();
+    else if(currentView==='list')renderList();
+    else renderYear();
+  });
+});
+
+// Filter switching
+document.getElementById('filterBar').addEventListener('click',e=>{
+  const chip=e.target.closest('.filter-chip');if(!chip)return;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  activeFilter=chip.dataset.filter;
+  if(currentView==='month')renderMonth();
+  else if(currentView==='list')renderList();
+  else renderYear();
+});
+
+// Month navigation
+document.getElementById('cal-prev').addEventListener('click',()=>{curMonth--;if(curMonth<0){curMonth=11;curYear--}renderMonth()});
+document.getElementById('cal-next').addEventListener('click',()=>{curMonth++;if(curMonth>11){curMonth=0;curYear++}renderMonth()});
+
+updateStats();
+renderMonth();
+</script>
+</body>
+</html>
