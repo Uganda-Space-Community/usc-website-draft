@@ -203,6 +203,32 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .featured-slide-body h2{font-size:1.2rem}
   .footer-grid{grid-template-columns:1fr;gap:20px}
 }
+
+/* ═══ Modals ═══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,0.6);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:24px}
+.modal-overlay.open{display:flex}
+.modal-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;padding:32px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-3);cursor:pointer;padding:4px;line-height:0;font-size:1.4rem}
+.modal-close:hover{color:var(--text)}
+.modal-header{margin-bottom:24px}
+.modal-header h3{font-size:1.2rem;font-weight:600;margin-bottom:4px}
+.modal-header p{font-size:0.82rem;color:var(--text-2)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-size:0.88rem;font-family:'Inter',sans-serif;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
+.submit-bar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 8px}
+.submit-bar .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:0.78rem;padding:8px 18px;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2);display:inline-flex;align-items:center;gap:6px;transition:all 0.2s}
+.submit-bar .btn:hover{border-color:var(--gold);color:var(--gold)}
+.submit-bar .btn svg{width:14px;height:14px}
+.login-gate{text-align:center;padding:16px 0}
+.login-gate svg{margin-bottom:12px}
+.login-gate h3{font-size:1.1rem;margin-bottom:6px}
+.login-gate p{font-size:0.85rem;color:var(--text-2);margin-bottom:16px}
+.login-gate .btn{width:100%;justify-content:center}
 </style>
 </head>
 <body>
@@ -244,15 +270,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   <div class="page-header" id="main">
     <h1>Updates &amp; Insights</h1>
     <p>Latest news, events, and opportunities in Uganda's space ecosystem.</p>
-     <!--
-<div class="tabs" role="tablist">
-      <button class="tab active" data-tab="all" role="tab">All</button>
-      <button class="tab" data-tab="events" role="tab">Events</button>
-      <button class="tab" data-tab="news" role="tab">News</button>
-      <button class="tab" data-tab="opportunities" role="tab">Opportunities</button>
-      <button class="tab" data-tab="projects" role="tab">Projects</button>
+    <div class="submit-bar">
+      <button data-modal="modal-event"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Submit Event</button>
+      <button data-modal="modal-news"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Post News</button>
+      <button data-modal="modal-opportunity"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg> Post Opportunity</button>
     </div>
--->
   </div>
 
   <!-- ═══ FEATURED STORY ═══ -->
@@ -428,6 +450,94 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       </div>
     </aside>
 
+  </div>
+</div>
+
+<!-- ═══ SUBMIT MODALS ═══ -->
+
+<!-- Login Gate -->
+<div class="modal-overlay" id="login-gate">
+  <div class="modal-card" style="max-width:380px;text-align:center">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--gold)" stroke-width="1.5" fill="none" style="margin:0 auto 16px;display:block"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <h3>Login Required</h3>
+    <p>You need to be logged in to submit content.</p>
+    <a href="login.html" class="btn btn-gold">Log In</a>
+    <p style="font-size:0.78rem;color:var(--text-3);margin-top:12px">Don't have an account? <a href="login.html" style="color:var(--gold)">Sign Up</a></p>
+  </div>
+</div>
+
+<!-- Submit Event -->
+<div class="modal-overlay" id="modal-event">
+  <div class="modal-card">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <div class="modal-header">
+      <h3>Submit Event</h3>
+      <p>Share an upcoming event with the community.</p>
+    </div>
+    <form onsubmit="return false">
+      <div class="form-group"><label>Title</label><input type="text" placeholder="Event name"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Date</label><input type="date"></div>
+        <div class="form-group"><label>Location</label><input type="text" placeholder="City or Online"></div>
+      </div>
+      <div class="form-group"><label>Category</label><select><option>Physical</option><option>Webinar</option><option>Competition</option><option>Workshop</option></select></div>
+      <div class="form-group"><label>Description</label><textarea placeholder="Brief description of the event..."></textarea></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
+        <button type="submit" class="btn btn-gold">Submit Event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Post News -->
+<div class="modal-overlay" id="modal-news">
+  <div class="modal-card">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <div class="modal-header">
+      <h3>Post News</h3>
+      <p>Share news or an article with the community.</p>
+    </div>
+    <form onsubmit="return false">
+      <div class="form-group"><label>Title</label><input type="text" placeholder="Article title"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Author</label><input type="text" placeholder="Your name"></div>
+        <div class="form-group"><label>Category</label><select><option>Policy</option><option>University</option><option>Infrastructure</option><option>General</option></select></div>
+      </div>
+      <div class="form-group"><label>Summary</label><textarea placeholder="Brief summary..."></textarea></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
+        <button type="submit" class="btn btn-gold">Post News</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Post Opportunity -->
+<div class="modal-overlay" id="modal-opportunity">
+  <div class="modal-card">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <div class="modal-header">
+      <h3>Post Opportunity</h3>
+      <p>Share a scholarship, internship, grant, or fellowship.</p>
+    </div>
+    <form onsubmit="return false">
+      <div class="form-group"><label>Title</label><input type="text" placeholder="Opportunity title"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Type</label><select><option>Scholarship</option><option>Internship</option><option>Grant</option><option>Fellowship</option></select></div>
+        <div class="form-group"><label>Deadline</label><input type="date"></div>
+      </div>
+      <div class="form-group"><label>Description</label><textarea placeholder="Describe the opportunity..."></textarea></div>
+      <div class="form-group"><label>Link URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
+        <button type="submit" class="btn btn-gold">Post Opportunity</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -713,6 +823,23 @@ if(hash){
   calNext?.addEventListener('click',()=>{currentMonth++;if(currentMonth>11){currentMonth=0;currentYear++}render()});
   render();
 })();
+
+// Modal system
+document.querySelectorAll('[data-modal]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(!localStorage.getItem('usc-user')){
+      document.getElementById('login-gate').classList.add('open');
+      return;
+    }
+    document.getElementById(btn.dataset.modal).classList.add('open');
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
+});
 </script>
 </body>
 </html>
