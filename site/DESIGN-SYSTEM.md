@@ -310,6 +310,7 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 
 ### Homepage Nav
 - Updates → updates.html
+- Calendar → calendar.html
 - Launchpad → launchpad.html
 - Knowledge → knowledge.html
 - Community → community.html
@@ -318,9 +319,11 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 ### Updates Page Nav
 - Home → index.html
 - Updates → updates.html (active)
+- Calendar → calendar.html
 - Launchpad → launchpad.html
 - Knowledge → knowledge.html
 - Community → community.html
+- FAQ → faq.html
 
 ---
 
