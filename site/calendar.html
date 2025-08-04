@@ -62,12 +62,6 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .section-divider-dots{display:flex;gap:6px;margin:0 12px}
 .section-divider-dots span{width:3px;height:3px;border-radius:50%;background:var(--text-3);opacity:0.4}
 
-/* View Toggle */
-.view-toggle{display:flex;gap:6px;margin:24px 0}
-.view-btn{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text-3);background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;padding:6px 16px;cursor:pointer;transition:all 0.2s}
-.view-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
-.view-btn:hover:not(.active){border-color:var(--border-hover);color:var(--text-2)}
-
 /* Filters */
 .filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
 .filter-chip{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:var(--bg-alt);font-size:0.78rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif}
@@ -219,13 +213,6 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="stat-item"><div class="n">2026</div><div class="l">Year</div></div>
   </div>
 
-  <!-- View Toggle -->
-  <div class="view-toggle">
-    <button class="view-btn active" data-view="month">Month</button>
-    <button class="view-btn" data-view="list">List</button>
-    <button class="view-btn" data-view="year">Year</button>
-  </div>
-
   <!-- Filters -->
   <div class="filter-bar" id="filterBar">
     <button class="filter-chip active" data-filter="all">All</button>
@@ -243,8 +230,12 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="section-divider-line"></div>
   </div>
 
-  <!-- Calendar Views -->
+  <!-- Month View -->
   <div id="view-month">
+    <div class="section-head" style="margin-top:24px">
+      <div class="label">Month View</div>
+      <h2>Monthly Calendar</h2>
+    </div>
     <div class="month-nav">
       <button id="cal-prev">‹</button>
       <span class="month-title" id="cal-title">July 2026</span>
@@ -256,8 +247,38 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="cal-grid" id="cal-grid"></div>
   </div>
 
-  <div id="view-list" style="display:none"></div>
-  <div id="view-year" style="display:none"></div>
+  <div class="section-divider" aria-hidden="true" style="margin:32px 0">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- List View -->
+  <div id="view-list">
+    <div class="section-head">
+      <div class="label">List View</div>
+      <h2>Upcoming Events</h2>
+    </div>
+  </div>
+
+  <div class="section-divider" aria-hidden="true" style="margin:32px 0">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- Year View -->
+  <div id="view-year">
+    <div class="section-head">
+      <div class="label">Year View</div>
+      <h2>2026 Heatmap</h2>
+      <p>Event density across the year. Darker = more events.</p>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
@@ -330,7 +351,7 @@ const events=[
 ];
 
 const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-let curMonth=6,curYear=2026,activeFilter='all',currentView='month';
+let curMonth=6,curYear=2026,activeFilter='all';
 
 function parseD(d){return new Date(d+'T00:00:00')}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
@@ -440,30 +461,15 @@ function renderYear(){
   }
 }
 
-// View switching
-document.querySelectorAll('.view-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentView=btn.dataset.view;
-    document.getElementById('view-month').style.display=currentView==='month'?'block':'none';
-    document.getElementById('view-list').style.display=currentView==='list'?'block':'none';
-    document.getElementById('view-year').style.display=currentView==='year'?'block':'none';
-    if(currentView==='month')renderMonth();
-    else if(currentView==='list')renderList();
-    else renderYear();
-  });
-});
-
 // Filter switching
 document.getElementById('filterBar').addEventListener('click',e=>{
   const chip=e.target.closest('.filter-chip');if(!chip)return;
   document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
   chip.classList.add('active');
   activeFilter=chip.dataset.filter;
-  if(currentView==='month')renderMonth();
-  else if(currentView==='list')renderList();
-  else renderYear();
+  renderMonth();
+  renderList();
+  renderYear();
 });
 
 // Month navigation
@@ -472,6 +478,8 @@ document.getElementById('cal-next').addEventListener('click',()=>{curMonth++;if(
 
 updateStats();
 renderMonth();
+renderList();
+renderYear();
 </script>
 </body>
 </html>
