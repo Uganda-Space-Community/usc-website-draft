@@ -283,15 +283,18 @@ body.dark-mode .program-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
     <div class="section-divider-line"></div>
   </div>
 
-  <div class="section-head" style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
-    <div>
-      <div class="label">All Initiatives</div>
-      <h2>Programs &amp; Projects</h2>
-      <p>Browse active and completed programs and projects across Uganda's space ecosystem.</p>
-    </div>
-    <div class="submit-bar">
-      <button data-modal="modal-program"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg> Submit Program</button>
-      <button data-modal="modal-project"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Submit Project</button>
+  <div class="section-head">
+    <div class="label">All Initiatives</div>
+    <h2>Programs &amp; Projects</h2>
+    <p>Browse active and completed programs and projects across Uganda's space ecosystem.</p>
+  </div>
+
+  <div style="margin:0 0 32px;padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim)">
+    <h3 style="font-size:1rem;margin-bottom:8px">Have a program or project to share?</h3>
+    <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto">Submit your initiative to be included in the launchpad directory.</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button data-modal="modal-program" class="btn btn-gold">Submit Program</button>
+      <button data-modal="modal-project" class="btn btn-gold">Submit Project</button>
     </div>
   </div>
 
