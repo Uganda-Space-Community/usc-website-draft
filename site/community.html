@@ -54,18 +54,34 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .stat-item .n{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--gold)}
 .stat-item .l{font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
 
-/* ═══ Ecosystem Radial ═══ */
-.eco-viz-toggle{display:flex;gap:8px;margin-bottom:24px}
+/* ═══ Ecosystem Visualizations ═══ */
+.eco-viz-toggle{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
 .eco-viz-btn{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text-3);background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;padding:6px 16px;cursor:pointer;transition:all 0.2s}
 .eco-viz-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
 .eco-viz-btn:hover:not(.active){border-color:var(--border-hover);color:var(--text-2)}
-.eco-radial{position:relative;width:100%;max-width:800px;margin:0 auto;aspect-ratio:1}
-.eco-radial svg{width:100%;height:100%}
-.eco-radial-center{cursor:pointer}
-.eco-radial-group circle{cursor:pointer;transition:r 0.2s}
-.eco-radial-group text{pointer-events:none}
-.eco-radial-org{cursor:pointer}
-.eco-radial-org text{pointer-events:none}
+.eco-sub-toggle{display:flex;gap:4px;margin-bottom:20px;margin-left:12px}
+.eco-sub-btn{font-family:'Inter',sans-serif;font-size:0.7rem;font-weight:500;color:var(--text-3);background:none;border:1px solid var(--border);border-radius:100px;padding:4px 12px;cursor:pointer;transition:all 0.2s}
+.eco-sub-btn.active{background:var(--bg-alt);border-color:var(--gold);color:var(--gold)}
+.eco-viz-panel{display:none}
+.eco-viz-panel.active{display:block}
+.eco-chart-wrap{position:relative;max-width:700px;margin:0 auto}
+.eco-chart-wrap svg{width:100%;height:auto}
+.eco-pie-label{font-family:'Inter',sans-serif;fill:var(--text-2)}
+.eco-pie-count{font-family:'Space Grotesk',sans-serif;fill:#fff;font-weight:700}
+.eco-pie-org{font-family:'Inter',sans-serif;fill:rgba(255,255,255,0.85);font-size:8px}
+.eco-legend{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin-top:20px}
+.eco-legend-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-2);cursor:pointer;transition:color 0.2s}
+.eco-legend-item:hover{color:var(--text)}
+.eco-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.eco-mesh-wrap{position:relative;max-width:800px;margin:0 auto}
+.eco-mesh-wrap svg{width:100%;height:auto}
+.eco-mesh-node{cursor:pointer}
+.eco-mesh-node circle{transition:r 0.2s,opacity 0.2s}
+.eco-mesh-node text{pointer-events:none}
+.eco-mesh-edge{stroke:var(--border);stroke-linecap:round}
+.eco-mesh-edge.strong{stroke:var(--gold);opacity:0.5}
+.eco-mesh-tooltip{position:absolute;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;font-size:0.78rem;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.1);max-width:220px}
+.eco-mesh-tooltip.show{opacity:1}
 
 /* ═══ Organizations ═══ */
 .org-categories{display:flex;flex-direction:column;gap:32px}
@@ -122,9 +138,6 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .treemap-cell .count{font-size:1.6rem;font-weight:700;color:#fff;font-family:'Space Grotesk',sans-serif}
 .treemap-cell .orgs{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
 .treemap-cell .orgs span{font-size:0.62rem;padding:2px 8px;background:rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);border-radius:100px}
-.treemap-legend{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
-.treemap-legend-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-3)}
-.treemap-legend-item .dot{width:10px;height:10px;border-radius:2px}
 
 /* ═══ Footer ═══ */
 .footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
@@ -150,6 +163,8 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .crew-filters{position:static}
   .treemap{grid-template-columns:repeat(2,1fr)}
   .treemap-cell.large,.treemap-cell.medium{grid-column:span 2}
+  .eco-viz-toggle{gap:4px}
+  .eco-viz-btn{padding:5px 12px;font-size:0.72rem}
   .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .tab-btn{white-space:nowrap;padding:12px 16px;font-size:0.78rem}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
@@ -229,67 +244,31 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="section-head">
       <div class="label">Ecosystem</div>
       <h2>The Constellation Map</h2>
-      <p>Uganda's space ecosystem visualized by interest group.</p>
+      <p>Uganda's space ecosystem visualized by interest area, profession, and activity.</p>
     </div>
     <div class="eco-viz-toggle">
       <button class="eco-viz-btn active" data-viz="treemap">Treemap</button>
-      <button class="eco-viz-btn" data-viz="radial">Network</button>
+      <button class="eco-viz-btn" data-viz="pie">Pie Chart</button>
+      <button class="eco-viz-btn" data-viz="mesh">Mind Map</button>
     </div>
-    <div id="eco-treemap">
-    <div class="treemap">
-      <div class="treemap-cell large" style="background:linear-gradient(135deg,#1F8A5B,#176b45)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg></span>Earth Observation</h3></div>
-        <div class="count">48</div>
-        <div class="orgs"><span>Makerere Geo</span><span>UNMA</span><span>Space Hub UG</span><span>Busitema</span><span>UNOSAT</span></div>
-      </div>
-      <div class="treemap-cell" style="background:linear-gradient(135deg,#B8953F,#96782e)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></span>Education</h3></div>
-        <div class="count">44</div>
-        <div class="orgs"><span>Makerere</span><span>Busitema</span><span>Kyambogo</span></div>
-      </div>
-      <div class="treemap-cell" style="background:linear-gradient(135deg,#5B6AF0,#4754d4)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></span>Data Science</h3></div>
-        <div class="count">36</div>
-        <div class="orgs"><span>Space Hub</span><span>Makerere CS</span><span>Andela</span></div>
-      </div>
-      <div class="treemap-cell" style="background:linear-gradient(135deg,#D94F3D,#b83d2e)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span>Astrophysics</h3></div>
-        <div class="count">32</div>
-        <div class="orgs"><span>Makerere Phys</span><span>Entebbe Obs</span><span>UAS</span></div>
-      </div>
-      <div class="treemap-cell medium" style="background:linear-gradient(135deg,#4A90D9,#3a74b5)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg></span>Space Policy</h3></div>
-        <div class="count">28</div>
-        <div class="orgs"><span>UCAA</span><span>MoDVA</span><span>MoSTI</span><span>USA</span></div>
-      </div>
-      <div class="treemap-cell medium" style="background:linear-gradient(135deg,#8B5CF6,#7044d4)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></span>Satellite Tech</h3></div>
-        <div class="count">27</div>
-        <div class="orgs"><span>Makerere Eng</span><span>USA</span><span>SES</span></div>
-      </div>
-      <div class="treemap-cell" style="background:linear-gradient(135deg,#6366F1,#4f52d4)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Robotics</h3></div>
-        <div class="count">21</div>
-        <div class="orgs"><span>Makerere Rob</span><span>Kiira Motors</span></div>
-      </div>
-      <div class="treemap-cell" style="background:linear-gradient(135deg,#374151,#2d3544)">
-        <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Defense</h3></div>
-        <div class="count">14</div>
-        <div class="orgs"><span>MoDVA</span><span>ISO</span></div>
-      </div>
+    <div class="eco-viz-panel active" id="eco-treemap">
+    <div class="treemap" id="treemap-grid"></div>
     </div>
-    <div class="treemap-legend">
-      <div class="treemap-legend-item"><div class="dot" style="background:#1F8A5B"></div> Earth Observation</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#B8953F"></div> Education</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#5B6AF0"></div> Data Science</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#D94F3D"></div> Astrophysics</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#4A90D9"></div> Space Policy</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#8B5CF6"></div> Satellite Tech</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#6366F1"></div> Robotics</div>
-      <div class="treemap-legend-item"><div class="dot" style="background:#374151"></div> Defense</div>
+    <div class="eco-viz-panel" id="eco-pie">
+      <div class="eco-chart-wrap" id="pie-chart"></div>
+      <div class="eco-legend" id="pie-legend"></div>
     </div>
+    <div class="eco-viz-panel" id="eco-mesh">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+        <span style="font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">View:</span>
+        <div class="eco-sub-toggle">
+          <button class="eco-sub-btn active" data-mesh="people">Members &amp; Orgs</button>
+          <button class="eco-sub-btn" data-mesh="activities">Activities</button>
+        </div>
+      </div>
+      <div class="eco-mesh-wrap" id="mesh-chart"></div>
+      <div class="eco-mesh-tooltip" id="mesh-tip"></div>
     </div>
-    <div id="eco-radial" style="display:none"></div>
   </div>
 
   <!-- ═══ ORGANIZATIONS TAB ═══ -->
@@ -521,61 +500,190 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-// Ecosystem viz toggle
-const ecoData=[
-  {name:'Earth Observation',count:48,color:'#1F8A5B',orgs:['Makerere Geo','UNMA','Space Hub UG','Busitema','UNOSAT']},
-  {name:'Education',count:44,color:'#B8953F',orgs:['Makerere','Busitema','Kyambogo','Space Ed Network','STEM UG']},
-  {name:'Data Science',count:36,color:'#5B6AF0',orgs:['Space Hub','Makerere CS','Andela','Outbox','Global Shapers']},
-  {name:'Astrophysics',count:32,color:'#D94F3D',orgs:['Makerere Phys','Entebbe Obs','UAS','IAU']},
-  {name:'Space Policy',count:28,color:'#4A90D9',orgs:['UCAA','MoDVA','MoSTI','KTA','USA']},
-  {name:'Satellite Tech',count:27,color:'#8B5CF6',orgs:['Makerere Eng','USA','Radar Tech','SES']},
-  {name:'Robotics',count:21,color:'#6366F1',orgs:['Makerere Rob','Uganda Rob','Kiira Motors','Innovation Village']},
-  {name:'Defense',count:14,color:'#374151',orgs:['MoDVA','UPDF','ISO','Police Cyber']}
+// ═══ Ecosystem Data ═══
+const ecoAreas=[
+  {id:'eo',name:'Earth Observation',color:'#1F8A5B',icon:'<circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/>',count:48,orgs:['Makerere Geo','UNMA','Space Hub UG','Busitema','UNOSAT']},
+  {id:'edu',name:'Education & Outreach',color:'#B8953F',icon:'<path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/>',count:44,orgs:['Makerere','Busitema','Kyambogo','Space Ed Network','STEM UG']},
+  {id:'ds',name:'Data Science & AI',color:'#5B6AF0',icon:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>',count:36,orgs:['Space Hub','Makerere CS','Andela','Outbox','Global Shapers']},
+  {id:'astro',name:'Astrophysics & Astronomy',color:'#D94F3D',icon:'<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>',count:32,orgs:['Makerere Phys','Entebbe Obs','UAS','IAU']},
+  {id:'sp',name:'Space Policy & Law',color:'#4A90D9',icon:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>',count:28,orgs:['UCAA','MoDVA','MoSTI','KTA Advocates','USA']},
+  {id:'sat',name:'Satellite Tech & Comms',color:'#8B5CF6',icon:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',count:27,orgs:['Makerere Eng','USA','Radar Tech','SES']},
+  {id:'robo',name:'Robotics & Drones',color:'#6366F1',icon:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',count:21,orgs:['Makerere Rob','Uganda Rob','Kiira Motors','Innovation Village']},
+  {id:'def',name:'Defense & Security',color:'#374151',icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',count:14,orgs:['MoDVA','UPDF','ISO','Police Cyber']},
+  {id:'climate',name:'Climate & Environment',color:'#0EA5E9',icon:'<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',count:18,orgs:['UNMA','UWA','Makerere Env','IUCN']},
+  {id:'gis',name:'GIS & Mapping',color:'#F59E0B',icon:'<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>',count:22,orgs:['Radar Tech','Makerere Geo','UNOSAT','Uganda Insp']},
+  {id:'telecom',name:'Telecommunications',color:'#EC4899',icon:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>',count:16,orgs:['MTN UG','Airtel','UCC','SES']},
+  {id:'eng',name:'Aerospace Engineering',color:'#14B8A6',icon:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>',count:19,orgs:['Makerere Eng','Kiira Motors','USA','Radar Tech']}
 ];
 
-function buildRadial(){
-  const el=document.getElementById('eco-radial');
-  const size=800,cx=size/2,cy=size/2,groupR=280,nodeR=48;
-  const svg=`<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <circle cx="${cx}" cy="${cy}" r="64" fill="${'var(--gold)'}" filter="url(#glow)" class="eco-radial-center"/>
-    <text x="${cx}" y="${cy-6}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700">340+</text>
-    <text x="${cx}" y="${cy+14}" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter,sans-serif" font-size="8" font-weight="500" letter-spacing="0.08em" text-transform="uppercase">MEMBERS</text>
-    ${ecoData.map((g,i)=>{
-      const angle=(i/ecoData.length)*Math.PI*2-Math.PI/2;
-      const gx=cx+Math.cos(angle)*groupR;
-      const gy=cy+Math.sin(angle)*groupR;
-      const lineEnd_x=cx+Math.cos(angle)*70;
-      const lineEnd_y=cy+Math.sin(angle)*70;
-      const orgNodes=g.orgs.slice(0,4).map((org,j)=>{
-        const orgAngle=angle+((j-1.5)*0.25);
-        const orgR=groupR+70+j*18;
-        const ox=cx+Math.cos(orgAngle)*orgR;
-        const oy=cy+Math.sin(orgAngle)*orgR;
-        return`<g class="eco-radial-org"><line x1="${gx}" y1="${gy}" x2="${ox}" y2="${oy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3"/><circle cx="${ox}" cy="${oy}" r="3" fill="${g.color}" opacity="0.5"/><text x="${ox}" y="${oy+14}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="7.5">${org}</text></g>`;
-      }).join('');
-      return`<g class="eco-radial-group">
-        <line x1="${lineEnd_x}" y1="${lineEnd_y}" x2="${gx}" y2="${gy}" stroke="${g.color}" stroke-width="2" opacity="0.4"/>
-        <circle cx="${gx}" cy="${gy}" r="${nodeR}" fill="${g.color}"/>
-        <text x="${gx}" y="${gy-4}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="16" font-weight="700">${g.count}</text>
-        <text x="${gx}" y="${gy+12}" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Inter,sans-serif" font-size="8" font-weight="500">${g.name.length>16?g.name.slice(0,14)+'...':g.name}</text>
-        ${orgNodes}
-      </g>`;
-    }).join('')}
-  </svg>`;
-  el.innerHTML=svg;
-}
-buildRadial();
+const meshEdges=[
+  {from:'eo',to:'ds',mutual:4,activities:3},
+  {from:'eo',to:'sat',mutual:2,activities:2},
+  {from:'eo',to:'gis',mutual:5,activities:4},
+  {from:'eo',to:'climate',mutual:3,activities:3},
+  {from:'ds',to:'sat',mutual:3,activities:2},
+  {from:'ds',to:'robo',mutual:2,activities:1},
+  {from:'astro',to:'edu',mutual:2,activities:3},
+  {from:'astro',to:'ds',mutual:1,activities:1},
+  {from:'sat',to:'robo',mutual:3,activities:2},
+  {from:'sat',to:'telecom',mutual:2,activities:2},
+  {from:'sat',to:'eng',mutual:4,activities:3},
+  {from:'sp',to:'def',mutual:2,activities:1},
+  {from:'sp',to:'sat',mutual:1,activities:1},
+  {from:'edu',to:'robo',mutual:1,activities:2},
+  {from:'edu',to:'climate',mutual:1,activities:1},
+  {from:'robo',to:'eng',mutual:3,activities:2},
+  {from:'def',to:'telecom',mutual:1,activities:0},
+  {from:'gis',to:'ds',mutual:2,activities:2},
+  {from:'climate',to:'ds',mutual:2,activities:1},
+  {from:'eng',to:'robo',mutual:2,activities:2}
+];
 
+const meshActivities=[
+  {name:'CubeSat Build Series',type:'project',areas:['sat','eng','ds'],members:24},
+  {name:'EO for Agriculture',type:'project',areas:['eo','climate','ds'],members:18},
+  {name:'Space Pioneers Webinar',type:'event',areas:['astro','edu'],members:120},
+  {name:'National Astronomy Week',type:'event',areas:['astro','edu'],members:350},
+  {name:'Satellite Ground Station',type:'project',areas:['sat','telecom','ds'],members:15},
+  {name:'Drone Mapping Workshop',type:'event',areas:['gis','robo','eo'],members:45},
+  {name:'Space Policy Forum',type:'event',areas:['sp','def'],members:80},
+  {name:'Hack for Space',type:'event',areas:['ds','sat','robo','eng'],members:120},
+  {name:'Climate Data Pipeline',type:'project',areas:['climate','ds','eo'],members:12},
+  {name:'STEM School Outreach',type:'project',areas:['edu','robo'],members:35},
+  {name:'GIS for Conservation',type:'project',areas:['gis','climate','eo'],members:10},
+  {name:'CubeSat Antenna Lab',type:'project',areas:['sat','eng','telecom'],members:8}
+];
+
+// ═══ Treemap ═══
+function buildTreemap(){
+  const grid=document.getElementById('treemap-grid');
+  const sorted=[...ecoAreas].sort((a,b)=>b.count-a.count);
+  const max=sorted[0].count;
+  grid.innerHTML=sorted.map((a,i)=>{
+    const pct=a.count/max;
+    const cls=i===0?'large':i<3?'medium':'';
+    return`<div class="treemap-cell ${cls}" style="background:linear-gradient(135deg,${a.color},${darken(a.color)})">
+      <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${a.icon}</svg></span>${a.name}</h3></div>
+      <div class="count">${a.count}</div>
+      <div class="orgs">${a.orgs.slice(0,4).map(o=>'<span>'+o+'</span>').join('')}</div>
+    </div>`;
+  }).join('');
+}
+function darken(hex){const n=parseInt(hex.slice(1),16);return'#'+((n&0xF0F0F0)>>4|(n&0x0F0F0F)>>4|0x101010*0).toString(16).slice(1)}
+
+// ═══ Pie Chart ═══
+function buildPie(){
+  const el=document.getElementById('pie-chart');
+  const leg=document.getElementById('pie-legend');
+  const total=ecoAreas.reduce((s,a)=>s+a.count,0);
+  const cx=175,cy=175,R=150,r=80;
+  let cum=0;
+  let paths='';
+  const items=[];
+  ecoAreas.forEach((a,i)=>{
+    const start=cum/total*Math.PI*2-Math.PI/2;
+    cum+=a.count;
+    const end=cum/total*Math.PI*2-Math.PI/2;
+    const mid=(start+end)/2;
+    const large=end-start>Math.PI?1:0;
+    const x1=cx+R*Math.cos(start),y1=cy+R*Math.sin(start);
+    const x2=cx+R*Math.cos(end),y2=cy+R*Math.sin(end);
+    const ix=cx+r*Math.cos(start),iy=cy+r*Math.sin(start);
+    const ix2=cx+r*Math.cos(end),iy2=cy+r*Math.sin(end);
+    paths+=`<path d="M${x1},${y1} A${R},${R} 0 ${large},1 ${x2},${y2} L${ix2},${iy2} A${r},${r} 0 ${large},0 ${ix},${iy} Z" fill="${a.color}" opacity="0.9" class="eco-pie-slice" data-area="${a.id}" style="cursor:pointer;transition:opacity 0.2s"/>`;
+    const lx=cx+(R+24)*Math.cos(mid),ly=cy+(R+24)*Math.sin(mid);
+    const pct=Math.round(a.count/total*100);
+    items.push({name:a.name,color:a.color,count:a.count,pct});
+  });
+  el.innerHTML=`<svg viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
+    ${paths}
+    <circle cx="${cx}" cy="${cy}" r="${r-4}" fill="var(--bg)"/>
+    <text x="${cx}" y="${cy-8}" text-anchor="middle" fill="var(--text)" font-family="Space Grotesk,sans-serif" font-size="28" font-weight="700">${total}</text>
+    <text x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.08em">TOTAL</text>
+  </svg>`;
+  leg.innerHTML=items.map(i=>`<div class="eco-legend-item"><div class="eco-legend-dot" style="background:${i.color}"></div>${i.name} <span style="color:var(--text-3)">${i.count}</span></div>`).join('');
+}
+
+// ═══ Mind Map ═══
+let meshMode='people';
+function buildMesh(){
+  const el=document.getElementById('mesh-chart');
+  const W=800,H=600,cx=W/2,cy=H/2;
+  const n=ecoAreas.length;
+  const baseR=Math.min(W,H)*0.34;
+  const nodes=ecoAreas.map((a,i)=>{
+    const angle=(i/n)*Math.PI*2-Math.PI/2;
+    return{...a,x:cx+Math.cos(angle)*baseR,y:cy+Math.sin(angle)*baseR,r:12+a.count/5};
+  });
+  const nodeMap={};nodes.forEach(nd=>nodeMap[nd.id]=nd);
+  let edgesSvg='';
+  const maxMutual=Math.max(...meshEdges.map(e=>e[meshMode==='people'?'mutual':'activities']));
+  meshEdges.forEach(e=>{
+    const from=nodeMap[e.from],to=nodeMap[e.to];
+    if(!from||!to)return;
+    const val=meshMode==='people'?e.mutual:e.activities;
+    if(val===0)return;
+    const thick=1+val/maxMutual*5;
+    const cls=val>=3?'strong':'';
+    edgesSvg+=`<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" class="eco-mesh-edge ${cls}" stroke-width="${thick}"/>`;
+  });
+  let nodesSvg='';
+  if(meshMode==='people'){
+    nodes.forEach(nd=>{
+      nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}">
+        <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r}" fill="${nd.color}" opacity="0.9"/>
+        <text x="${nd.x}" y="${nd.y-2}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700">${nd.count}</text>
+        <text x="${nd.x}" y="${nd.y+11}" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter,sans-serif" font-size="6.5" font-weight="500">${nd.name.length>18?nd.name.slice(0,16)+'...':nd.name}</text>
+      </g>`;
+    });
+  } else {
+    nodes.forEach(nd=>{
+      const acts=meshActivities.filter(a=>a.areas.includes(nd.id));
+      const actCount=acts.length;
+      const r2=8+actCount*2.5;
+      nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}">
+        <circle cx="${nd.x}" cy="${nd.y}" r="${r2}" fill="${nd.color}" opacity="0.85"/>
+        <text x="${nd.x}" y="${nd.y-2}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">${actCount}</text>
+        <text x="${nd.x}" y="${nd.y+9}" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter,sans-serif" font-size="6">${nd.name.length>18?nd.name.slice(0,16)+'...':nd.name}</text>
+      </g>`;
+    });
+    meshActivities.forEach(act=>{
+      const actNodes=act.areas.map(id=>nodeMap[id]).filter(Boolean);
+      if(actNodes.length<2)return;
+      const avgX=actNodes.reduce((s,nd)=>s+nd.x,0)/actNodes.length;
+      const avgY=actNodes.reduce((s,nd)=>s+nd.y,0)/actNodes.length;
+      actNodes.forEach(nd=>{
+        edgesSvg+=`<line x1="${nd.x}" y1="${nd.y}" x2="${avgX}" y2="${avgY}" stroke="var(--gold)" stroke-width="0.5" opacity="0.2" stroke-dasharray="2,2"/>`;
+      });
+      edgesSvg+=`<circle cx="${avgX}" cy="${avgY}" r="3" fill="var(--gold)" opacity="0.4"/>`;
+      edgesSvg+=`<text x="${avgX}" y="${avgY-6}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="5.5">${act.name.length>20?act.name.slice(0,18)+'...':act.name}</text>`;
+    });
+  }
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    ${edgesSvg}${nodesSvg}
+    <circle cx="${cx}" cy="${cy}" r="28" fill="var(--gold)" opacity="0.15"/>
+    <text x="${cx}" y="${cy-4}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
+    <text x="${cx}" y="${cy+8}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
+  </svg>`;
+}
+
+buildTreemap();buildPie();buildMesh();
+
+// ═══ Ecosystem Toggle ═══
 document.querySelectorAll('.eco-viz-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.eco-viz-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.eco-viz-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    const v=btn.dataset.viz;
-    document.getElementById('eco-treemap').style.display=v==='treemap'?'block':'none';
-    document.getElementById('eco-radial').style.display=v==='radial'?'block':'none';
+    document.getElementById('eco-'+btn.dataset.viz).classList.add('active');
+  });
+});
+document.querySelectorAll('.eco-sub-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.eco-sub-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    meshMode=btn.dataset.mesh;
+    buildMesh();
   });
 });
 
