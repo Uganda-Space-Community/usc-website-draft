@@ -145,6 +145,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .cal-cell{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;cursor:pointer;transition:all 0.2s;color:var(--text-3)}
 .cal-cell:hover{background:var(--gold-dim);color:var(--gold)}
 .cal-cell.today{background:var(--gold);color:#fff;font-weight:600}
+.cal-cell.selected{background:var(--gold-dim);color:var(--gold);font-weight:600}
 .cal-cell.has-event{position:relative}
 .cal-cell.has-event::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
 .cal-cell.empty{pointer-events:none}
@@ -311,15 +312,15 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         </div>
       </div>
       <div class="filter-section">
-        <h4>Campaign</h4>
-        <div class="filter-option" data-filter="campaign" data-value="space-week">
-          <div class="filter-checkbox"></div> Space Week
+        <h4>Program</h4>
+        <div class="filter-option" data-filter="program" data-value="astro-week">
+          <div class="filter-checkbox"></div> Astronomy Week
         </div>
-        <div class="filter-option" data-filter="campaign" data-value="cubesat">
-          <div class="filter-checkbox"></div> CubeSat Program
+        <div class="filter-option" data-filter="program" data-value="cubesat">
+          <div class="filter-checkbox"></div> CubeSat Build Series
         </div>
-        <div class="filter-option" data-filter="campaign" data-value="outreach">
-          <div class="filter-checkbox"></div> Outreach Tour
+        <div class="filter-option" data-filter="program" data-value="outreach">
+          <div class="filter-checkbox"></div> Space Outreach Tour
         </div>
       </div>
       <div class="filter-section">
@@ -327,11 +328,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         <div style="display:flex;flex-direction:column;gap:8px">
           <div>
             <label style="font-size:0.68rem;color:var(--text-3);display:block;margin-bottom:4px">From</label>
-            <input type="date" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
+            <input type="date" id="date-from" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
           </div>
           <div>
             <label style="font-size:0.68rem;color:var(--text-3);display:block;margin-bottom:4px">To</label>
-            <input type="date" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
+            <input type="date" id="date-to" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.8rem;background:var(--bg-alt);color:var(--text)">
           </div>
         </div>
       </div>
@@ -517,15 +518,6 @@ document.body.style.setProperty('--star-color',body.classList.contains('dark-mod
   goTo(0);
 })();
 
-// Tab switching
-document.querySelectorAll('.tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    filterCards();
-  });
-});
-
 // Filter options
 document.querySelectorAll('.filter-option').forEach(opt=>{
   opt.addEventListener('click',()=>{
@@ -542,28 +534,67 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
 
 // Sample card data
 const cards=[
-  {type:'events',title:'Satellite Applications Workshop',desc:'Hands-on satellite data processing and Earth observation.',date:'12 Jul 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'event.html'},
-  {type:'events',title:'Uganda Space Pioneers — Ep. 4',desc:'Dr. Sarah Nabukenya on Uganda\'s first CubeSat mission.',date:'18 Jul 2026',cat:'Webinar',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80',url:'event.html'},
-  {type:'events',title:'Community Rocketry Challenge',desc:'Student teams design and launch model rockets.',date:'5 Aug 2026',cat:'Competition',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'event.html'},
-  {type:'events',title:'Observation Night',desc:'Public stargazing event with telescopes at Makerere Observatory.',date:'12 Aug 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80',url:'event.html'},
-  {type:'news',title:'Uganda Signs Artemis Accords',desc:'Uganda becomes the latest African nation to commit to responsible space exploration principles.',date:'15 Jul 2026',cat:'Policy',img:'https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=400&q=80',url:'news.html'},
-  {type:'news',title:'Makerere Space Lab Opens',desc:'New dedicated laboratory for satellite design and testing at Makerere University.',date:'10 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'news.html'},
-  {type:'news',title:'Ground Station Network Expands',desc:'Two new ground stations added to the national satellite receiving network.',date:'8 Jul 2026',cat:'Infrastructure',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'news.html'},
-  {type:'news',title:'Busitema Launches Aerospace Program',desc:'New aerospace engineering program at Busitema University.',date:'1 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'news.html'},
-  {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'Deadline 30 Sep',cat:'Scholarship',img:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80',url:'opportunity.html'},
-  {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'Deadline 15 Aug',cat:'Internship',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80',url:'opportunity.html'},
-  {type:'opportunities',title:'Community Space Innovation Fund',desc:'Grants up to UGX 50M for space innovation projects.',date:'Deadline 1 Oct',cat:'Grant',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'opportunity.html'},
-  {type:'projects',title:'National Astronomy Week',desc:'Week-long celebration of astronomy across Uganda.',date:'14–20 Jul 2026',cat:'Program',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80',url:'project.html'},
-  {type:'projects',title:'CubeSat Build Series',desc:'Monthly workshops building Uganda\'s first university CubeSat.',date:'Jun–Dec 2026',cat:'Program',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80',url:'project.html'},
-  {type:'projects',title:'Earth Observation Data Hub',desc:'Open platform for satellite imagery analysis.',date:'Ongoing',cat:'Project',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'project.html'},
+  {type:'events',title:'Satellite Applications Workshop',desc:'Hands-on satellite data processing and Earth observation.',date:'12 Jul 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'event.html',programs:['cubesat']},
+  {type:'events',title:'Uganda Space Pioneers — Ep. 4',desc:'Dr. Sarah Nabukenya on Uganda\'s first CubeSat mission.',date:'18 Jul 2026',cat:'Webinar',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80',url:'event.html',programs:['astro-week']},
+  {type:'events',title:'Community Rocketry Challenge',desc:'Student teams design and launch model rockets.',date:'5 Aug 2026',cat:'Competition',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'event.html',programs:[]},
+  {type:'events',title:'Observation Night',desc:'Public stargazing event with telescopes at Makerere Observatory.',date:'12 Aug 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80',url:'event.html',programs:['astro-week']},
+  {type:'news',title:'Uganda Signs Artemis Accords',desc:'Uganda becomes the latest African nation to commit to responsible space exploration principles.',date:'15 Jul 2026',cat:'Policy',img:'https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=400&q=80',url:'news.html',programs:[]},
+  {type:'news',title:'Makerere Space Lab Opens',desc:'New dedicated laboratory for satellite design and testing at Makerere University.',date:'10 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'news.html',programs:['cubesat']},
+  {type:'news',title:'Ground Station Network Expands',desc:'Two new ground stations added to the national satellite receiving network.',date:'8 Jul 2026',cat:'Infrastructure',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'news.html',programs:[]},
+  {type:'news',title:'Busitema Launches Aerospace Program',desc:'New aerospace engineering program at Busitema University.',date:'1 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'news.html',programs:[]},
+  {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'30 Sep 2026',cat:'Scholarship',img:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80',url:'opportunity.html',programs:[]},
+  {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'15 Aug 2026',cat:'Internship',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80',url:'opportunity.html',programs:[]},
+  {type:'opportunities',title:'Community Space Innovation Fund',desc:'Grants up to UGX 50M for space innovation projects.',date:'1 Oct 2026',cat:'Grant',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'opportunity.html',programs:[]},
+  {type:'projects',title:'National Astronomy Week',desc:'Week-long celebration of astronomy across Uganda.',date:'14 Jul 2026',cat:'Program',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80',url:'project.html',programs:['astro-week']},
+  {type:'projects',title:'CubeSat Build Series',desc:'Monthly workshops building Uganda\'s first university CubeSat.',date:'1 Jun 2026',cat:'Program',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80',url:'project.html',programs:['cubesat']},
+  {type:'projects',title:'Earth Observation Data Hub',desc:'Open platform for satellite imagery analysis.',date:'1 Jan 2026',cat:'Project',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'project.html',programs:[]},
 ];
 
 const PER_PAGE=6;
 let currentPage=1;
+let calSelectedDate=null;
+
+function parseDate(str){
+  const m=str.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+  if(!m)return null;
+  const months={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  return new Date(parseInt(m[3]),months[m[2]]??0,parseInt(m[1]));
+}
+
+function getActivePrograms(){
+  return Array.from(document.querySelectorAll('.filter-option[data-filter="program"].active')).map(o=>o.dataset.value);
+}
+
+function getDateRange(){
+  const from=document.getElementById('date-from')?.value;
+  const to=document.getElementById('date-to')?.value;
+  return{from:from?new Date(from):null,to:to?new Date(to+'T23:59:59'):null};
+}
 
 function renderCards(filter,page){
   const grid=document.getElementById('card-grid');
-  const filtered=filter==='all'?cards:cards.filter(c=>c.type===filter);
+  let filtered=filter==='all'?cards:cards.filter(c=>c.type===filter);
+
+  const progs=getActivePrograms();
+  if(progs.length>0) filtered=filtered.filter(c=>c.programs.some(p=>progs.includes(p)));
+
+  const{from,to}=getDateRange();
+  if(from||to) filtered=filtered.filter(c=>{
+    const d=parseDate(c.date);
+    if(!d)return false;
+    if(from&&d<from)return false;
+    if(to&&d>to)return false;
+    return true;
+  });
+
+  if(calSelectedDate){
+    filtered=filtered.filter(c=>{
+      const d=parseDate(c.date);
+      if(!d)return false;
+      return d.getFullYear()===calSelectedDate.year&&d.getMonth()===calSelectedDate.month&&d.getDate()===calSelectedDate.day;
+    });
+  }
+
   const totalPages=Math.max(1,Math.ceil(filtered.length/PER_PAGE));
   const start=(page-1)*PER_PAGE;
   const pageItems=filtered.slice(start,start+PER_PAGE);
@@ -596,9 +627,8 @@ function renderPagination(total,filter,page){
 }
 
 function getActiveFilter(){
-  const t=document.querySelector('.tab.active')?.dataset.tab||'all';
   const v=document.querySelector('.filter-option[data-filter="type"].active')?.dataset.value||'all';
-  return t==='all'?v:t;
+  return v;
 }
 function filterCards(){
   currentPage=1;
@@ -611,15 +641,6 @@ document.getElementById('prev-page')?.addEventListener('click',()=>{
 document.getElementById('next-page')?.addEventListener('click',()=>{
   const f=getActiveFilter()==='all'?cards:cards.filter(c=>c.type===getActiveFilter());
   if(currentPage<Math.ceil(f.length/PER_PAGE)){currentPage++;renderCards(getActiveFilter(),currentPage)}
-});
-
-// Tab switching
-document.querySelectorAll('.tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    filterCards();
-  });
 });
 
 // Filter options
@@ -635,6 +656,10 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
     filterCards();
   });
 });
+
+// Date range listeners
+document.getElementById('date-from')?.addEventListener('change',filterCards);
+document.getElementById('date-to')?.addEventListener('change',filterCards);
 
 filterCards();
 
@@ -678,8 +703,16 @@ if(hash){
       cell.textContent=d;
       if(currentMonth===today.getMonth()&&currentYear===today.getFullYear()&&d===today.getDate()) cell.classList.add('today');
       if(eventDates[d]) cell.classList.add('has-event');
+      if(calSelectedDate&&calSelectedDate.year===currentYear&&calSelectedDate.month===currentMonth&&calSelectedDate.day===d) cell.classList.add('selected');
       cell.addEventListener('click',()=>{
-        if(eventDates[d]) alert(`Filtering to ${eventDates[d]} event(s) on ${months[currentMonth]} ${d}`);
+        if(!eventDates[d])return;
+        if(calSelectedDate&&calSelectedDate.year===currentYear&&calSelectedDate.month===currentMonth&&calSelectedDate.day===d){
+          calSelectedDate=null;
+        }else{
+          calSelectedDate={year:currentYear,month:currentMonth,day:d};
+        }
+        render();
+        filterCards();
       });
       calDays.appendChild(cell);
     }
