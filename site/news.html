@@ -68,6 +68,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 .detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
 .detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
+.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
+.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.organizer-avatar svg{width:18px;height:18px}
+.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
+.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
 
 /* ═══ Footer ═══ */
 .footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
@@ -184,6 +189,17 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
           <div class="info-row"><span class="label">Category</span><span class="value">Policy</span></div>
           <div class="info-row"><span class="label">Author</span><span class="value">USC Editorial</span></div>
           <div class="info-row"><span class="label">Source</span><span class="value">Ministry of Science</span></div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Author</h4>
+          <div class="organizer">
+            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+            <div class="organizer-info">
+              <div class="name">Grace Nakamya</div>
+              <div class="role">Policy Correspondent</div>
+            </div>
+          </div>
         </div>
 
         <div class="sidebar-card">

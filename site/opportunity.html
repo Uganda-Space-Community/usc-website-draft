@@ -75,6 +75,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 .detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
 .detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
+.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
+.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.organizer-avatar svg{width:18px;height:18px}
+.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
+.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
 
 .deadline-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--red);background:var(--red-dim);padding:8px 16px;border-radius:var(--radius);margin-top:16px}
 .deadline-badge svg{width:16px;height:16px}
@@ -215,9 +220,21 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         </div>
 
         <div class="sidebar-card">
-          <h4>Organization</h4>
-          <div class="info-row"><span class="label">Provider</span><span class="value">African Space Agency</span></div>
-          <div class="info-row"><span class="label">Contact</span><span class="value">scholars@afsa.int</span></div>
+          <h4>Organizers</h4>
+          <div class="organizer">
+            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>
+            <div class="organizer-info">
+              <div class="name">African Space Agency</div>
+              <div class="role">Scholarship Provider</div>
+            </div>
+          </div>
+          <div class="organizer">
+            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+            <div class="organizer-info">
+              <div class="name">Peter Ssemwanga</div>
+              <div class="role">Scholarship Coordinator</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>National Astronomy Week — Uganda Space Community</title>
-<meta name="description" content="Week-long celebration of astronomy across Uganda.">
+<meta name="description" content="Week-long celebration of astronomy across Uganda — events, projects, and opportunities.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -39,7 +39,7 @@ a{color:inherit;text-decoration:none}
 .icon-sun{display:none}.icon-moon{display:block}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
-/* ═══ Detail Page ═══ */
+/* ═══ Detail Hero ═══ */
 .detail-hero{position:relative;height:400px;overflow:hidden;border-radius:0 0 var(--radius-lg) var(--radius-lg);margin-top:60px}
 .detail-hero img{width:100%;height:100%;object-fit:cover}
 .detail-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.1) 0%,rgba(10,22,40,0.8) 100%)}
@@ -52,6 +52,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .detail-hero-body .meta{font-size:0.82rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .detail-hero-body .meta span{display:inline-flex;align-items:center;gap:5px}
 
+/* ═══ Detail Content ═══ */
 .detail-content{padding:48px 0}
 .detail-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start}
 .detail-body h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:16px}
@@ -59,7 +60,10 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .detail-body h3{font-size:1rem;margin:28px 0 12px}
 .detail-body ul{margin-bottom:16px;padding-left:20px}
 .detail-body li{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:6px}
+.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
 
+/* ═══ Sidebar ═══ */
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
 .sidebar-card h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
@@ -68,21 +72,51 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .sidebar-card .info-row .label{color:var(--text-3)}
 .sidebar-card .info-row .value{color:var(--text);font-weight:500}
 .sidebar-card .btn-gold{display:block;text-align:center;margin-top:16px}
-
-.btn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
-.btn-gold{background:var(--gold);color:#fff}
-.btn-gold:hover{filter:brightness(1.1)}
-
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
 .organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
 .organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
 .organizer-avatar svg{width:18px;height:18px}
 .organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
 .organizer-info .role{font-size:0.72rem;color:var(--text-3)}
 
+.btn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{filter:brightness(1.1)}
+
+/* ═══ Timeline ═══ */
+.timeline-section{margin:40px 0}
+.timeline-section h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:24px}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:28px}
+.timeline-dot{position:absolute;left:-28px;top:4px;width:18px;height:18px;border-radius:50%;border:2px solid var(--gold);background:var(--bg);z-index:1;display:flex;align-items:center;justify-content:center}
+.timeline-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.timeline-item.completed .timeline-dot{background:var(--gold)}
+.timeline-item.completed .timeline-dot::after{background:#fff}
+.timeline-date{font-size:0.72rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.timeline-card{border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:border-color 0.2s}
+.timeline-card:hover{border-color:var(--gold)}
+.timeline-card .type{font-size:0.6rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.timeline-card h4{font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:400;margin-bottom:4px}
+.timeline-card p{font-size:0.8rem;color:var(--text-2);margin-bottom:0}
+.timeline-card .meta{font-size:0.68rem;color:var(--text-3);margin-top:6px}
+
+/* ═══ Attached Items ═══ */
+.attached-section{margin:48px 0}
+.attached-section h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:20px}
+.attached-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.attached-card{display:block;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s;color:inherit}
+.attached-card:hover{border-color:var(--border-hover);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.attached-card-img{height:120px;background-size:cover;background-position:center}
+.attached-card-body{padding:14px}
+.attached-card-body .cat{font-size:0.6rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;display:block}
+.attached-card-body h4{font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:400;margin-bottom:4px}
+.attached-card-body .meta{font-size:0.68rem;color:var(--text-3)}
+
+/* ═══ Status ═══ */
 .status-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;padding:8px 16px;border-radius:var(--radius);margin-top:16px}
 .status-active{color:var(--emerald);background:var(--emerald-dim)}
+.status-progress{color:var(--gold);background:var(--gold-dim)}
+.status-seeking{color:var(--red);background:var(--red-dim)}
 
 /* ═══ Footer ═══ */
 .footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
@@ -106,6 +140,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .nav-open .nav-c{display:flex}
   .detail-layout{grid-template-columns:1fr}
   .detail-sidebar{position:static}
+  .attached-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
 }
 @media(max-width:640px){
@@ -164,6 +199,8 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         <span>14–20 Jul 2026</span>
         <span>·</span>
         <span>Nationwide</span>
+        <span>·</span>
+        <span>7 events</span>
       </div>
     </div>
   </div>
@@ -173,23 +210,9 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   <div class="wrapper">
     <div class="detail-layout">
       <div class="detail-body">
-        <h2>Celebrating Astronomy Across Uganda</h2>
+        <h2>About This Program</h2>
         <p>National Astronomy Week is a week-long celebration of astronomy and space science held across Uganda. Now in its third year, the program brings together universities, observatories, schools, and community organizations to inspire the next generation of astronomers and space scientists.</p>
         <p>The week features public stargazing events, school visits, lectures by leading astronomers, planetarium shows, and hands-on workshops. Events are held in Kampala, Entebbe, Gulu, Mbarara, and Jinja, making astronomy accessible to communities nationwide.</p>
-
-        <h3>Schedule Highlights</h3>
-        <ul>
-          <li><strong>Day 1:</strong> Opening ceremony at Makerere University with keynote by Dr. Sarah Nabukenya</li>
-          <li><strong>Day 2:</strong> School outreach — astronomers visit 20 schools across central Uganda</li>
-          <li><strong>Day 3:</strong> Public lecture: "Uganda's Role in African Astronomy" at Uganda Museum</li>
-          <li><strong>Day 4:</strong> Telescope workshop at Entebbe Observatory — hands-on observation training</li>
-          <li><strong>Day 5:</strong> Astro-photography competition and exhibition</li>
-          <li><strong>Day 6:</strong> Regional events in Gulu, Mbarara, and Jinja</li>
-          <li><strong>Day 7:</strong> Closing night — mass stargazing event at multiple locations</li>
-        </ul>
-
-        <h3>Get Involved</h3>
-        <p>Volunteers are needed for school outreach, event coordination, and social media coverage. If you're a university student or astronomy enthusiast, sign up to help make this year's National Astronomy Week the biggest yet.</p>
 
         <div class="status-badge status-active">Active Program</div>
 
@@ -200,17 +223,163 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
           <span>Stargazing</span>
           <span>Nationwide</span>
         </div>
+
+        <!-- Timeline -->
+        <div class="timeline-section">
+          <h2>Timeline</h2>
+          <div class="timeline">
+            <div class="timeline-item completed">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">14 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Opening Ceremony — Makerere University</h4>
+                <p>Keynote by Dr. Sarah Nabukenya on Uganda's role in African astronomy.</p>
+                <div class="meta">Kampala · 09:00 EAT</div>
+              </div>
+            </div>
+            <div class="timeline-item completed">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">15 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>School Outreach — Central Uganda</h4>
+                <p>Astronomers visit 20 schools across central Uganda for interactive sessions.</p>
+                <div class="meta">Wakiso, Mukono, Mpigi</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">16 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Public Lecture — Uganda Museum</h4>
+                <p>"Uganda's Role in African Astronomy" — open to the public.</p>
+                <div class="meta">Kampala · 18:00 EAT</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">17 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Telescope Workshop — Entebbe Observatory</h4>
+                <p>Hands-on observation training with professional telescopes.</p>
+                <div class="meta">Entebbe · 19:00 EAT</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">18 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Astro-Photography Competition</h4>
+                <p>Exhibition and judging of amateur and professional entries.</p>
+                <div class="meta">Kampala · 10:00 EAT</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">19 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Regional Events — Gulu, Mbarara, Jinja</h4>
+                <p>Simultaneous stargazing and talks in three regional cities.</p>
+                <div class="meta">Gulu · Mbarara · Jinja</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">20 Jul 2026</div>
+              <div class="timeline-card">
+                <div class="type">Event</div>
+                <h4>Closing Night — Mass Stargazing</h4>
+                <p>Public stargazing event at multiple locations nationwide.</p>
+                <div class="meta">All locations · 19:00 EAT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attached Events -->
+        <div class="attached-section">
+          <h2>Events in This Program</h2>
+          <div class="attached-grid">
+            <a href="event.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Opening Ceremony</span>
+                <h4>Opening Ceremony — Makerere University</h4>
+                <div class="meta">14 Jul 2026 · Kampala</div>
+              </div>
+            </a>
+            <a href="event.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Observation</span>
+                <h4>Telescope Workshop — Entebbe Observatory</h4>
+                <div class="meta">17 Jul 2026 · Entebbe</div>
+              </div>
+            </a>
+            <a href="event.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Stargazing</span>
+                <h4>Closing Night — Mass Stargazing</h4>
+                <div class="meta">20 Jul 2026 · Nationwide</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Attached Opportunities -->
+        <div class="attached-section">
+          <h2>Related Opportunities</h2>
+          <div class="attached-grid">
+            <a href="opportunity.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Volunteer</span>
+                <h4>Volunteer for National Astronomy Week</h4>
+                <div class="meta">Deadline: 1 Jul 2026</div>
+              </div>
+            </a>
+            <a href="opportunity.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Competition</span>
+                <h4>Astro-Photography Competition</h4>
+                <div class="meta">Deadline: 18 Jul 2026</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Attached Projects -->
+        <div class="attached-section">
+          <h2>Related Projects</h2>
+          <div class="attached-grid">
+            <a href="project.html" class="attached-card">
+              <div class="attached-card-img" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80')"></div>
+              <div class="attached-card-body">
+                <span class="cat">Project</span>
+                <h4>Earth Observation Data Hub</h4>
+                <div class="meta">Ongoing</div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
-          <h4>Project Details</h4>
+          <h4>Program Details</h4>
           <div class="info-row"><span class="label">Duration</span><span class="value">14–20 Jul 2026</span></div>
           <div class="info-row"><span class="label">Status</span><span class="value">Active</span></div>
           <div class="info-row"><span class="label">Locations</span><span class="value">5 cities</span></div>
+          <div class="info-row"><span class="label">Events</span><span class="value">7</span></div>
           <div class="info-row"><span class="label">Volunteers</span><span class="value">32 needed</span></div>
-          <div class="info-row"><span class="label">Lead</span><span class="value">Uganda Space Community</span></div>
-          <a href="#" class="btn btn-gold">Volunteer</a>
+          <a href="#" class="btn btn-gold">Join Program</a>
         </div>
 
         <div class="sidebar-card">
@@ -223,10 +392,17 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
             </div>
           </div>
           <div class="organizer">
+            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+            <div class="organizer-info">
+              <div class="name">James Okello</div>
+              <div class="role">Events Coordinator</div>
+            </div>
+          </div>
+          <div class="organizer">
             <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>
             <div class="organizer-info">
-              <div class="name">Uganda Space Community</div>
-              <div class="role">Lead Organization</div>
+              <div class="name">Makerere Space Lab</div>
+              <div class="role">Host Institution</div>
             </div>
           </div>
         </div>
