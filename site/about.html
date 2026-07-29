@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>African Space Agency Scholarship — Uganda Space Community</title>
-<meta name="description" content="Full scholarship for African students pursuing space science and engineering.">
+<title>About — Uganda Space Community</title>
+<meta name="description" content="Learn about the Uganda Space Community platform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -39,50 +39,32 @@ a{color:inherit;text-decoration:none}
 .icon-sun{display:none}.icon-moon{display:block}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
-/* ═══ Detail Page ═══ */
-.detail-hero{position:relative;height:400px;overflow:hidden;border-radius:0 0 var(--radius-lg) var(--radius-lg);margin-top:60px}
-.detail-hero img{width:100%;height:100%;object-fit:cover}
-.detail-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.1) 0%,rgba(10,22,40,0.8) 100%)}
-.detail-hero-body{position:absolute;bottom:0;left:0;right:0;padding:40px 0;z-index:1}
-.detail-back{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:16px;transition:color 0.2s}
-.detail-back:hover{color:#fff}
-.detail-back svg{width:14px;height:14px}
-.detail-cat{display:inline-block;font-size:0.62rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;background:rgba(10,22,40,0.5);padding:4px 12px;border-radius:100px;backdrop-filter:blur(4px);margin-bottom:12px}
-.detail-hero-body h1{font-family:'Inter',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:#fff;margin-bottom:8px;letter-spacing:-0.015em}
-.detail-hero-body .meta{font-size:0.82rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.detail-hero-body .meta span{display:inline-flex;align-items:center;gap:5px}
+/* ═══ Page Header ═══ */
+.page-header{padding:120px 0 48px;text-align:center}
+.page-header .label{display:inline-block;font-size:0.62rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;background:var(--gold-dim);padding:4px 14px;border-radius:100px;margin-bottom:16px}
+.page-header h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
+.page-header p{font-size:0.95rem;color:var(--text-2);max-width:580px;margin:0 auto;line-height:1.7}
 
-.detail-content{padding:48px 0}
-.detail-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start}
-.detail-body h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:16px}
-.detail-body p{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
-.detail-body h3{font-size:1rem;margin:28px 0 12px}
-.detail-body ul{margin-bottom:16px;padding-left:20px}
-.detail-body li{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:6px}
+/* ═══ Content Sections ═══ */
+.content-section{padding:32px 0 48px}
+.content-section .wrapper{max-width:960px}
+.section-title{font-size:1.3rem;margin-bottom:20px}
+.section-text{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
 
-.detail-sidebar{position:sticky;top:100px}
-.sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
-.sidebar-card h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
-.sidebar-card .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.82rem}
-.sidebar-card .info-row:last-child{border-bottom:none}
-.sidebar-card .info-row .label{color:var(--text-3)}
-.sidebar-card .info-row .value{color:var(--text);font-weight:500}
-.sidebar-card .btn-gold{display:block;text-align:center;margin-top:16px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:32px 0}
+.info-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;background:var(--bg-alt);transition:border-color 0.2s}
+.info-card:hover{border-color:var(--border-hover)}
+.info-card .card-icon{width:44px;height:44px;border-radius:var(--radius);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:16px}
+.info-card .card-icon svg{width:20px;height:20px}
+.info-card h3{font-size:1rem;margin-bottom:8px}
+.info-card p{font-size:0.84rem;color:var(--text-2);line-height:1.7}
 
-.btn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
-.btn-gold{background:var(--gold);color:#fff}
-.btn-gold:hover{filter:brightness(1.1)}
+.mission-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;margin:32px 0}
+.mission-block h2{font-size:1.3rem;margin-bottom:16px}
+.mission-block p{font-size:0.92rem;color:var(--text-2);line-height:1.8}
 
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
-.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
-.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.organizer-avatar svg{width:18px;height:18px}
-.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
-.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
-
-.deadline-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--red);background:var(--red-dim);padding:8px 16px;border-radius:var(--radius);margin-top:16px}
-.deadline-badge svg{width:16px;height:16px}
+.audience-list{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.audience-list span{font-size:0.78rem;padding:6px 16px;background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;color:var(--text-2)}
 
 /* ═══ Footer ═══ */
 .footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
@@ -104,14 +86,12 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .nav-toggle{display:block}.nav{position:relative}
   .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
   .nav-open .nav-c{display:flex}
-  .detail-layout{grid-template-columns:1fr}
-  .detail-sidebar{position:static}
+  .card-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
-  .detail-hero{height:280px;margin-top:50px}
-  .detail-hero-body h1{font-size:1.5rem}
+  .page-header{padding:100px 0 32px}
   .footer-grid{grid-template-columns:1fr;gap:20px}
 }
 </style>
@@ -128,13 +108,13 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         </a>
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
-    <ul class="nav-c">
-      <li><a href="discover.html">Discover</a></li>
-      <li><a href="launchpad.html">Launchpad</a></li>
-      <li><a href="knowledge.html">Knowledge</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul>
+      <ul class="nav-c">
+        <li><a href="discover.html">Discover</a></li>
+        <li><a href="launchpad.html">Launchpad</a></li>
+        <li><a href="knowledge.html">Knowledge</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
       <div class="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -150,93 +130,66 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </div>
 
-<div class="detail-hero">
-  <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80" alt="African Space Agency Scholarship">
-  <div class="detail-hero-body">
-    <div class="wrapper">
-      <a href="discover.html#opportunities" class="detail-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-        Back to Opportunities
-      </a>
-      <div class="detail-cat">Scholarship</div>
-      <h1>African Space Agency Scholarship</h1>
-      <div class="meta">
-        <span>Deadline: 30 Sep 2026</span>
-        <span>·</span>
-        <span>Full Funding</span>
+<div class="page-header" id="main">
+  <div class="wrapper">
+    <div class="label">About</div>
+    <h1>Building Uganda's Space Ecosystem</h1>
+    <p>A community-driven platform connecting students, researchers, professionals, and organizations in Uganda's growing space sector.</p>
+  </div>
+</div>
+
+<div class="content-section">
+  <div class="wrapper">
+    <p class="section-text">The Uganda Space Community (USC) is a centralized platform built to unite everyone passionate about space science and technology in Uganda. Whether you are a university student exploring astrophysics, a researcher publishing satellite data, an engineer building CubeSats, or a policymaker shaping national space strategy — USC is where you connect, learn, and contribute.</p>
+    <p class="section-text">We believe Uganda's space future is built by its people. By removing barriers to information, fostering collaboration across disciplines, and amplifying local achievements, we aim to accelerate the country's role in the global space economy.</p>
+  </div>
+</div>
+
+<div class="content-section">
+  <div class="wrapper">
+    <h2 class="section-title">What We Do</h2>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        <h3>Discover</h3>
+        <p>Find events, news, training programs, scholarships, and career opportunities across Uganda's space sector — all in one place.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Connect</h3>
+        <p>Meet members, join organizations, and build relationships with institutions and professionals shaping Uganda's space future.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13"/><path d="M19.376 7.265A9 9 0 1 1 12 3a9 9 0 0 1 7.376 4.265z"/></svg></div>
+        <h3>Contribute</h3>
+        <p>Share knowledge through the community knowledge base, mentor students, and participate in programs that grow national capability.</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="detail-content" id="main">
+<div class="content-section">
   <div class="wrapper">
-    <div class="detail-layout">
-      <div class="detail-body">
-        <h2>Full Scholarship for African Students</h2>
-        <p>The African Space Agency is offering full scholarships for African students pursuing undergraduate or postgraduate degrees in space science, aerospace engineering, or related fields. This prestigious program covers tuition, living expenses, and research costs for the duration of the study program.</p>
-        <p>Selected scholars will have the opportunity to study at leading African universities and participate in research projects aligned with the African Space Agency's mission to advance space capabilities across the continent.</p>
+    <div class="mission-block">
+      <h2>Our Mission</h2>
+      <p>To be the central hub for Uganda's space community — connecting people, sharing knowledge, and accelerating the country's space capabilities. We envision a Uganda where every aspiring space professional has access to the resources, network, and opportunities they need to thrive.</p>
+    </div>
+  </div>
+</div>
 
-        <h3>Eligibility</h3>
-        <ul>
-          <li>Citizen of an African Union member state</li>
-          <li>Admitted to or enrolled in an accredited university program in space science, aerospace engineering, physics, or related fields</li>
-          <li>Minimum GPA of 3.5 or equivalent</li>
-          <li>Demonstrated commitment to Africa's space development</li>
-          <li>Not currently receiving another full scholarship</li>
-        </ul>
-
-        <h3>What's Covered</h3>
-        <ul>
-          <li>Full tuition and fees</li>
-          <li>Monthly living stipend</li>
-          <li>Research and conference travel grants</li>
-          <li>Health insurance</li>
-          <li>Mentorship from African Space Agency professionals</li>
-        </ul>
-
-        <h3>How to Apply</h3>
-        <p>Applications must include a completed application form, academic transcripts, two letters of recommendation, a personal statement of purpose, and a research proposal aligned with the agency's strategic priorities. Applications are reviewed by a committee of space science professionals.</p>
-
-        <div class="detail-tags">
-          <span>Scholarship</span>
-          <span>Space Science</span>
-          <span>African Space Agency</span>
-          <span>Full Funding</span>
-          <span>Postgraduate</span>
-        </div>
-      </div>
-
-      <div class="detail-sidebar">
-        <div class="sidebar-card">
-          <h4>Opportunity Details</h4>
-          <div class="info-row"><span class="label">Type</span><span class="value">Scholarship</span></div>
-          <div class="info-row"><span class="label">Funding</span><span class="value">Full</span></div>
-          <div class="info-row"><span class="label">Deadline</span><span class="value">30 Sep 2026</span></div>
-          <div class="info-row"><span class="label">Duration</span><span class="value">2–4 years</span></div>
-          <div class="info-row"><span class="label">Location</span><span class="value">Africa</span></div>
-          <div class="info-row"><span class="label">Applicants</span><span class="value">124 so far</span></div>
-          <a href="#" class="btn btn-gold">Apply Now</a>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Organizers</h4>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">African Space Agency</div>
-              <div class="role">Scholarship Provider</div>
-            </div>
-          </div>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">Peter Ssemwanga</div>
-              <div class="role">Scholarship Coordinator</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="content-section">
+  <div class="wrapper">
+    <h2 class="section-title">Who It's For</h2>
+    <p class="section-text">USC is open to anyone with an interest in space science, technology, and policy. Our community includes:</p>
+    <div class="audience-list">
+      <span>Students</span>
+      <span>Researchers</span>
+      <span>Engineers</span>
+      <span>Policymakers</span>
+      <span>Journalists</span>
+      <span>Educators</span>
+      <span>Organizations</span>
+      <span>Enthusiasts</span>
     </div>
   </div>
 </div>
@@ -266,9 +219,6 @@ const body=document.body;
 if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
 document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
 document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
-const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
-function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
-window.addEventListener('scroll',updateNav);updateNav();
 document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
 </script>
 </body>

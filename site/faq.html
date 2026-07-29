@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Uganda Space Community</title>
+<meta name="description" content="Frequently asked questions about the Uganda Space Community platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F8FA;--bg-alt:#FFFFFF;--bg-alt-subtle:#F2F3F6;--text:#0C1A2E;--text-2:#5C6678;--text-3:#8A91A0;--border:#E4E6EA;--border-hover:#D0D3D8;--gold:#B8953F;--gold-grad:linear-gradient(135deg,#B8953F,#a6862e);--gold-dim:rgba(184,149,63,0.08);--red:#D94F3D;--red-dim:rgba(217,79,61,0.08);--emerald:#1F8A5B;--emerald-dim:rgba(31,138,91,0.06);--radius:8px;--radius-lg:12px;--ease:cubic-bezier(0.25,0.46,0.45,0.94)}
+body.dark-mode{--bg:#0A1628;--bg-alt:#0F1F35;--bg-alt-subtle:#0C1929;--text:#EAECF0;--text-2:#7A8498;--text-3:#5C6678;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gold:#C9A84C;--gold-grad:linear-gradient(135deg,#C9A84C,#d4b358);--gold-dim:rgba(201,168,76,0.10);--red:#E05A4A;--emerald-dim:rgba(31,138,91,0.08)}
+.skip-link{position:absolute;top:-100%;left:12px;z-index:999;padding:8px 16px;background:var(--gold);color:#fff;font-size:0.8rem;font-weight:600;border-radius:0 0 6px 6px;transition:top 0.2s}
+.skip-link:focus{top:0}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s}
+h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.02em;line-height:1.18}
+a{color:inherit;text-decoration:none}
+.wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
+
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text);transition:background 0.3s}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative}
+.nav-l{display:flex;align-items:center;gap:12px}
+.logo-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:var(--gold-dim);overflow:hidden;animation:logoFloat 4s ease-in-out infinite}
+.logo-icon img{width:100%;height:100%;object-fit:cover}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-3px) rotate(1deg)}}
+.logo-txt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.92rem;color:var(--nav-text-hover);letter-spacing:-0.01em;transition:color 0.3s}
+.logo-txt span{color:var(--gold)}
+.nav-c{display:flex;gap:32px;list-style:none;margin-left:auto;margin-right:24px}
+.nav-c a{font-size:0.8rem;font-weight:500;color:var(--nav-text);transition:color 0.3s;letter-spacing:0.02em}
+.nav-c a:hover{color:var(--nav-text-hover)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-toggle{display:none;background:none;border:none;color:var(--nav-text-hover);cursor:pointer;padding:4px;line-height:0;transition:color 0.3s}
+.theme-toggle{background:none;border:none;color:var(--nav-text);cursor:pointer;padding:6px;line-height:0;transition:color 0.3s;display:flex;align-items:center;justify-content:center}
+.theme-toggle:hover{color:var(--nav-text-hover)}
+.icon-sun{display:none}.icon-moon{display:block}
+body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
+
+.page-header{padding:100px 0 32px;text-align:center}
+.page-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
+.page-header h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:8px}
+.page-header p{font-size:0.88rem;color:var(--text-2);max-width:480px;margin:0 auto}
+
+.faq-controls{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap}
+.faq-search{flex:1;min-width:200px;max-width:400px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.82rem;background:var(--bg-alt);color:var(--text);font-family:'Inter',sans-serif;transition:border-color 0.2s}
+.faq-search:focus{outline:none;border-color:var(--gold)}
+.faq-search::placeholder{color:var(--text-3)}
+.member-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2);font-size:0.78rem;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.member-toggle:hover{border-color:var(--border-hover);color:var(--text)}
+.member-toggle.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.member-toggle svg{width:14px;height:14px}
+
+.faq-list{display:flex;flex-direction:column;gap:12px;padding-bottom:80px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-alt);overflow:hidden;transition:border-color 0.2s}
+.faq-item:hover{border-color:var(--border-hover)}
+.faq-question{display:flex;align-items:center;gap:12px;padding:20px 24px;cursor:pointer;user-select:none}
+.faq-question h3{flex:1;font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:400}
+.faq-chevron{width:16px;height:16px;color:var(--text-3);transition:transform 0.2s;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-answers{display:none;padding:0 24px 20px}
+.faq-item.open .faq-answers{display:block}
+
+.faq-answer{padding:16px 0;border-top:1px solid var(--border)}
+.faq-answer:first-child{border-top:none}
+.faq-answer.top-voted{border-left:2px solid var(--gold);padding-left:16px;margin-left:-16px}
+.faq-answer-text{font-size:0.86rem;color:var(--text-2);line-height:1.7;margin-bottom:8px}
+.faq-answer-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.faq-answer-author{font-size:0.72rem;color:var(--text-3);font-weight:500}
+.faq-votes{display:flex;align-items:center;gap:4px}
+.vote-btn{width:28px;height:28px;border:1px solid var(--border);border-radius:var(--radius);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:0.72rem;transition:all 0.2s}
+.vote-btn:hover{border-color:var(--gold);color:var(--gold)}
+.vote-btn.voted-up{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.vote-btn.voted-down{border-color:var(--red);color:var(--red);background:var(--red-dim)}
+.vote-count{font-size:0.78rem;font-weight:600;color:var(--text);min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+
+.faq-empty{text-align:center;padding:60px 0;color:var(--text-3);font-size:0.88rem;display:none}
+
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
+.footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.footer-brand p{font-size:0.8rem;color:var(--text-2);margin-top:12px;line-height:1.65;max-width:260px}
+.footer-brand .email{margin-top:14px;font-size:0.8rem;color:var(--gold)}
+.footer-social{display:flex;gap:10px;margin-top:14px}
+.footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.footer-col h5{font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px}
+.footer-col a{display:block;font-size:0.8rem;color:var(--text-2);padding:4px 0;transition:color 0.2s;font-weight:300}
+.footer-col a:hover{color:var(--text)}
+.footer-bot{text-align:center;padding-top:24px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-3)}
+.footer-bot .hl{color:var(--gold)}
+
+@media(max-width:900px){
+  .nav-toggle{display:block}.nav{position:relative}
+  .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
+  .nav-open .nav-c{display:flex}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:640px){
+  .wrapper{padding:0 18px}
+  .faq-controls{flex-direction:column;align-items:stretch}
+  .faq-search{max-width:none}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="nav-bar">
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-l">
+        <a href="index.html" class="logo-icon"><img src="emblem.png" alt="Uganda Space Community" /></a>
+        <span class="logo-txt">Uganda <span>Space</span></span>
+      </div>
+      <ul class="nav-c">
+        <li><a href="discover.html">Discover</a></li>
+        <li><a href="launchpad.html">Launchpad</a></li>
+        <li><a href="knowledge.html">Knowledge</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div id="main">
+  <div class="wrapper">
+    <div class="page-header">
+      <div class="page-label">FAQ</div>
+      <h1>Frequently Asked Questions</h1>
+      <p>Quick answers from the community.</p>
+    </div>
+
+    <div class="faq-controls">
+      <input type="text" class="faq-search" id="faq-search" placeholder="Search questions...">
+      <button class="member-toggle" id="member-toggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+        <span id="member-label">Member View</span>
+      </button>
+    </div>
+
+    <div class="faq-list" id="faq-list"></div>
+    <div class="faq-empty" id="faq-empty">No questions match your search.</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrapper">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
+        <p>Rooted in Uganda, reaching beyond Earth.</p>
+        <div class="email">hello@ugandaspace.ug</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+    </div>
+    <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
+  </div>
+</footer>
+
+<script>
+const body=document.body;
+if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
+document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
+document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
+document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
+
+const faqs=[
+  {q:"How do I join the Uganda Space Community?",answers:[{author:"Admin",text:"Create your profile on the platform. Fill in your interests, affiliation, and background. You'll be matched with relevant programs and events.",votes:24},{author:"Dr. Sarah Nabukenya",text:"Just sign up and complete your profile. The community is open to anyone with an interest in Uganda's space sector — students, researchers, professionals, and enthusiasts.",votes:18}]},
+  {q:"What programs can I participate in?",answers:[{author:"Admin",text:"Visit the Launchpad to see all active programs. Current ones include National Astronomy Week, CubeSat Build Series, EO Training, and the Rocketry Challenge.",votes:19},{author:"James Okello",text:"The CubeSat Build Series is amazing — hands-on workshops every month. Definitely recommend for engineering students.",votes:15}]},
+  {q:"Is the platform free to use?",answers:[{author:"Admin",text:"Yes, the platform is completely free. All content, events listings, and community features are open to everyone.",votes:31}]},
+  {q:"How do I submit an event or opportunity?",answers:[{author:"Admin",text:"Use the Quick Action buttons on the Discover page sidebar, or contact us at hello@ugandaspace.ug with your event details.",votes:14},{author:"Sarah Akello",text:"Email hello@ugandaspace.ug with the event details — title, date, location, and a brief description. We'll get it listed within 24 hours.",votes:11}]},
+  {q:"Can organizations join the community?",answers:[{author:"Admin",text:"Absolutely. Organizations can submit their profile through the community page. We currently list 28 organizations across Uganda.",votes:22},{author:"Peter Ssemwanga",text:"Yes! My organization (Makerere Space Lab) is listed. It's a great way to recruit members and collaborate on projects.",votes:16}]},
+  {q:"What is the CubeSat Build Series?",answers:[{author:"Admin",text:"A monthly hands-on workshop series where students learn to design and build a university CubeSat. Running Jun-Dec 2026, with 2 of 6 sessions completed.",votes:27},{author:"Grace Nakamya",text:"It's the real deal — we're actually building Uganda's first university CubeSat. Sessions cover everything from structure design to ground station operations.",votes:20}]},
+  {q:"How do I access satellite data for Uganda?",answers:[{author:"Admin",text:"Use the Knowledge Base to find data sources. Key resources include the Uganda EO Data Portal, Sentinel Hub, and USGS EarthExplorer.",votes:18},{author:"Michael Ochieng",text:"Space Hub Uganda's EO Data Portal has curated Sentinel-2 imagery for Uganda. Google Earth Engine is also excellent for analysis.",votes:15}]},
+  {q:"Are there scholarships for space science students?",answers:[{author:"Admin",text:"Check the Opportunities section on the Discover page. Current scholarships include the African Space Agency Scholarship (deadline 30 Sep) and Makerere Space Research Fellowship.",votes:25},{author:"Alice Nabukera",text:"The African Space Agency Scholarship covers full tuition. Apply before 30 Sep 2026 — it's competitive but worth it.",votes:19}]},
+  {q:"How do I get involved in space policy?",answers:[{author:"Admin",text:"Join the Space Policy Research Group through the community page. The Ministry of Science also hosts regular policy roundtables.",votes:16},{author:"Esther Nabirye",text:"Attend the Space Policy Workshop Series — they happen quarterly. Great networking with policymakers and researchers.",votes:12}]},
+  {q:"What regions of Uganda have active space communities?",answers:[{author:"Admin",text:"Central (Kampala) leads with 124 members, followed by Eastern (68), Western (52), and Northern (38). All regions have active chapters.",votes:20}]}
+];
+
+let memberMode=localStorage.getItem('usc-member-mode')==='true';
+let userVotes=JSON.parse(localStorage.getItem('usc-faq-votes')||'{}');
+let searchQuery='';
+
+const toggle=document.getElementById('member-toggle');
+const label=document.getElementById('member-label');
+const searchInput=document.getElementById('faq-search');
+const listEl=document.getElementById('faq-list');
+const emptyEl=document.getElementById('faq-empty');
+
+function updateToggle(){
+  toggle.classList.toggle('active',memberMode);
+  label.textContent=memberMode?'Public View':'Member View';
+}
+
+function getVotes(qi,ai){return userVotes[qi+'-'+ai]||0}
+function setVotes(qi,ai,v){userVotes[qi+'-'+ai]=v;localStorage.setItem('usc-faq-votes',JSON.stringify(userVotes))}
+
+function sortAnswers(answers,qi){
+  return answers.map((a,i)=>({...a,idx:i,votes:a.votes+(userVotes[qi+'-'+i]||0)})).sort((a,b)=>b.votes-a.votes);
+}
+
+function renderFaqs(){
+  const filtered=faqs.filter(f=>!searchQuery||f.q.toLowerCase().includes(searchQuery)||f.answers.some(a=>a.text.toLowerCase().includes(searchQuery)));
+  if(!filtered.length){listEl.innerHTML='';emptyEl.style.display='block';return}
+  emptyEl.style.display='none';
+
+  listEl.innerHTML=filtered.map((f)=>{
+    const origIdx=faqs.indexOf(f);
+    const sorted=sortAnswers(f.answers,origIdx);
+    const topAnswer=sorted[0];
+    const isTop=(ai)=>ai===topAnswer.idx;
+
+    let answersHtml='';
+    if(memberMode){
+      answersHtml=sorted.map(a=>{
+        const v=getVotes(origIdx,a.idx);
+        const cls=v>0?'voted-up':v<0?'voted-down':'';
+        return`<div class="faq-answer${isTop(a)?' top-voted':''}">
+          <div class="faq-answer-text">${a.text}</div>
+          <div class="faq-answer-meta">
+            <span class="faq-answer-author">${a.author}</span>
+            <div class="faq-votes">
+              <button class="vote-btn ${v>0?'voted-up':''}" onclick="vote(${origIdx},${a.idx},1)" aria-label="Upvote">▲</button>
+              <span class="vote-count">${a.votes+v}</span>
+              <button class="vote-btn ${v<0?'voted-down':''}" onclick="vote(${origIdx},${a.idx},-1)" aria-label="Downvote">▼</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }else{
+      answersHtml=`<div class="faq-answer top-voted">
+        <div class="faq-answer-text">${topAnswer.text}</div>
+        <div class="faq-answer-meta"><span class="faq-answer-author">${topAnswer.author}</span></div>
+      </div>`;
+    }
+
+    return`<div class="faq-item">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <h3>${f.q}</h3>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-answers">${answersHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+window.vote=function(qi,ai,delta){
+  const cur=userVotes[qi+'-'+ai]||0;
+  const newVal=cur===delta?0:delta;
+  setVotes(qi,ai,newVal);
+  renderFaqs();
+};
+
+toggle.addEventListener('click',()=>{
+  memberMode=!memberMode;
+  localStorage.setItem('usc-member-mode',memberMode);
+  updateToggle();
+  renderFaqs();
+});
+
+searchInput.addEventListener('input',(e)=>{
+  searchQuery=e.target.value.toLowerCase();
+  renderFaqs();
+});
+
+updateToggle();
+renderFaqs();
+</script>
+</body>
+</html>

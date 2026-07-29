@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Base — Uganda Space Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F7F8FA;--bg-alt:#FFFFFF;--bg-alt-subtle:#F2F3F6;--text:#0C1A2E;--text-2:#5C6678;--text-3:#8A91A0;--border:#E4E6EA;--border-hover:#D0D3D8;--gold:#B8953F;--gold-grad:linear-gradient(135deg,#B8953F,#a6862e);--gold-dim:rgba(184,149,63,0.08);--red:#D94F3D;--red-dim:rgba(217,79,61,0.08);--emerald:#1F8A5B;--emerald-dim:rgba(31,138,91,0.06);--radius:8px;--radius-lg:12px;--ease:cubic-bezier(0.25,0.46,0.45,0.94)}
+body.dark-mode{--bg:#0A1628;--bg-alt:#0F1F35;--bg-alt-subtle:#0C1929;--text:#EAECF0;--text-2:#7A8498;--text-3:#5C6678;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gold:#C9A84C;--gold-grad:linear-gradient(135deg,#C9A84C,#d4b358);--gold-dim:rgba(201,168,76,0.10);--red:#E05A4A;--emerald-dim:rgba(31,138,91,0.08)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+.wrapper{max-width:1120px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+/* NAV */
+.nav-bar{position:sticky;top:0;z-index:100;background:var(--bg-alt);border-bottom:1px solid var(--border);transition:background .3s,border-color .3s}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-l{display:flex;align-items:center;gap:10px}
+.logo-icon img{width:32px;height:32px;border-radius:6px}
+.logo-txt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:-.02em}
+.logo-txt span{color:var(--gold)}
+.nav-c{display:flex;gap:28px}
+.nav-c li a{font-size:0.88rem;font-weight:500;color:var(--text-2);transition:color .2s}
+.nav-c li a:hover,.nav-c li a[aria-current="page"]{color:var(--text)}
+.nav-r{display:flex;align-items:center;gap:8px}
+.theme-toggle,.nav-toggle{background:none;border:1px solid var(--border);border-radius:var(--radius);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-2);transition:all .2s}
+.theme-toggle:hover,.nav-toggle:hover{border-color:var(--border-hover);color:var(--text)}
+.icon-sun{display:none}
+body.dark-mode .icon-moon{display:none}
+body.dark-mode .icon-sun{display:block}
+.nav-toggle{display:none}
+
+/* HERO / HEADER */
+.page-header{padding:64px 0 32px;text-align:center}
+.page-header .label{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:6px 16px;border-radius:99px;margin-bottom:20px}
+.page-header h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+.page-header p{color:var(--text-2);font-size:1rem;max-width:520px;margin:0 auto}
+
+/* FILTERS */
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:32px 0 24px}
+.search-box{position:relative;flex:1;min-width:220px}
+.search-box input{width:100%;padding:10px 14px 10px 40px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-size:0.88rem;font-family:'Inter',sans-serif;transition:border-color .2s}
+.search-box input:focus{outline:none;border-color:var(--gold)}
+.search-box svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:6px 14px;border-radius:99px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.chip:hover{border-color:var(--border-hover);color:var(--text)}
+.chip.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);font-weight:600}
+.sort-select{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-size:0.84rem;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color .2s}
+.sort-select:focus{outline:none;border-color:var(--gold)}
+
+/* GRID */
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding-bottom:80px}
+
+/* CARD */
+.res-card{background:var(--bg-alt);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all .25s var(--ease);position:relative;display:flex;flex-direction:column}
+.res-card:hover{border-color:var(--border-hover);box-shadow:0 4px 24px rgba(0,0,0,.04)}
+body.dark-mode .res-card:hover{box-shadow:0 4px 24px rgba(0,0,0,.2)}
+.res-card[data-cat="papers"]{border-left-color:var(--text-2)}
+.res-card[data-cat="policies"]{border-left-color:var(--gold)}
+.res-card[data-cat="tools"]{border-left-color:var(--emerald)}
+.res-card[data-cat="datasets"]{border-left-color:var(--red)}
+.res-card[data-cat="guides"]{border-left-color:var(--gold)}
+.res-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.badge{font-size:0.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:99px}
+.badge-papers{background:rgba(92,102,120,.1);color:var(--text-2)}
+body.dark-mode .badge-papers{background:rgba(122,132,152,.15)}
+.badge-policies{background:var(--gold-dim);color:var(--gold)}
+.badge-tools{background:var(--emerald-dim);color:var(--emerald)}
+.badge-datasets{background:var(--red-dim);color:var(--red)}
+.badge-guides{background:var(--gold-dim);color:var(--gold)}
+.res-card a.ext-link{color:var(--text-3);transition:color .2s}
+.res-card a.ext-link:hover{color:var(--gold)}
+.res-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.02rem;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;line-height:1.35}
+.res-card .desc{color:var(--text-2);font-size:0.86rem;line-height:1.55;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.res-meta{font-size:0.78rem;color:var(--text-3);margin-bottom:12px;display:flex;flex-direction:column;gap:4px}
+.res-meta .author{font-weight:500;color:var(--text-2)}
+.res-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.res-tag{font-size:0.7rem;padding:3px 8px;border-radius:4px;background:var(--bg-alt-subtle);color:var(--text-3);font-weight:500}
+.no-results{grid-column:1/-1;text-align:center;padding:80px 24px;color:var(--text-3);font-size:0.95rem}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:48px 0 24px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer-brand p{color:var(--text-2);font-size:0.84rem;margin:10px 0 8px;line-height:1.5}
+.footer-brand .email{color:var(--gold);font-size:0.82rem;font-weight:500}
+.footer-social{display:flex;gap:12px;margin-top:14px}
+.footer-social a{color:var(--text-3);transition:color .2s}
+.footer-social a:hover{color:var(--gold)}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin-bottom:12px}
+.footer-col a{display:block;font-size:0.84rem;color:var(--text-2);padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bot{text-align:center;font-size:0.78rem;color:var(--text-3);border-top:1px solid var(--border);padding-top:20px}
+.footer-bot .hl{color:var(--gold);font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-c{display:none}
+  .nav-toggle{display:flex}
+  .nav.nav-open .nav-c{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--bg-alt);border-bottom:1px solid var(--border);padding:16px 24px;gap:4px;z-index:99}
+  .nav.nav-open .nav-c li a{padding:10px 0;font-size:0.95rem}
+  .filters{flex-direction:column;align-items:stretch}
+  .sort-select{width:100%}
+  .resources-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-bar nav-scrolled">
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-l">
+        <a href="index.html" class="logo-icon"><img src="emblem.png" alt="Uganda Space Community" /></a>
+        <span class="logo-txt">Uganda <span>Space</span></span>
+      </div>
+      <ul class="nav-c">
+        <li><a href="discover.html">Discover</a></li>
+        <li><a href="launchpad.html">Launchpad</a></li>
+        <li><a href="knowledge.html" aria-current="page">Knowledge</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- HEADER -->
+<section class="page-header">
+  <div class="wrapper">
+    <span class="label">Knowledge Base</span>
+    <h1>Curated Resources</h1>
+    <p>Papers, policies, tools, datasets, and guides for Uganda's space community.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="wrapper">
+  <div class="filters">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search resources..." autocomplete="off">
+    </div>
+    <div class="chips">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="papers">Papers</button>
+      <button class="chip" data-cat="policies">Policies</button>
+      <button class="chip" data-cat="tools">Tools</button>
+      <button class="chip" data-cat="datasets">Datasets</button>
+      <button class="chip" data-cat="guides">Guides</button>
+    </div>
+    <select class="sort-select" id="sortSelect">
+      <option value="newest">Newest</option>
+      <option value="popular">Most Popular</option>
+    </select>
+  </div>
+
+  <!-- GRID -->
+  <div class="resources-grid" id="resourcesGrid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrapper">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
+        <p>Rooted in Uganda, reaching beyond Earth.</p>
+        <div class="email">hello@ugandaspace.ug</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+    </div>
+    <div class="footer-bot">&copy; 2026 Uganda Space Community &middot; <span class="hl">The Constellation</span></div>
+  </div>
+</footer>
+
+<script>
+const body=document.body;
+if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
+document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
+document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
+document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
+
+const resources=[
+  {cat:"papers",title:"Satellite-Based Crop Monitoring in Uganda",desc:"Analysis of Sentinel-2 imagery for agricultural monitoring across Uganda's major farming regions.",author:"Dr. Sarah Nabukenya, Makerere University",date:"2026-06-01",tags:["Earth Observation","Agriculture"],popularity:92},
+  {cat:"papers",title:"LEO Constellation Design for Rural Connectivity",desc:"Proposed LEO satellite constellation architecture for bridging Uganda's rural digital divide.",author:"Grace Nakamya, USA",date:"2026-04-01",tags:["Satellite Tech","Telecommunications"],popularity:87},
+  {cat:"policies",title:"Uganda Space Policy Framework 2026",desc:"National policy framework for space activities, licensing, and regulatory compliance.",author:"Ministry of Science",date:"2026-03-01",tags:["Space Policy","Governance"],popularity:95},
+  {cat:"policies",title:"Artemis Accords: Uganda's Commitment",desc:"Summary of Uganda's commitments under the Artemis Accords for responsible space exploration.",author:"Peter Ssemwanga, MAK",date:"2026-07-01",tags:["Space Policy","International"],popularity:88},
+  {cat:"tools",title:"Uganda EO Data Portal",desc:"Web platform for accessing and analyzing Sentinel-2 and Landsat imagery over Uganda.",author:"Space Hub Uganda",date:"2026-05-01",tags:["Earth Observation","Data Science"],popularity:90},
+  {cat:"tools",title:"CubeSat Simulator",desc:"Open-source CubeSat simulation toolkit for university student teams.",author:"Makerere Space Lab",date:"2026-01-01",tags:["Satellite Tech","Engineering"],popularity:83},
+  {cat:"datasets",title:"Uganda Land Cover Classification 2025",desc:"30m resolution land cover map of Uganda derived from Sentinel-2 imagery.",author:"UNOSAT/UNITAR",date:"2025-12-01",tags:["Earth Observation","GIS"],popularity:86},
+  {cat:"datasets",title:"Uganda Meteorological Station Network",desc:"Real-time and historical weather station data from 120+ stations across Uganda.",author:"UNMA",date:"2026-01-15",tags:["Climate","Data Science"],popularity:79},
+  {cat:"guides",title:"Getting Started with Google Earth Engine",desc:"Step-by-step tutorial for processing satellite imagery using Google Earth Engine.",author:"Michael Ochieng, SHU",date:"2026-02-01",tags:["Earth Observation","Data Science"],popularity:94},
+  {cat:"guides",title:"How to Write a Space Policy Brief",desc:"Guide for researchers and policymakers on crafting effective space policy documents.",author:"Esther Nabirye, MoSTI",date:"2026-05-01",tags:["Space Policy","Writing"],popularity:81}
+];
+
+const grid=document.getElementById('resourcesGrid');
+const searchInput=document.getElementById('searchInput');
+const sortSelect=document.getElementById('sortSelect');
+let activeCat='all';
+
+function dateLabel(d){
+  if(d==='2026-01-15')return'Ongoing';
+  const dt=new Date(d);
+  return dt.toLocaleDateString('en-US',{month:'short',year:'numeric'});
+}
+
+function renderCards(){
+  const q=searchInput.value.toLowerCase().trim();
+  let filtered=resources.filter(r=>{
+    if(activeCat!=='all'&&r.cat!==activeCat)return false;
+    if(q&&!(r.title.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)))return false;
+    return true;
+  });
+  const s=sortSelect.value;
+  if(s==='newest'){
+    filtered.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  }else{
+    filtered.sort((a,b)=>b.popularity-a.popularity);
+  }
+  if(!filtered.length){
+    grid.innerHTML='<div class="no-results">No resources found matching your filters.</div>';
+    return;
+  }
+  grid.innerHTML=filtered.map(r=>`
+    <article class="res-card" data-cat="${r.cat}">
+      <div class="res-top">
+        <span class="badge badge-${r.cat}">${r.cat}</span>
+        <a href="#" class="ext-link" title="Open resource" aria-label="Open ${r.title}">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <h3>${r.title}</h3>
+      <p class="desc">${r.desc}</p>
+      <div class="res-meta">
+        <span class="author">${r.author}</span>
+        <span>${dateLabel(r.date)}</span>
+      </div>
+      <div class="res-tags">${r.tags.map(t=>`<span class="res-tag">${t}</span>`).join('')}</div>
+    </article>
+  `).join('');
+}
+
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    activeCat=c.dataset.cat;
+    renderCards();
+  });
+});
+searchInput.addEventListener('input',renderCards);
+sortSelect.addEventListener('change',renderCards);
+renderCards();
+</script>
+</body>
+</html>
