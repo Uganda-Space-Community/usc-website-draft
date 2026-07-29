@@ -94,13 +94,23 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 /* ═══ Members (The Crew) ═══ */
 .crew-layout{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:32px 0;align-items:start}
 .crew-filters{position:sticky;top:100px}
-.filter-section{margin-bottom:24px}
-.filter-section h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
-.filter-option{display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer;font-size:0.82rem;color:var(--text-2);transition:color 0.2s}
+.filter-section{margin-bottom:20px}
+.filter-section-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;margin-bottom:8px;user-select:none}
+.filter-section-head h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin:0}
+.filter-section-head .chevron{width:14px;height:14px;color:var(--text-3);transition:transform 0.2s}
+.filter-section.collapsed .chevron{transform:rotate(-90deg)}
+.filter-section.collapsed .filter-options{display:none}
+.filter-option{display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:0.82rem;color:var(--text-2);transition:color 0.2s}
 .filter-option:hover{color:var(--text)}
-.filter-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s}
+.filter-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;flex-shrink:0}
 .filter-option.active .filter-radio{border-color:var(--gold)}
 .filter-option.active .filter-radio::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.filter-count{font-size:0.68rem;color:var(--text-3);margin-left:auto;font-variant-numeric:tabular-nums}
+.active-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.active-filters:empty{display:none}
+.active-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;padding:4px 10px;background:var(--gold-dim);color:var(--gold);border-radius:100px;cursor:pointer;transition:background 0.2s}
+.active-tag:hover{background:rgba(184,149,63,0.15)}
+.active-tag svg{width:12px;height:12px}
 .crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .crew-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color 0.2s,box-shadow 0.2s}
 .crew-card:hover{border-color:var(--border-hover);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
@@ -156,7 +166,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
   .nav-open .nav-c{display:flex}
   .crew-layout{grid-template-columns:1fr}
-  .crew-filters{position:static}
+  .crew-filters{position:static;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin-bottom:16px}
+  .crew-filters .filter-section{min-width:200px;margin-bottom:0;flex-shrink:0}
+  .crew-filters .filter-options{display:flex;flex-wrap:wrap;gap:4px}
+  .crew-filters .filter-section.collapsed .filter-options{display:flex}
+  .crew-filters .filter-section-head .chevron{display:none}
   .treemap{grid-template-columns:repeat(3,1fr)}
   .treemap-cell.large,.treemap-cell.medium{grid-column:span 2}
   .eco-viz-toggle{gap:4px}
@@ -363,113 +377,131 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     </div>
     <div class="crew-layout">
     <aside class="crew-filters">
-      <div class="filter-section">
-        <h4>Identity</h4>
-        <div class="filter-option active" data-filter="identity" data-value="all">
-          <div class="filter-radio"></div> All
+      <div class="filter-section" data-section="identity">
+        <div class="filter-section-head">
+          <h4>Identity</h4>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="filter-option" data-filter="identity" data-value="researcher">
-          <div class="filter-radio"></div> Researcher
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="student">
-          <div class="filter-radio"></div> Student
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="engineer">
-          <div class="filter-radio"></div> Engineer
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="scientist">
-          <div class="filter-radio"></div> Scientist
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="journalist">
-          <div class="filter-radio"></div> Journalist
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="policy">
-          <div class="filter-radio"></div> Policy Analyst
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="manager">
-          <div class="filter-radio"></div> Program Manager
-        </div>
-        <div class="filter-option" data-filter="identity" data-value="entrepreneur">
-          <div class="filter-radio"></div> Entrepreneur
-        </div>
-      </div>
-      <div class="filter-section">
-        <h4>Interest Area</h4>
-        <div class="filter-option active" data-filter="interest" data-value="all">
-          <div class="filter-radio"></div> All
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="earth-observation">
-          <div class="filter-radio"></div> Earth Observation
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="astrophysics">
-          <div class="filter-radio"></div> Astrophysics
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="satellite-tech">
-          <div class="filter-radio"></div> Satellite Tech
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="space-policy">
-          <div class="filter-radio"></div> Space Policy
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="data-science">
-          <div class="filter-radio"></div> Data Science
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="robotics">
-          <div class="filter-radio"></div> Robotics
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="education">
-          <div class="filter-radio"></div> Education
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="aerospace">
-          <div class="filter-radio"></div> Aerospace Eng
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="space-medicine">
-          <div class="filter-radio"></div> Space Medicine
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="planetary">
-          <div class="filter-radio"></div> Planetary Science
-        </div>
-        <div class="filter-option" data-filter="interest" data-value="space-entrepreneurship">
-          <div class="filter-radio"></div> Space Entrepreneurship
+        <div class="filter-options">
+          <div class="filter-option active" data-filter="identity" data-value="all">
+            <div class="filter-radio"></div> All <span class="filter-count" data-count="identity-all"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="researcher">
+            <div class="filter-radio"></div> Researcher <span class="filter-count" data-count="identity-researcher"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="student">
+            <div class="filter-radio"></div> Student <span class="filter-count" data-count="identity-student"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="engineer">
+            <div class="filter-radio"></div> Engineer <span class="filter-count" data-count="identity-engineer"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="scientist">
+            <div class="filter-radio"></div> Scientist <span class="filter-count" data-count="identity-scientist"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="journalist">
+            <div class="filter-radio"></div> Journalist <span class="filter-count" data-count="identity-journalist"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="policy">
+            <div class="filter-radio"></div> Policy Analyst <span class="filter-count" data-count="identity-policy"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="manager">
+            <div class="filter-radio"></div> Program Manager <span class="filter-count" data-count="identity-manager"></span>
+          </div>
+          <div class="filter-option" data-filter="identity" data-value="entrepreneur">
+            <div class="filter-radio"></div> Entrepreneur <span class="filter-count" data-count="identity-entrepreneur"></span>
+          </div>
         </div>
       </div>
-      <div class="filter-section">
-        <h4>Organization</h4>
-        <div class="filter-option active" data-filter="org" data-value="all">
-          <div class="filter-radio"></div> All
+      <div class="filter-section" data-section="interest">
+        <div class="filter-section-head">
+          <h4>Interest Area</h4>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="filter-option" data-filter="org" data-value="SGAC">
-          <div class="filter-radio"></div> SGAC
+        <div class="filter-options">
+          <div class="filter-option active" data-filter="interest" data-value="all">
+            <div class="filter-radio"></div> All <span class="filter-count" data-count="interest-all"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="earth-observation">
+            <div class="filter-radio"></div> Earth Observation <span class="filter-count" data-count="interest-earth-observation"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="astrophysics">
+            <div class="filter-radio"></div> Astrophysics <span class="filter-count" data-count="interest-astrophysics"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="satellite-tech">
+            <div class="filter-radio"></div> Satellite Tech <span class="filter-count" data-count="interest-satellite-tech"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="space-policy">
+            <div class="filter-radio"></div> Space Policy <span class="filter-count" data-count="interest-space-policy"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="data-science">
+            <div class="filter-radio"></div> Data Science <span class="filter-count" data-count="interest-data-science"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="robotics">
+            <div class="filter-radio"></div> Robotics <span class="filter-count" data-count="interest-robotics"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="education">
+            <div class="filter-radio"></div> Education <span class="filter-count" data-count="interest-education"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="aerospace">
+            <div class="filter-radio"></div> Aerospace Eng <span class="filter-count" data-count="interest-aerospace"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="space-medicine">
+            <div class="filter-radio"></div> Space Medicine <span class="filter-count" data-count="interest-space-medicine"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="planetary">
+            <div class="filter-radio"></div> Planetary Science <span class="filter-count" data-count="interest-planetary"></span>
+          </div>
+          <div class="filter-option" data-filter="interest" data-value="space-entrepreneurship">
+            <div class="filter-radio"></div> Space Entrepreneurship <span class="filter-count" data-count="interest-space-entrepreneurship"></span>
+          </div>
         </div>
-        <div class="filter-option" data-filter="org" data-value="MAK">
-          <div class="filter-radio"></div> Makerere University
+      </div>
+      <div class="filter-section" data-section="org">
+        <div class="filter-section-head">
+          <h4>Organization</h4>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="filter-option" data-filter="org" data-value="AfSA">
-          <div class="filter-radio"></div> African Space Agency
-        </div>
-        <div class="filter-option" data-filter="org" data-value="USA">
-          <div class="filter-radio"></div> Uganda Space Agency
-        </div>
-        <div class="filter-option" data-filter="org" data-value="IEEE">
-          <div class="filter-radio"></div> IEEE
-        </div>
-        <div class="filter-option" data-filter="org" data-value="UAS">
-          <div class="filter-radio"></div> Uganda Astronomical Society
-        </div>
-        <div class="filter-option" data-filter="org" data-value="AfAS">
-          <div class="filter-radio"></div> African Astronomical Society
-        </div>
-        <div class="filter-option" data-filter="org" data-value="SHU">
-          <div class="filter-radio"></div> Space Hub Uganda
-        </div>
-        <div class="filter-option" data-filter="org" data-value="MoSTI">
-          <div class="filter-radio"></div> Ministry of Science
-        </div>
-        <div class="filter-option" data-filter="org" data-value="UNOSAT">
-          <div class="filter-radio"></div> UNOSAT
+        <div class="filter-options">
+          <div class="filter-option active" data-filter="org" data-value="all">
+            <div class="filter-radio"></div> All <span class="filter-count" data-count="org-all"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="SGAC">
+            <div class="filter-radio"></div> SGAC <span class="filter-count" data-count="org-SGAC"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="MAK">
+            <div class="filter-radio"></div> Makerere University <span class="filter-count" data-count="org-MAK"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="AfSA">
+            <div class="filter-radio"></div> African Space Agency <span class="filter-count" data-count="org-AfSA"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="USA">
+            <div class="filter-radio"></div> Uganda Space Agency <span class="filter-count" data-count="org-USA"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="IEEE">
+            <div class="filter-radio"></div> IEEE <span class="filter-count" data-count="org-IEEE"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="UAS">
+            <div class="filter-radio"></div> Uganda Astronomical Society <span class="filter-count" data-count="org-UAS"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="AfAS">
+            <div class="filter-radio"></div> African Astronomical Society <span class="filter-count" data-count="org-AfAS"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="SHU">
+            <div class="filter-radio"></div> Space Hub Uganda <span class="filter-count" data-count="org-SHU"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="MoSTI">
+            <div class="filter-radio"></div> Ministry of Science <span class="filter-count" data-count="org-MoSTI"></span>
+          </div>
+          <div class="filter-option" data-filter="org" data-value="UNOSAT">
+            <div class="filter-radio"></div> UNOSAT <span class="filter-count" data-count="org-UNOSAT"></span>
+          </div>
         </div>
       </div>
     </aside>
-    <div class="crew-grid" id="crew-grid"></div>
+    <div>
+      <div class="active-filters" id="active-filters"></div>
+      <div class="crew-grid" id="crew-grid"></div>
+    </div>
   </div>
   </div>
 </div>
@@ -842,6 +874,46 @@ const identityLabels={researcher:'Researcher',student:'Student',engineer:'Engine
 
 let activeIdentity='all',activeInterest='all',activeOrg='all';
 
+function updateCounts(){
+  const counts={identity:{},interest:{},org:{}};
+  counts.identity.all=crew.length;
+  counts.interest.all=crew.length;
+  counts.org.all=crew.length;
+  crew.forEach(m=>{
+    counts.identity[m.identity]=(counts.identity[m.identity]||0)+1;
+    m.interests.forEach(i=>{counts.interest[i]=(counts.interest[i]||0)+1});
+    m.affiliations.forEach(a=>{counts.org[a]=(counts.org[a]||0)+1});
+  });
+  document.querySelectorAll('.filter-count').forEach(el=>{
+    const key=el.dataset.count;
+    if(!key)return;
+    const [group,value]=key.split('-');
+    const cnt=value==='all'?counts[group]?.all:counts[group]?.[value];
+    el.textContent=cnt||'';
+  });
+}
+
+function renderActiveTags(){
+  const el=document.getElementById('active-filters');
+  const tags=[];
+  if(activeIdentity!=='all')tags.push({group:'identity',value:activeIdentity,label:identityLabels[activeIdentity]||activeIdentity});
+  if(activeInterest!=='all')tags.push({group:'interest',value:activeInterest,label:interestLabels[activeInterest]||activeInterest});
+  if(activeOrg!=='all')tags.push({group:'org',value:activeOrg,label:activeOrg});
+  el.innerHTML=tags.map(t=>`<span class="active-tag" data-group="${t.group}" data-value="${t.value}">${t.label} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></span>`).join('');
+  el.querySelectorAll('.active-tag').forEach(tag=>{
+    tag.addEventListener('click',()=>{
+      const group=tag.dataset.group;
+      const value=tag.dataset.value;
+      document.querySelectorAll(`.filter-option[data-filter="${group}"]`).forEach(o=>o.classList.remove('active'));
+      document.querySelector(`.filter-option[data-filter="${group}"][data-value="all"]`).classList.add('active');
+      if(group==='identity')activeIdentity='all';
+      if(group==='interest')activeInterest='all';
+      if(group==='org')activeOrg='all';
+      renderCrew();
+    });
+  });
+}
+
 function renderCrew(){
   const grid=document.getElementById('crew-grid');
   const filtered=crew.filter(m=>{
@@ -864,7 +936,14 @@ function renderCrew(){
       <div class="crew-affiliations">${m.affiliations.map(a=>'<span>'+a+'</span>').join('')}</div>
     </div>`;
   }).join('');
+  renderActiveTags();
 }
+
+document.querySelectorAll('.filter-section-head').forEach(head=>{
+  head.addEventListener('click',()=>{
+    head.closest('.filter-section').classList.toggle('collapsed');
+  });
+});
 
 document.querySelectorAll('.filter-option').forEach(opt=>{
   opt.addEventListener('click',()=>{
@@ -879,6 +958,7 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
   });
 });
 
+updateCounts();
 renderCrew();
 
 const orgSlugs={'Uganda Space Community':'uganda-space-community','Uganda Astronomical Society':'uganda-astronomical-society','Space Hub Uganda':'space-hub-uganda','Makerere University':'makerere-university','Uganda Space Agency':'uganda-space-agency'};
