@@ -597,8 +597,9 @@ function buildMesh(){
   const baseR=Math.min(W,H)*0.32;
 
   meshNodes=ecoAreas.map((a,i)=>{
-    const angle=(i/n)*Math.PI*2-Math.PI/2;
-    return{...a,x:cx+Math.cos(angle)*baseR,y:cy+Math.sin(angle)*baseR,r:16+a.count/5};
+    const angle=Math.random()*Math.PI*2;
+    const dist=80+Math.random()*(baseR-80);
+    return{...a,x:cx+Math.cos(angle)*dist,y:cy+Math.sin(angle)*dist,r:16+a.count/5};
   });
   const nodeMap={};meshNodes.forEach(nd=>nodeMap[nd.id]=nd);
 
