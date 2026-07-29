@@ -64,16 +64,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .eco-sub-btn.active{background:var(--bg-alt);border-color:var(--gold);color:var(--gold)}
 .eco-viz-panel{display:none}
 .eco-viz-panel.active{display:block}
-.eco-chart-wrap{position:relative;max-width:700px;margin:0 auto}
-.eco-chart-wrap svg{width:100%;height:auto}
-.eco-pie-label{font-family:'Inter',sans-serif;fill:var(--text-2)}
-.eco-pie-count{font-family:'Space Grotesk',sans-serif;fill:#fff;font-weight:700}
-.eco-pie-org{font-family:'Inter',sans-serif;fill:rgba(255,255,255,0.85);font-size:8px}
-.eco-legend{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin-top:20px}
-.eco-legend-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-2);cursor:pointer;transition:color 0.2s}
-.eco-legend-item:hover{color:var(--text)}
-.eco-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.eco-mesh-wrap{position:relative;max-width:800px;margin:0 auto}
+.eco-mesh-wrap{position:relative;max-width:800px;margin:0 auto;user-select:none;-webkit-user-select:none}
 .eco-mesh-wrap svg{width:100%;height:auto}
 .eco-mesh-node{cursor:pointer}
 .eco-mesh-node:hover circle{filter:brightness(1.15)}
@@ -248,15 +239,10 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     </div>
     <div class="eco-viz-toggle">
       <button class="eco-viz-btn active" data-viz="treemap">Treemap</button>
-      <button class="eco-viz-btn" data-viz="pie">Pie Chart</button>
       <button class="eco-viz-btn" data-viz="mesh">Mind Map</button>
     </div>
     <div class="eco-viz-panel active" id="eco-treemap">
     <div class="treemap" id="treemap-grid"></div>
-    </div>
-    <div class="eco-viz-panel" id="eco-pie">
-      <div class="eco-chart-wrap" id="pie-chart"></div>
-      <div class="eco-legend" id="pie-legend"></div>
     </div>
     <div class="eco-viz-panel" id="eco-mesh">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -600,143 +586,173 @@ function buildTreemap(){
 }
 function darken(hex){const n=parseInt(hex.slice(1),16);return'#'+((n&0xF0F0F0)>>4|(n&0x0F0F0F)>>4|0x101010*0).toString(16).slice(1)}
 
-// ═══ Pie Chart ═══
-function buildPie(){
-  const el=document.getElementById('pie-chart');
-  const leg=document.getElementById('pie-legend');
-  const total=ecoAreas.reduce((s,a)=>s+a.count,0);
-  const cx=175,cy=175,R=150,r=80;
-  let cum=0;
-  let paths='';
-  let logos='';
-  const items=[];
-  const orgInit={eo:'EO',edu:'EDU',ds:'DS',astro:'AST',sp:'POL',sat:'SAT',robo:'ROB',def:'DEF',climate:'CLM',gis:'GIS',telecom:'TEL',eng:'ENG',smed:'MED',pln:'PLN',sentr:'ENT'};
-  ecoAreas.forEach((a,i)=>{
-    const start=cum/total*Math.PI*2-Math.PI/2;
-    cum+=a.count;
-    const end=cum/total*Math.PI*2-Math.PI/2;
-    const mid=(start+end)/2;
-    const large=end-start>Math.PI?1:0;
-    const x1=cx+R*Math.cos(start),y1=cy+R*Math.sin(start);
-    const x2=cx+R*Math.cos(end),y2=cy+R*Math.sin(end);
-    const ix=cx+r*Math.cos(start),iy=cy+r*Math.sin(start);
-    const ix2=cx+r*Math.cos(end),iy2=cy+r*Math.sin(end);
-    paths+=`<path d="M${x1},${y1} A${R},${R} 0 ${large},1 ${x2},${y2} L${ix2},${iy2} A${r},${r} 0 ${large},0 ${ix},${iy} Z" fill="${a.color}" opacity="0.88" class="eco-pie-slice" data-area="${a.id}" style="cursor:pointer;transition:opacity 0.2s"/>`;
-    const labelR=(R+r)/2;
-    const lx=cx+labelR*Math.cos(mid);
-    const ly=cy+labelR*Math.sin(mid);
-    const pct=Math.round(a.count/total*100);
-    if(pct>=4){
-      logos+=`<text x="${lx}" y="${ly-3}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" opacity="0.95">${orgInit[a.id]}</text>`;
-      logos+=`<text x="${lx}" y="${ly+8}" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="7">${pct}%</text>`;
-    }
-    items.push({name:a.name,color:a.color,count:a.count,pct});
-  });
-  el.innerHTML=`<svg viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
-    ${paths}${logos}
-    <circle cx="${cx}" cy="${cy}" r="${r-4}" fill="var(--bg)"/>
-    <text x="${cx}" y="${cy-8}" text-anchor="middle" fill="var(--text)" font-family="Space Grotesk,sans-serif" font-size="28" font-weight="700">${total}</text>
-    <text x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.08em">TOTAL</text>
-  </svg>`;
-  leg.innerHTML=items.map(i=>`<div class="eco-legend-item"><div class="eco-legend-dot" style="background:${i.color}"></div>${i.name} <span style="color:var(--text-3)">${i.count}</span></div>`).join('');
-}
-
 // ═══ Mind Map ═══
 let meshMode='people';
+let meshNodes=[],meshDragging=null,meshSvg=null;
 function buildMesh(){
   const el=document.getElementById('mesh-chart');
   const tip=document.getElementById('mesh-tip');
   const W=800,H=600,cx=W/2,cy=H/2;
   const n=ecoAreas.length;
-  const baseR=Math.min(W,H)*0.34;
-  const nodes=ecoAreas.map((a,i)=>{
+  const baseR=Math.min(W,H)*0.32;
+
+  meshNodes=ecoAreas.map((a,i)=>{
     const angle=(i/n)*Math.PI*2-Math.PI/2;
     return{...a,x:cx+Math.cos(angle)*baseR,y:cy+Math.sin(angle)*baseR,r:16+a.count/5};
   });
-  const nodeMap={};nodes.forEach(nd=>nodeMap[nd.id]=nd);
-  let edgesSvg='';
+  const nodeMap={};meshNodes.forEach(nd=>nodeMap[nd.id]=nd);
+
   const maxMutual=Math.max(...meshEdges.map(e=>e[meshMode==='people'?'mutual':'activities']));
 
-  meshEdges.forEach(e=>{
-    const from=nodeMap[e.from],to=nodeMap[e.to];
-    if(!from||!to)return;
-    const val=meshMode==='people'?e.mutual:e.activities;
-    if(val===0)return;
-    const thick=1+val/maxMutual*4;
-    const opacity=0.15+val/maxMutual*0.45;
-    const midX=(from.x+to.x)/2;
-    const midY=(from.y+to.y)/2;
-    const dx=to.x-from.x, dy=to.y-from.y;
-    const offset=dy*0.12;
-    const cls=val>=3?'strong':'';
-    edgesSvg+=`<path d="M${from.x},${from.y} Q${midX+offset},${midY-offset} ${to.x},${to.y}" class="eco-mesh-edge ${cls}" stroke-width="${thick}" opacity="${opacity}"/>`;
-  });
+  function render(){
+    let edgesSvg='';
+    meshEdges.forEach(e=>{
+      const from=nodeMap[e.from],to=nodeMap[e.to];
+      if(!from||!to)return;
+      const val=meshMode==='people'?e.mutual:e.activities;
+      if(val===0)return;
+      const thick=1+val/maxMutual*5;
+      const opacity=0.12+val/maxMutual*0.5;
+      const midX=(from.x+to.x)/2;
+      const midY=(from.y+to.y)/2;
+      const dx=to.x-from.x, dy=to.y-from.y;
+      const offset=dy*0.1;
+      const cls=val>=3?'strong':'';
+      edgesSvg+=`<path d="M${from.x},${from.y} Q${midX+offset},${midY-offset} ${to.x},${to.y}" class="eco-mesh-edge ${cls}" stroke-width="${thick}" opacity="${opacity}"/>`;
+    });
 
-  let nodesSvg='';
-  if(meshMode==='people'){
-    nodes.forEach(nd=>{
-      nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}">
-        <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r+4}" fill="${nd.color}" opacity="0.12"/>
-        <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r}" fill="${nd.color}" opacity="0.85" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
-        <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700">${nd.count}</text>
-        <text x="${nd.x}" y="${nd.y+nd.r+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
-      </g>`;
-    });
-  } else {
-    nodes.forEach(nd=>{
-      const acts=meshActivities.filter(a=>a.areas.includes(nd.id));
-      const actCount=acts.length;
-      const r2=12+actCount*2;
-      nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}">
-        <circle cx="${nd.x}" cy="${nd.y}" r="${r2+4}" fill="${nd.color}" opacity="0.10"/>
-        <circle cx="${nd.x}" cy="${nd.y}" r="${r2}" fill="${nd.color}" opacity="0.8" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
-        <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700">${actCount}</text>
-        <text x="${nd.x}" y="${nd.y+r2+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
-      </g>`;
-    });
-    meshActivities.forEach(act=>{
-      const actNodes=act.areas.map(id=>nodeMap[id]).filter(Boolean);
-      if(actNodes.length<2)return;
-      const avgX=actNodes.reduce((s,nd)=>s+nd.x,0)/actNodes.length;
-      const avgY=actNodes.reduce((s,nd)=>s+nd.y,0)/actNodes.length;
-      actNodes.forEach(nd=>{
-        const mx=(nd.x+avgX)/2, my=(nd.y+avgY)/2;
-        const off=(avgY-nd.y)*0.15;
-        edgesSvg+=`<path d="M${nd.x},${nd.y} Q${mx+off},${my-off} ${avgX},${avgY}" stroke="var(--gold)" stroke-width="0.7" opacity="0.18" fill="none" stroke-dasharray="3,3"/>`;
+    let nodesSvg='';
+    if(meshMode==='people'){
+      meshNodes.forEach(nd=>{
+        nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}" style="cursor:grab">
+          <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r+4}" fill="${nd.color}" opacity="0.12"/>
+          <circle cx="${nd.x}" cy="${nd.y}" r="${nd.r}" fill="${nd.color}" opacity="0.85" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
+          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700">${nd.count}</text>
+          <text x="${nd.x}" y="${nd.y+nd.r+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
+        </g>`;
       });
-      edgesSvg+=`<circle cx="${avgX}" cy="${avgY}" r="4" fill="var(--gold)" opacity="0.35"/>`;
-      edgesSvg+=`<text x="${avgX}" y="${avgY-10}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6.5">${act.name.length>22?act.name.slice(0,20)+'...':act.name}</text>`;
+    } else {
+      meshNodes.forEach(nd=>{
+        const acts=meshActivities.filter(a=>a.areas.includes(nd.id));
+        const actCount=acts.length;
+        const r2=12+actCount*2;
+        nodesSvg+=`<g class="eco-mesh-node" data-id="${nd.id}" style="cursor:grab">
+          <circle cx="${nd.x}" cy="${nd.y}" r="${r2+4}" fill="${nd.color}" opacity="0.10"/>
+          <circle cx="${nd.x}" cy="${nd.y}" r="${r2}" fill="${nd.color}" opacity="0.8" stroke="#fff" stroke-width="2" stroke-opacity="0.3"/>
+          <text x="${nd.x}" y="${nd.y+1}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700">${actCount}</text>
+          <text x="${nd.x}" y="${nd.y+r2+14}" text-anchor="middle" fill="var(--text-2)" font-family="Inter,sans-serif" font-size="8.5" font-weight="500">${nd.name.length>22?nd.name.slice(0,20)+'...':nd.name}</text>
+        </g>`;
+      });
+      meshActivities.forEach(act=>{
+        const actNodes=act.areas.map(id=>nodeMap[id]).filter(Boolean);
+        if(actNodes.length<2)return;
+        const avgX=actNodes.reduce((s,nd)=>s+nd.x,0)/actNodes.length;
+        const avgY=actNodes.reduce((s,nd)=>s+nd.y,0)/actNodes.length;
+        actNodes.forEach(nd=>{
+          const mx=(nd.x+avgX)/2, my=(nd.y+avgY)/2;
+          const off=(avgY-nd.y)*0.15;
+          edgesSvg+=`<path d="M${nd.x},${nd.y} Q${mx+off},${my-off} ${avgX},${avgY}" stroke="var(--gold)" stroke-width="0.7" opacity="0.18" fill="none" stroke-dasharray="3,3"/>`;
+        });
+        edgesSvg+=`<circle cx="${avgX}" cy="${avgY}" r="4" fill="var(--gold)" opacity="0.35"/>`;
+        edgesSvg+=`<text x="${avgX}" y="${avgY-10}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6.5">${act.name.length>22?act.name.slice(0,20)+'...':act.name}</text>`;
+      });
+    }
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="nodeShadow"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/></filter>
+      </defs>
+      <rect width="${W}" height="${H}" fill="transparent"/>
+      ${edgesSvg}${nodesSvg}
+      <circle cx="${cx}" cy="${cy}" r="24" fill="var(--gold)" opacity="0.08" stroke="var(--gold)" stroke-width="1" stroke-opacity="0.2"/>
+      <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
+      <text x="${cx}" y="${cy+9}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
+    </svg>`;
+
+    meshSvg=el.querySelector('svg');
+
+    meshSvg.querySelectorAll('.eco-mesh-node').forEach(node=>{
+      node.addEventListener('mouseenter',function(ev){
+        const id=this.dataset.id;
+        const nd=nodeMap[id];
+        if(!nd)return;
+        const val=meshMode==='people'?nd.count:(meshActivities.filter(a=>a.areas.includes(nd.id)).length);
+        const label=meshMode==='people'?'members':'activities';
+        tip.innerHTML=`<strong style="color:${nd.color}">${nd.name}</strong><br><span style="font-size:0.7rem;color:var(--text-3)">${val} ${label}</span>`;
+        tip.classList.add('show');
+        const rect=el.getBoundingClientRect();
+        const r=this.getBoundingClientRect();
+        tip.style.left=(r.left-rect.left+r.width/2-tip.offsetWidth/2)+'px';
+        tip.style.top=(r.top-rect.top-42)+'px';
+      });
+      node.addEventListener('mouseleave',()=>tip.classList.remove('show'));
     });
   }
-  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="nodeShadow"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/></filter>
-    </defs>
-    ${edgesSvg}${nodesSvg}
-    <circle cx="${cx}" cy="${cy}" r="24" fill="var(--gold)" opacity="0.08" stroke="var(--gold)" stroke-width="1" stroke-opacity="0.2"/>
-    <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
-    <text x="${cx}" y="${cy+9}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
-  </svg>`;
 
-  el.querySelectorAll('.eco-mesh-node').forEach(node=>{
-    node.addEventListener('mouseenter',function(ev){
-      const id=this.dataset.id;
-      const nd=nodeMap[id];
-      if(!nd)return;
-      const val=meshMode==='people'?nd.count:(meshActivities.filter(a=>a.areas.includes(nd.id)).length);
-      const label=meshMode==='people'?'members':'activities';
-      tip.innerHTML=`<strong style="color:${nd.color}">${nd.name}</strong><br><span style="font-size:0.7rem;color:var(--text-3)">${val} ${label}</span>`;
-      tip.classList.add('show');
-      const rect=el.getBoundingClientRect();
-      const r=this.getBoundingClientRect();
-      tip.style.left=(r.left-rect.left+r.width/2-tip.offsetWidth/2)+'px';
-      tip.style.top=(r.top-rect.top-42)+'px';
-    });
-    node.addEventListener('mouseleave',()=>tip.classList.remove('show'));
+  function svgPt(ev){
+    const pt=meshSvg.createSVGPoint();
+    const svgR=meshSvg.getBoundingClientRect();
+    const cx=ev.clientX!==undefined?ev.clientX:ev.pageX;
+    const cy=ev.clientY!==undefined?ev.clientY:ev.pageY;
+    pt.x=(cx-svgR.left)/svgR.width*800;
+    pt.y=(cy-svgR.top)/svgR.height*600;
+    return pt;
+  }
+
+  el.addEventListener('mousedown',function(ev){
+    const g=ev.target.closest('.eco-mesh-node');
+    if(!g)return;
+    meshDragging=g.dataset.id;
+    g.style.cursor='grabbing';
+    ev.preventDefault();
   });
+
+  el.addEventListener('mousemove',function(ev){
+    if(!meshDragging)return;
+    const pt=svgPt(ev);
+    const nd=meshNodes.find(n=>n.id===meshDragging);
+    if(nd){nd.x=pt.x;nd.y=pt.y}
+    render();
+    const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
+    if(g)g.style.cursor='grabbing';
+  });
+
+  el.addEventListener('mouseup',function(){
+    meshDragging=null;
+  });
+
+  el.addEventListener('mouseleave',function(){
+    meshDragging=null;
+  });
+
+  el.addEventListener('touchstart',function(ev){
+    const t=ev.touches[0];
+    const g=document.elementFromPoint(t.clientX,t.clientY)?.closest('.eco-mesh-node');
+    if(!g)return;
+    meshDragging=g.dataset.id;
+    g.style.cursor='grabbing';
+    ev.preventDefault();
+  },{passive:false});
+
+  el.addEventListener('touchmove',function(ev){
+    if(!meshDragging)return;
+    const t=ev.touches[0];
+    const pt=svgPt(t);
+    const nd=meshNodes.find(n=>n.id===meshDragging);
+    if(nd){nd.x=pt.x;nd.y=pt.y}
+    render();
+    const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
+    if(g)g.style.cursor='grabbing';
+    ev.preventDefault();
+  },{passive:false});
+
+  el.addEventListener('touchend',function(){
+    meshDragging=null;
+  });
+
+  render();
 }
 
-buildTreemap();buildPie();buildMesh();
+buildTreemap();buildMesh();
 
 // ═══ Ecosystem Toggle ═══
 document.querySelectorAll('.eco-viz-btn').forEach(btn=>{
