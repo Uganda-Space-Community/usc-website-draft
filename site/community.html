@@ -20,7 +20,7 @@ a{color:inherit;text-decoration:none}
 .wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
 
 /* ═══ Nav ═══ */
-.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;border:none;--nav-text:rgba(234,236,240,0.7);--nav-text-hover:#EAECF0;transition:background 0.3s}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;border:none;--nav-text:rgba(255,255,255,0.7);--nav-text-hover:#fff;transition:background 0.3s}
 .nav-bar.nav-scrolled{background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative}
 .nav-l{display:flex;align-items:center;gap:12px}
@@ -39,20 +39,24 @@ a{color:inherit;text-decoration:none}
 .icon-sun{display:none}.icon-moon{display:block}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
-/* ═══ Page Header ═══ */
-.page-header{padding:100px 0 0;position:relative}
-.page-header h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:8px}
-.page-header p{font-size:0.95rem;color:var(--text-2);font-weight:300}
+/* ═══ Hero ═══ */
+.hero{position:relative;height:380px;overflow:hidden;margin-top:0}
+.hero .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));background-size:cover;background-position:center;z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.2) 0%,rgba(10,22,40,0.75) 100%);z-index:1}
+.hero .wrapper{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:48px}
+.hero h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:8px;color:#fff}
+.hero .hero-desc{font-size:0.95rem;color:rgba(255,255,255,0.75);font-weight:300;max-width:560px;line-height:1.7}
+
+/* ═══ Stats Strip ═══ */
+.stats-strip{display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--border);margin:0}
+.stats-strip .stat-item{text-align:center;flex:1}
+.stats-strip .stat-item .n{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
+.stats-strip .stat-item .l{font-size:0.62rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
+
 .section-head{margin-bottom:40px}
 .section-head .label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;display:block}
 .section-head h2{font-family:'Inter',sans-serif;font-size:2rem;font-weight:300;letter-spacing:-0.015em;margin-bottom:8px}
 .section-head p{font-size:0.9rem;color:var(--text-2);font-weight:300}
-
-/* ═══ Stats ═══ */
-.stats-row{display:flex;gap:32px;padding:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:40px 0}
-.stat-item{text-align:center;flex:1}
-.stat-item .n{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--gold)}
-.stat-item .l{font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
 
 /* ═══ Ecosystem Visualizations ═══ */
 .eco-viz-toggle{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
@@ -158,14 +162,15 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .eco-viz-btn{padding:5px 12px;font-size:0.72rem}
   .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .tab-btn{white-space:nowrap;padding:12px 16px;font-size:0.78rem}
+  .stats-strip{flex-wrap:wrap;gap:12px}
+  .stats-strip .stat-item{min-width:calc(33% - 8px)}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
-  .page-header{padding:80px 0 0}
-  .page-header h1{font-size:2rem}
-  .stats-row{flex-wrap:wrap;gap:16px}
-  .stat-item{min-width:calc(50% - 8px)}
+  .hero{height:300px}
+  .hero h1{font-size:1.8rem}
+  .stats-strip .stat-item{min-width:calc(50% - 8px)}
   .treemap{grid-template-columns:repeat(2,1fr)}
   .treemap-cell.large,.treemap-cell.medium{grid-column:span 2}
   .treemap-cell.large{grid-row:span 1}
@@ -208,19 +213,21 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </div>
 
-<div class="wrapper">
-  <div class="page-header" id="main">
+<div class="hero" id="main">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')"></div>
+  <div class="wrapper">
     <h1>The Constellation</h1>
-    <p>Connect with students, researchers, professionals, and organizations across Uganda's space ecosystem.</p>
+    <p class="hero-desc">Connect with students, researchers, professionals, and organizations across Uganda's space ecosystem. Explore the map, discover communities, and find your place among the stars.</p>
   </div>
+</div>
 
-  <!-- Stats -->
-  <div class="stats-row">
+<div class="wrapper">
+  <div class="stats-strip">
     <div class="stat-item"><div class="n">340+</div><div class="l">Members</div></div>
     <div class="stat-item"><div class="n">28</div><div class="l">Organizations</div></div>
     <div class="stat-item"><div class="n">6</div><div class="l">Universities</div></div>
     <div class="stat-item"><div class="n">4</div><div class="l">Regions</div></div>
-    <div class="stat-item"><div class="n">8</div><div class="l">Interest Groups</div></div>
+    <div class="stat-item"><div class="n">15</div><div class="l">Interest Groups</div></div>
   </div>
 
   <!-- ═══ TABS ═══ -->
