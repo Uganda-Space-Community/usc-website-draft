@@ -92,6 +92,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .org-item .info .type{font-size:0.68rem;color:var(--text-3)}
 
 /* ═══ Members (The Crew) ═══ */
+.mobile-filters{display:none}
 .crew-layout{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:32px 0;align-items:start}
 .crew-filters{position:sticky;top:100px}
 .filter-section{margin-bottom:20px}
@@ -166,11 +167,17 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
   .nav-open .nav-c{display:flex}
   .crew-layout{grid-template-columns:1fr}
-  .crew-filters{position:static;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin-bottom:16px}
-  .crew-filters .filter-section{min-width:200px;margin-bottom:0;flex-shrink:0}
-  .crew-filters .filter-options{display:flex;flex-wrap:wrap;gap:4px}
-  .crew-filters .filter-section.collapsed .filter-options{display:flex}
-  .crew-filters .filter-section-head .chevron{display:none}
+  .crew-filters{display:none}
+  .mobile-filters{display:block;margin-bottom:16px}
+  .mf-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;user-select:none}
+  .mf-head span{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em}
+  .mf-head .chevron{width:14px;height:14px;color:var(--text-3);transition:transform 0.2s}
+  .mobile-filters.collapsed .chevron{transform:rotate(-90deg)}
+  .mobile-filters.collapsed .mf-chips{display:none}
+  .mf-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .mf-chip{display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;padding:6px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text-2);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .mf-chip:hover{border-color:var(--border-hover);color:var(--text)}
+  .mf-chip.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
   .treemap{grid-template-columns:repeat(3,1fr)}
   .treemap-cell.large,.treemap-cell.medium{grid-column:span 2}
   .eco-viz-toggle{gap:4px}
@@ -374,6 +381,13 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <div class="label">The Crew</div>
       <h2>Members</h2>
       <p>Students, researchers, professionals, and enthusiasts in Uganda's space community.</p>
+    </div>
+    <div class="mobile-filters" id="mobile-filters">
+      <div class="mf-head" id="mf-head">
+        <span>Filters</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="mf-chips" id="mf-chips"></div>
     </div>
     <div class="crew-layout">
     <aside class="crew-filters">
@@ -910,6 +924,7 @@ function renderActiveTags(){
       if(group==='interest')activeInterest='all';
       if(group==='org')activeOrg='all';
       renderCrew();
+      syncMobileChips();
     });
   });
 }
@@ -955,10 +970,76 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
     if(group==='interest')activeInterest=value;
     if(group==='org')activeOrg=value;
     renderCrew();
+    syncMobileChips();
   });
 });
 
+function buildMobileChips(){
+  const el=document.getElementById('mf-chips');
+  const chips=[
+    {group:'identity',value:'all',label:'All'},
+    {group:'identity',value:'researcher',label:'Researcher'},
+    {group:'identity',value:'student',label:'Student'},
+    {group:'identity',value:'engineer',label:'Engineer'},
+    {group:'identity',value:'scientist',label:'Scientist'},
+    {group:'identity',value:'journalist',label:'Journalist'},
+    {group:'identity',value:'policy',label:'Policy'},
+    {group:'identity',value:'manager',label:'Program Mgr'},
+    {group:'identity',value:'entrepreneur',label:'Entrepreneur'},
+    {group:'interest',value:'earth-observation',label:'Earth Obs'},
+    {group:'interest',value:'astrophysics',label:'Astrophysics'},
+    {group:'interest',value:'satellite-tech',label:'Satellite'},
+    {group:'interest',value:'space-policy',label:'Space Policy'},
+    {group:'interest',value:'data-science',label:'Data Science'},
+    {group:'interest',value:'robotics',label:'Robotics'},
+    {group:'interest',value:'education',label:'Education'},
+    {group:'interest',value:'aerospace',label:'Aerospace'},
+    {group:'interest',value:'space-medicine',label:'Space Med'},
+    {group:'interest',value:'planetary',label:'Planetary'},
+    {group:'interest',value:'space-entrepreneurship',label:'Space Entrep'},
+    {group:'org',value:'SGAC',label:'SGAC'},
+    {group:'org',value:'MAK',label:'Makerere'},
+    {group:'org',value:'AfSA',label:'AfSA'},
+    {group:'org',value:'USA',label:'Uganda Space Agcy'},
+    {group:'org',value:'IEEE',label:'IEEE'},
+    {group:'org',value:'UAS',label:'Uganda Astro Soc'},
+    {group:'org',value:'AfAS',label:'African Astro Soc'},
+    {group:'org',value:'SHU',label:'Space Hub UG'},
+    {group:'org',value:'MoSTI',label:'Min. of Science'},
+    {group:'org',value:'UNOSAT',label:'UNOSAT'}
+  ];
+  el.innerHTML=chips.map(c=>`<div class="mf-chip" data-group="${c.group}" data-value="${c.value}">${c.label}</div>`).join('');
+  el.querySelectorAll('.mf-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const group=chip.dataset.group;
+      const value=chip.dataset.value;
+      document.querySelectorAll(`.filter-option[data-filter="${group}"]`).forEach(o=>o.classList.remove('active'));
+      document.querySelector(`.filter-option[data-filter="${group}"][data-value="${value}"]`).classList.add('active');
+      if(group==='identity')activeIdentity=value;
+      if(group==='interest')activeInterest=value;
+      if(group==='org')activeOrg=value;
+      renderCrew();
+      syncMobileChips();
+    });
+  });
+}
+
+function syncMobileChips(){
+  document.querySelectorAll('.mf-chip').forEach(chip=>{
+    const group=chip.dataset.group;
+    const value=chip.dataset.value;
+    const active=group==='identity'?activeIdentity:group==='interest'?activeInterest:activeOrg;
+    chip.classList.toggle('active',active===value);
+  });
+}
+
+document.getElementById('mf-head').addEventListener('click',()=>{
+  document.getElementById('mobile-filters').classList.toggle('collapsed');
+});
+
 updateCounts();
+buildMobileChips();
+syncMobileChips();
 renderCrew();
 
 const orgSlugs={'Uganda Space Community':'uganda-space-community','Uganda Astronomical Society':'uganda-astronomical-society','Space Hub Uganda':'space-hub-uganda','Makerere University':'makerere-university','Uganda Space Agency':'uganda-space-agency'};
