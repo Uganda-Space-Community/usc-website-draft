@@ -816,8 +816,9 @@ function renderCrew(){
     if(activeOrg!=='all'&&!m.affiliations.includes(activeOrg))return false;
     return true;
   });
-  grid.innerHTML=filtered.map(m=>`
-    <div class="crew-card">
+  grid.innerHTML=filtered.map((m,i)=>{
+    const idx=crew.indexOf(m);
+    return`<div class="crew-card" onclick="window.location='member.html?id=${idx}'" style="cursor:pointer">
       <div class="crew-card-top">
         <div class="crew-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
         <div class="info">
@@ -827,8 +828,8 @@ function renderCrew(){
       </div>
       <div class="crew-summary">${m.summary}</div>
       <div class="crew-affiliations">${m.affiliations.map(a=>'<span>'+a+'</span>').join('')}</div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 document.querySelectorAll('.filter-option').forEach(opt=>{
@@ -845,6 +846,16 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
 });
 
 renderCrew();
+
+const orgSlugs={'Uganda Space Community':'uganda-space-community','Uganda Astronomical Society':'uganda-astronomical-society','Space Hub Uganda':'space-hub-uganda','Makerere University':'makerere-university','Uganda Space Agency':'uganda-space-agency'};
+document.querySelectorAll('.org-item').forEach(item=>{
+  item.style.cursor='pointer';
+  item.addEventListener('click',function(){
+    const name=this.querySelector('h4')?.textContent;
+    const slug=orgSlugs[name]||name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+    window.location='organization.html?id='+slug;
+  });
+});
 </script>
 </body>
 </html>
