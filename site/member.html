@@ -61,6 +61,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
+.sidebar-card.profile-card{text-align:center;padding:32px 24px}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.profile-avatar svg{width:32px;height:32px;color:var(--gold)}
+.profile-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.profile-title{font-size:0.78rem;color:var(--text-2)}
 .sidebar-card h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
 .sidebar-card .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.82rem}
 .sidebar-card .info-row:last-child{border-bottom:none}
@@ -190,6 +195,12 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       </div>
 
       <div class="detail-sidebar">
+        <div class="sidebar-card profile-card">
+          <div class="profile-avatar" id="sidebar-avatar"></div>
+          <div class="profile-name" id="sidebar-name"></div>
+          <div class="profile-title" id="sidebar-title"></div>
+        </div>
+
         <div class="sidebar-card">
           <h4>Profile</h4>
           <div class="info-row"><span class="label">Identity</span><span class="value" id="sidebar-identity"></span></div>
@@ -284,6 +295,9 @@ document.getElementById('member-name').textContent=member.name;
 document.getElementById('member-org').textContent=member.affiliations.map(a=>orgLabels[a]||a).join(' · ');
 document.getElementById('member-about').textContent=member.summary;
 document.getElementById('member-tags').innerHTML=member.interests.map(i=>`<span>${interestLabels[i]||i}</span>`).join('');
+document.getElementById('sidebar-avatar').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>`;
+document.getElementById('sidebar-name').textContent=member.name;
+document.getElementById('sidebar-title').textContent=identityLabels[member.identity]||member.identity;
 document.getElementById('sidebar-identity').textContent=identityLabels[member.identity]||member.identity;
 document.getElementById('sidebar-interests').textContent=member.interests.map(i=>interestLabels[i]||i).join(', ');
 document.getElementById('sidebar-orgs').textContent=member.affiliations.length;

@@ -61,6 +61,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
+.sidebar-card.profile-card{text-align:center;padding:32px 24px}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--gold-dim);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.profile-avatar svg{width:32px;height:32px;color:var(--gold)}
+.profile-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.profile-title{font-size:0.78rem;color:var(--text-2)}
 .sidebar-card h4{font-size:0.72rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
 .sidebar-card .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.82rem}
 .sidebar-card .info-row:last-child{border-bottom:none}
@@ -192,6 +197,12 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       </div>
 
       <div class="detail-sidebar">
+        <div class="sidebar-card profile-card">
+          <div class="profile-avatar" id="sidebar-avatar"></div>
+          <div class="profile-name" id="sidebar-name"></div>
+          <div class="profile-title" id="sidebar-title"></div>
+        </div>
+
         <div class="sidebar-card">
           <h4>Organization Info</h4>
           <div class="info-row"><span class="label">Type</span><span class="value" id="sidebar-type"></span></div>
@@ -266,6 +277,9 @@ document.getElementById('org-founded').textContent='Est. '+org.founded;
 document.getElementById('org-about').textContent=org.about;
 document.getElementById('org-mission').textContent=org.mission;
 document.getElementById('org-tags').innerHTML=org.tags.map(t=>`<span>${t}</span>`).join('');
+document.getElementById('sidebar-avatar').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${org.icon}</svg>`;
+document.getElementById('sidebar-name').textContent=org.name;
+document.getElementById('sidebar-title').textContent=org.type;
 document.getElementById('sidebar-type').textContent=org.type;
 document.getElementById('sidebar-location').textContent=org.location;
 document.getElementById('sidebar-founded').textContent=org.founded;
