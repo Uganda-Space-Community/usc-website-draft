@@ -54,7 +54,18 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .stat-item .n{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--gold)}
 .stat-item .l{font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
 
-/* ═══ Ecosystem Map (legacy, replaced by treemap) ═══ */
+/* ═══ Ecosystem Radial ═══ */
+.eco-viz-toggle{display:flex;gap:8px;margin-bottom:24px}
+.eco-viz-btn{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text-3);background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;padding:6px 16px;cursor:pointer;transition:all 0.2s}
+.eco-viz-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.eco-viz-btn:hover:not(.active){border-color:var(--border-hover);color:var(--text-2)}
+.eco-radial{position:relative;width:100%;max-width:800px;margin:0 auto;aspect-ratio:1}
+.eco-radial svg{width:100%;height:100%}
+.eco-radial-center{cursor:pointer}
+.eco-radial-group circle{cursor:pointer;transition:r 0.2s}
+.eco-radial-group text{pointer-events:none}
+.eco-radial-org{cursor:pointer}
+.eco-radial-org text{pointer-events:none}
 
 /* ═══ Organizations ═══ */
 .org-categories{display:flex;flex-direction:column;gap:32px}
@@ -218,8 +229,13 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="section-head">
       <div class="label">Ecosystem</div>
       <h2>The Constellation Map</h2>
-      <p>Uganda's space ecosystem visualized by interest group — size reflects member count.</p>
+      <p>Uganda's space ecosystem visualized by interest group.</p>
     </div>
+    <div class="eco-viz-toggle">
+      <button class="eco-viz-btn active" data-viz="treemap">Treemap</button>
+      <button class="eco-viz-btn" data-viz="radial">Network</button>
+    </div>
+    <div id="eco-treemap">
     <div class="treemap">
       <div class="treemap-cell large" style="background:linear-gradient(135deg,#1F8A5B,#176b45)">
         <div class="cell-head"><h3><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M2 11h20"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg></span>Earth Observation</h3></div>
@@ -272,6 +288,8 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <div class="treemap-legend-item"><div class="dot" style="background:#6366F1"></div> Robotics</div>
       <div class="treemap-legend-item"><div class="dot" style="background:#374151"></div> Defense</div>
     </div>
+    </div>
+    <div id="eco-radial" style="display:none"></div>
   </div>
 
   <!-- ═══ ORGANIZATIONS TAB ═══ -->
@@ -500,6 +518,64 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Ecosystem viz toggle
+const ecoData=[
+  {name:'Earth Observation',count:48,color:'#1F8A5B',orgs:['Makerere Geo','UNMA','Space Hub UG','Busitema','UNOSAT']},
+  {name:'Education',count:44,color:'#B8953F',orgs:['Makerere','Busitema','Kyambogo','Space Ed Network','STEM UG']},
+  {name:'Data Science',count:36,color:'#5B6AF0',orgs:['Space Hub','Makerere CS','Andela','Outbox','Global Shapers']},
+  {name:'Astrophysics',count:32,color:'#D94F3D',orgs:['Makerere Phys','Entebbe Obs','UAS','IAU']},
+  {name:'Space Policy',count:28,color:'#4A90D9',orgs:['UCAA','MoDVA','MoSTI','KTA','USA']},
+  {name:'Satellite Tech',count:27,color:'#8B5CF6',orgs:['Makerere Eng','USA','Radar Tech','SES']},
+  {name:'Robotics',count:21,color:'#6366F1',orgs:['Makerere Rob','Uganda Rob','Kiira Motors','Innovation Village']},
+  {name:'Defense',count:14,color:'#374151',orgs:['MoDVA','UPDF','ISO','Police Cyber']}
+];
+
+function buildRadial(){
+  const el=document.getElementById('eco-radial');
+  const size=800,cx=size/2,cy=size/2,groupR=280,nodeR=48;
+  const svg=`<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <circle cx="${cx}" cy="${cy}" r="64" fill="${'var(--gold)'}" filter="url(#glow)" class="eco-radial-center"/>
+    <text x="${cx}" y="${cy-6}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700">340+</text>
+    <text x="${cx}" y="${cy+14}" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter,sans-serif" font-size="8" font-weight="500" letter-spacing="0.08em" text-transform="uppercase">MEMBERS</text>
+    ${ecoData.map((g,i)=>{
+      const angle=(i/ecoData.length)*Math.PI*2-Math.PI/2;
+      const gx=cx+Math.cos(angle)*groupR;
+      const gy=cy+Math.sin(angle)*groupR;
+      const lineEnd_x=cx+Math.cos(angle)*70;
+      const lineEnd_y=cy+Math.sin(angle)*70;
+      const orgNodes=g.orgs.slice(0,4).map((org,j)=>{
+        const orgAngle=angle+((j-1.5)*0.25);
+        const orgR=groupR+70+j*18;
+        const ox=cx+Math.cos(orgAngle)*orgR;
+        const oy=cy+Math.sin(orgAngle)*orgR;
+        return`<g class="eco-radial-org"><line x1="${gx}" y1="${gy}" x2="${ox}" y2="${oy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3"/><circle cx="${ox}" cy="${oy}" r="3" fill="${g.color}" opacity="0.5"/><text x="${ox}" y="${oy+14}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="7.5">${org}</text></g>`;
+      }).join('');
+      return`<g class="eco-radial-group">
+        <line x1="${lineEnd_x}" y1="${lineEnd_y}" x2="${gx}" y2="${gy}" stroke="${g.color}" stroke-width="2" opacity="0.4"/>
+        <circle cx="${gx}" cy="${gy}" r="${nodeR}" fill="${g.color}"/>
+        <text x="${gx}" y="${gy-4}" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="16" font-weight="700">${g.count}</text>
+        <text x="${gx}" y="${gy+12}" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Inter,sans-serif" font-size="8" font-weight="500">${g.name.length>16?g.name.slice(0,14)+'...':g.name}</text>
+        ${orgNodes}
+      </g>`;
+    }).join('')}
+  </svg>`;
+  el.innerHTML=svg;
+}
+buildRadial();
+
+document.querySelectorAll('.eco-viz-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.eco-viz-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const v=btn.dataset.viz;
+    document.getElementById('eco-treemap').style.display=v==='treemap'?'block':'none';
+    document.getElementById('eco-radial').style.display=v==='radial'?'block':'none';
   });
 });
 
