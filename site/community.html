@@ -450,6 +450,42 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
           <div class="filter-radio"></div> Education
         </div>
       </div>
+      <div class="filter-section">
+        <h4>Organization</h4>
+        <div class="filter-option active" data-filter="org" data-value="all">
+          <div class="filter-radio"></div> All
+        </div>
+        <div class="filter-option" data-filter="org" data-value="SGAC">
+          <div class="filter-radio"></div> SGAC
+        </div>
+        <div class="filter-option" data-filter="org" data-value="MAK">
+          <div class="filter-radio"></div> Makerere University
+        </div>
+        <div class="filter-option" data-filter="org" data-value="AfSA">
+          <div class="filter-radio"></div> African Space Agency
+        </div>
+        <div class="filter-option" data-filter="org" data-value="USA">
+          <div class="filter-radio"></div> Uganda Space Agency
+        </div>
+        <div class="filter-option" data-filter="org" data-value="IEEE">
+          <div class="filter-radio"></div> IEEE
+        </div>
+        <div class="filter-option" data-filter="org" data-value="UAS">
+          <div class="filter-radio"></div> Uganda Astronomical Society
+        </div>
+        <div class="filter-option" data-filter="org" data-value="AfAS">
+          <div class="filter-radio"></div> African Astronomical Society
+        </div>
+        <div class="filter-option" data-filter="org" data-value="SHU">
+          <div class="filter-radio"></div> Space Hub Uganda
+        </div>
+        <div class="filter-option" data-filter="org" data-value="MoSTI">
+          <div class="filter-radio"></div> Ministry of Science
+        </div>
+        <div class="filter-option" data-filter="org" data-value="UNOSAT">
+          <div class="filter-radio"></div> UNOSAT
+        </div>
+      </div>
     </aside>
     <div class="crew-grid" id="crew-grid"></div>
   </div>
@@ -508,13 +544,14 @@ const crew=[
 const interestLabels={'earth-observation':'Earth Observation','astrophysics':'Astrophysics','satellite-tech':'Satellite Tech','space-policy':'Space Policy','data-science':'Data Science','robotics':'Robotics','education':'Education'};
 const identityLabels={researcher:'Researcher',student:'Student',engineer:'Engineer',journalist:'Journalist',policy:'Policy Analyst',manager:'Program Manager'};
 
-let activeIdentity='all',activeInterest='all';
+let activeIdentity='all',activeInterest='all',activeOrg='all';
 
 function renderCrew(){
   const grid=document.getElementById('crew-grid');
   const filtered=crew.filter(m=>{
     if(activeIdentity!=='all'&&m.identity!==activeIdentity)return false;
     if(activeInterest!=='all'&&!m.interests.includes(activeInterest))return false;
+    if(activeOrg!=='all'&&!m.affiliations.includes(activeOrg))return false;
     return true;
   });
   grid.innerHTML=filtered.map(m=>`
@@ -540,6 +577,7 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
     opt.classList.add('active');
     if(group==='identity')activeIdentity=value;
     if(group==='interest')activeInterest=value;
+    if(group==='org')activeOrg=value;
     renderCrew();
   });
 });
