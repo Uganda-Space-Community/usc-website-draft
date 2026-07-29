@@ -68,9 +68,10 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .eco-sub-btn.active{background:var(--bg-alt);border-color:var(--gold);color:var(--gold)}
 .eco-viz-panel{display:none}
 .eco-viz-panel.active{display:block}
-.eco-mesh-wrap{position:relative;max-width:1280px;margin:0 auto;user-select:none;-webkit-user-select:none}
-.eco-mesh-wrap svg{width:100%;height:auto}
-.eco-mesh-node{cursor:pointer}
+.eco-mesh-wrap{position:relative;max-width:1280px;margin:0 auto;user-select:none;-webkit-user-select:none;overflow:hidden}
+.eco-mesh-wrap svg{width:100%;height:auto;display:block}
+.eco-mesh-node{cursor:grab}
+.eco-mesh-node:active{cursor:grabbing}
 .eco-mesh-node:hover circle{filter:brightness(1.15)}
 .eco-mesh-node text{pointer-events:none}
 .eco-mesh-edge{stroke:var(--border);stroke-linecap:round;fill:none}
@@ -176,6 +177,8 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   .treemap-cell.large{grid-row:span 1}
   .org-list{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:20px}
+  .eco-mesh-wrap{height:calc(100vh - 120px);overflow:cursor}
+  .eco-mesh-wrap svg{height:100%;width:auto;min-width:100%}
 }
 </style>
 </head>
@@ -595,7 +598,7 @@ function darken(hex){const n=parseInt(hex.slice(1),16);return'#'+((n&0xF0F0F0)>>
 
 // ═══ Mind Map ═══
 let meshMode='people';
-let meshNodes=[],meshDragging=null,meshSvg=null;
+let meshNodes=[],meshDragging=null,meshSvg=null,meshPanStart=null,meshOffset={x:0,y:0};
 function buildMesh(){
   const el=document.getElementById('mesh-chart');
   const tip=document.getElementById('mesh-tip');
@@ -680,10 +683,12 @@ function buildMesh(){
         <filter id="nodeShadow"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/></filter>
       </defs>
       <rect width="${W}" height="${H}" fill="transparent"/>
-      ${edgesSvg}${nodesSvg}
-      <circle cx="${cx}" cy="${cy}" r="24" fill="var(--gold)" opacity="0.08" stroke="var(--gold)" stroke-width="1" stroke-opacity="0.2"/>
-      <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
-      <text x="${cx}" y="${cy+9}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
+      <g transform="translate(${meshOffset.x},${meshOffset.y})">
+        ${edgesSvg}${nodesSvg}
+        <circle cx="${cx}" cy="${cy}" r="24" fill="var(--gold)" opacity="0.08" stroke="var(--gold)" stroke-width="1" stroke-opacity="0.2"/>
+        <text x="${cx}" y="${cy-3}" text-anchor="middle" fill="var(--gold)" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700">USC</text>
+        <text x="${cx}" y="${cy+9}" text-anchor="middle" fill="var(--text-3)" font-family="Inter,sans-serif" font-size="6">${meshMode==='people'?'340+ Members':meshActivities.length+' Acts'}</text>
+      </g>
     </svg>`;
 
     meshSvg=el.querySelector('svg');
@@ -711,60 +716,82 @@ function buildMesh(){
     const svgR=meshSvg.getBoundingClientRect();
     const cx=ev.clientX!==undefined?ev.clientX:ev.pageX;
     const cy=ev.clientY!==undefined?ev.clientY:ev.pageY;
-    pt.x=(cx-svgR.left)/svgR.width*W;
-    pt.y=(cy-svgR.top)/svgR.height*H;
+    pt.x=(cx-svgR.left)/svgR.width*W-meshOffset.x;
+    pt.y=(cy-svgR.top)/svgR.height*H-meshOffset.y;
     return pt;
   }
 
   el.addEventListener('mousedown',function(ev){
     const g=ev.target.closest('.eco-mesh-node');
-    if(!g)return;
-    meshDragging=g.dataset.id;
-    g.style.cursor='grabbing';
+    if(g){
+      meshDragging=g.dataset.id;
+      g.style.cursor='grabbing';
+    } else {
+      meshPanStart={x:ev.clientX-meshOffset.x,y:ev.clientY-meshOffset.y};
+      el.style.cursor='grabbing';
+    }
     ev.preventDefault();
   });
 
   el.addEventListener('mousemove',function(ev){
-    if(!meshDragging)return;
-    const pt=svgPt(ev);
-    const nd=meshNodes.find(n=>n.id===meshDragging);
-    if(nd){nd.x=pt.x;nd.y=pt.y}
-    render();
-    const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
-    if(g)g.style.cursor='grabbing';
+    if(meshDragging){
+      const pt=svgPt(ev);
+      const nd=meshNodes.find(n=>n.id===meshDragging);
+      if(nd){nd.x=pt.x;nd.y=pt.y}
+      render();
+      const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
+      if(g)g.style.cursor='grabbing';
+    } else if(meshPanStart){
+      meshOffset.x=ev.clientX-meshPanStart.x;
+      meshOffset.y=ev.clientY-meshPanStart.y;
+      render();
+    }
   });
 
   el.addEventListener('mouseup',function(){
     meshDragging=null;
+    meshPanStart=null;
+    el.style.cursor='';
   });
 
   el.addEventListener('mouseleave',function(){
     meshDragging=null;
+    meshPanStart=null;
+    el.style.cursor='';
   });
 
   el.addEventListener('touchstart',function(ev){
     const t=ev.touches[0];
     const g=document.elementFromPoint(t.clientX,t.clientY)?.closest('.eco-mesh-node');
-    if(!g)return;
-    meshDragging=g.dataset.id;
-    g.style.cursor='grabbing';
+    if(g){
+      meshDragging=g.dataset.id;
+      g.style.cursor='grabbing';
+    } else {
+      meshPanStart={x:t.clientX-meshOffset.x,y:t.clientY-meshOffset.y};
+    }
     ev.preventDefault();
   },{passive:false});
 
   el.addEventListener('touchmove',function(ev){
-    if(!meshDragging)return;
     const t=ev.touches[0];
-    const pt=svgPt(t);
-    const nd=meshNodes.find(n=>n.id===meshDragging);
-    if(nd){nd.x=pt.x;nd.y=pt.y}
-    render();
-    const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
-    if(g)g.style.cursor='grabbing';
+    if(meshDragging){
+      const pt=svgPt(t);
+      const nd=meshNodes.find(n=>n.id===meshDragging);
+      if(nd){nd.x=pt.x;nd.y=pt.y}
+      render();
+      const g=meshSvg.querySelector(`[data-id="${meshDragging}"]`);
+      if(g)g.style.cursor='grabbing';
+    } else if(meshPanStart){
+      meshOffset.x=t.clientX-meshPanStart.x;
+      meshOffset.y=t.clientY-meshPanStart.y;
+      render();
+    }
     ev.preventDefault();
   },{passive:false});
 
   el.addEventListener('touchend',function(){
     meshDragging=null;
+    meshPanStart=null;
   });
 
   render();
