@@ -116,7 +116,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .active-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;padding:4px 10px;background:var(--gold-dim);color:var(--gold);border-radius:100px;cursor:pointer;transition:background 0.2s}
 .active-tag:hover{background:rgba(184,149,63,0.15)}
 .active-tag svg{width:12px;height:12px}
-.crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
 .crew-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color 0.2s,box-shadow 0.2s}
 .crew-card:hover{border-color:var(--border-hover);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 .crew-card-top{display:flex;gap:14px;margin-bottom:12px}
@@ -168,11 +168,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
 
 /* ═══ Footer ═══ */
-.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:64px 0 32px;position:relative;overflow:hidden}
 .footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand p{font-size:0.8rem;color:var(--text-2);margin-top:12px;line-height:1.65;max-width:260px}
-.footer-brand .email{margin-top:14px;font-size:0.8rem;color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand p{font-size:0.82rem;color:var(--text-2);margin-top:14px;line-height:1.7;max-width:280px;font-weight:300}
+.footer-brand .email{margin-top:16px;font-size:0.82rem;color:var(--gold)}
 .footer-social{display:flex;gap:10px;margin-top:14px}
 .footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
 .footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
@@ -394,7 +394,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       </div>
     </div>
 
-    <div style="margin-top:32px;padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim)">
+    <div style="margin-top:32px;padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin-bottom:40px">
       <h3 style="font-size:1rem;margin-bottom:8px">Is your organization part of Uganda's space ecosystem?</h3>
       <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto">Submit your organization to be included in the community directory.</p>
       <button data-modal="modal-org" class="btn btn-gold">Submit Your Organisation</button>

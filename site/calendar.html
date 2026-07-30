@@ -41,7 +41,7 @@ a{color:inherit;text-decoration:none}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
 /* Hero */
-.hero{position:relative;height:340px;overflow:hidden}
+.hero{position:relative;height:380px;overflow:hidden}
 .hero .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.15) 0%,rgba(10,22,40,0.8) 100%);z-index:1}
 .hero .wrapper{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:48px}
@@ -62,8 +62,14 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .section-divider-dots{display:flex;gap:6px;margin:0 12px}
 .section-divider-dots span{width:3px;height:3px;border-radius:50%;background:var(--text-3);opacity:0.4}
 
+/* Section Head */
+.section-head{margin-bottom:40px}
+.section-head .label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;display:block}
+.section-head h2{font-family:'Inter',sans-serif;font-size:2rem;font-weight:300;letter-spacing:-0.015em;margin-bottom:8px}
+.section-head p{font-size:0.9rem;color:var(--text-2);font-weight:300}
+
 /* Filters */
-.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
 .filter-chip{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:var(--bg-alt);font-size:0.78rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif}
 .filter-chip:hover{border-color:var(--border-hover);color:var(--text)}
 .filter-chip.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);font-weight:600}
@@ -137,6 +143,23 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .footer-bot{text-align:center;padding-top:24px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-3)}
 .footer-bot .hl{color:var(--gold)}
 
+/* ═══ Modals ═══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,0.6);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:24px}
+.modal-overlay.open{display:flex}
+.modal-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:440px;width:100%;position:relative}
+.modal-card h3{font-size:1.1rem;margin-bottom:16px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.3rem;color:var(--text-3);cursor:pointer}
+.modal-close:hover{color:var(--text)}
+.modal-card label{display:block;font-size:0.78rem;font-weight:500;color:var(--text-2);margin-bottom:6px;margin-top:14px}
+.modal-card input,.modal-card textarea,.modal-card select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:0.85rem}
+.modal-card textarea{resize:vertical;min-height:80px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.login-gate{text-align:center;padding:16px 0}
+.login-gate svg{margin-bottom:12px}
+.login-gate h3{font-size:1.1rem;margin-bottom:6px}
+.login-gate p{font-size:0.85rem;color:var(--text-2);margin-bottom:16px}
+.login-gate .btn{width:100%;justify-content:center}
+
 /* Responsive */
 @media(max-width:900px){
   .nav-toggle{display:block}.nav{position:relative}
@@ -149,7 +172,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
-  .hero{height:280px}
+  .hero{height:300px}
   .hero h1{font-size:1.8rem}
   .cal-grid{gap:1px}
   .cal-cell{font-size:0.72rem}
@@ -279,9 +302,51 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <p>Event density across the year. Darker = more events.</p>
     </div>
   </div>
+
+  <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin-top:40px;margin-bottom:40px">
+    <h3 style="font-size:1rem;margin-bottom:8px">Hosting a space event?</h3>
+    <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto">Submit your event to be included in the community calendar.</p>
+    <button data-modal="modal-event" class="btn btn-gold">Submit Event</button>
+  </div>
 </div>
 
-<!-- Footer -->
+<!-- ═══ SUBMIT MODALS ═══ -->
+
+<!-- Login Gate -->
+<div class="modal-overlay" id="login-gate">
+  <div class="modal-card" style="max-width:380px;text-align:center">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--gold)" stroke-width="1.5" fill="none" style="margin:0 auto 16px;display:block"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <div class="login-gate">
+      <h3>Login Required</h3>
+      <p>You need to be logged in to submit content.</p>
+      <a href="login.html" class="btn btn-gold">Login / Sign Up</a>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Event -->
+<div class="modal-overlay" id="modal-event">
+  <div class="modal-card">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <h3>Submit Event</h3>
+    <form onsubmit="event.preventDefault();this.closest('.modal-overlay').classList.remove('open')">
+      <label>Event Name</label>
+      <input type="text" placeholder="e.g. East Africa Space Symposium" required>
+      <label>Date</label>
+      <input type="date" required>
+      <label>Location</label>
+      <input type="text" placeholder="e.g. Kampala, Uganda">
+      <label>Description</label>
+      <textarea placeholder="Brief description of the event..."></textarea>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
+        <button type="submit" class="btn btn-gold">Submit Event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="wrapper">
     <div class="footer-grid">
@@ -480,6 +545,20 @@ updateStats();
 renderMonth();
 renderList();
 renderYear();
+
+// Modal open/close
+const user=localStorage.getItem('usc-user');
+document.querySelectorAll('[data-modal]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(!user){document.getElementById('login-gate').classList.add('open');return}
+    const id=btn.getAttribute('data-modal');
+    document.getElementById(id).classList.add('open');
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'))});
 </script>
 </body>
 </html>

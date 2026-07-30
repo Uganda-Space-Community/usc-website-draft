@@ -18,7 +18,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 h1,h2,h3,h4,h5{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-0.02em;line-height:1.18}
 a{color:inherit;text-decoration:none}
 .wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
+.btn{font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{filter:brightness(1.1);box-shadow:0 2px 12px rgba(184,149,63,0.3)}
+body.dark-mode .btn-gold{color:#0A1628}
+body.dark-mode .btn-gold:hover{box-shadow:0 2px 12px rgba(201,168,76,0.3)}
 
+/* Nav */
 .nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text);transition:background 0.3s}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative}
 .nav-l{display:flex;align-items:center;gap:12px}
@@ -37,12 +43,29 @@ a{color:inherit;text-decoration:none}
 .icon-sun{display:none}.icon-moon{display:block}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
-.page-header{padding:100px 0 32px;text-align:center}
-.page-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
-.page-header h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:8px}
-.page-header p{font-size:0.88rem;color:var(--text-2);max-width:480px;margin:0 auto}
+/* Hero */
+.hero{position:relative;height:340px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));background-size:cover;background-position:center;z-index:0}
+.hero-content{position:relative;z-index:2;padding:0 32px}
+.hero .page-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:12px;display:block}
+.hero h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:10px;color:var(--text)}
+.hero p{font-size:0.92rem;color:var(--text-2);max-width:480px;margin:0 auto;font-weight:300}
+.hero-stats{display:flex;gap:32px;justify-content:center;margin-top:24px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:1.4rem;font-weight:600;color:var(--gold);display:block}
+.hero-stat .lbl{font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em}
 
-.faq-controls{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap}
+/* Section Divider */
+.section-divider{display:flex;justify-content:center;align-items:center;padding:8px 0;position:relative}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-star{width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 16px;box-shadow:0 0 12px rgba(217,79,61,0.4);position:relative}
+.section-divider-star::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(217,79,61,0.2)}
+.section-divider-dots{display:flex;gap:6px;margin:0 12px}
+.section-divider-dots span{width:3px;height:3px;border-radius:50%;background:var(--text-3);opacity:0.4}
+
+/* FAQ Controls */
+.faq-section{padding:40px 0 80px}
+.faq-controls{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap}
 .faq-search{flex:1;min-width:200px;max-width:400px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.82rem;background:var(--bg-alt);color:var(--text);font-family:'Inter',sans-serif;transition:border-color 0.2s}
 .faq-search:focus{outline:none;border-color:var(--gold)}
 .faq-search::placeholder{color:var(--text-3)}
@@ -51,7 +74,8 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .member-toggle.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 .member-toggle svg{width:14px;height:14px}
 
-.faq-list{display:flex;flex-direction:column;gap:12px;padding-bottom:80px}
+/* FAQ List */
+.faq-list{display:flex;flex-direction:column;gap:12px}
 .faq-item{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-alt);overflow:hidden;transition:border-color 0.2s}
 .faq-item:hover{border-color:var(--border-hover)}
 .faq-question{display:flex;align-items:center;gap:12px;padding:20px 24px;cursor:pointer;user-select:none}
@@ -60,7 +84,6 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
 .faq-answers{display:none;padding:0 24px 20px}
 .faq-item.open .faq-answers{display:block}
-
 .faq-answer{padding:16px 0;border-top:1px solid var(--border)}
 .faq-answer:first-child{border-top:none}
 .faq-answer.top-voted{border-left:2px solid var(--gold);padding-left:16px;margin-left:-16px}
@@ -73,14 +96,26 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .vote-btn.voted-up{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 .vote-btn.voted-down{border-color:var(--red);color:var(--red);background:var(--red-dim)}
 .vote-count{font-size:0.78rem;font-weight:600;color:var(--text);min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
-
 .faq-empty{text-align:center;padding:60px 0;color:var(--text-3);font-size:0.88rem;display:none}
 
-.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
+/* Modals */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,0.6);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:24px}
+.modal-overlay.open{display:flex}
+.modal-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:440px;width:100%;position:relative}
+.modal-card h3{font-size:1.1rem;margin-bottom:16px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.3rem;color:var(--text-3);cursor:pointer}
+.modal-close:hover{color:var(--text)}
+.modal-card label{display:block;font-size:0.78rem;font-weight:500;color:var(--text-2);margin-bottom:6px;margin-top:14px}
+.modal-card input,.modal-card textarea,.modal-card select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:0.85rem}
+.modal-card textarea{resize:vertical;min-height:80px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+
+/* Footer */
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:64px 0 32px;position:relative;overflow:hidden}
 .footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand p{font-size:0.8rem;color:var(--text-2);margin-top:12px;line-height:1.65;max-width:260px}
-.footer-brand .email{margin-top:14px;font-size:0.8rem;color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand p{font-size:0.82rem;color:var(--text-2);margin-top:14px;line-height:1.7;max-width:280px;font-weight:300}
+.footer-brand .email{margin-top:16px;font-size:0.82rem;color:var(--gold)}
 .footer-social{display:flex;gap:10px;margin-top:14px}
 .footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
 .footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
@@ -98,6 +133,9 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
+  .hero{height:280px}
+  .hero h1{font-size:1.8rem}
+  .hero-stats{flex-wrap:wrap;gap:16px}
   .faq-controls{flex-direction:column;align-items:stretch}
   .faq-search{max-width:none}
   .footer-grid{grid-template-columns:1fr;gap:20px}
@@ -135,24 +173,67 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </div>
 
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="page-label">FAQ</span>
+    <h1>Frequently Asked Questions</h1>
+    <p>Quick answers from the community. Can't find what you need? Submit a question below.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" id="stat-questions">10</span><span class="lbl">Questions</span></div>
+      <div class="hero-stat"><span class="num" id="stat-answers">18</span><span class="lbl">Answers</span></div>
+      <div class="hero-stat"><span class="num">248</span><span class="lbl">Upvotes</span></div>
+    </div>
+  </div>
+</div>
+
 <div id="main">
   <div class="wrapper">
-    <div class="page-header">
-      <div class="page-label">FAQ</div>
-      <h1>Frequently Asked Questions</h1>
-      <p>Quick answers from the community.</p>
+    <div class="faq-section">
+      <div class="faq-controls">
+        <input type="text" class="faq-search" id="faq-search" placeholder="Search questions...">
+        <button class="member-toggle" id="member-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+          <span id="member-label">Member View</span>
+        </button>
+      </div>
+
+      <div class="faq-list" id="faq-list"></div>
+      <div class="faq-empty" id="faq-empty">No questions match your search.</div>
     </div>
 
-    <div class="faq-controls">
-      <input type="text" class="faq-search" id="faq-search" placeholder="Search questions...">
-      <button class="member-toggle" id="member-toggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
-        <span id="member-label">Member View</span>
-      </button>
+    <div class="section-divider" aria-hidden="true">
+      <div class="section-divider-line"></div>
+      <div class="section-divider-dots"><span></span><span></span><span></span></div>
+      <div class="section-divider-star"></div>
+      <div class="section-divider-dots"><span></span><span></span><span></span></div>
+      <div class="section-divider-line"></div>
     </div>
 
-    <div class="faq-list" id="faq-list"></div>
-    <div class="faq-empty" id="faq-empty">No questions match your search.</div>
+    <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin-bottom:40px">
+      <h3 style="font-size:1rem;margin-bottom:8px">Have a question?</h3>
+      <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto">Submit your question and the community will help answer it.</p>
+      <button class="btn btn-gold" onclick="document.getElementById('modal-question').classList.add('open')">Submit a Question</button>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Question Modal -->
+<div class="modal-overlay" id="modal-question">
+  <div class="modal-card">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
+    <h3>Submit a Question</h3>
+    <form id="question-form">
+      <label>Your Name</label>
+      <input type="text" id="q-name" placeholder="e.g. Sarah Nakamya" required>
+      <label>Question</label>
+      <textarea id="q-text" placeholder="What would you like to know?" required></textarea>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
+        <button type="submit" class="btn btn-gold">Submit Question</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -161,7 +242,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
-        <p>Rooted in Uganda, reaching beyond Earth.</p>
+        <p>Rooted in Uganda, reaching beyond Earth. A national platform for Uganda's space ecosystem.</p>
         <div class="email">hello@space.org.ug</div>
         <div class="footer-social">
           <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
@@ -183,7 +264,7 @@ document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.clas
 document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
 document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
 
-const faqs=[
+const defaultFaqs=[
   {q:"How do I join the Uganda Space Community?",answers:[{author:"Admin",text:"Create your profile on the platform. Fill in your interests, affiliation, and background. You'll be matched with relevant programs and events.",votes:24},{author:"Dr. Sarah Nabukenya",text:"Just sign up and complete your profile. The community is open to anyone with an interest in Uganda's space sector — students, researchers, professionals, and enthusiasts.",votes:18}]},
   {q:"What programs can I participate in?",answers:[{author:"Admin",text:"Visit the Launchpad to see all active programs. Current ones include National Astronomy Week, CubeSat Build Series, EO Training, and the Rocketry Challenge.",votes:19},{author:"James Okello",text:"The CubeSat Build Series is amazing — hands-on workshops every month. Definitely recommend for engineering students.",votes:15}]},
   {q:"Is the platform free to use?",answers:[{author:"Admin",text:"Yes, the platform is completely free. All content, events listings, and community features are open to everyone.",votes:31}]},
@@ -196,6 +277,7 @@ const faqs=[
   {q:"What regions of Uganda have active space communities?",answers:[{author:"Admin",text:"Central (Kampala) leads with 124 members, followed by Eastern (68), Western (52), and Northern (38). All regions have active chapters.",votes:20}]}
 ];
 
+let faqs=JSON.parse(localStorage.getItem('usc-faq-custom')||'null')||[...defaultFaqs];
 let memberMode=localStorage.getItem('usc-member-mode')==='true';
 let userVotes=JSON.parse(localStorage.getItem('usc-faq-votes')||'{}');
 let searchQuery='';
@@ -205,6 +287,13 @@ const label=document.getElementById('member-label');
 const searchInput=document.getElementById('faq-search');
 const listEl=document.getElementById('faq-list');
 const emptyEl=document.getElementById('faq-empty');
+
+function updateStats(){
+  let totalAnswers=0;
+  faqs.forEach(f=>totalAnswers+=f.answers.length);
+  document.getElementById('stat-questions').textContent=faqs.length;
+  document.getElementById('stat-answers').textContent=totalAnswers;
+}
 
 function updateToggle(){
   toggle.classList.toggle('active',memberMode);
@@ -261,6 +350,8 @@ function renderFaqs(){
       <div class="faq-answers">${answersHtml}</div>
     </div>`;
   }).join('');
+
+  updateStats();
 }
 
 window.vote=function(qi,ai,delta){
@@ -281,6 +372,23 @@ searchInput.addEventListener('input',(e)=>{
   searchQuery=e.target.value.toLowerCase();
   renderFaqs();
 });
+
+document.getElementById('question-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('q-name').value.trim();
+  const text=document.getElementById('q-text').value.trim();
+  if(!name||!text)return;
+  faqs.push({q:text,answers:[{author:name,text:"Awaiting community response.",votes:0}]});
+  localStorage.setItem('usc-faq-custom',JSON.stringify(faqs));
+  this.reset();
+  this.closest('.modal-overlay').classList.remove('open');
+  renderFaqs();
+});
+
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'))});
 
 updateToggle();
 renderFaqs();
