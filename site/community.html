@@ -615,12 +615,12 @@ function renderOrgs(orgs) {
   };
 
   let html = '';
-  const categories = {};
-  orgs.forEach(o => {
-    const cat = o.category || 'Other';
-    if (!categories[cat]) categories[cat] = [];
-    categories[cat].push(o);
-  });
+  //const categories = {};
+  //orgs.forEach(o => {
+  //  const cat = o.category || 'Other';
+  //  if (!categories[cat]) categories[cat] = [];
+  //  categories[cat].push(o);
+  //});
 
   function renderGroup(title, items) {
     if (!items.length) return '';
