@@ -114,7 +114,7 @@ body.dark-mode .btn-gold{color:#0A1628}
         <li><a href="community.html">Community</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>
-      <div class="nav-r">
+      <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -220,19 +220,15 @@ body.dark-mode .btn-gold{color:#0A1628}
   </div>
 </footer>
 
+<script src="auth.js"></script>
 <script>
-const body=document.body;
-if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
-document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
-document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
-document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
-
-const navBar=document.querySelector('.nav-bar');
-function updateNav(){navBar.classList.add('nav-scrolled')}
+const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
+function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
+USC.updateNav();
 
 // Auth state
-const user=JSON.parse(localStorage.getItem('usc-user')||'null');
+const user=USC.getUser();
 const loginForm=document.getElementById('login-form');
 const signupForm=document.getElementById('signup-form');
 const loggedIn=document.getElementById('logged-in');
@@ -254,25 +250,24 @@ document.getElementById('show-signup')?.addEventListener('click',e=>{e.preventDe
 document.getElementById('show-login')?.addEventListener('click',e=>{e.preventDefault();showState('login')});
 
 document.getElementById('login-btn')?.addEventListener('click',()=>{
-  const email=document.getElementById('login-email').value||'guest@space.org.ug';
+  const email=document.getElementById('login-email').value;
+  const password=document.getElementById('login-password').value;
+  if(!email){document.getElementById('login-email').focus();return}
   const name=email.split('@')[0];
-  localStorage.setItem('usc-user',JSON.stringify({name:name,email:email}));
-  showState('logged-in');
-  document.getElementById('user-display').textContent='Logged in as '+name;
+  USC.login({name:name,email:email});
+  window.location.href='index.html';
 });
 
 document.getElementById('signup-btn')?.addEventListener('click',()=>{
-  const name=document.getElementById('signup-name').value||'Guest';
-  const email=document.getElementById('signup-email').value||'guest@space.org.ug';
-  localStorage.setItem('usc-user',JSON.stringify({name:name,email:email}));
-  showState('logged-in');
-  document.getElementById('user-display').textContent='Logged in as '+name;
+  const name=document.getElementById('signup-name').value;
+  const email=document.getElementById('signup-email').value;
+  const password=document.getElementById('signup-password').value;
+  if(!name||!email){if(!name)document.getElementById('signup-name').focus();else document.getElementById('signup-email').focus();return}
+  USC.login({name:name,email:email});
+  window.location.href='index.html';
 });
 
-document.getElementById('logout-btn')?.addEventListener('click',()=>{
-  localStorage.removeItem('usc-user');
-  showState('login');
-});
+document.getElementById('logout-btn')?.addEventListener('click',()=>{USC.logout()});
 </script>
 </body>
 </html>

@@ -79,6 +79,30 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
 .organizer-info .role{font-size:0.72rem;color:var(--text-3)}
 
+/* ═══ Modals ═══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,0.6);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:24px}
+.modal-overlay.open{display:flex}
+.modal-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:440px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
+.modal-card h3{font-size:1.1rem;margin-bottom:4px}
+.modal-card .modal-sub{font-size:0.82rem;color:var(--text-2);margin-bottom:20px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.3rem;color:var(--text-3);cursor:pointer;line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal-card label{display:block;font-size:0.72rem;font-weight:600;color:var(--text-2);margin-bottom:6px;margin-top:14px;text-transform:uppercase;letter-spacing:0.04em}
+.modal-card input,.modal-card textarea,.modal-card select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:0.85rem;transition:border-color 0.2s}
+.modal-card input:focus,.modal-card textarea:focus{outline:none;border-color:var(--gold)}
+.modal-card textarea{resize:vertical;min-height:60px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.modal-actions .btn{border-radius:100px}
+.modal-foot{text-align:center;margin-top:18px;font-size:0.82rem;color:var(--text-2);border-top:1px solid var(--border);padding-top:16px}
+.modal-foot a{color:var(--gold);font-weight:500}
+.modal-foot a:hover{text-decoration:underline}
+.modal-event-tag{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);color:var(--gold);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:16px}
+.modal-event-tag svg{width:14px;height:14px}
+.modal-success{text-align:center;padding:20px 0}
+.modal-success svg{width:48px;height:48px;color:var(--emerald);margin-bottom:12px}
+.modal-success h4{font-size:1rem;margin-bottom:6px}
+.modal-success p{font-size:0.85rem;color:var(--text-2);margin-bottom:16px}
+
 /* ═══ Footer ═══ */
 .footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
 .footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
@@ -131,7 +155,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <li><a href="community.html">Community</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
-      <div class="nav-r">
+      <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -200,7 +224,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
           <div class="info-row"><span class="label">Room</span><span class="value">CSL Lab 3</span></div>
           <div class="info-row"><span class="label">Capacity</span><span class="value">40 seats</span></div>
           <div class="info-row"><span class="label">Cost</span><span class="value">Free</span></div>
-          <a href="#" class="btn btn-gold">Register Now</a>
+          <a href="#" class="btn btn-gold" onclick="event.preventDefault();openRegister()">Register Now</a>
         </div>
 
         <div class="sidebar-card">
@@ -225,6 +249,65 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </div>
 
+<!-- Register Modal -->
+<div class="modal-overlay" id="register-modal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeRegister()">&times;</button>
+    <div class="modal-event-tag">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+      Satellite Applications Workshop
+    </div>
+    <!-- Not logged in -->
+    <div id="register-gate">
+      <h3>Register for this Event</h3>
+      <p class="modal-sub">You need a Uganda Space Community account to register for events.</p>
+      <div style="text-align:center;padding:20px 0">
+        <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--gold)" stroke-width="1.5" fill="none" style="margin-bottom:12px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h4 style="font-size:0.95rem;margin-bottom:6px">Login Required</h4>
+        <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:16px">Create an account or log in to register for events.</p>
+        <a href="login.html" class="btn btn-gold" style="border-radius:100px;width:auto;justify-content:center">Create Account / Log in</a>
+      </div>
+    </div>
+    <!-- Logged in: registration form -->
+    <div id="register-form-wrap" style="display:none">
+      <h3>Register for this Event</h3>
+      <p class="modal-sub">Fill in your details to secure your spot.</p>
+      <form id="register-form" onsubmit="event.preventDefault();showSuccess()">
+      <label>Full Name</label>
+      <input type="text" placeholder="e.g. James Okello" required>
+      <label>Email Address</label>
+      <input type="email" placeholder="e.g. james@example.com" required>
+      <label>Phone Number</label>
+      <input type="tel" placeholder="e.g. +256 700 123456">
+      <label>Organization</label>
+      <input type="text" placeholder="e.g. Makerere University">
+      <label>Role</label>
+      <select>
+        <option value="">Select your role</option>
+        <option>Student</option>
+        <option>Researcher</option>
+        <option>Professional</option>
+        <option>Enthusiast</option>
+        <option>Other</option>
+      </select>
+      <div class="modal-actions">
+        <button type="button" class="btn" style="background:var(--bg-alt-subtle);color:var(--text-2)" onclick="closeRegister()">Cancel</button>
+        <button type="submit" class="btn btn-gold">Confirm Registration</button>
+      </div>
+    </form>
+    </div>
+    <div class="modal-success" id="register-success" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      <h4>You're registered!</h4>
+      <p>A confirmation has been sent to your email. See you at the workshop.</p>
+      <button class="btn btn-gold" onclick="closeRegister()" style="border-radius:100px">Done</button>
+    </div>
+    <div class="modal-foot">
+      Not a member yet? <a href="login.html">Create account / Log in</a>
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="wrapper">
     <div class="footer-grid">
@@ -245,15 +328,33 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </footer>
 
+<script src="auth.js"></script>
 <script>
-const body=document.body;
-if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
-document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
-document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
-document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
+USC.updateNav();
+
+// Register modal
+function openRegister(){
+  document.getElementById('register-modal').classList.add('open');
+  document.getElementById('register-success').style.display='none';
+  if(USC.isLoggedIn()){
+    document.getElementById('register-gate').style.display='none';
+    document.getElementById('register-form-wrap').style.display='';
+    document.getElementById('register-form').style.display='';
+  }else{
+    document.getElementById('register-gate').style.display='';
+    document.getElementById('register-form-wrap').style.display='none';
+  }
+}
+function closeRegister(){document.getElementById('register-modal').classList.remove('open')}
+function showSuccess(){
+  document.getElementById('register-form').style.display='none';
+  document.getElementById('register-success').style.display='';
+}
+document.getElementById('register-modal').addEventListener('click',function(e){if(e.target===this)closeRegister()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeRegister()});
 </script>
 </body>
 </html>

@@ -145,7 +145,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <li><a href="community.html">Community</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
-      <div class="nav-r">
+      <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -244,16 +244,12 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
   </div>
 </footer>
 
+<script src="auth.js"></script>
 <script>
-const body=document.body;
-if(localStorage.getItem('usc-theme')==='dark')body.classList.add('dark-mode');
-document.querySelector('.theme-toggle')?.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('usc-theme',body.classList.contains('dark-mode')?'dark':'light')});
-document.querySelector('.nav-toggle')?.addEventListener('click',function(){document.querySelector('.nav').classList.toggle('nav-open')});
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
-document.addEventListener('click',function(e){const n=document.querySelector('.nav');if(n&&!n.contains(e.target)&&n.classList.contains('nav-open'))n.classList.remove('nav-open')});
-
+USC.updateNav();
 const orgs={
   'uganda-space-community':{name:'Uganda Space Community',type:'Community Platform',location:'Kampala, Uganda',founded:'2024',about:'Uganda Space Community is the central platform connecting students, researchers, professionals, and organizations across Uganda\'s growing space ecosystem. We facilitate collaboration, knowledge sharing, and capacity building in space science and technology.',mission:'To build a thriving, inclusive space community in Uganda that drives innovation, education, and policy development for the benefit of all Ugandans.',tags:['Community Building','Education','Networking','Policy'],members:[{name:'Dr. Sarah Nabukenya',role:'Founder & Lead',interests:['earth-observation','satellite-tech']},{name:'Peter Ssemwanga',role:'Policy Director',interests:['space-policy']},{name:'Grace Nakamya',role:'Technical Lead',interests:['satellite-tech']}],stats:{members:340,projects:8,events:24,partners:12},icon:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'},
   'uganda-space-agency':{name:'Uganda Space Agency',type:'Government Agency',location:'Entebbe, Uganda',founded:'2022',about:'The Uganda Space Agency (USA) is the national body responsible for coordinating and regulating Uganda\'s space activities. It oversees satellite programs, Earth observation initiatives, and space research policy.',mission:'To harness space technology for national development through coordination of space activities, research, and international cooperation.',tags:['Policy','Satellite Programs','Earth Observation','Regulation'],members:[{name:'Dr. Francis Nkwanga',role:'Director General',interests:['satellite-tech','space-policy']},{name:'Sarah Akello',role:'Program Manager',interests:['education']}],stats:{members:45,projects:6,events:12,partners:8},icon:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>'},

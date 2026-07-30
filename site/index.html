@@ -1091,7 +1091,7 @@ body::before {
       <li><a href="community.html">Community</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
-      <div class="nav-r">
+      <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -1775,25 +1775,8 @@ body::before {
   </div>
 </footer>
 
+<script src="auth.js"></script>
 <script>
-// Mobile nav toggle
-document.querySelector('.nav-toggle')?.addEventListener('click', function() {
-  document.querySelector('.nav').classList.toggle('nav-open');
-});
-
-// Theme toggle
-const body = document.body;
-const themeToggle = document.querySelector('.theme-toggle');
-
-if (localStorage.getItem('usc-theme') === 'dark') {
-  body.classList.add('dark-mode');
-}
-
-themeToggle?.addEventListener('click', function() {
-  body.classList.toggle('dark-mode');
-  localStorage.setItem('usc-theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-});
-
 // Nav scroll effect — show background when scrolling past hero
 const navBar = document.querySelector('.nav-bar');
 const hero = document.querySelector('.hero');
@@ -1807,14 +1790,7 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav);
 updateNav();
-
-// Close mobile nav on outside click
-document.addEventListener('click', function(e) {
-  const nav = document.querySelector('.nav');
-  if (nav && !nav.contains(e.target) && nav.classList.contains('nav-open')) {
-    nav.classList.remove('nav-open');
-  }
-});
+USC.updateNav();
 
 // Mission Slideshow — loads from content.json
 (function() {
