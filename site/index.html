@@ -7,8 +7,8 @@
 <meta name="description" content="The national platform for Uganda's space ecosystem. Connect, discover, and contribute to Uganda's growing space sector.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ═══ Light mode (default) ═══ */
+<link rel="stylesheet" href="css/base.css">
+<style>/* ═══ Light mode (default) ═══ */
 :root {
   --bg:          #F7F8FA;
   --bg-alt:      #FFFFFF;
@@ -186,15 +186,15 @@ body.dark-mode .icon-moon { display: none; }
   opacity: 0;
 }
 .hero-img-1 {
-  background-image: url('hero-1.jpg');
+  background-image: url('img/hero-1.jpg');
   animation: fade1 18s infinite, heroZoom 18s ease-in-out infinite alternate;
 }
 .hero-img-2 {
-  background-image: url('hero-2.jpg');
+  background-image: url('img/hero-2.jpg');
   animation: fade2 18s infinite, heroZoom 18s ease-in-out infinite alternate;
 }
 .hero-img-3 {
-  background-image: url('hero-3.jpg');
+  background-image: url('img/hero-3.jpg');
   animation: fade3 18s infinite, heroZoom 18s ease-in-out infinite alternate;
 }
 @keyframes fade1 {
@@ -988,7 +988,7 @@ body::before {
   position: absolute;
   bottom: -60px; right: -40px;
   width: 320px; height: 320px;
-  background: url('emblem.png') center/contain no-repeat;
+  background: url('img/emblem.png') center/contain no-repeat;
   opacity: 0.1;
   pointer-events: none;
 }
@@ -1070,8 +1070,7 @@ body::before {
   .nav-bar .wrapper { padding: 0 12px; }
   .hero h1 { font-size: 1.8rem; }
   .hero-content { margin-left: 12px; max-width: calc(100vw - 24px); }
-}
-</style>
+}</style>
 </head>
 <body>
 
@@ -1083,7 +1082,7 @@ body::before {
     <nav class="nav">
       <div class="nav-l">
         <a href="#" class="logo-icon">
-          <img src="emblem.png" alt="Uganda Space Community" />
+          <img src="img/emblem.png" alt="Uganda Space Community" />
         </a>
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
@@ -1733,7 +1732,7 @@ body::before {
   </div>
 </footer>
 
-<script src="auth.js"></script>
+<script src="js/auth.js"></script>
 <script>
 // Nav scroll effect — show background when scrolling past hero
 const navBar = document.querySelector('.nav-bar');
