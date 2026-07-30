@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
-<style>/* ═══ Nav ═══ */
-
-50%{transform:translateY(-3px) rotate(1deg)}}
+<style>
 
 /* ═══ Hero ═══ */
 .hero{position:relative;height:380px;overflow:hidden;margin-top:0}
@@ -564,12 +562,6 @@ function renderOrgs(orgs) {
   };
 
   let html = '';
-  const categories = {};
-  orgs.forEach(o => {
-    const cat = o.category || 'Other';
-    if (!categories[cat]) categories[cat] = [];
-    categories[cat].push(o);
-  });
 
   function renderGroup(title, items) {
     if (!items.length) return '';
