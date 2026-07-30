@@ -609,13 +609,15 @@ function renderOrgs(orgs) {
     book: '<path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/>',
     plane: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>',
     zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
-    code: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>'
+    code: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>',
+    signal: '<path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/>',
+    flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>'
   };
 
   let html = '';
-  const communityOrgs = orgs.filter(o => ['Space Outreach','Space Arts And Outreach','Astronomy','Aviation','Law And Policy','Community Network','Research Institute'].includes(o.category));
-  const academicOrgs = orgs.filter(o => ['University','Engineering School','Student Branch','Aerospace And Systems'].includes(o.category));
-  const innovationOrgs = orgs.filter(o => ['Rocketry And Propulsion','Technology Partner','Aerospace Technology','STEM Education','Aerospace DIY','Hackathon','Developer Community'].includes(o.category));
+  const communityOrgs = orgs.filter(o => ['Space Outreach','Space Arts And Outreach','Astronomy','Aviation','Law And Policy','Community Network','Research Institute','Pan-African Astronomy','Continental Space Agency','Regional Astronomy','Global Space Body','Youth Space Network'].includes(o.category));
+  const academicOrgs = orgs.filter(o => ['University','Engineering School','Student Branch','Aerospace And Systems','Research Oversight'].includes(o.category));
+  const innovationOrgs = orgs.filter(o => ['Rocketry And Propulsion','Technology Partner','Aerospace Technology','STEM Education','Aerospace DIY','Hackathon','Developer Community','Government Ministry','Spectrum Regulation','Regional EO'].includes(o.category));
 
   function renderGroup(title, items) {
     if (!items.length) return '';
