@@ -10,11 +10,13 @@
 <link rel="stylesheet" href="css/base.css">
 <style>
 
-/* ═══ Page Header ═══ */
-.page-header{padding:120px 0 48px;text-align:center}
-.page-header .label{display:inline-block;font-size:0.62rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;background:var(--gold-dim);padding:4px 14px;border-radius:100px;margin-bottom:16px}
-.page-header h1{font-family:'Inter',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
-.page-header p{font-size:0.95rem;color:var(--text-2);max-width:580px;margin:0 auto;line-height:1.7}
+/* ═══ Hero ═══ */
+.hero{position:relative;height:380px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));z-index:0}
+.hero-content{position:relative;z-index:2;padding:0 32px}
+.hero .page-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:12px;display:block}
+.hero h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:10px;color:var(--text)}
+.hero p{font-size:0.92rem;color:var(--text-2);max-width:540px;margin:0 auto;font-weight:300;line-height:1.7}
 
 /* ═══ Content Sections ═══ */
 .content-section{padding:32px 0 48px}
@@ -38,7 +40,8 @@
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
-  .page-header{padding:100px 0 32px}
+  .hero{height:300px}
+  .hero h1{font-size:1.8rem}
   .footer-grid{grid-template-columns:1fr;gap:20px}
 }</style>
 </head>
@@ -77,9 +80,10 @@
   </div>
 </div>
 
-<div class="page-header" id="main">
-  <div class="wrapper">
-    <div class="label">Legal</div>
+<div class="hero" id="main">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="page-label">Legal</span>
     <h1>Privacy Policy</h1>
     <p>How we collect, use, and protect your information.</p>
   </div>
