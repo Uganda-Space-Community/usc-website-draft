@@ -275,28 +275,28 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
   <!-- ═══ FEATURED STORY ═══ -->
   <div class="featured-story" id="featured-story">
-    <div class="featured-slide active" style="background-image:url('https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=1200&q=80')" data-type="news">
-      <div class="featured-slide-body">
-        <div class="cat">Featured Story</div>
-        <h2>Uganda Signs Artemis Accords</h2>
-        <p>Uganda becomes the latest African nation to commit to responsible space exploration principles.</p>
-        <div class="meta">15 Jul 2026 · Ministry of Science &amp; Technology</div>
-      </div>
-    </div>
-    <div class="featured-slide" style="background-image:url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&q=80')" data-type="events">
+    <div class="featured-slide active" style="background-image:url('img/hero-1.jpg')" data-type="events">
       <div class="featured-slide-body">
         <div class="cat">Featured Event</div>
-        <h2>Satellite Applications Workshop</h2>
-        <p>Hands-on satellite data processing and Earth observation with Sentinel-2 imagery.</p>
-        <div class="meta">12 Jul 2026 · Makerere University</div>
+        <h2>World Space Week Uganda 2026</h2>
+        <p>Uganda's flagship national campaign for World Space Week 2026, connecting Rocket Revolution to astronomy, Earth observation, aerospace engineering, and local innovation.</p>
+        <div class="meta">4–10 Oct 2026 · Kampala, Uganda</div>
       </div>
     </div>
-    <div class="featured-slide" style="background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80')" data-type="opportunities">
+    <div class="featured-slide" style="background-image:url('img/hero-2.jpg')" data-type="news">
       <div class="featured-slide-body">
-        <div class="cat">Opportunity</div>
-        <h2>African Space Agency Scholarship 2026</h2>
-        <p>Full scholarship for African students pursuing space science and engineering degrees.</p>
-        <div class="meta">Deadline 30 Sep 2026 · Undergraduate</div>
+        <div class="cat">Announcement</div>
+        <h2>Space Uganda Opens As A Year-Round Umbrella</h2>
+        <p>The ecosystem is organising under one national domain for communities, campaigns, partners, and public opportunities.</p>
+        <div class="meta">26 Jul 2026 · Space Uganda</div>
+      </div>
+    </div>
+    <div class="featured-slide" style="background-image:url('img/hero-3.jpg')" data-type="events">
+      <div class="featured-slide-body">
+        <div class="cat">Flagship Event</div>
+        <h2>WSW Uganda 2026 Flagship Physical Day</h2>
+        <p>A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.</p>
+        <div class="meta">10 Oct 2026 · Kampala</div>
       </div>
     </div>
     <div class="featured-dots">
@@ -413,16 +413,16 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <div class="sidebar-section">
         <h4>Upcoming</h4>
         <div class="pinned-item">
-          <h5>Satellite Applications Workshop</h5>
-          <div class="meta">Event · 12 Jul 2026 · Makerere</div>
+          <h5>WSW Uganda 2026 Flagship Day</h5>
+          <div class="meta">Event · 10 Oct 2026 · Kampala</div>
         </div>
         <div class="pinned-item">
-          <h5>Uganda Space Pioneers — Ep. 4</h5>
-          <div class="meta">Webinar · 18 Jul 2026 · Online</div>
+          <h5>The Rocket Revolution — Launch Demos</h5>
+          <div class="meta">Physical · 8 Oct 2026 · Kampala</div>
         </div>
         <div class="pinned-item">
-          <h5>Community Rocketry Challenge</h5>
-          <div class="meta">Competition · 5 Aug 2026 · Kampala</div>
+          <h5>Outdoor Stargazing Experience</h5>
+          <div class="meta">Physical · 10 Oct 2026 · Kampala</div>
         </div>
       </div>
 
@@ -651,19 +651,16 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
   });
 });
 
-// Sample card data
+// Real announcements and events from Space Uganda
 const cards=[
-  {type:'events',title:'Satellite Applications Workshop',desc:'Hands-on satellite data processing and Earth observation.',date:'12 Jul 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'event.html',programs:['cubesat']},
-  {type:'events',title:'Uganda Space Pioneers — Ep. 4',desc:'Dr. Sarah Nabukenya on Uganda\'s first CubeSat mission.',date:'18 Jul 2026',cat:'Webinar',img:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80',url:'event.html',programs:['astro-week']},
-  {type:'events',title:'Community Rocketry Challenge',desc:'Student teams design and launch model rockets.',date:'5 Aug 2026',cat:'Competition',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'event.html',programs:[]},
-  {type:'events',title:'Observation Night',desc:'Public stargazing event with telescopes at Makerere Observatory.',date:'12 Aug 2026',cat:'Physical',img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80',url:'event.html',programs:['astro-week']},
-  {type:'news',title:'Uganda Signs Artemis Accords',desc:'Uganda becomes the latest African nation to commit to responsible space exploration principles.',date:'15 Jul 2026',cat:'Policy',img:'https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=400&q=80',url:'news.html',programs:[]},
-  {type:'news',title:'Makerere Space Lab Opens',desc:'New dedicated laboratory for satellite design and testing at Makerere University.',date:'10 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=400&q=80',url:'news.html',programs:['cubesat']},
-  {type:'news',title:'Ground Station Network Expands',desc:'Two new ground stations added to the national satellite receiving network.',date:'8 Jul 2026',cat:'Infrastructure',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'news.html',programs:[]},
-  {type:'news',title:'Busitema Launches Aerospace Program',desc:'New aerospace engineering program at Busitema University.',date:'1 Jul 2026',cat:'University',img:'https://images.unsplash.com/photo-1517976487492-5750f3195933?w=400&q=80',url:'news.html',programs:[]},
-  {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'30 Sep 2026',cat:'Scholarship',img:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80',url:'opportunity.html',programs:[]},
-  {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'15 Aug 2026',cat:'Internship',img:'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=400&q=80',url:'opportunity.html',programs:[]},
-  {type:'opportunities',title:'Community Space Innovation Fund',desc:'Grants up to UGX 50M for space innovation projects.',date:'1 Oct 2026',cat:'Grant',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',url:'opportunity.html',programs:[]},
+  {type:'events',title:'WSW Uganda 2026 Flagship Physical Day',desc:'A full-day national experience with mission briefing, immersive exhibits, Innovation Showcase, space economy panel, and outdoor stargazing.',date:'10 Oct 2026',cat:'Physical',img:'img/hero-1.jpg',url:'event.html',programs:['wsw-2026']},
+  {type:'events',title:'Outdoor Stargazing And Night Sky Experience',desc:'Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation led by Uganda Astronomical Society.',date:'10 Oct 2026',cat:'Physical',img:'img/hero-2.jpg',url:'event.html',programs:['wsw-2026']},
+  {type:'events',title:'The Rocket Revolution — Launch Demonstrations',desc:'Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations by NOA\'s Quest and partners.',date:'8 Oct 2026',cat:'Physical',img:'img/hero-3.jpg',url:'event.html',programs:['wsw-2026']},
+  {type:'news',title:'Space Uganda Opens As A Year-Round Umbrella',desc:'The ecosystem is organising under one national domain for communities, campaigns, partners, and public opportunities.',date:'26 Jul 2026',cat:'Ecosystem',img:'img/hero-1.jpg',url:'news.html',programs:[]},
+  {type:'news',title:'WSW Uganda 2026 Theme Confirmed',desc:'World Space Week 2026 will run under the global theme Rocket Revolution from October 4-10.',date:'26 Jul 2026',cat:'World Space Week',img:'img/hero-2.jpg',url:'news.html',programs:['wsw-2026']},
+  {type:'news',title:'Gallery Archive Being Prepared',desc:'The public gallery is ready for photos and videos from Uganda Space Week activities.',date:'26 Jul 2026',cat:'Gallery',img:'img/hero-3.jpg',url:'news.html',programs:[]},
+  {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'30 Sep 2026',cat:'Scholarship',img:'img/hero-1.jpg',url:'opportunity.html',programs:[]},
+  {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'15 Aug 2026',cat:'Internship',img:'img/hero-2.jpg',url:'opportunity.html',programs:[]},
 ];
 
 const PER_PAGE=6;
@@ -798,7 +795,7 @@ if(hash){
   const calNext=document.getElementById('cal-next');
   if(!calDays) return;
 
-  const eventDates={3:1,12:2,14:3,15:1,18:2,20:1};
+  const eventDates={4:1,8:1,10:3};
   let currentMonth=6,currentYear=2026;
   const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
 

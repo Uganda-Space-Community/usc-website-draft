@@ -409,40 +409,35 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 
-// Event data
+// Event data — real Space Uganda events + cosmic/holiday events
 const events=[
   {date:'2026-01-01',title:"New Year's Day",type:'holiday'},
   {date:'2026-01-03',title:'Quadrantid Meteor Shower Peak',type:'cosmic',desc:'Up to 120 meteors/hour'},
-  {date:'2026-01-26',title:'Liberation Day',type:'holiday'},
   {date:'2026-03-08',title:"International Women's Day",type:'holiday'},
   {date:'2026-03-20',title:'Vernal Equinox',type:'cosmic',desc:'Day and night nearly equal'},
-  {date:'2026-04-03',title:'Good Friday',type:'holiday'},
   {date:'2026-04-06',title:'Easter Monday',type:'holiday'},
   {date:'2026-04-22',title:'Lyrid Meteor Shower',type:'cosmic',desc:'15-20 meteors/hour'},
-  {date:'2026-04-26',title:"Heroes' Day",type:'holiday'},
   {date:'2026-05-06',title:'Eta Aquariid Meteor Shower',type:'cosmic',desc:"Associated with Halley's Comet"},
-  {date:'2026-05-15',title:'Space Outreach Tour Ends',type:'deadline'},
   {date:'2026-06-03',title:"Martyrs' Day",type:'holiday'},
   {date:'2026-06-09',title:'National Heroes Day',type:'holiday'},
   {date:'2026-06-21',title:'Summer Solstice',type:'cosmic',desc:'Longest day of the year'},
-  {date:'2026-06-30',title:'EO Training Program Deadline',type:'deadline'},
-  {date:'2026-07-14',title:'National Astronomy Week Starts',type:'event',desc:'Week-long astronomy celebration'},
-  {date:'2026-07-15',title:'Uganda Signs Artemis Accords',type:'event',desc:'Historic space policy milestone'},
-  {date:'2026-07-18',title:'Uganda Space Pioneers — Ep. 4',type:'event',desc:'Webinar series'},
-  {date:'2026-07-20',title:'National Astronomy Week Ends',type:'event'},
-  {date:'2026-08-05',title:'Community Rocketry Challenge',type:'event',desc:'Student competition'},
+  {date:'2026-07-26',title:'Space Uganda Launch',type:'event',desc:'Uganda Space Community goes live'},
   {date:'2026-08-12',title:'Perseid Meteor Shower Peak',type:'cosmic',desc:'Up to 100 meteors/hour, best viewing'},
-  {date:'2026-08-31',title:'EO Training Program Ends',type:'deadline'},
   {date:'2026-09-21',title:'Independence Day',type:'holiday'},
   {date:'2026-09-22',title:'Autumnal Equinox',type:'cosmic',desc:'Day and night nearly equal'},
-  {date:'2026-09-30',title:'Rocketry Challenge Deadline',type:'deadline'},
+  {date:'2026-10-04',title:'World Space Week 2026 Starts',type:'event',desc:'Global Rocket Revolution campaign begins'},
+  {date:'2026-10-04',title:'WSW Uganda — Earth & Space for Uganda',type:'event',desc:'Earth observation track opens'},
+  {date:'2026-10-05',title:'WSW Uganda — The Rocket Revolution',type:'event',desc:'Aerospace engineering demonstrations'},
+  {date:'2026-10-06',title:'WSW Uganda — Beyond Earth',type:'event',desc:'Satellite comms, AI, robotics, space medicine'},
+  {date:'2026-10-08',title:'Rocket Revolution Launch Demos',type:'event',desc:'Rocket engineering and launch demonstrations'},
+  {date:'2026-10-10',title:'WSW Uganda 2026 Flagship Day',type:'event',desc:'Full-day national experience with exhibits, Innovation Showcase, panel, and stargazing'},
+  {date:'2026-10-10',title:'Outdoor Stargazing Experience',type:'event',desc:'Telescopes, astrophotography, constellation tours'},
+  {date:'2026-10-10',title:'World Space Week 2026 Ends',type:'event',desc:'Global Rocket Revolution campaign concludes'},
   {date:'2026-10-21',title:'Orionid Meteor Shower',type:'cosmic',desc:"Associated with Halley's Comet"},
-  {date:'2026-10-30',title:'African Space Agency Scholarship Deadline',type:'deadline'},
   {date:'2026-11-17',title:'Leonid Meteor Shower',type:'cosmic',desc:'Up to 15 meteors/hour'},
   {date:'2026-12-14',title:'Geminid Meteor Shower Peak',type:'cosmic',desc:"Up to 150 meteors/hour, year's best"},
   {date:'2026-12-21',title:'Winter Solstice',type:'cosmic',desc:'Shortest day of the year'},
-  {date:'2026-12-25',title:'Christmas Day',type:'holiday'},
-  {date:'2026-12-26',title:'Boxing Day',type:'holiday'}
+  {date:'2026-12-25',title:'Christmas Day',type:'holiday'}
 ];
 
 const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
