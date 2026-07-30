@@ -400,6 +400,10 @@ body.dark-mode .icon-moon { display: none; }
   background: linear-gradient(180deg, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.85) 100%);
 }
 .tc-event-card-body { position: relative; z-index: 1; padding: 24px; }
+.tc-card-label .status-active { color: #4ade80; }
+.tc-card-label .status-completed { color: rgba(255,255,255,0.6); }
+.tc-card-label .status-planned { color: #60a5fa; }
+.tc-card-label .status-proposed { color: var(--gold); }
 .tc-event-card-body .tc-card-label {
   font-size: 0.6rem; font-weight: 600; color: var(--gold);
   text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; display: inline-block;
@@ -1840,7 +1844,7 @@ USC.updateNav();
               tcGrid.innerHTML = data.events.featured.map(e =>
                 `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}')">
                   <div class="tc-event-card-body">
-                    <div class="tc-card-label">${e.type}</div>
+                    <div class="tc-card-label">${e.type}${e.status ? ' · <span class="status-'+e.status+'">'+e.status+'</span>' : ''}</div>
                     <h4>${e.title}</h4>
                     <p>${e.text}</p>
                     <div class="tc-card-meta">${e.date} · ${e.location}</div>

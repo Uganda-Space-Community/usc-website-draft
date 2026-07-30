@@ -119,6 +119,12 @@ body.dark-mode .program-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .program-card .card-meta{display:flex;align-items:center;justify-content:space-between;font-size:0.76rem;color:var(--text-3);margin-bottom:12px}
 .program-card .card-tags{display:flex;flex-wrap:wrap;gap:5px}
 .program-card .card-tags span{font-size:0.68rem;font-weight:500;padding:3px 9px;border-radius:10px;background:var(--bg-alt-subtle);color:var(--text-2);border:1px solid var(--border)}
+.status-active{background:rgba(16,185,129,0.85);color:#fff}
+.status-completed{background:rgba(107,114,128,0.85);color:#fff}
+.status-planned{background:rgba(59,130,246,0.85);color:#fff}
+.status-proposed{background:rgba(184,149,63,0.85);color:#fff}
+.type-program{background:rgba(184,149,63,0.85);color:#fff}
+.type-project{background:rgba(107,114,128,0.7);color:#fff}
 
 /* ═══ Empty State ═══ */
 .empty-state{grid-column:1/-1;text-align:center;padding:64px 24px;color:var(--text-3)}
@@ -300,6 +306,7 @@ body.dark-mode .program-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
     <button class="filter-chip" data-filter="project">Projects</button>
     <button class="filter-chip" data-filter="active">Active</button>
     <button class="filter-chip" data-filter="completed">Completed</button>
+    <button class="filter-chip" data-filter="proposed">Proposed</button>
   </div>
 
   <div class="programs-grid" id="programsGrid"></div>
@@ -418,6 +425,11 @@ fetch('data/content.json')
   .then(data => {
     if (data) {
       const newItems = [];
+      if (data.programs) {
+        data.programs.forEach(p => {
+          newItems.push({id:p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-'),type:'program',title:p.title,desc:p.text,status:p.status||'active',completed:p.completedEvents||0,total:p.totalEvents||1,start:p.start||'',end:p.end||'',tags:[],img:'img/hero-1.jpg'});
+        });
+      }
       if (data.programmeTracks) {
         data.programmeTracks.forEach(p => {
           newItems.push({id:p.id,type:'program',title:p.title,desc:p.description,status:'active',completed:0,total:1,start:'4 Oct 2026',end:'10 Oct 2026',tags:[p.track],img:p.image});
@@ -463,8 +475,9 @@ function renderItems(filter){
   const grid=document.getElementById("programsGrid");
   let filtered;
   if(filter==="all") filtered=items;
-  else if(filter==="active") filtered=items.filter(i=>i.status==="active");
+  else if(filter==="active") filtered=items.filter(i=>i.status==="active"||i.status==="planned");
   else if(filter==="completed") filtered=items.filter(i=>i.status==="completed");
+  else if(filter==="proposed") filtered=items.filter(i=>i.status==="proposed");
   else filtered=items.filter(i=>i.type===filter);
 
   if(!filtered.length){grid.innerHTML='<div class="empty-state"><h3>No items found</h3><p>There are no items matching this filter.</p></div>';return}
@@ -474,7 +487,7 @@ function renderItems(filter){
     const isFull=p.completed===p.total;
     const typeCls=p.type==="program"?"type-program":"type-project";
     const typeLabel=p.type==="program"?"Program":"Project";
-    const statusCls=p.status==="active"?"status-active":"status-completed";
+    const statusCls='status-'+(p.status||'active');
     return '<a href="'+(p.type==="program"?"program.html":"project.html")+'?id='+p.id+'" class="program-card">'+
       '<div class="program-card-img" style="background-image:url(\''+p.img+'\')">'+
         '<span class="type-badge '+typeCls+'">'+typeLabel+'</span>'+

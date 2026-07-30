@@ -197,6 +197,7 @@
     "featured": [
       {
         "type": "Physical",
+        "status": "planned",
         "title": "WSW Uganda 2026 Flagship Physical Day",
         "text": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
         "date": "10 Oct 2026",
@@ -205,6 +206,7 @@
       },
       {
         "type": "Physical",
+        "status": "planned",
         "title": "The Rocket Revolution — Launch Demonstrations",
         "text": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
         "date": "8 Oct 2026",
@@ -213,16 +215,55 @@
       },
       {
         "type": "Physical",
+        "status": "planned",
         "title": "Outdoor Stargazing And Night Sky Experience",
         "text": "Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
         "date": "10 Oct 2026",
         "location": "Kampala",
         "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Virtual",
+        "status": "proposed",
+        "title": "Online Mission Briefing — WSW Opening",
+        "text": "A live-streamed briefing covering Uganda's WSW 2026 objectives, the Rocket Revolution theme, and how to participate remotely.",
+        "date": "4 Oct 2026",
+        "location": "Online",
+        "image": "img/hero-1.jpg"
+      },
+      {
+        "type": "Physical",
+        "status": "proposed",
+        "title": "Regional Stargazing Night — Mbarara",
+        "text": "Expanding WSW activities to Western Uganda with a public telescope night and astronomy talks at Mbarara University.",
+        "date": "9 Oct 2026",
+        "location": "Mbarara",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "type": "Workshop",
+        "status": "proposed",
+        "title": "CubeSat 101 — Student Workshop",
+        "text": "An introductory hands-on workshop on CubeSat design, mission planning, and student satellite programs in East Africa.",
+        "date": "6 Oct 2026",
+        "location": "Kampala",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Physical",
+        "status": "completed",
+        "title": "WSW 2026 Theme Announcement Webinar",
+        "text": "The official announcement of Uganda's World Space Week 2026 participation and the Rocket Revolution theme.",
+        "date": "26 Jul 2026",
+        "location": "Online",
+        "image": "img/hero-2.jpg"
       }
     ],
     "headlines": [
-      { "type": "Physical", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
-      { "type": "Physical", "title": "CubeSat Integration Workshop", "date": "1 Sep 2026" }
+      { "type": "Physical", "status": "planned", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
+      { "type": "Physical", "status": "planned", "title": "CubeSat Integration Workshop", "date": "1 Sep 2026" },
+      { "type": "Workshop", "status": "proposed", "title": "Rocketry Build Day — Student Edition", "date": "15 Aug 2026" },
+      { "type": "Virtual", "status": "proposed", "title": "Earth Observation Data Training", "date": "22 Sep 2026" }
     ]
   },
 
@@ -253,6 +294,42 @@
       "end": "30 Jun 2026",
       "totalEvents": 8,
       "completedEvents": 8
+    },
+    {
+      "status": "planned",
+      "title": "World Space Week Uganda 2026",
+      "text": "The national World Space Week campaign, connecting Rocket Revolution to astronomy, Earth observation, and local innovation.",
+      "start": "4 Oct",
+      "end": "10 Oct 2026",
+      "totalEvents": 10,
+      "completedEvents": 0
+    },
+    {
+      "status": "proposed",
+      "title": "Uganda Earth Observation Initiative",
+      "text": "Building local capacity for satellite-based Earth observation, data analysis, and applications in agriculture and environment.",
+      "start": "Jan",
+      "end": "Dec 2027",
+      "totalEvents": 12,
+      "completedEvents": 0
+    },
+    {
+      "status": "proposed",
+      "title": "Space for Schools — Teacher Training",
+      "text": "Training secondary school teachers across Uganda to integrate space science and astronomy into the curriculum.",
+      "start": "Sep",
+      "end": "Nov 2026",
+      "totalEvents": 6,
+      "completedEvents": 0
+    },
+    {
+      "status": "proposed",
+      "title": "East African CubeSat Challenge",
+      "text": "A regional CubeSat design competition for university students across East Africa.",
+      "start": "Mar",
+      "end": "Dec 2027",
+      "totalEvents": 8,
+      "completedEvents": 0
     }
   ],
 
@@ -375,7 +452,17 @@
     { "name": "Young Engineers Uganda", "category": "STEM Education", "location": "Uganda", "icon": "book", "featured": true },
     { "name": "Aerobuddies", "category": "Aerospace DIY", "location": "Uganda", "icon": "tool", "featured": true },
     { "name": "NASA Space Apps Kampala", "category": "Hackathon", "location": "Kampala", "icon": "zap", "featured": true },
-    { "name": "GDG On Campus Makerere University", "category": "Developer Community", "location": "Makerere University", "icon": "code", "featured": false }
+    { "name": "GDG On Campus Makerere University", "category": "Developer Community", "location": "Makerere University", "icon": "code", "featured": false },
+
+    { "name": "African Astronomical Society", "category": "Pan-African Astronomy", "location": "Africa", "icon": "star", "featured": true },
+    { "name": "African Space Agency", "category": "Continental Space Agency", "location": "Africa", "icon": "flag", "featured": true },
+    { "name": "East African Astronomical Society", "category": "Regional Astronomy", "location": "East Africa", "icon": "globe", "featured": false },
+    { "name": "Ministry of Science, Technology and Innovation", "category": "Government Ministry", "location": "Uganda", "icon": "building", "featured": true },
+    { "name": "Uganda National Council for Science and Technology", "category": "Research Oversight", "location": "Uganda", "icon": "shield", "featured": false },
+    { "name": "Uganda Communications Commission", "category": "Spectrum Regulation", "location": "Uganda", "icon": "signal", "featured": false },
+    { "name": "Regional Centre for Mapping of Resources for Development", "category": "Regional EO", "location": "Nairobi", "icon": "globe", "featured": false },
+    { "name": "International Astronautical Federation", "category": "Global Space Body", "location": "Paris", "icon": "globe", "featured": false },
+    { "name": "Space Generation Advisory Council", "category": "Youth Space Network", "location": "Global", "icon": "users", "featured": true }
   ],
 
   "teamMembers": [
