@@ -615,9 +615,12 @@ function renderOrgs(orgs) {
   };
 
   let html = '';
-  const communityOrgs = orgs.filter(o => ['Space Outreach','Space Arts And Outreach','Astronomy','Aviation','Law And Policy','Community Network','Research Institute','Pan-African Astronomy','Continental Space Agency','Regional Astronomy','Global Space Body','Youth Space Network'].includes(o.category));
-  const academicOrgs = orgs.filter(o => ['University','Engineering School','Student Branch','Aerospace And Systems','Research Oversight'].includes(o.category));
-  const innovationOrgs = orgs.filter(o => ['Rocketry And Propulsion','Technology Partner','Aerospace Technology','STEM Education','Aerospace DIY','Hackathon','Developer Community','Government Ministry','Spectrum Regulation','Regional EO'].includes(o.category));
+  const categories = {};
+  orgs.forEach(o => {
+    const cat = o.category || 'Other';
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(o);
+  });
 
   function renderGroup(title, items) {
     if (!items.length) return '';
@@ -629,9 +632,9 @@ function renderOrgs(orgs) {
       '</div></div>';
   }
 
-  html += renderGroup('Community & Outreach', communityOrgs);
-  html += renderGroup('Academic & Student', academicOrgs);
-  html += renderGroup('Innovation & Technology', innovationOrgs);
+  Object.keys(categories).sort().forEach(cat => {
+    html += renderGroup(cat, categories[cat]);
+  });
 
   grid.innerHTML = html;
 
