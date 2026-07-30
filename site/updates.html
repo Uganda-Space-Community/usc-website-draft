@@ -283,7 +283,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         <div class="meta">4–10 Oct 2026 · Kampala, Uganda</div>
       </div>
     </div>
-    <div class="featured-slide" style="background-image:url('img/hero-2.jpg')" data-type="news">
+    <div class="featured-slide" style="background-image:url('img/hero-1.jpg')" data-type="news">
       <div class="featured-slide-body">
         <div class="cat">Announcement</div>
         <h2>Space Uganda Opens As A Year-Round Umbrella</h2>
@@ -291,7 +291,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
         <div class="meta">26 Jul 2026 · Space Uganda</div>
       </div>
     </div>
-    <div class="featured-slide" style="background-image:url('img/hero-3.jpg')" data-type="events">
+    <div class="featured-slide" style="background-image:url('img/hero-1.jpg')" data-type="events">
       <div class="featured-slide-body">
         <div class="cat">Flagship Event</div>
         <h2>WSW Uganda 2026 Flagship Physical Day</h2>
@@ -410,7 +410,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       </div>
 
       <!-- Upcoming Events -->
-      <div class="sidebar-section">
+      <div class="sidebar-section" id="upcoming-events">
         <h4>Upcoming</h4>
         <div class="pinned-item">
           <h5>WSW Uganda 2026 Flagship Day</h5>
@@ -615,6 +615,81 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 
+// Load data from JSON
+fetch('data/content.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (!data) return;
+    const newCards = [];
+    if (data.announcements) {
+      data.announcements.forEach(a => {
+        newCards.push({type:'news',title:a.title,desc:a.excerpt,date:a.date,cat:a.category,img:a.image,url:'news.html',programs:[]});
+      });
+    }
+    if (data.events && data.events.featured) {
+      data.events.featured.forEach(e => {
+        newCards.push({type:'events',title:e.title,desc:e.text,date:e.date,cat:e.type,img:e.image,url:'event.html',programs:[]});
+      });
+    }
+    if (newCards.length) {
+      cards.length = 0;
+      newCards.forEach(c => cards.push(c));
+      filterCards();
+    }
+    // Update featured hero slides from announcements
+    if (data.announcements && data.announcements.length) {
+      const storyEl = document.getElementById('featured-story');
+      if (storyEl) {
+        const dotsEl = storyEl.querySelector('.featured-dots');
+        const slides = [];
+        data.announcements.slice(0, 3).forEach((a, i) => {
+          slides.push(`<div class="featured-slide${i === 0 ? ' active' : ''}" style="background-image:url('${a.image || 'img/hero-1.jpg'}')" data-type="news">
+      <div class="featured-slide-body">
+        <div class="cat">${a.category || 'Announcement'}</div>
+        <h2>${a.title}</h2>
+        <p>${a.excerpt || ''}</p>
+        <div class="meta">${a.date || ''}</div>
+      </div>
+    </div>`);
+        });
+        // Remove old slides, keep dots
+        storyEl.querySelectorAll('.featured-slide').forEach(s => s.remove());
+        dotsEl.insertAdjacentHTML('beforebegin', slides.join('\n    '));
+        // Rebuild dots
+        dotsEl.innerHTML = '';
+        data.announcements.slice(0, 3).forEach((_, i) => {
+          dotsEl.innerHTML += `<button class="featured-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`;
+        });
+        // Re-init slideshow
+        const newSlides = storyEl.querySelectorAll('.featured-slide');
+        const newDots = storyEl.querySelectorAll('.featured-dot');
+        let current = 0, timer;
+        function goTo(i) {
+          newSlides[current].classList.remove('active');
+          newDots[current].classList.remove('active');
+          current = i;
+          newSlides[current].classList.add('active');
+          newDots[current].classList.add('active');
+          clearTimeout(timer);
+          timer = setTimeout(() => goTo((current + 1) % newSlides.length), 5000);
+        }
+        newDots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+        goTo(0);
+      }
+    }
+    // Update sidebar upcoming events
+    if (data.events && data.events.featured) {
+      const upcomingSection = document.getElementById('upcoming-events');
+      if (upcomingSection) {
+        const items = data.events.featured.slice(0, 3).map(e =>
+          `<div class="pinned-item"><h5>${e.title}</h5><div class="meta">${e.type || 'Event'} · ${e.date || ''}</div></div>`
+        ).join('');
+        upcomingSection.innerHTML = `<h4>Upcoming</h4>${items}`;
+      }
+    }
+  })
+  .catch(() => {});
+
 // Star field
 document.body.style.setProperty('--star-color',body.classList.contains('dark-mode')?'rgba(255,255,255,0.08)':'rgba(150,155,165,0.18)');
 
@@ -652,16 +727,7 @@ document.querySelectorAll('.filter-option').forEach(opt=>{
 });
 
 // Real announcements and events from Space Uganda
-const cards=[
-  {type:'events',title:'WSW Uganda 2026 Flagship Physical Day',desc:'A full-day national experience with mission briefing, immersive exhibits, Innovation Showcase, space economy panel, and outdoor stargazing.',date:'10 Oct 2026',cat:'Physical',img:'img/hero-1.jpg',url:'event.html',programs:['wsw-2026']},
-  {type:'events',title:'Outdoor Stargazing And Night Sky Experience',desc:'Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation led by Uganda Astronomical Society.',date:'10 Oct 2026',cat:'Physical',img:'img/hero-2.jpg',url:'event.html',programs:['wsw-2026']},
-  {type:'events',title:'The Rocket Revolution — Launch Demonstrations',desc:'Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations by NOA\'s Quest and partners.',date:'8 Oct 2026',cat:'Physical',img:'img/hero-3.jpg',url:'event.html',programs:['wsw-2026']},
-  {type:'news',title:'Space Uganda Opens As A Year-Round Umbrella',desc:'The ecosystem is organising under one national domain for communities, campaigns, partners, and public opportunities.',date:'26 Jul 2026',cat:'Ecosystem',img:'img/hero-1.jpg',url:'news.html',programs:[]},
-  {type:'news',title:'WSW Uganda 2026 Theme Confirmed',desc:'World Space Week 2026 will run under the global theme Rocket Revolution from October 4-10.',date:'26 Jul 2026',cat:'World Space Week',img:'img/hero-2.jpg',url:'news.html',programs:['wsw-2026']},
-  {type:'news',title:'Gallery Archive Being Prepared',desc:'The public gallery is ready for photos and videos from Uganda Space Week activities.',date:'26 Jul 2026',cat:'Gallery',img:'img/hero-3.jpg',url:'news.html',programs:[]},
-  {type:'opportunities',title:'African Space Agency Scholarship',desc:'Full scholarship for African students pursuing space science.',date:'30 Sep 2026',cat:'Scholarship',img:'img/hero-1.jpg',url:'opportunity.html',programs:[]},
-  {type:'opportunities',title:'Uganda Space Agency Internship',desc:'6-month internship at the Uganda Space Agency.',date:'15 Aug 2026',cat:'Internship',img:'img/hero-2.jpg',url:'opportunity.html',programs:[]},
-];
+let cards=[];
 
 const PER_PAGE=6;
 let currentPage=1;

@@ -84,12 +84,14 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .org-category h3{font-family:'Inter',sans-serif;font-size:1rem;font-weight:400;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .org-category h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
 .org-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.org-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);transition:border-color 0.2s;cursor:pointer}
+.org-list>*{min-width:0}
+.org-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);transition:border-color 0.2s;cursor:pointer;min-width:0;overflow:hidden}
 .org-item:hover{border-color:var(--gold)}
 .org-item .icon{width:36px;height:36px;border-radius:var(--radius);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
 .org-item .icon svg{width:16px;height:16px}
-.org-item .info h4{font-family:'Inter',sans-serif;font-size:0.84rem;font-weight:400;margin-bottom:2px}
-.org-item .info .type{font-size:0.68rem;color:var(--text-3)}
+.org-item .info{min-width:0;overflow:hidden}
+.org-item .info h4{font-family:'Inter',sans-serif;font-size:0.84rem;font-weight:400;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.org-item .info .type{font-size:0.68rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
 .btn-gold{background:var(--gold);color:#fff}
@@ -117,14 +119,15 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .active-tag:hover{background:rgba(184,149,63,0.15)}
 .active-tag svg{width:12px;height:12px}
 .crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.crew-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color 0.2s,box-shadow 0.2s}
+.crew-grid>*{min-width:0}
+.crew-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color 0.2s,box-shadow 0.2s;overflow:hidden}
 .crew-card:hover{border-color:var(--border-hover);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 .crew-card-top{display:flex;gap:14px;margin-bottom:12px}
 .crew-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
 .crew-avatar svg{width:22px;height:22px}
-.crew-card-top .info h4{font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:400;margin-bottom:2px}
+.crew-card-top .info h4{font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:400;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis}
 .crew-card-top .identity{font-size:0.72rem;color:var(--gold);font-weight:500}
-.crew-summary{font-size:0.8rem;color:var(--text-2);line-height:1.6;margin-bottom:12px}
+.crew-summary{font-size:0.8rem;color:var(--text-2);line-height:1.6;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .crew-affiliations{display:flex;gap:4px;flex-wrap:wrap}
 .crew-affiliations span{font-size:0.62rem;padding:3px 8px;background:var(--bg-alt-subtle);color:var(--text-3);border-radius:100px;border:1px solid var(--border)}
 
@@ -318,48 +321,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
       <p>Institutions, agencies, companies, and communities in Uganda's space ecosystem.</p>
     </div>
         <div class="org-categories">
-
-    <div class="org-category">
-      <h3><span class="dot"></span>Community &amp; Outreach</h3>
-      <div class="org-list">
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="info"><h4>Space Junkies Uganda</h4><div class="type">Space Outreach — Kampala</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="info"><h4>StellarView Technologies</h4><div class="type">Space Arts And Outreach — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div><div class="info"><h4>Uganda Astronomical Society</h4><div class="type">Astronomy — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 13l-2-2"/><path d="M9.5 2.5L14 7l-2.5 2.5"/><path d="M14 7l5 5"/><path d="M9.5 13.5L14 18l-2.5 2.5"/><path d="M14 18l5 5"/></svg></div><div class="info"><h4>Holistic Inclusive Aviation Africa</h4><div class="type">Aviation — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>KTA Advocates Centre for Law, Policy and Innovation Initiative</h4><div class="type">Law And Policy — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div class="info"><h4>Uganda Space Community</h4><div class="type">Community Network — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div><div class="info"><h4>Uganda Industrial Research Institute</h4><div class="type">Research Institute — Uganda</div></div></div>
-      </div>
-    </div>
-
-    <div class="org-category">
-      <h3><span class="dot"></span>Academic &amp; Student</h3>
-      <div class="org-list">
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div class="info"><h4>Makerere University</h4><div class="type">University — Kampala</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div><div class="info"><h4>Makerere University CEDAT</h4><div class="type">Engineering School — Kampala</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="info"><h4>IEEE Makerere Student Branch</h4><div class="type">Student Branch — Makerere University</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/></svg></div><div class="info"><h4>IEEE AESS SBC Makerere</h4><div class="type">Aerospace And Systems — Makerere University</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div class="info"><h4>Kyambogo University</h4><div class="type">University — Kampala</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div><div class="info"><h4>Mbarara University of Science and Technology</h4><div class="type">University — Mbarara</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div class="info"><h4>Busitema University</h4><div class="type">University — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/></svg></div><div class="info"><h4>Uganda Christian University</h4><div class="type">University — Mukono</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div class="info"><h4>Nkumba University</h4><div class="type">University — Uganda</div></div></div>
-      </div>
-    </div>
-
-    <div class="org-category">
-      <h3><span class="dot"></span>Innovation &amp; Technology</h3>
-      <div class="org-list">
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="info"><h4>NOA's Quest</h4><div class="type">Rocketry And Propulsion — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="info"><h4>Infinity Computers</h4><div class="type">Technology Partner — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 13l-2-2"/><path d="M9.5 2.5L14 7l-2.5 2.5"/><path d="M14 7l5 5"/></svg></div><div class="info"><h4>Nile Orbitals</h4><div class="type">Aerospace Technology — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div class="info"><h4>Young Engineers Uganda</h4><div class="type">STEM Education — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="info"><h4>Aerobuddies</h4><div class="type">Aerospace DIY — Uganda</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="info"><h4>NASA Space Apps Kampala</h4><div class="type">Hackathon — Kampala</div></div></div>
-        <div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div><div class="info"><h4>GDG On Campus Makerere University</h4><div class="type">Developer Community — Makerere University</div></div></div>
-      </div>
-    </div>
-
+    <div id="org-grid"></div>
     </div>
 
     <div style="margin-top:32px;padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin-bottom:40px">
@@ -594,6 +556,95 @@ const navBar=document.querySelector('.nav-bar');const hero=document.querySelecto
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+
+// Load data from JSON
+fetch('data/content.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data) {
+      if (data.organizations) renderOrgs(data.organizations);
+      if (data.teamMembers) {
+        crew.length = 0;
+        data.teamMembers.forEach(m => {
+          crew.push({
+            name: m.name,
+            identity: m.role.toLowerCase().includes('founder') || m.role.toLowerCase().includes('ceo') ? 'entrepreneur' :
+                      m.role.toLowerCase().includes('coordinator') || m.role.toLowerCase().includes('director') || m.role.toLowerCase().includes('educator') || m.role.toLowerCase().includes('operations') ? 'manager' :
+                      m.role.toLowerCase().includes('policy') || m.role.toLowerCase().includes('partnerships') ? 'policy' :
+                      m.role.toLowerCase().includes('engineer') || m.role.toLowerCase().includes('cto') ? 'engineer' :
+                      m.role.toLowerCase().includes('student') ? 'student' : 'researcher',
+            summary: m.bio,
+            interests: [],
+            affiliations: [m.organisation.split(' ')[0].substring(0,4).toUpperCase()]
+          });
+        });
+        updateCounts();
+        renderCrew();
+        buildMobileChips();
+        syncMobileChips();
+      }
+    }
+  })
+  .catch(() => {});
+
+function renderOrgs(orgs) {
+  const grid = document.getElementById('org-grid');
+  if (!grid || !orgs) return;
+
+  const categories = {};
+  orgs.forEach(o => {
+    const cat = o.category || 'Other';
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(o);
+  });
+
+  const iconMap = {
+    users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    star: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>',
+    graduation: '<path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',
+    rocket: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    building: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>',
+    tool: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    monitor: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+    book: '<path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/>',
+    plane: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>',
+    zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    code: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>'
+  };
+
+  let html = '';
+  const communityOrgs = orgs.filter(o => ['Space Outreach','Space Arts And Outreach','Astronomy','Aviation','Law And Policy','Community Network','Research Institute'].includes(o.category));
+  const academicOrgs = orgs.filter(o => ['University','Engineering School','Student Branch','Aerospace And Systems'].includes(o.category));
+  const innovationOrgs = orgs.filter(o => ['Rocketry And Propulsion','Technology Partner','Aerospace Technology','STEM Education','Aerospace DIY','Hackathon','Developer Community'].includes(o.category));
+
+  function renderGroup(title, items) {
+    if (!items.length) return '';
+    return '<div class="org-category"><h3><span class="dot"></span>' + title + '</h3><div class="org-list">' +
+      items.map(o => {
+        const icon = iconMap[o.icon] || iconMap.globe;
+        return '<div class="org-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' + icon + '</svg></div><div class="info"><h4>' + o.name + '</h4><div class="type">' + o.category + ' \u2014 ' + o.location + '</div></div></div>';
+      }).join('') +
+      '</div></div>';
+  }
+
+  html += renderGroup('Community & Outreach', communityOrgs);
+  html += renderGroup('Academic & Student', academicOrgs);
+  html += renderGroup('Innovation & Technology', innovationOrgs);
+
+  grid.innerHTML = html;
+
+  grid.querySelectorAll('.org-item').forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+      const name = this.querySelector('h4')?.textContent;
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      window.location = 'organization.html?id=' + slug;
+    });
+  });
+}
+
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -907,21 +958,7 @@ document.querySelectorAll('.eco-sub-btn').forEach(btn=>{
   });
 });
 
-// Members data
-const crew=[
-  {name:'Ronnie Atuhaire',identity:'manager',summary:'National Coordinator, World Space Week Uganda 2026. Leads Space Junkies Uganda and connects young Ugandans, institutions, and partners to the global space community.',interests:['space-entrepreneurship','education'],affiliations:['SJI','WSW']},
-  {name:'Zoora Harrison',identity:'entrepreneur',summary:'Founder and CEO of StellarView Technologies, Uganda\'s first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.',interests:['education','astrophysics'],affiliations:['SVT','WSW']},
-  {name:'Nabbaale Grace Lydia',identity:'student',summary:'Electrical Engineering student at Makerere University CEDAT and StellarView Technologies chapter lead, with a strong interest in space science and its potential for Africa\'s development.',interests:['satellite-tech','education'],affiliations:['MAK','SVT']},
-  {name:'Halimah Bukirwa',identity:'entrepreneur',summary:'Founder of Aerobuddies, bringing a people-centred passion for aviation, technology, and problem-solving, building practical pathways for meaningful impact in Uganda\'s aviation ecosystem.',interests:['robotics','education'],affiliations:['AERO','AV']},
-  {name:'Angu\'zu Raymond',identity:'policy',summary:'Lawyer, Uganda National Point of Contact to the Space Generation Advisory Council, and Policy and Programs Assistant at KTA Advocates Centre for Law, Policy and Innovation Initiative.',interests:['space-policy'],affiliations:['KTA','SGAC']},
-  {name:'Capt Simon Bruno W. Ssenyange',identity:'manager',summary:'Executive Director of Holistic Inclusive Aviation Africa, advancing inclusive aviation and STEAM pathways for young aviation and space professionals across Africa.',interests:['aerospace','education'],affiliations:['HIAA']},
-  {name:'Navneet Singh',identity:'engineer',summary:'Chief Technology Officer at Nile Orbitals, contributing aerospace technology leadership and technical perspective to the Space Uganda ecosystem.',interests:['satellite-tech','aerospace'],affiliations:['NO']},
-  {name:'O. Samuel Oumo',identity:'researcher',summary:'Information systems professional and futurist thinking, writing, and building toward systems that help society imagine a greater world beyond the present.',interests:['data-science','astrophysics'],affiliations:['UAS']},
-  {name:'Dr Malcom Chris B',identity:'researcher',summary:'Supports the astronomy organising team, helping connect public audiences to observation, astronomy learning, and Uganda\'s growing space community.',interests:['astrophysics','education'],affiliations:['UAS']},
-  {name:'Bwengye Cosmas',identity:'researcher',summary:'Contributes to the Uganda Astronomical Society organising team, supporting astronomy outreach and community participation for national space activities.',interests:['astrophysics','education'],affiliations:['UAS']},
-  {name:'Twesigye Duncan',identity:'manager',summary:'STEAM Educator and Coach contributing STEAM education, coaching, and practical learning support for young people engaging with aerospace, rocketry, and space science.',interests:['education','robotics'],affiliations:['NOA']},
-  {name:'Ayebazibwe Brinton',identity:'manager',summary:'Chief Operations at StellarView Technologies Ltd, supporting operations and coordination, helping turn space outreach ideas into organised public programmes.',interests:['education','space-entrepreneurship'],affiliations:['SVT']},
-];
+let crew=[];
 
 const interestLabels={'earth-observation':'Earth Observation','astrophysics':'Astrophysics','satellite-tech':'Satellite Tech','space-policy':'Space Policy','data-science':'Data Science','robotics':'Robotics','education':'Education','aerospace':'Aerospace Engineering','space-medicine':'Space Medicine','planetary':'Planetary Science','space-entrepreneurship':'Space Entrepreneurship'};
 const identityLabels={researcher:'Researcher',student:'Student',engineer:'Engineer',scientist:'Scientist',journalist:'Journalist',policy:'Policy Analyst',manager:'Coordinator / Manager',entrepreneur:'Founder / CEO'};
@@ -1076,16 +1113,6 @@ updateCounts();
 buildMobileChips();
 syncMobileChips();
 renderCrew();
-
-const orgSlugs={'Space Junkies Uganda':'space-junkies-uganda','StellarView Technologies':'stellerview-technologies','Uganda Astronomical Society':'uganda-astronomical-society','Holistic Inclusive Aviation Africa':'holistic-inclusive-aviation-africa','KTA Advocates Centre for Law, Policy and Innovation Initiative':'kta-advocates','Uganda Space Community':'uganda-space-community','Uganda Industrial Research Institute':'uganda-industrial-research-institute','Makerere University':'makerere-university','Makerere University CEDAT':'makerere-university-cedat','IEEE Makerere Student Branch':'ieee-makerere-student-branch','IEEE AESS SBC Makerere':'ieee-aess-sbc-makerere','Kyambogo University':'kyambogo-university','Mbarara University of Science and Technology':'mbarara-university','Busitema University':'busitema-university','Uganda Christian University':'uganda-christian-university','Nkumba University':'nkumba-university',"NOA's Quest":'noas-quest','Infinity Computers':'infinity-computers','Nile Orbitals':'nile-orbitals','Young Engineers Uganda':'young-engineers-uganda','Aerobuddies':'aerobuddies','NASA Space Apps Kampala':'nasa-space-apps-kampala','GDG On Campus Makerere University':'gdg-on-campus-makerere-university'};
-document.querySelectorAll('.org-item').forEach(item=>{
-  item.style.cursor='pointer';
-  item.addEventListener('click',function(){
-    const name=this.querySelector('h4')?.textContent;
-    const slug=orgSlugs[name]||name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-    window.location='organization.html?id='+slug;
-  });
-});
 
 // Modal system
 document.querySelectorAll('[data-modal]').forEach(btn=>{

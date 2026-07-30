@@ -413,6 +413,30 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 
+fetch('data/content.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data) {
+      const newItems = [];
+      if (data.programmeTracks) {
+        data.programmeTracks.forEach(p => {
+          newItems.push({id:p.id,type:'program',title:p.title,desc:p.description,status:'active',completed:0,total:1,start:'4 Oct 2026',end:'10 Oct 2026',tags:[p.track],img:p.image});
+        });
+      }
+      if (data.activities) {
+        data.activities.forEach(a => {
+          newItems.push({id:a.title.toLowerCase().replace(/[^a-z0-9]+/g,'-'),type:'project',title:a.title,desc:a.summary,status:'active',completed:0,total:1,start:'Ongoing',end:'Ongoing',tags:[a.category],img:a.image});
+        });
+      }
+      if (newItems.length) {
+        items.length = 0;
+        newItems.forEach(i => items.push(i));
+        renderItems('all');
+      }
+    }
+  })
+  .catch(() => {});
+
 // Featured slideshow
 (function(){
   const slides=document.querySelectorAll('.featured-slide');
@@ -432,18 +456,8 @@ USC.updateNav();
   goTo(0);
 })();
 
-// Items data (WSW Uganda 2026 programme + activities)
-const items=[
-  {id:"wsw-2026",type:"program",title:"World Space Week Uganda 2026",desc:"Uganda's flagship national campaign for World Space Week 2026, connecting Rocket Revolution to astronomy, Earth observation, aerospace engineering, and local innovation.",status:"active",completed:0,total:4,start:"4 Oct 2026",end:"10 Oct 2026",tags:["Campaign","National"],img:"img/hero-1.jpg"},
-  {id:"earth-space-for-uganda",type:"program",title:"Earth & Space for Uganda",desc:"Earth observation, climate, water, food security, and Uganda's space journey through practical satellite-data applications.",status:"active",completed:0,total:1,start:"4 Oct 2026",end:"10 Oct 2026",tags:["Earth Observation","Track"],img:"img/hero-2.jpg"},
-  {id:"rocket-revolution",type:"program",title:"The Rocket Revolution",desc:"Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",status:"active",completed:0,total:1,start:"4 Oct 2026",end:"10 Oct 2026",tags:["Aerospace","Track"],img:"img/hero-3.jpg"},
-  {id:"beyond-earth",type:"program",title:"Beyond Earth",desc:"Satellite communications, AI, robotics, astrobiology, space medicine, and planetary engineering.",status:"active",completed:0,total:1,start:"4 Oct 2026",end:"10 Oct 2026",tags:["Frontier Tech","Track"],img:"img/hero-1.jpg"},
-  {id:"stargazing-experience",type:"program",title:"Outdoor Stargazing And Night Sky Experience",desc:"A standalone evening experience with telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",status:"active",completed:0,total:1,start:"10 Oct 2026",end:"10 Oct 2026",tags:["Astronomy","Experience"],img:"img/hero-2.jpg"},
-  {id:"star-gazing",type:"project",title:"Star Gazing",desc:"Guided telescope nights that make Uganda's night sky easier to see, understand, and love.",status:"active",completed:0,total:1,start:"Ongoing",end:"Ongoing",tags:["Astronomy","Outreach"],img:"img/hero-3.jpg"},
-  {id:"stem-outreach",type:"project",title:"STEM Outreach",desc:"Hands-on space science sessions for schools, universities, youth groups, and public learning spaces.",status:"active",completed:0,total:1,start:"Ongoing",end:"Ongoing",tags:["Education","STEM"],img:"img/hero-1.jpg"},
-  {id:"space-bingos-trivias",type:"project",title:"Space Bingos & Trivias",desc:"Playful space learning experiences that make astronomy, missions, and STEM knowledge social.",status:"active",completed:0,total:1,start:"Ongoing",end:"Ongoing",tags:["Public Engagement","Games"],img:"img/hero-2.jpg"},
-  {id:"industrial-visits",type:"project",title:"Industrial Visits",desc:"Structured visits that connect learners to laboratories, engineering spaces, innovators, and industry mentors.",status:"active",completed:0,total:1,start:"Ongoing",end:"Ongoing",tags:["Industry","Learning"],img:"img/hero-3.jpg"}
-];
+// Items data — populated from data/content.json
+let items=[];
 
 function renderItems(filter){
   const grid=document.getElementById("programsGrid");

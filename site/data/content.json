@@ -11,9 +11,9 @@
     "subtitle": "Connecting students, researchers, professionals, and organizations across Uganda's growing space ecosystem.",
     "cta": "Join The Constellation",
     "images": [
-      { "src": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80", "alt": "Earth from space at night" },
-      { "src": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=80", "alt": "Deep space nebula" },
-      { "src": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&q=80", "alt": "Moon surface" }
+      { "src": "img/hero-1.jpg", "alt": "Earth from space at night" },
+      { "src": "img/hero-2.jpg", "alt": "Deep space nebula" },
+      { "src": "img/hero-3.jpg", "alt": "Moon surface" }
     ],
     "scrollText": "SCROLL"
   },
@@ -23,49 +23,40 @@
     "tags": ["Scientific", "Community-driven", "Proudly Ugandan", "Educational", "Aspirational"],
     "slideshow": [
       {
-        "type": "Featured Event",
-        "title": "Satellite Applications Workshop",
-        "description": "Hands-on satellite data processing and Earth observation. Learn to work with Sentinel-2 imagery and extract meaningful insights for agricultural monitoring.",
-        "date": "12 Jul 2026",
-        "location": "Makerere University",
-        "duration": 6000,
-        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800&q=80"
-      },
-      {
         "type": "Campaign",
-        "title": "National Astronomy Week 2026",
-        "description": "A week of telescopes, talks, and stargazing across 5 Ugandan cities.",
-        "date": "14–20 Jul 2026",
-        "location": "4/7 events completed",
+        "title": "World Space Week Uganda 2026",
+        "description": "Uganda's flagship national campaign for World Space Week 2026, connecting Rocket Revolution to astronomy, Earth observation, aerospace engineering, and local innovation.",
+        "date": "4–10 Oct 2026",
+        "location": "Kampala",
         "duration": 6000,
-        "image": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+        "image": "img/hero-1.jpg"
       },
       {
-        "type": "Update",
-        "title": "Uganda Signs Artemis Accords",
-        "description": "Uganda becomes the latest African nation to commit to responsible space exploration principles.",
-        "date": "15 Jul 2026",
-        "location": "Ministry of Science & Technology",
-        "duration": 4000,
-        "image": "https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=800&q=80"
+        "type": "Featured Event",
+        "title": "WSW Uganda 2026 Flagship Physical Day",
+        "description": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
+        "date": "10 Oct 2026",
+        "location": "Kampala",
+        "duration": 6000,
+        "image": "img/hero-2.jpg"
       },
       {
-        "type": "Event",
-        "title": "Community Rocketry Challenge",
-        "description": "Student teams design and launch model rockets in this annual competition.",
-        "date": "5 Aug 2026",
+        "type": "Physical",
+        "title": "The Rocket Revolution — Launch Demonstrations",
+        "description": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
+        "date": "8 Oct 2026",
+        "location": "Kampala",
+        "duration": 6000,
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Physical",
+        "title": "Outdoor Stargazing And Night Sky Experience",
+        "description": "Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
+        "date": "10 Oct 2026",
         "location": "Kampala",
         "duration": 4000,
-        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80"
-      },
-      {
-        "type": "Campaign",
-        "title": "CubeSat Build Series",
-        "description": "Monthly hands-on workshops building Uganda's first university CubeSat.",
-        "date": "Jun–Dec 2026",
-        "location": "2/6 completed",
-        "duration": 4000,
-        "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=800&q=80"
+        "image": "img/hero-1.jpg"
       }
     ]
   },
@@ -137,20 +128,20 @@
 
   "community": {
     "groups": [
-      { "title": "Earth Observation", "members": 48, "icon": "globe" },
-      { "title": "Astrophysics", "members": 32, "icon": "layers" },
-      { "title": "Satellite Tech", "members": 27, "icon": "monitor" },
-      { "title": "Space Policy", "members": 19, "icon": "flag" },
-      { "title": "Data Science", "members": 36, "icon": "stack" },
-      { "title": "Robotics", "members": 21, "icon": "wrench" },
-      { "title": "Education", "members": 44, "icon": "book" },
-      { "title": "Defense & Security", "members": 14, "icon": "shield" }
+      { "title": "Earth Observation", "members": 38, "icon": "globe" },
+      { "title": "Astrophysics", "members": 22, "icon": "layers" },
+      { "title": "Satellite Tech", "members": 18, "icon": "monitor" },
+      { "title": "Space Policy", "members": 12, "icon": "flag" },
+      { "title": "Data Science", "members": 25, "icon": "stack" },
+      { "title": "Robotics", "members": 15, "icon": "wrench" },
+      { "title": "Education", "members": 34, "icon": "book" },
+      { "title": "Defense & Security", "members": 8, "icon": "shield" }
     ],
     "chapters": [
-      { "region": "Central", "cities": "Kampala, Wakiso, Mukono, Mpigi", "members": 124, "orgs": 8 },
-      { "region": "Eastern", "cities": "Jinja, Mbale, Tororo, Iganga", "members": 68, "orgs": 4 },
-      { "region": "Western", "cities": "Mbarara, Fort Portal, Kasese", "members": 52, "orgs": 3 },
-      { "region": "Northern", "cities": "Gulu, Lira, Arua, Kitgum", "members": 38, "orgs": 2 }
+      { "region": "Central", "cities": "Kampala, Wakiso, Mukono, Mpigi", "members": 96, "orgs": 12 },
+      { "region": "Eastern", "cities": "Jinja, Mbale, Tororo, Iganga", "members": 42, "orgs": 3 },
+      { "region": "Western", "cities": "Mbarara, Fort Portal, Kasese", "members": 35, "orgs": 3 },
+      { "region": "Northern", "cities": "Gulu, Lira, Arua, Kitgum", "members": 22, "orgs": 2 }
     ]
   },
 
@@ -162,7 +153,7 @@
         "text": "Uganda becomes the latest African nation to commit to responsible space exploration principles.",
         "date": "15 Jul 2026",
         "source": "Ministry of Science & Technology",
-        "image": "https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=600&q=80"
+        "image": "img/hero-1.jpg"
       },
       {
         "category": "University",
@@ -170,7 +161,7 @@
         "text": "New dedicated laboratory for satellite design and testing at Makerere University.",
         "date": "10 Jul 2026",
         "source": "Makerere University",
-        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=600&q=80"
+        "image": "img/hero-2.jpg"
       },
       {
         "category": "Infrastructure",
@@ -178,7 +169,7 @@
         "text": "Two new ground stations added to the national satellite receiving network.",
         "date": "8 Jul 2026",
         "source": "Uganda National Meteorology Authority",
-        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+        "image": "img/hero-3.jpg"
       },
       {
         "category": "Competition",
@@ -186,7 +177,7 @@
         "text": "Student teams invited to compete in the annual rocketry challenge.",
         "date": "3 Jul 2026",
         "source": "Kampala",
-        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=600&q=80"
+        "image": "img/hero-1.jpg"
       }
     ],
     "headlines": [
@@ -196,42 +187,41 @@
   },
 
   "events": {
+    "campaign": {
+      "name": "World Space Week Uganda 2026",
+      "theme": "Rocket Revolution",
+      "startDate": "2026-10-04",
+      "endDate": "2026-10-10",
+      "description": "Uganda's flagship national campaign for World Space Week 2026, connecting Rocket Revolution to astronomy, Earth observation, aerospace engineering, and local innovation."
+    },
     "featured": [
       {
         "type": "Physical",
-        "title": "Satellite Applications Workshop",
-        "text": "Hands-on satellite data processing and Earth observation with Sentinel-2 imagery.",
-        "date": "12 Jul 2026",
-        "location": "Makerere University",
-        "image": "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=600&q=80"
-      },
-      {
-        "type": "Webinar",
-        "title": "Uganda Space Pioneers — Ep. 4",
-        "text": "Dr. Sarah Nabukenya on Uganda's first CubeSat mission.",
-        "date": "18 Jul 2026",
-        "location": "Online",
-        "image": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80"
-      },
-      {
-        "type": "Competition",
-        "title": "Community Rocketry Challenge",
-        "text": "Student teams design and launch model rockets.",
-        "date": "5 Aug 2026",
+        "title": "WSW Uganda 2026 Flagship Physical Day",
+        "text": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
+        "date": "10 Oct 2026",
         "location": "Kampala",
-        "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=600&q=80"
+        "image": "img/hero-1.jpg"
       },
       {
         "type": "Physical",
-        "title": "Observation Night",
-        "text": "Public stargazing event with telescopes at Makerere Observatory.",
-        "date": "12 Aug 2026",
-        "location": "Makerere University",
-        "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80"
+        "title": "The Rocket Revolution — Launch Demonstrations",
+        "text": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
+        "date": "8 Oct 2026",
+        "location": "Kampala",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "type": "Physical",
+        "title": "Outdoor Stargazing And Night Sky Experience",
+        "text": "Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
+        "date": "10 Oct 2026",
+        "location": "Kampala",
+        "image": "img/hero-3.jpg"
       }
     ],
     "headlines": [
-      { "type": "Webinar", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
+      { "type": "Physical", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
       { "type": "Physical", "title": "CubeSat Integration Workshop", "date": "1 Sep 2026" }
     ]
   },
@@ -263,6 +253,45 @@
       "end": "30 Jun 2026",
       "totalEvents": 8,
       "completedEvents": 8
+    }
+  ],
+
+  "programmeTracks": [
+    {
+      "id": "earth-space",
+      "title": "Earth & Space for Uganda",
+      "track": "Earth Observation",
+      "leadOrganisation": "StellarView, NOAS, Uganda Astronomical Society, GIS community, and partner universities",
+      "description": "Earth observation, climate, water, food security, and Uganda's space journey through practical satellite-data applications.",
+      "format": "PHYSICAL",
+      "image": "img/hero-1.jpg"
+    },
+    {
+      "id": "rocket-revolution",
+      "title": "The Rocket Revolution",
+      "track": "Aerospace Engineering",
+      "leadOrganisation": "NOA's Quest, Nakuja Project, and Uganda Astronomical Society",
+      "description": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
+      "format": "PHYSICAL",
+      "image": "img/hero-2.jpg"
+    },
+    {
+      "id": "beyond-earth",
+      "title": "Beyond Earth",
+      "track": "Frontier Space Systems",
+      "leadOrganisation": "Space Junkies Uganda, NOAS, Nakuja Project, Uganda Astronomical Society, NOA, and university partners",
+      "description": "Satellite communications, AI, robotics, astrobiology, space medicine, and planetary engineering.",
+      "format": "PHYSICAL",
+      "image": "img/hero-3.jpg"
+    },
+    {
+      "id": "stargazing",
+      "title": "Outdoor Stargazing And Night Sky Experience",
+      "track": "Astronomy",
+      "leadOrganisation": "Uganda Astronomical Society",
+      "description": "A standalone evening experience with telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
+      "format": "PHYSICAL",
+      "image": "img/hero-1.jpg"
     }
   ],
 
@@ -311,10 +340,10 @@
 
   "spotlight": {
     "label": "Featured Member",
-    "name": "Dr. Sarah Nabukenya",
-    "role": "Senior Lecturer, Department of Physics — Makerere University",
-    "quote": "The Uganda Space Community has connected me with collaborators across the continent. It's becoming the central hub for everything space in Uganda.",
-    "tags": ["Earth Observation", "Satellite Comms", "GIS"],
+    "name": "Zoora Harrison",
+    "role": "Founder and CEO — StellarView Technologies",
+    "quote": "StellarView Technologies is Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.",
+    "tags": ["Space Education", "Outreach", "STEM Media"],
     "stats": [
       { "value": "42", "label": "Events This Year" },
       { "value": "8+", "label": "Countries" },
@@ -323,11 +352,214 @@
     ]
   },
 
+  "organizations": [
+    { "name": "Space Junkies Uganda", "category": "Space Outreach", "location": "Kampala", "icon": "users", "featured": true },
+    { "name": "StellarView Technologies", "category": "Space Arts And Outreach", "location": "Uganda", "icon": "globe", "featured": true },
+    { "name": "Uganda Astronomical Society", "category": "Astronomy", "location": "Uganda", "icon": "star", "featured": true },
+    { "name": "Holistic Inclusive Aviation Africa", "category": "Aviation", "location": "Uganda", "icon": "plane", "featured": false },
+    { "name": "KTA Advocates Centre for Law, Policy and Innovation Initiative", "category": "Law And Policy", "location": "Uganda", "icon": "shield", "featured": false },
+    { "name": "Uganda Space Community", "category": "Community Network", "location": "Uganda", "icon": "globe", "featured": false },
+    { "name": "Uganda Industrial Research Institute", "category": "Research Institute", "location": "Uganda", "icon": "building", "featured": false },
+    { "name": "Makerere University", "category": "University", "location": "Kampala", "icon": "graduation", "featured": true },
+    { "name": "Makerere University CEDAT", "category": "Engineering School", "location": "Kampala", "icon": "tool", "featured": true },
+    { "name": "IEEE Makerere Student Branch", "category": "Student Branch", "location": "Makerere University", "icon": "users", "featured": true },
+    { "name": "IEEE AESS SBC Makerere", "category": "Aerospace And Systems", "location": "Makerere University", "icon": "star", "featured": true },
+    { "name": "Kyambogo University", "category": "University", "location": "Kampala", "icon": "graduation", "featured": false },
+    { "name": "Mbarara University of Science and Technology", "category": "University", "location": "Mbarara", "icon": "graduation", "featured": false },
+    { "name": "Busitema University", "category": "University", "location": "Uganda", "icon": "graduation", "featured": false },
+    { "name": "Uganda Christian University", "category": "University", "location": "Mukono", "icon": "graduation", "featured": false },
+    { "name": "Nkumba University", "category": "University", "location": "Uganda", "icon": "graduation", "featured": false },
+    { "name": "NOA's Quest", "category": "Rocketry And Propulsion", "location": "Uganda", "icon": "rocket", "featured": true },
+    { "name": "Infinity Computers", "category": "Technology Partner", "location": "Uganda", "icon": "monitor", "featured": true },
+    { "name": "Nile Orbitals", "category": "Aerospace Technology", "location": "Uganda", "icon": "rocket", "featured": true },
+    { "name": "Young Engineers Uganda", "category": "STEM Education", "location": "Uganda", "icon": "book", "featured": true },
+    { "name": "Aerobuddies", "category": "Aerospace DIY", "location": "Uganda", "icon": "tool", "featured": true },
+    { "name": "NASA Space Apps Kampala", "category": "Hackathon", "location": "Kampala", "icon": "zap", "featured": true },
+    { "name": "GDG On Campus Makerere University", "category": "Developer Community", "location": "Makerere University", "icon": "code", "featured": false }
+  ],
+
+  "teamMembers": [
+    {
+      "name": "Ronnie Atuhaire",
+      "role": "National Coordinator, World Space Week Uganda 2026",
+      "organisation": "Space Junkies Uganda",
+      "bio": "Ronnie leads Space Junkies Uganda and coordinates World Space Week Uganda 2026, connecting young Ugandans, institutions, and partners to the global space community.",
+      "image": "img/hero-1.jpg",
+      "featured": true
+    },
+    {
+      "name": "Zoora Harrison",
+      "role": "Founder and CEO",
+      "organisation": "StellarView Technologies",
+      "bio": "Founder and CEO of StellarView Technologies, Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.",
+      "image": "img/hero-2.jpg",
+      "featured": true
+    },
+    {
+      "name": "Nabbaale Grace Lydia",
+      "role": "Chapter Lead",
+      "organisation": "Makerere University",
+      "bio": "Electrical Engineering student at Makerere University CEDAT and StellarView Technologies chapter lead, with a strong interest in space science and its potential for Africa's development.",
+      "image": "img/hero-3.jpg",
+      "featured": true
+    },
+    {
+      "name": "Halimah Bukirwa",
+      "role": "Founder",
+      "organisation": "Aerobuddies",
+      "bio": "Founder of Aerobuddies, bringing a people-centred passion for aviation, technology, and problem-solving, building practical pathways for meaningful impact in Uganda's aviation ecosystem.",
+      "image": "img/hero-1.jpg",
+      "featured": true
+    },
+    {
+      "name": "Angu'zu Raymond",
+      "role": "Partnerships",
+      "organisation": "KTA Advocates",
+      "bio": "Lawyer, Uganda National Point of Contact to the Space Generation Advisory Council, and Policy and Programs Assistant at KTA Advocates Centre for Law, Policy and Innovation Initiative.",
+      "image": "img/hero-2.jpg",
+      "featured": true
+    },
+    {
+      "name": "Capt Simon Bruno W. Ssenyange",
+      "role": "Executive Director",
+      "organisation": "Holistic Inclusive Aviation Africa",
+      "bio": "Simon leads Holistic Inclusive Aviation Africa, advancing inclusive aviation and STEAM pathways for young aviation and space professionals across Africa.",
+      "image": "img/hero-3.jpg",
+      "featured": false
+    },
+    {
+      "name": "Navneet Singh",
+      "role": "Chief Technology Officer",
+      "organisation": "Nile Orbitals",
+      "bio": "Navneet contributes aerospace technology leadership and technical perspective through Nile Orbitals and the wider Space Uganda ecosystem.",
+      "image": "img/hero-1.jpg",
+      "featured": false
+    },
+    {
+      "name": "O. Samuel Oumo",
+      "role": "Member",
+      "organisation": "Uganda Astronomical Society",
+      "bio": "Samuel is an information systems professional and futurist thinking, writing, and building toward systems that help society imagine a greater world beyond the present.",
+      "image": "img/hero-2.jpg",
+      "featured": false
+    },
+    {
+      "name": "Dr Malcom Chris B",
+      "role": "Astronomy Organising Team",
+      "organisation": "Uganda Astronomical Society",
+      "bio": "Dr Malcom Chris B supports the astronomy organising team, helping connect public audiences to observation, astronomy learning, and Uganda's growing space community.",
+      "image": "img/hero-3.jpg",
+      "featured": false
+    },
+    {
+      "name": "Bwengye Cosmas",
+      "role": "Astronomy Organising Team",
+      "organisation": "Uganda Astronomical Society",
+      "bio": "Cosmas contributes to the Uganda Astronomical Society organising team, supporting astronomy outreach and community participation for national space activities.",
+      "image": "img/hero-1.jpg",
+      "featured": false
+    },
+    {
+      "name": "Twesigye Duncan",
+      "role": "STEAM Educator and Coach",
+      "organisation": "NOA's Quest Program",
+      "bio": "Duncan contributes STEAM education, coaching, and practical learning support for young people engaging with aerospace, rocketry, and space science.",
+      "image": "img/hero-2.jpg",
+      "featured": false
+    },
+    {
+      "name": "Ayebazibwe Brinton",
+      "role": "Chief Operations",
+      "organisation": "StellarView Technologies Ltd",
+      "bio": "Brinton supports operations and coordination for StellarView Technologies Ltd, helping turn space outreach ideas into organised public programmes.",
+      "image": "img/hero-3.jpg",
+      "featured": false
+    }
+  ],
+
+  "activities": [
+    {
+      "title": "Star Gazing",
+      "category": "Astronomy Nights",
+      "summary": "Guided telescope nights that make Uganda's night sky easier to see, understand, and love.",
+      "image": "img/hero-2.jpg",
+      "cadence": "Evening sessions and special sky events",
+      "audience": "Students, families, clubs, and astronomy beginners",
+      "leadOrganisation": "Uganda Astronomical Society and partner clubs",
+      "highlights": ["Telescope viewing", "Constellation walks", "Astrophotography tasters"],
+      "featured": true
+    },
+    {
+      "title": "STEM Outreach",
+      "category": "Education",
+      "summary": "Hands-on space science sessions for schools, universities, youth groups, and public learning spaces.",
+      "image": "img/hero-3.jpg",
+      "cadence": "School visits, campus sessions, and community workshops",
+      "audience": "Learners, teachers, student branches, and youth communities",
+      "leadOrganisation": "Space Uganda partners and STEM education teams",
+      "highlights": ["Satellite models", "Robotics labs", "Career pathways"],
+      "featured": true
+    },
+    {
+      "title": "Space Bingos & Trivias",
+      "category": "Public Engagement",
+      "summary": "Playful space learning experiences that make astronomy, missions, and STEM knowledge social.",
+      "image": "img/hero-1.jpg",
+      "cadence": "Community game nights and event activations",
+      "audience": "Schools, clubs, families, volunteers, and public audiences",
+      "leadOrganisation": "Space Uganda outreach teams",
+      "highlights": ["Quiz nights", "Space bingo rounds", "Team challenges"],
+      "featured": true
+    },
+    {
+      "title": "Industrial Visits",
+      "category": "Industry Linkages",
+      "summary": "Structured visits that connect learners to laboratories, engineering spaces, innovators, and industry mentors.",
+      "image": "img/hero-2.jpg",
+      "cadence": "Partner-hosted visits and technical tours",
+      "audience": "University teams, student branches, innovators, and young professionals",
+      "leadOrganisation": "Partner companies, universities, and technical institutions",
+      "highlights": ["Lab tours", "Mentor briefings", "Career exposure"],
+      "featured": true
+    }
+  ],
+
+  "announcements": [
+    {
+      "title": "Space Uganda Opens As A Year-Round Umbrella",
+      "excerpt": "The ecosystem is organising under one national domain for communities, campaigns, partners, and public opportunities.",
+      "category": "Ecosystem",
+      "image": "img/hero-1.jpg",
+      "date": "26 Jul 2026",
+      "source": "Space Uganda"
+    },
+    {
+      "title": "WSW Uganda 2026 Theme Confirmed",
+      "excerpt": "World Space Week 2026 will run under the global theme Rocket Revolution from October 4-10.",
+      "category": "World Space Week",
+      "image": "img/hero-2.jpg",
+      "date": "26 Jul 2026",
+      "source": "Space Uganda"
+    },
+    {
+      "title": "Gallery Archive Being Prepared",
+      "excerpt": "The public gallery is ready for photos and videos from Uganda Space Week activities.",
+      "category": "Gallery",
+      "image": "img/hero-3.jpg",
+      "date": "26 Jul 2026",
+      "source": "Space Uganda"
+    }
+  ],
+
   "partners": [
-    { "name": "Uganda Space Agency", "type": "Government Agency", "icon": "building" },
-    { "name": "Makerere University", "type": "University", "icon": "layers" },
-    { "name": "Busitema University", "type": "University", "icon": "box" },
-    { "name": "Space Hub Uganda", "type": "Innovation Hub", "icon": "stack" }
+    { "name": "StellarView Technologies", "type": "Space Education Media", "icon": "globe" },
+    { "name": "Uganda Astronomical Society", "type": "Astronomy", "icon": "star" },
+    { "name": "NOA's Quest", "type": "Rocketry", "icon": "rocket" },
+    { "name": "Nile Orbitals", "type": "Aerospace Technology", "icon": "rocket" },
+    { "name": "Makerere University CEDAT", "type": "Engineering School", "icon": "tool" },
+    { "name": "IEEE AESS SBC Makerere", "type": "Student Branch", "icon": "users" },
+    { "name": "Young Engineers Uganda", "type": "STEM Education", "icon": "book" },
+    { "name": "Aerobuddies", "type": "Aerospace DIY", "icon": "tool" }
   ],
 
   "cta": {

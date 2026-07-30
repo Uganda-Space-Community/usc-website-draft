@@ -1827,10 +1827,95 @@ USC.updateNav();
     fetch('data/content.json')
       .then(r => r.ok ? r.json() : null)
       .then(data => {
-        if (data && data.mission && data.mission.slideshow) {
-          initSlideshow(data.mission.slideshow);
+        if (data) {
+          if (data.mission && data.mission.slideshow) {
+            initSlideshow(data.mission.slideshow);
+          } else {
+            bindSlideshow();
+          }
+
+          if (data.events && data.events.featured) {
+            const tcGrid = document.querySelector('.tc-featured');
+            if (tcGrid) {
+              tcGrid.innerHTML = data.events.featured.map(e =>
+                `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}')">
+                  <div class="tc-event-card-body">
+                    <div class="tc-card-label">${e.type}</div>
+                    <h4>${e.title}</h4>
+                    <p>${e.text}</p>
+                    <div class="tc-card-meta">${e.date} · ${e.location}</div>
+                  </div>
+                </div>`
+              ).join('');
+            }
+            const compactList = document.querySelector('.events-compact');
+            if (compactList) {
+              compactList.innerHTML = data.events.featured.map(e => {
+                const dateParts = e.date.split(' ');
+                return `<div class="event-compact">
+                  <div class="date">${dateParts[0]} ${dateParts[1].substring(0,3)}</div>
+                  <div class="info">
+                    <h4>${e.title}</h4>
+                    <div class="meta">${e.type} · ${e.location}</div>
+                  </div>
+                </div>`;
+              }).join('') + '<a href="calendar.html" class="tc-view-all">Open Calendar →</a>';
+            }
+          }
+
+          if (data.announcements) {
+            const updatesFeat = document.querySelector('.updates-featured');
+            if (updatesFeat) {
+              updatesFeat.innerHTML = data.announcements.map(a =>
+                `<div class="updates-feat-card" data-cat="${a.category.toLowerCase().replace(/\s+/g, '-')}">
+                  <div class="updates-feat-img" style="background-image: url('${a.image}')"></div>
+                  <div class="updates-feat-body">
+                    <h4>${a.title}</h4>
+                    <p>${a.excerpt}</p>
+                    <a href="updates.html" class="read-more">Read More →</a>
+                    <div class="updates-feat-meta">${a.date} · ${a.source}</div>
+                  </div>
+                </div>`
+              ).join('');
+            }
+            const updatesList = document.querySelector('.updates-list');
+            if (updatesList) {
+              updatesList.innerHTML = data.announcements.map(a =>
+                `<div class="updates-list-item" data-cat="${a.category.toLowerCase().replace(/\s+/g, '-')}">
+                  <div class="updates-list-img" style="background-image: url('${a.image}')"></div>
+                  <div class="updates-list-body">
+                    <span class="list-category">${a.category}</span>
+                    <h5>${a.title}</h5>
+                    <div class="source">${a.source} · ${a.date}</div>
+                  </div>
+                </div>`
+              ).join('');
+            }
+          }
+
+          if (data.programmeTracks) {
+            const pcPrograms = document.querySelector('.pc-programs');
+            if (pcPrograms) {
+              const head = pcPrograms.querySelector('.pc-projects-head');
+              let html = head ? head.outerHTML : '';
+              html += data.programmeTracks.slice(0,3).map((p, i) =>
+                `<div class="pc-program${i===0?' active':''}" data-duration="6000" style="background-image: url('${p.image}')">
+                  <div class="pc-program-body">
+                    <div class="pc-program-label">Programme · Active</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.description}</p>
+                    <div class="pc-program-meta">${p.track} <span class="dot-sep"></span> WSW Track</div>
+                    <a href="launchpad.html" class="pc-program-link">View Programme →</a>
+                  </div>
+                </div>`
+              ).join('');
+              html += `<div class="pc-program-track">${data.programmeTracks.slice(0,3).map((_,i) => `<button class="pc-program-dot${i===0?' active':''}" data-index="${i}" aria-label="Program ${i+1}"></button>`).join('')}</div>`;
+              pcPrograms.innerHTML = html;
+              initProgramSlideshow();
+            }
+          }
         } else {
-          bindSlideshow(); // JSON missing slideshow — use hardcoded
+          bindSlideshow();
         }
       })
       .catch(() => bindSlideshow()); // Fetch failed — use hardcoded HTML
@@ -1838,7 +1923,7 @@ USC.updateNav();
 })();
 
 // Programs Slideshow
-(function() {
+function initProgramSlideshow() {
   const container = document.getElementById('pc-programs');
   if (!container) return;
   const items = container.querySelectorAll('.pc-program');
@@ -1872,7 +1957,8 @@ USC.updateNav();
 
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   goTo(0);
-})();
+}
+initProgramSlideshow();
 
 // Filter chips for Events and Updates sections
 document.querySelectorAll('.filter-chips').forEach(chipGroup => {

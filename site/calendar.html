@@ -409,8 +409,17 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 
-// Event data — real Space Uganda events + cosmic/holiday events
-const events=[
+// Date helper: "10 Oct 2026" → "2026-10-10"
+function parseEventDate(str){
+  if(!str)return null;
+  var months={January:'01',February:'02',March:'03',April:'04',May:'05',June:'06',July:'07',August:'08',September:'09',October:'10',November:'11',December:'12'};
+  var parts=str.split(' ');
+  if(parts.length===3)return parts[2]+'-'+months[parts[1]]+'-'+parts[0].padStart(2,'0');
+  return str;
+}
+
+// Cosmic and holiday base events
+const baseEvents=[
   {date:'2026-01-01',title:"New Year's Day",type:'holiday'},
   {date:'2026-01-03',title:'Quadrantid Meteor Shower Peak',type:'cosmic',desc:'Up to 120 meteors/hour'},
   {date:'2026-03-08',title:"International Women's Day",type:'holiday'},
@@ -425,20 +434,14 @@ const events=[
   {date:'2026-08-12',title:'Perseid Meteor Shower Peak',type:'cosmic',desc:'Up to 100 meteors/hour, best viewing'},
   {date:'2026-09-21',title:'Independence Day',type:'holiday'},
   {date:'2026-09-22',title:'Autumnal Equinox',type:'cosmic',desc:'Day and night nearly equal'},
-  {date:'2026-10-04',title:'World Space Week 2026 Starts',type:'event',desc:'Global Rocket Revolution campaign begins'},
-  {date:'2026-10-04',title:'WSW Uganda — Earth & Space for Uganda',type:'event',desc:'Earth observation track opens'},
-  {date:'2026-10-05',title:'WSW Uganda — The Rocket Revolution',type:'event',desc:'Aerospace engineering demonstrations'},
-  {date:'2026-10-06',title:'WSW Uganda — Beyond Earth',type:'event',desc:'Satellite comms, AI, robotics, space medicine'},
-  {date:'2026-10-08',title:'Rocket Revolution Launch Demos',type:'event',desc:'Rocket engineering and launch demonstrations'},
-  {date:'2026-10-10',title:'WSW Uganda 2026 Flagship Day',type:'event',desc:'Full-day national experience with exhibits, Innovation Showcase, panel, and stargazing'},
-  {date:'2026-10-10',title:'Outdoor Stargazing Experience',type:'event',desc:'Telescopes, astrophotography, constellation tours'},
-  {date:'2026-10-10',title:'World Space Week 2026 Ends',type:'event',desc:'Global Rocket Revolution campaign concludes'},
   {date:'2026-10-21',title:'Orionid Meteor Shower',type:'cosmic',desc:"Associated with Halley's Comet"},
   {date:'2026-11-17',title:'Leonid Meteor Shower',type:'cosmic',desc:'Up to 15 meteors/hour'},
   {date:'2026-12-14',title:'Geminid Meteor Shower Peak',type:'cosmic',desc:"Up to 150 meteors/hour, year's best"},
   {date:'2026-12-21',title:'Winter Solstice',type:'cosmic',desc:'Shortest day of the year'},
   {date:'2026-12-25',title:'Christmas Day',type:'holiday'}
 ];
+
+let events=[...baseEvents];
 
 const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
 let curMonth=6,curYear=2026,activeFilter='all';
@@ -654,6 +657,30 @@ populateJump();
 renderMonth();
 renderPanel();
 renderYear();
+
+// Load WSW events from content.json
+fetch('data/content.json')
+  .then(function(r){return r.json()})
+  .then(function(data){
+    if(data&&data.events&&data.events.featured){
+      data.events.featured.forEach(function(e){
+        events.push({
+          date:parseEventDate(e.date),
+          title:e.title,
+          type:'event',
+          desc:e.text
+        });
+      });
+      renderMonth();renderPanel();renderYear();updateStats();
+    }
+    if(data&&data.events&&data.events.campaign){
+      var c=data.events.campaign;
+      events.push({date:c.startDate,title:'World Space Week 2026 Starts',type:'event',desc:c.description});
+      events.push({date:c.endDate,title:'World Space Week 2026 Ends',type:'event',desc:'Campaign concludes'});
+      renderMonth();renderPanel();renderYear();updateStats();
+    }
+  })
+  .catch(function(){});
 
 // Modal open/close
 const user=localStorage.getItem('usc-user');
