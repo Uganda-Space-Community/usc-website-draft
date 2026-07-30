@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Uganda Space Community</title>
-<meta name="description" content="Learn about the Uganda Space Community platform.">
+<meta name="description" content="Learn about the Uganda Space Community — a platform built by enthusiasts to advance Uganda's space ecosystem.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,10 +18,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 h1,h2,h3,h4,h5{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-0.02em;line-height:1.18}
 a{color:inherit;text-decoration:none}
 .wrapper{max-width:1280px;margin:0 auto;padding:0 32px}
+.btn{font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{filter:brightness(1.1);box-shadow:0 2px 12px rgba(184,149,63,0.3)}
+body.dark-mode .btn-gold{color:#0A1628}
+body.dark-mode .btn-gold:hover{box-shadow:0 2px 12px rgba(201,168,76,0.3)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ═══ Nav ═══ */
-.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;border:none;--nav-text:rgba(234,236,240,0.7);--nav-text-hover:#EAECF0;transition:background 0.3s}
-.nav-bar.nav-scrolled{background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text)}
+/* Nav */
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--bg-alt);border-bottom:1px solid var(--border);--nav-text:var(--text-2);--nav-text-hover:var(--text);transition:background 0.3s}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative}
 .nav-l{display:flex;align-items:center;gap:12px}
 .logo-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:var(--gold-dim);overflow:hidden;animation:logoFloat 4s ease-in-out infinite}
@@ -39,39 +45,91 @@ a{color:inherit;text-decoration:none}
 .icon-sun{display:none}.icon-moon{display:block}
 body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 
-/* ═══ Page Header ═══ */
-.page-header{padding:120px 0 48px;text-align:center}
-.page-header .label{display:inline-block;font-size:0.62rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;background:var(--gold-dim);padding:4px 14px;border-radius:100px;margin-bottom:16px}
-.page-header h1{font-family:'Inter',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
-.page-header p{font-size:0.95rem;color:var(--text-2);max-width:580px;margin:0 auto;line-height:1.7}
+/* Hero */
+.hero{position:relative;height:380px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));z-index:0}
+.hero-stars{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-stars span{position:absolute;width:2px;height:2px;background:var(--text-3);border-radius:50%;opacity:0.3;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0.2}50%{opacity:0.6}}
+.hero-content{position:relative;z-index:2;padding:0 32px}
+.hero .page-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:12px;display:block}
+.hero h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:10px;color:var(--text)}
+.hero h1 strong{font-weight:600}
+.hero p{font-size:0.92rem;color:var(--text-2);max-width:540px;margin:0 auto;font-weight:300;line-height:1.7}
 
-/* ═══ Content Sections ═══ */
-.content-section{padding:32px 0 48px}
+/* Section Divider */
+.section-divider{display:flex;justify-content:center;align-items:center;padding:8px 0;position:relative}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-star{width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 16px;box-shadow:0 0 12px rgba(217,79,61,0.4);position:relative}
+.section-divider-star::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(217,79,61,0.2)}
+.section-divider-dots{display:flex;gap:6px;margin:0 12px}
+.section-divider-dots span{width:3px;height:3px;border-radius:50%;background:var(--text-3);opacity:0.4}
+
+/* Content */
+.content-section{padding:40px 0}
 .content-section .wrapper{max-width:960px}
 .section-title{font-size:1.3rem;margin-bottom:20px}
 .section-text{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
+.section-text strong{color:var(--text);font-weight:500}
 
-.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:32px 0}
-.info-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;background:var(--bg-alt);transition:border-color 0.2s}
-.info-card:hover{border-color:var(--border-hover)}
-.info-card .card-icon{width:44px;height:44px;border-radius:var(--radius);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:16px}
-.info-card .card-icon svg{width:20px;height:20px}
-.info-card h3{font-size:1rem;margin-bottom:8px}
-.info-card p{font-size:0.84rem;color:var(--text-2);line-height:1.7}
+/* Origin Block */
+.origin-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;margin:32px 0;position:relative;overflow:hidden}
+.origin-block::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold)}
+.origin-block h2{font-size:1.3rem;margin-bottom:16px}
+.origin-block p{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
+.origin-block p:last-child{margin-bottom:0}
+.origin-block em{color:var(--text);font-style:normal;font-weight:500}
 
-.mission-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;margin:32px 0}
-.mission-block h2{font-size:1.3rem;margin-bottom:16px}
-.mission-block p{font-size:0.92rem;color:var(--text-2);line-height:1.8}
+/* Challenge Grid */
+.challenge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:32px 0}
+.challenge-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;background:var(--bg-alt);transition:border-color 0.2s;position:relative}
+.challenge-card:hover{border-color:var(--border-hover)}
+.challenge-card .ch-icon{width:40px;height:40px;border-radius:var(--radius);background:var(--red-dim);display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:14px}
+.challenge-card .ch-icon svg{width:18px;height:18px}
+.challenge-card h3{font-size:0.95rem;margin-bottom:6px}
+.challenge-card p{font-size:0.84rem;color:var(--text-2);line-height:1.7}
 
+/* Solution Grid */
+.solution-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:32px 0}
+.solution-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;background:var(--bg-alt);transition:border-color 0.2s}
+.solution-card:hover{border-color:var(--border-hover)}
+.solution-card .sol-icon{width:40px;height:40px;border-radius:var(--radius);background:var(--emerald-dim);display:flex;align-items:center;justify-content:center;color:var(--emerald);margin-bottom:14px}
+.solution-card .sol-icon svg{width:18px;height:18px}
+.solution-card h3{font-size:0.95rem;margin-bottom:6px}
+.solution-card p{font-size:0.84rem;color:var(--text-2);line-height:1.7}
+
+/* What We Do Cards */
+.do-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px 0}
+.do-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;background:var(--bg-alt);transition:border-color 0.2s}
+.do-card:hover{border-color:var(--border-hover)}
+.do-card .card-icon{width:44px;height:44px;border-radius:var(--radius);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:16px}
+.do-card .card-icon svg{width:20px;height:20px}
+.do-card h3{font-size:1rem;margin-bottom:8px}
+.do-card p{font-size:0.84rem;color:var(--text-2);line-height:1.7}
+
+/* Mission Block */
+.mission-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;margin:32px 0;text-align:center}
+.mission-block .mission-label{font-size:0.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;display:block}
+.mission-block h2{font-size:1.4rem;margin-bottom:16px;font-weight:300}
+.mission-block h2 strong{font-weight:600}
+.mission-block p{font-size:0.92rem;color:var(--text-2);line-height:1.8;max-width:640px;margin:0 auto}
+
+/* Audience */
 .audience-list{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
-.audience-list span{font-size:0.78rem;padding:6px 16px;background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;color:var(--text-2)}
+.audience-list span{font-size:0.78rem;padding:6px 16px;background:var(--bg-alt-subtle);border:1px solid var(--border);border-radius:100px;color:var(--text-2);transition:all 0.2s}
+.audience-list span:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ═══ Footer ═══ */
-.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:56px 0 28px;position:relative;overflow:hidden}
+/* CTA Box */
+.cta-box{padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin:40px 0}
+.cta-box h3{font-size:1rem;margin-bottom:8px}
+.cta-box p{font-size:0.82rem;color:var(--text-2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto}
+
+/* Footer */
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:64px 0 32px;position:relative;overflow:hidden}
 .footer::before{content:'';position:absolute;bottom:-60px;right:-40px;width:320px;height:320px;background:url('emblem.png') center/contain no-repeat;opacity:0.1;pointer-events:none}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand p{font-size:0.8rem;color:var(--text-2);margin-top:12px;line-height:1.65;max-width:260px}
-.footer-brand .email{margin-top:14px;font-size:0.8rem;color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand p{font-size:0.82rem;color:var(--text-2);margin-top:14px;line-height:1.7;max-width:280px;font-weight:300}
+.footer-brand .email{margin-top:16px;font-size:0.82rem;color:var(--gold)}
 .footer-social{display:flex;gap:10px;margin-top:14px}
 .footer-social a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:all 0.2s}
 .footer-social a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
@@ -81,17 +139,18 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 .footer-bot{text-align:center;padding-top:24px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-3)}
 .footer-bot .hl{color:var(--gold)}
 
-/* ═══ Responsive ═══ */
 @media(max-width:900px){
   .nav-toggle{display:block}.nav{position:relative}
   .nav-c{display:none;position:absolute;top:100%;left:0;right:0;background:#0A1628;border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:16px 28px;gap:14px;z-index:100;margin:0}
   .nav-open .nav-c{display:flex}
-  .card-grid{grid-template-columns:1fr}
+  .challenge-grid,.solution-grid{grid-template-columns:1fr}
+  .do-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
 }
 @media(max-width:640px){
   .wrapper{padding:0 18px}
-  .page-header{padding:100px 0 32px}
+  .hero{height:300px}
+  .hero h1{font-size:1.8rem}
   .footer-grid{grid-template-columns:1fr;gap:20px}
 }
 </style>
@@ -99,13 +158,11 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
 <body>
 
 <a href="#main" class="skip-link">Skip to main content</a>
-<div class="nav-bar nav-scrolled">
+<div class="nav-bar">
   <div class="wrapper">
     <nav class="nav">
       <div class="nav-l">
-        <a href="index.html" class="logo-icon">
-          <img src="emblem.png" alt="Uganda Space Community" />
-        </a>
+        <a href="index.html" class="logo-icon"><img src="emblem.png" alt="Uganda Space Community" /></a>
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
       <ul class="nav-c">
@@ -122,77 +179,207 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
         <button class="nav-toggle" aria-label="Toggle menu">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none">
-            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
     </nav>
   </div>
 </div>
 
-<div class="page-header" id="main">
-  <div class="wrapper">
-    <div class="label">About</div>
-    <h1>Building Uganda's Space Ecosystem</h1>
-    <p>A community-driven platform connecting students, researchers, professionals, and organizations in Uganda's growing space sector.</p>
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stars">
+    <span style="top:15%;left:20%;animation-delay:0s"></span>
+    <span style="top:25%;left:70%;animation-delay:0.5s"></span>
+    <span style="top:45%;left:40%;animation-delay:1s"></span>
+    <span style="top:60%;left:85%;animation-delay:1.5s"></span>
+    <span style="top:35%;left:15%;animation-delay:2s"></span>
+    <span style="top:70%;left:55%;animation-delay:0.3s"></span>
+    <span style="top:20%;left:90%;animation-delay:0.8s"></span>
+    <span style="top:80%;left:30%;animation-delay:1.3s"></span>
+  </div>
+  <div class="hero-content">
+    <span class="page-label">About</span>
+    <h1>A <strong>Constellation</strong> of Dreamers</h1>
+    <p>We are not astrophysicists. We are not aerospace engineers. We are a collective of enthusiasts who believe Uganda deserves a place among the stars.</p>
   </div>
 </div>
 
-<div class="content-section">
-  <div class="wrapper">
-    <p class="section-text">The Uganda Space Community (USC) is a centralized platform built to unite everyone passionate about space science and technology in Uganda. Whether you are a university student exploring astrophysics, a researcher publishing satellite data, an engineer building CubeSats, or a policymaker shaping national space strategy — USC is where you connect, learn, and contribute.</p>
-    <p class="section-text">We believe Uganda's space future is built by its people. By removing barriers to information, fostering collaboration across disciplines, and amplifying local achievements, we aim to accelerate the country's role in the global space economy.</p>
-  </div>
-</div>
+<div id="main">
 
-<div class="content-section">
-  <div class="wrapper">
-    <h2 class="section-title">What We Do</h2>
-    <div class="card-grid">
-      <div class="info-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
-        <h3>Discover</h3>
-        <p>Find events, news, training programs, scholarships, and career opportunities across Uganda's space sector — all in one place.</p>
-      </div>
-      <div class="info-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>Connect</h3>
-        <p>Meet members, join organizations, and build relationships with institutions and professionals shaping Uganda's space future.</p>
-      </div>
-      <div class="info-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13"/><path d="M19.376 7.265A9 9 0 1 1 12 3a9 9 0 0 1 7.376 4.265z"/></svg></div>
-        <h3>Contribute</h3>
-        <p>Share knowledge through the community knowledge base, mentor students, and participate in programs that grow national capability.</p>
+  <!-- Origin Story -->
+  <div class="content-section">
+    <div class="wrapper">
+      <div class="origin-block">
+        <h2>How It Started</h2>
+        <p>The Uganda Space Community was created by a group of individuals passionate about space and the exploratory future beyond Earth. <em>Most of us are not engineers, astrophysicists, astronomy researchers, or aerospace professionals.</em> We are students, professionals, educators, and enthusiasts — united by a shared ambition.</p>
+        <p>We realised that we may lack the expertise, resources, and authority to see this dream achieved on our own. So we created this platform — <em>to petition those with the capabilities, and to invite fellow enthusiasts, to come together and build an ecosystem</em> that will see our country at least have a foothold in the space sector.</p>
+        <p>For science. For the economy. For the wellbeing of our people. Or simply — for the romance of the venture.</p>
       </div>
     </div>
   </div>
-</div>
 
-<div class="content-section">
-  <div class="wrapper">
-    <div class="mission-block">
-      <h2>Our Mission</h2>
-      <p>To be the central hub for Uganda's space community — connecting people, sharing knowledge, and accelerating the country's space capabilities. We envision a Uganda where every aspiring space professional has access to the resources, network, and opportunities they need to thrive.</p>
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- Challenges -->
+  <div class="content-section">
+    <div class="wrapper">
+      <h2 class="section-title">The Challenges We Face</h2>
+      <p class="section-text">Uganda's path to the space sector is shaped by real structural constraints. Understanding them is the first step toward overcoming them.</p>
+      <div class="challenge-grid">
+        <div class="challenge-card">
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Landlocked Geography</h3>
+          <p>Uganda has no coastline, making direct access to sea-based launch facilities and undersea cable infrastructure difficult. Neighbouring Kenya and Tanzania serve as vital gateways.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Limited Funding</h3>
+          <p>Space science requires sustained investment. Uganda's national science budget is still developing, and private sector space investment remains nascent compared to regional peers.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Brain Drain</h3>
+          <p>Talented Ugandan scientists and engineers often pursue opportunities abroad. Without local infrastructure and opportunities, retaining talent remains a persistent challenge.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <h3>Awareness Gap</h3>
+          <p>Space science is rarely discussed in Ugandan education curricula. Most citizens don't see space as relevant to their lives, limiting public support and policy prioritisation.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="content-section">
-  <div class="wrapper">
-    <h2 class="section-title">Who It's For</h2>
-    <p class="section-text">USC is open to anyone with an interest in space science, technology, and policy. Our community includes:</p>
-    <div class="audience-list">
-      <span>Students</span>
-      <span>Researchers</span>
-      <span>Engineers</span>
-      <span>Policymakers</span>
-      <span>Journalists</span>
-      <span>Educators</span>
-      <span>Organizations</span>
-      <span>Enthusiasts</span>
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- Solutions -->
+  <div class="content-section">
+    <div class="wrapper">
+      <h2 class="section-title">How USC Addresses These</h2>
+      <p class="section-text">Each challenge has a counter — and most of those counters start with <strong>people coming together</strong>. That is exactly what this platform is for.</p>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3>Regional Partnerships</h3>
+          <p>By connecting with East African neighbours who have coastal access and launch infrastructure, Uganda can participate in regional space programmes without building everything from scratch.</p>
+        </div>
+        <div class="solution-card">
+          <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3>Open Knowledge Sharing</h3>
+          <p>The Knowledge Base, community events, and mentorship programmes lower the barrier to entry. Anyone with curiosity can start learning — no prerequisites required.</p>
+        </div>
+        <div class="solution-card">
+          <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Talent Retention</h3>
+          <p>By creating a visible, active ecosystem with programs, events, and career pathways, we give talented Ugandans a reason to stay — and build their futures at home.</p>
+        </div>
+        <div class="solution-card">
+          <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <h3>Grassroots Awareness</h3>
+          <p>Workshops, school outreach, and public events make space science tangible and relevant. When people see how satellite data helps farming or disaster response, they care.</p>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- What We Do -->
+  <div class="content-section">
+    <div class="wrapper">
+      <h2 class="section-title">What We Do</h2>
+      <div class="do-grid">
+        <div class="do-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+          <h3>Discover</h3>
+          <p>Find events, news, training programs, scholarships, and career opportunities across Uganda's space sector — all in one place.</p>
+        </div>
+        <div class="do-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Connect</h3>
+          <p>Meet members, join organizations, and build relationships with institutions and professionals shaping Uganda's space future.</p>
+        </div>
+        <div class="do-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13"/><path d="M19.376 7.265A9 9 0 1 1 12 3a9 9 0 0 1 7.376 4.265z"/></svg></div>
+          <h3>Contribute</h3>
+          <p>Share knowledge through the community knowledge base, mentor students, and participate in programs that grow national capability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="content-section">
+    <div class="wrapper">
+      <div class="mission-block">
+        <span class="mission-label">Our Mission</span>
+        <h2>To build the <strong>ecosystem</strong> that makes Uganda's space future possible.</h2>
+        <p>We envision a Uganda where every aspiring space professional has access to the resources, network, and opportunities they need to thrive — and where the country's contributions to space science are recognised globally.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-star"></div>
+    <div class="section-divider-dots"><span></span><span></span><span></span></div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- Who It's For -->
+  <div class="content-section">
+    <div class="wrapper">
+      <h2 class="section-title">Who It's For</h2>
+      <p class="section-text">USC is open to <strong>anyone</strong> with an interest in space science, technology, and policy. You don't need a degree in astrophysics. You don't need to work at a space agency. You just need curiosity and conviction.</p>
+      <div class="audience-list">
+        <span>Students</span>
+        <span>Researchers</span>
+        <span>Engineers</span>
+        <span>Policymakers</span>
+        <span>Journalists</span>
+        <span>Educators</span>
+        <span>Organizations</span>
+        <span>Enthusiasts</span>
+        <span>Dreamers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="content-section">
+    <div class="wrapper">
+      <div class="cta-box">
+        <h3>Join the Constellation</h3>
+        <p>Be part of the community building Uganda's space future. Your contribution matters — regardless of your background.</p>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <a href="community.html" class="btn btn-gold">Join the Community</a>
+          <a href="launchpad.html" class="btn btn-ghost">Explore Programs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <footer class="footer">
@@ -200,7 +387,7 @@ body.dark-mode .icon-sun{display:block}body.dark-mode .icon-moon{display:none}
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo-txt" style="font-size:0.88rem">Uganda <span>Space</span> Community</span>
-        <p>Rooted in Uganda, reaching beyond Earth.</p>
+        <p>Rooted in Uganda, reaching beyond Earth. A national platform for Uganda's space ecosystem.</p>
         <div class="email">hello@space.org.ug</div>
         <div class="footer-social">
           <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a>
