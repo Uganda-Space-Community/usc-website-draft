@@ -225,6 +225,8 @@ const USC_ADMIN = (function () {
     try {
       if (!route.resource) {
         await renderDashboard(content);
+      } else if (route.resource === 'users' && route.action === 'profile' && route.id) {
+        await renderUserProfile(content, route.id);
       } else if (route.resource === 'users') {
         await renderUsers(content);
       } else if (route.resource === 'settings') {
@@ -318,6 +320,40 @@ const USC_ADMIN = (function () {
     html += '<div class="admin-card-label">Users</div>';
     html += '</div></a>';
     html += '</div>';
+
+    // Recent Activity
+    var recentReviews = s.recent_reviews || [];
+    var recentSubmissions = s.recent_submissions || [];
+    if (recentReviews.length > 0 || recentSubmissions.length > 0) {
+      html += '<div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px">';
+
+      // Recent Reviews
+      html += '<div class="admin-card" style="flex-direction:column;align-items:stretch;text-align:left;padding:20px">';
+      html += '<h3 style="font-size:0.92rem;font-weight:600;margin-bottom:16px">' + icon('eye', 16) + ' Recent Reviews</h3>';
+      recentReviews.forEach(function (r) {
+        html += '<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.78rem">';
+        html += statusBadge(r.status);
+        html += '<a href="#submissions/edit/' + r.id + '" class="admin-link">' + esc(r.type) + ' #' + r.id + '</a>';
+        html += '<span style="color:var(--text-3);margin-left:auto">' + esc(r.reviewer_name || '') + '</span>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      // Recent Submissions
+      html += '<div class="admin-card" style="flex-direction:column;align-items:stretch;text-align:left;padding:20px">';
+      html += '<h3 style="font-size:0.92rem;font-weight:600;margin-bottom:16px">' + icon('inbox', 16) + ' Recent Submissions</h3>';
+      recentSubmissions.forEach(function (s) {
+        html += '<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.78rem">';
+        html += typeBadge(s.type);
+        html += statusBadge(s.status);
+        html += '<a href="#submissions/edit/' + s.id + '" class="admin-link">#' + s.id + '</a>';
+        html += '<span style="color:var(--text-3);margin-left:auto">' + esc(s.author_name || 'Anonymous') + '</span>';
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '</div>';
+    }
+
     el.innerHTML = html;
   }
 
@@ -631,7 +667,7 @@ const USC_ADMIN = (function () {
     users.forEach(function (u) {
       html += '<tr>';
       html += '<td class="admin-mono">' + u.id + '</td>';
-      html += '<td>' + esc(u.name) + '</td>';
+      html += '<td><a href="#users/profile/' + u.id + '" class="admin-link">' + esc(u.name) + '</a></td>';
       html += '<td>' + esc(u.email) + '</td>';
       html += '<td><select class="admin-select admin-select-sm" onchange="USC_ADMIN.changeRole(' + u.id + ',this.value)">';
       ['member','curator','admin'].forEach(function (r) {
@@ -640,8 +676,10 @@ const USC_ADMIN = (function () {
       html += '</select></td>';
       html += '<td>' + statusBadge(u.status) + '</td>';
       html += '<td>' + formatDate(u.created_at) + '</td>';
-      html += '<td><button class="admin-action-btn" onclick="USC_ADMIN.toggleStatus(' + u.id + ')" title="' + (u.status === 'active' ? 'Suspend' : 'Unsuspend') + '">' + icon(u.status === 'active' ? 'x' : 'check', 14) + '</button></td>';
-      html += '</tr>';
+      html += '<td class="admin-actions">';
+      html += '<a href="#users/profile/' + u.id + '" class="admin-action-btn" title="View Profile">' + icon('eye', 14) + '</a>';
+      html += '<button class="admin-action-btn" onclick="USC_ADMIN.toggleStatus(' + u.id + ')" title="' + (u.status === 'active' ? 'Suspend' : 'Unsuspend') + '">' + icon(u.status === 'active' ? 'x' : 'check', 14) + '</button>';
+      html += '</td></tr>';
     });
 
     html += '</tbody></table></div>';
@@ -663,6 +701,68 @@ const USC_ADMIN = (function () {
       handleRoute();
     } catch (e) {
       alert(e.error || 'Failed');
+    }
+  }
+
+  // ── User Profile View ──
+  async function renderUserProfile(el, userId) {
+    el.innerHTML = '<div class="admin-loading">Loading profile...</div>';
+    try {
+      var data = await api('admin.php?action=users&limit=50');
+      var user = (data.users || []).find(function (u) { return u.id == userId; });
+      if (!user) { el.innerHTML = '<p>User not found.</p>'; return; }
+
+      // Get user's submissions
+      var subs = await api('admin.php?action=list&limit=50');
+      var userSubs = (subs.records || []).filter(function (s) { return s.author_email === user.email; });
+
+      var html = '<div class="admin-header-row">';
+      html += '<h2>' + esc(user.name) + '</h2>';
+      html += '<a href="#users" class="admin-btn admin-btn--outline">' + icon('chevronLeft', 14) + ' Back to Users</a>';
+      html += '</div>';
+
+      html += '<div class="admin-profile-grid">';
+
+      // Profile card
+      html += '<div class="admin-profile-card">';
+      html += '<div class="admin-profile-avatar">' + icon('users', 32) + '</div>';
+      html += '<h3>' + esc(user.name) + '</h3>';
+      html += '<p>' + esc(user.email) + '</p>';
+      html += '<div style="margin-top:16px">' + statusBadge(user.status) + ' ' + typeBadge(user.role) + '</div>';
+      html += '<div class="admin-profile-meta">';
+      html += '<div><strong>Location:</strong> ' + esc(user.location || '—') + '</div>';
+      html += '<div><strong>Joined:</strong> ' + formatDate(user.created_at) + '</div>';
+      html += '<div><strong>Last Login:</strong> ' + (user.last_login ? formatDate(user.last_login) : 'Never') + '</div>';
+      html += '</div>';
+      html += '<div class="admin-profile-actions">';
+      html += '<button class="admin-btn admin-btn--outline" onclick="USC_ADMIN.toggleStatus(' + user.id + ')">' + icon(user.status === 'active' ? 'x' : 'check', 14) + ' ' + (user.status === 'active' ? 'Suspend' : 'Unsuspend') + '</button>';
+      html += '</div>';
+      html += '</div>';
+
+      // Submissions
+      html += '<div class="admin-profile-subs">';
+      html += '<h4>Submissions (' + userSubs.length + ')</h4>';
+      if (userSubs.length === 0) {
+        html += '<p class="admin-empty">No submissions yet.</p>';
+      } else {
+        html += '<div class="admin-table-wrap"><table class="admin-table">';
+        html += '<thead><tr><th>Type</th><th>Title</th><th>Status</th><th>Date</th></tr></thead><tbody>';
+        userSubs.forEach(function (s) {
+          html += '<tr>';
+          html += '<td>' + typeBadge(s.type) + '</td>';
+          html += '<td><a href="#submissions/edit/' + s.id + '" class="admin-link">' + esc(s.title) + '</a></td>';
+          html += '<td>' + statusBadge(s.status) + '</td>';
+          html += '<td>' + formatDate(s.created_at) + '</td>';
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+      }
+      html += '</div>';
+      html += '</div>';
+
+      el.innerHTML = html;
+    } catch (e) {
+      el.innerHTML = '<div class="admin-error"><p>Failed to load profile.</p></div>';
     }
   }
 

@@ -50,6 +50,14 @@ switch ($action) {
     $stmt = $db->query('SELECT DATE(created_at) as day, COUNT(*) as c FROM submissions WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY day ORDER BY day');
     $stats['activity_30d'] = $stmt->fetchAll();
 
+    // Recent reviews (last 10)
+    $stmt = $db->query('SELECT s.id, s.type, s.status, s.reviewed_at, u.name as reviewer_name FROM submissions s LEFT JOIN users u ON s.reviewed_by = u.id WHERE s.reviewed_at IS NOT NULL ORDER BY s.reviewed_at DESC LIMIT 10');
+    $stats['recent_reviews'] = $stmt->fetchAll();
+
+    // Recent submissions (last 10)
+    $stmt = $db->query('SELECT s.id, s.type, s.status, s.created_at, u.name as author_name FROM submissions s LEFT JOIN users u ON s.user_id = u.id ORDER BY s.created_at DESC LIMIT 10');
+    $stats['recent_submissions'] = $stmt->fetchAll();
+
     respond($stats);
     break;
 
