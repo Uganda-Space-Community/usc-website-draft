@@ -853,6 +853,209 @@
     "button": "Create Your Profile"
   },
 
+  "knowledge": [
+    {
+      "slug": "earth-observation-uganda",
+      "title": "Earth Observation Applications for Uganda's Agricultural Sector",
+      "category": "Research Paper",
+      "author": "Dr. Sarah Nabukenya",
+      "institution": "Makerere University",
+      "date": "Mar 2026",
+      "summary": "Analysis of satellite-based crop monitoring techniques and their applicability to Uganda's smallholder farming systems.",
+      "image": "img/hero-1.jpg",
+      "tags": ["Earth Observation", "Agriculture", "Remote Sensing"]
+    },
+    {
+      "slug": "cubeSat-design-east-africa",
+      "title": "CubeSat Design Considerations for East African Climate Monitoring",
+      "category": "Research Paper",
+      "author": "James Okello",
+      "institution": "Makerere University CEDAT",
+      "date": "Feb 2026",
+      "summary": "Technical specifications and mission planning for a CubeSat constellation targeting East African weather patterns.",
+      "image": "img/hero-2.jpg",
+      "tags": ["CubeSat", "Climate", "Engineering"]
+    },
+    {
+      "slug": "space-policy-uganda",
+      "title": "Uganda's National Space Policy Framework",
+      "category": "Policy Document",
+      "author": "Ministry of Science, Technology and Innovation",
+      "institution": "Government of Uganda",
+      "date": "Jan 2026",
+      "summary": "Draft national policy framework for space activities, satellite licensing, and data sharing in Uganda.",
+      "image": "img/hero-3.jpg",
+      "tags": ["Policy", "Governance", "Regulation"]
+    },
+    {
+      "slug": "ground-station-network",
+      "title": "Building a Distributed Ground Station Network in Uganda",
+      "category": "Technical Guide",
+      "author": "Navneet Singh",
+      "institution": "Nile Orbitals",
+      "date": "Dec 2025",
+      "summary": "Step-by-step guide to setting up low-cost ground stations for satellite communication across Ugandan universities.",
+      "image": "img/hero-1.jpg",
+      "tags": ["Ground Station", "Infrastructure", "Tutorial"]
+    },
+    {
+      "slug": "astronomy-outreach-guide",
+      "title": "Public Astronomy Outreach: A Practical Handbook for Uganda",
+      "category": "Guide",
+      "author": "Zoora Harrison",
+      "institution": "StellarView Technologies",
+      "date": "Nov 2025",
+      "summary": "How to organize telescope nights, school visits, and community astronomy events across Uganda.",
+      "image": "img/hero-2.jpg",
+      "tags": ["Astronomy", "Outreach", "Education"]
+    },
+    {
+      "slug": "satellite-data-agriculture",
+      "title": "Using Sentinel-2 Data for Crop Health Monitoring in Uganda",
+      "category": "Dataset",
+      "author": "Uganda National Meteorology Authority",
+      "institution": "UNMA",
+      "date": "Oct 2025",
+      "summary": "Open dataset of processed Sentinel-2 imagery covering Uganda's major agricultural zones with NDVI indices.",
+      "image": "img/hero-3.jpg",
+      "tags": ["Dataset", "Sentinel-2", "Agriculture"]
+    },
+    {
+      "slug": "rocketry-basics-students",
+      "title": "Introduction to Model Rocketry for Ugandan Students",
+      "category": "Course Material",
+      "author": "Twesigye Duncan",
+      "institution": "NOA's Quest",
+      "date": "Sep 2025",
+      "summary": "Beginner-friendly course covering rocket physics, building techniques, and safe launch procedures.",
+      "image": "img/hero-1.jpg",
+      "tags": ["Rocketry", "Education", "STEM"]
+    },
+    {
+      "slug": "space-law-africa",
+      "title": "Space Law and Governance in Africa: Challenges and Opportunities",
+      "category": "Research Paper",
+      "author": "Angu'zu Raymond",
+      "institution": "KTA Advocates",
+      "date": "Aug 2025",
+      "summary": "Comparative analysis of space legislation across African nations with recommendations for Uganda.",
+      "image": "img/hero-2.jpg",
+      "tags": ["Law", "Africa", "Governance"]
+    },
+    {
+      "slug": "gis-urban-planning",
+      "title": "GIS and Satellite Imagery for Urban Planning in Kampala",
+      "category": "Case Study",
+      "author": "Grace Lydia Nabbaale",
+      "institution": "Makerere University",
+      "date": "Jul 2025",
+      "summary": "How satellite imagery and GIS tools are being used to inform urban development decisions in Kampala Metropolitan Area.",
+      "image": "img/hero-3.jpg",
+      "tags": ["GIS", "Urban Planning", "Kampala"]
+    },
+    {
+      "slug": "astrophotography-uganda",
+      "title": "Astrophotography from the Equator: Capturing Uganda's Night Sky",
+      "category": "Guide",
+      "author": "Dr Malcom Chris B",
+      "institution": "Uganda Astronomical Society",
+      "date": "Jun 2025",
+      "summary": "Tips and techniques for photographing the Milky Way, Southern Cross, and equatorial constellations from Uganda.",
+      "image": "img/hero-1.jpg",
+      "tags": ["Astrophotography", "Astronomy", "Guide"]
+    }
+  ],
+
+  "faq": [
+    {
+      "slug": "what-is-usc",
+      "question": "What is the Uganda Space Community?",
+      "category": "About",
+      "answers": [
+        { "key": "usc-def-1", "author": "Space Uganda", "text": "The Uganda Space Community (USC) is the national platform connecting researchers, students, engineers, policymakers, and organizations working in Uganda's space sector. It serves as a hub for collaboration, knowledge sharing, and community building.", "votes": 24 },
+        { "key": "usc-def-2", "author": "Ronnie Atuhaire", "text": "USC is a community-driven initiative that brings together everyone interested in space science and technology in Uganda — from university students to established researchers and industry professionals.", "votes": 18 }
+      ]
+    },
+    {
+      "slug": "how-to-join",
+      "question": "How do I join the Uganda Space Community?",
+      "category": "Getting Started",
+      "answers": [
+        { "key": "join-1", "author": "Space Uganda", "text": "Click 'Log in' in the top navigation, create an account with your name, email, and password. Once registered, you can complete your profile, join working groups, and start contributing.", "votes": 31 },
+        { "key": "join-2", "author": "Zoora Harrison", "text": "Sign up at space.org.ug, fill in your profile with your interests and affiliations, and explore the community. You can immediately participate in events, submit content, and connect with other members.", "votes": 15 }
+      ]
+    },
+    {
+      "slug": "who-can-join",
+      "question": "Who can join the community?",
+      "category": "Getting Started",
+      "answers": [
+        { "key": "who-1", "author": "Space Uganda", "text": "Anyone with an interest in space science, technology, or policy in Uganda. This includes students, researchers, engineers, educators, policymakers, journalists, and enthusiasts. There are no restrictions on background or qualification.", "votes": 27 }
+      ]
+    },
+    {
+      "slug": "events-calendar",
+      "question": "How do I find and attend community events?",
+      "category": "Events",
+      "answers": [
+        { "key": "cal-1", "author": "Space Uganda", "text": "Visit the Mission Calendar page to see upcoming events, workshops, and activities. Events are categorized by type (Physical, Virtual, Workshop) and you can filter by date. Many events are free and open to the public.", "votes": 19 },
+        { "key": "cal-2", "author": "Halimah Bukirwa", "text": "Follow Space Uganda on social media and check the calendar regularly. World Space Week (October 4-10) is our biggest annual event with activities across the country.", "votes": 12 }
+      ]
+    },
+    {
+      "slug": "submit-content",
+      "question": "How do I submit content (events, news, opportunities)?",
+      "category": "Contributing",
+      "answers": [
+        { "key": "sub-1", "author": "Space Uganda", "text": "Log in to your account, then use the submission forms on the relevant pages (Calendar for events, Updates for news, Launchpad for programs). All submissions go through a review process before appearing publicly.", "votes": 22 },
+        { "key": "sub-2", "author": "Angu'zu Raymond", "text": "Create an account, complete your profile, and you'll see 'Submit' buttons throughout the site. Submissions are reviewed by curators within 48 hours.", "votes": 14 }
+      ]
+    },
+    {
+      "slug": "organization-listing",
+      "question": "How does my organization get listed on the platform?",
+      "category": "Organizations",
+      "answers": [
+        { "key": "org-1", "author": "Space Uganda", "text": "Any organization active in Uganda's space sector can be listed. Submit your organization details through the Community page 'Submit Organization' form. Include your name, category, location, and a brief description.", "votes": 16 },
+        { "key": "org-2", "author": "Capt Simon Bruno", "text": "Reach out through the contact form or email hello@space.org.ug with your organization details. We'll add you to the ecosystem map after verification.", "votes": 11 }
+      ]
+    },
+    {
+      "slug": "volunteer",
+      "question": "How can I volunteer or contribute to Space Uganda?",
+      "category": "Contributing",
+      "answers": [
+        { "key": "vol-1", "author": "Space Uganda", "text": "Join the community, complete your profile, and indicate your interests. We regularly call for volunteers for events like World Space Week, STEM outreach, and research projects. You can also contribute to the Knowledge Base.", "votes": 20 }
+      ]
+    },
+    {
+      "slug": "world-space-week",
+      "question": "What is World Space Week Uganda?",
+      "category": "Events",
+      "answers": [
+        { "key": "wsw-1", "author": "Ronnie Atuhaire", "text": "World Space Week Uganda is the national celebration of the UN-declared World Space Week (October 4-10). In 2026, we're running under the global theme 'Rocket Revolution' with events across all 4 regions of Uganda.", "votes": 28 },
+        { "key": "wsw-2", "author": "Zoora Harrison", "text": "It's a week of space-related activities — from stargazing nights and rocketry workshops to policy panels and school outreach. Open to everyone, completely free.", "votes": 19 }
+      ]
+    },
+    {
+      "slug": "regional-chapters",
+      "question": "Are there regional chapters or groups?",
+      "category": "Community",
+      "answers": [
+        { "key": "chap-1", "author": "Space Uganda", "text": "Yes! The community is organized into 4 regional chapters: Central (Kampala, Wakiso, Mukono), Eastern (Jinja, Mbale), Western (Mbarara, Fort Portal), and Northern (Gulu, Lira). Each chapter has local organizers and regular activities.", "votes": 17 }
+      ]
+    },
+    {
+      "slug": "data-access",
+      "question": "Can I access satellite data or research through the platform?",
+      "category": "Resources",
+      "answers": [
+        { "key": "data-1", "author": "Space Uganda", "text": "The Knowledge Base contains open-access papers, datasets, tools, and guides. We're building partnerships with agencies like UNMA and RCMRD to provide access to satellite imagery and Earth observation data for Uganda.", "votes": 15 },
+        { "key": "data-2", "author": "Navneet Singh", "text": "Through our Ground Station Network program, we're working toward real-time satellite data access. For now, check the Knowledge Base for available datasets and tools.", "votes": 10 }
+      ]
+    }
+  ],
+
   "footer": {
     "links": {
       "Platform": ["Mission Calendar", "Mission Updates", "Launchpad", "Knowledge Base", "Q&A"],

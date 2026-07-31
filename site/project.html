@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>National Astronomy Week — Uganda Space Community</title>
-<meta name="description" content="Week-long celebration of astronomy across Uganda.">
+<title>Project — Uganda Space Community</title>
+<meta name="description" content="Project details from Uganda's space community.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
@@ -28,8 +28,8 @@
 .detail-body h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:16px}
 .detail-body p{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
 .detail-body h3{font-size:1rem;margin:28px 0 12px}
-.detail-body ul{margin-bottom:16px;padding-left:20px}
-.detail-body li{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:6px}
+.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
 
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
@@ -38,18 +38,10 @@
 .sidebar-card .info-row:last-child{border-bottom:none}
 .sidebar-card .info-row .label{color:var(--text-3)}
 .sidebar-card .info-row .value{color:var(--text);font-weight:500}
-.sidebar-card 
 
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
-.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
-.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.organizer-avatar svg{width:18px;height:18px}
-.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
-.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
-
-.status-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;padding:8px 16px;border-radius:var(--radius);margin-top:16px}
-.status-active{color:var(--emerald);background:var(--emerald-dim)}
+.not-found{padding:80px 0;text-align:center}
+.not-found h2{font-size:1.4rem;margin-bottom:8px}
+.not-found p{color:var(--text-2);font-size:0.92rem}
 
 /* ═══ Footer ═══ */
 
@@ -104,19 +96,17 @@
 </div>
 
 <div class="detail-hero">
-  <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80" alt="National Astronomy Week">
+  <img id="project-image" src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80" alt="Project">
   <div class="detail-hero-body">
     <div class="wrapper">
-      <a href="updates.html" class="detail-back">
+      <a href="launchpad.html" class="detail-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
         Back to Discover
       </a>
-      <div class="detail-cat">Program</div>
-      <h1>National Astronomy Week</h1>
+      <div class="detail-cat" id="project-track"></div>
+      <h1 id="project-title">Loading...</h1>
       <div class="meta">
-        <span>14–20 Jul 2026</span>
-        <span>·</span>
-        <span>Nationwide</span>
+        <span id="project-format"></span>
       </div>
     </div>
   </div>
@@ -124,72 +114,18 @@
 
 <div class="detail-content" id="main">
   <div class="wrapper">
-    <div class="detail-layout">
+    <div class="detail-layout" id="project-layout">
       <div class="detail-body">
-        <h2>Celebrating Astronomy Across Uganda</h2>
-        <p>National Astronomy Week is a week-long celebration of astronomy and space science held across Uganda. Now in its third year, the program brings together universities, observatories, schools, and community organizations to inspire the next generation of astronomers and space scientists.</p>
-        <p>The week features public stargazing events, school visits, lectures by leading astronomers, planetarium shows, and hands-on workshops. Events are held in Kampala, Entebbe, Gulu, Mbarara, and Jinja, making astronomy accessible to communities nationwide.</p>
-
-        <h3>Schedule Highlights</h3>
-        <ul>
-          <li><strong>Day 1:</strong> Opening ceremony at Makerere University with keynote by Dr. Sarah Nabukenya</li>
-          <li><strong>Day 2:</strong> School outreach — astronomers visit 20 schools across central Uganda</li>
-          <li><strong>Day 3:</strong> Public lecture: "Uganda's Role in African Astronomy" at Uganda Museum</li>
-          <li><strong>Day 4:</strong> Telescope workshop at Entebbe Observatory — hands-on observation training</li>
-          <li><strong>Day 5:</strong> Astro-photography competition and exhibition</li>
-          <li><strong>Day 6:</strong> Regional events in Gulu, Mbarara, and Jinja</li>
-          <li><strong>Day 7:</strong> Closing night — mass stargazing event at multiple locations</li>
-        </ul>
-
-        <h3>Get Involved</h3>
-        <p>Volunteers are needed for school outreach, event coordination, and social media coverage. If you're a university student or astronomy enthusiast, sign up to help make this year's National Astronomy Week the biggest yet.</p>
-
-        <div class="status-badge status-active">Active Program</div>
-
-        <div class="detail-tags">
-          <span>Astronomy</span>
-          <span>Outreach</span>
-          <span>Education</span>
-          <span>Stargazing</span>
-          <span>Nationwide</span>
-        </div>
+        <h2 id="project-heading"></h2>
+        <p id="project-description"></p>
       </div>
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
           <h4>Project Details</h4>
-          <div class="info-row"><span class="label">Duration</span><span class="value">14–20 Jul 2026</span></div>
-          <div class="info-row"><span class="label">Status</span><span class="value">Active</span></div>
-          <div class="info-row"><span class="label">Locations</span><span class="value">5 cities</span></div>
-          <div class="info-row"><span class="label">Volunteers</span><span class="value">32 needed</span></div>
-          <div class="info-row"><span class="label">Lead</span><span class="value">Uganda Space Community</span></div>
-          <a href="#" class="btn btn-gold">Volunteer</a>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Organizers</h4>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">Dr. Sarah Nabukenya</div>
-              <div class="role">Program Director</div>
-            </div>
-          </div>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">Uganda Space Community</div>
-              <div class="role">Lead Organization</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Partners</h4>
-          <div class="info-row"><span class="label">Makerere Space Lab</span><span class="value">★</span></div>
-          <div class="info-row"><span class="label">Entebbe Observatory</span><span class="value">★</span></div>
-          <div class="info-row"><span class="label">Uganda Museum</span><span class="value">★</span></div>
-          <div class="info-row"><span class="label">Ministry of Science</span><span class="value">★</span></div>
+          <div class="info-row"><span class="label">Track</span><span class="value" id="sidebar-track"></span></div>
+          <div class="info-row"><span class="label">Format</span><span class="value" id="sidebar-format"></span></div>
+          <div class="info-row"><span class="label">Lead</span><span class="value" id="sidebar-lead"></span></div>
         </div>
       </div>
     </div>
@@ -219,11 +155,44 @@
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
-const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
+const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
+
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+
+async function loadProject(){
+  var params=new URLSearchParams(window.location.search);
+  var slug=params.get('id');
+  if(!slug){showNotFound();return}
+  try{
+    var res=await fetch('data/content.json');
+    var data=await res.json();
+    var items=data.programmeTracks||[];
+    var item=items.find(function(t){return slugify(t.title)===slug});
+    if(!item){showNotFound();return}
+
+    document.title=item.title+' — Uganda Space Community';
+    document.querySelector('meta[name="description"]').content=item.description||'Project details from Uganda\'s space community.';
+    document.getElementById('project-track').textContent=item.track||'';
+    document.getElementById('project-title').textContent=item.title;
+    document.getElementById('project-format').textContent=item.format||'';
+    document.getElementById('project-heading').textContent=item.title;
+    document.getElementById('project-description').textContent=item.description||'';
+    if(item.image){document.getElementById('project-image').src=item.image}
+    document.getElementById('sidebar-track').textContent=item.track||'';
+    document.getElementById('sidebar-format').textContent=item.format||'';
+    document.getElementById('sidebar-lead').textContent=item.leadOrganisation||'';
+  }catch(e){showNotFound()}
+}
+
+function showNotFound(){
+  document.getElementById('project-title').textContent='';
+  document.getElementById('project-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Project Not Found</h2><p>The project you are looking for does not exist or has been removed.</p><a href="launchpad.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Launchpad</a></div>';
+}
+loadProject();
 </script>
 </body>
 </html>

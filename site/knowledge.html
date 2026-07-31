@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/base.css">
 <style>
 
-/* ═══ Hero ═══ */
+/* Hero */
 .hero{position:relative;height:380px;overflow:hidden}
 .hero .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,0.15) 0%,rgba(10,22,40,0.8) 100%);z-index:1}
@@ -18,15 +18,13 @@
 .hero h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:300;letter-spacing:-0.015em;margin-bottom:8px;color:#fff}
 .hero .hero-desc{font-size:0.95rem;color:rgba(255,255,255,0.75);font-weight:300;max-width:560px;line-height:1.7}
 
-/* ═══ Stats Strip ═══ */
+/* Stats Strip */
 .stats-strip{display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
 .stats-strip .stat-item{text-align:center;flex:1}
 .stats-strip .stat-item .n{font-family:'Inter',sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
 .stats-strip .stat-item .l{font-size:0.62rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
 
-/* ═══ Section Divider ═══ */
-
-/* ═══ Filters ═══ */
+/* Filters */
 .filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:32px 0 24px}
 .search-box{position:relative;flex:1;min-width:220px}
 .search-box input{width:100%;padding:10px 14px 10px 40px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-size:0.88rem;font-family:'Inter',sans-serif;transition:border-color 0.2s}
@@ -39,10 +37,10 @@
 .sort-select{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-size:0.84rem;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color 0.2s}
 .sort-select:focus{outline:none;border-color:var(--gold)}
 
-/* ═══ Grid ═══ */
+/* Grid */
 .resources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;padding-bottom:32px}
 
-/* ═══ Card ═══ */
+/* Card */
 .res-card{display:block;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;color:inherit;text-decoration:none}
 .res-card:hover{border-color:var(--border-hover);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
 body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
@@ -62,14 +60,13 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .res-card .res-tags{display:flex;flex-wrap:wrap;gap:5px}
 .res-card .res-tag{font-size:0.68rem;padding:3px 9px;border-radius:10px;background:var(--bg-alt-subtle);color:var(--text-2);border:1px solid var(--border);font-weight:500}
 
-/* ═══ No Results ═══ */
+/* No Results */
 .no-results{grid-column:1/-1;text-align:center;padding:80px 24px;color:var(--text-3);font-size:0.95rem}
 
-/* ═══ Footer ═══ */
+/* Footer */
 
-/* ═══ Responsive ═══ */
+/* Responsive */
 @media(max-width:900px){
-
   .nav-open 
   .resources-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
@@ -121,7 +118,6 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
   </div>
 </div>
 
-<!-- ═══ Hero ═══ -->
 <div class="hero" id="main">
   <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80')"></div>
   <div class="wrapper">
@@ -131,17 +127,15 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 </div>
 
 <div class="wrapper">
-  <!-- Stats -->
   <div class="stats-strip">
-    <div class="stat-item"><div class="n">10</div><div class="l">Resources</div></div>
-    <div class="stat-item"><div class="n">2</div><div class="l">Papers</div></div>
-    <div class="stat-item"><div class="n">2</div><div class="l">Policies</div></div>
-    <div class="stat-item"><div class="n">2</div><div class="l">Tools</div></div>
-    <div class="stat-item"><div class="n">2</div><div class="l">Datasets</div></div>
-    <div class="stat-item"><div class="n">2</div><div class="l">Guides</div></div>
+    <div class="stat-item"><div class="n" id="stat-total">10</div><div class="l">Resources</div></div>
+    <div class="stat-item"><div class="n" id="stat-papers">0</div><div class="l">Papers</div></div>
+    <div class="stat-item"><div class="n" id="stat-policies">0</div><div class="l">Policies</div></div>
+    <div class="stat-item"><div class="n" id="stat-tools">0</div><div class="l">Tools</div></div>
+    <div class="stat-item"><div class="n" id="stat-datasets">0</div><div class="l">Datasets</div></div>
+    <div class="stat-item"><div class="n" id="stat-guides">0</div><div class="l">Guides</div></div>
   </div>
 
-  <!-- ═══ Filters ═══ -->
   <div class="filters">
     <div class="search-box">
       <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -149,11 +143,13 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
     </div>
     <div class="chips">
       <button class="chip active" data-cat="all">All</button>
-      <button class="chip" data-cat="papers">Papers</button>
-      <button class="chip" data-cat="policies">Policies</button>
-      <button class="chip" data-cat="tools">Tools</button>
-      <button class="chip" data-cat="datasets">Datasets</button>
-      <button class="chip" data-cat="guides">Guides</button>
+      <button class="chip" data-cat="Research Paper">Papers</button>
+      <button class="chip" data-cat="Policy Document">Policies</button>
+      <button class="chip" data-cat="Technical Guide">Tools</button>
+      <button class="chip" data-cat="Dataset">Datasets</button>
+      <button class="chip" data-cat="Guide">Guides</button>
+      <button class="chip" data-cat="Course Material">Courses</button>
+      <button class="chip" data-cat="Case Study">Case Studies</button>
     </div>
     <select class="sort-select" id="sortSelect">
       <option value="newest">Newest</option>
@@ -161,11 +157,9 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
     </select>
   </div>
 
-  <!-- ═══ Grid ═══ -->
   <div class="resources-grid" id="resourcesGrid"></div>
 </div>
 
-<!-- ═══ Footer ═══ -->
 <footer class="footer">
   <div class="wrapper">
     <div class="footer-grid">
@@ -190,75 +184,106 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
-// Nav scroll effect
-const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
+var navBar=document.querySelector('.nav-bar');var hero=document.querySelector('.hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
 
-const resources=[
-  {cat:"papers",title:"Satellite-Based Crop Monitoring in Uganda",desc:"Analysis of Sentinel-2 imagery for agricultural monitoring across Uganda's major farming regions.",author:"Dr. Sarah Nabukenya, Makerere University",date:"2026-06-01",tags:["Earth Observation","Agriculture"],popularity:92,img:"https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80"},
-  {cat:"papers",title:"LEO Constellation Design for Rural Connectivity",desc:"Proposed LEO satellite constellation architecture for bridging Uganda's rural digital divide.",author:"Grace Nakamya, USA",date:"2026-04-01",tags:["Satellite Tech","Telecommunications"],popularity:87,img:"https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=600&q=80"},
-  {cat:"policies",title:"Uganda Space Policy Framework 2026",desc:"National policy framework for space activities, licensing, and regulatory compliance.",author:"Ministry of Science",date:"2026-03-01",tags:["Space Policy","Governance"],popularity:95,img:"https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=600&q=80"},
-  {cat:"policies",title:"Artemis Accords: Uganda's Commitment",desc:"Summary of Uganda's commitments under the Artemis Accords for responsible space exploration.",author:"Peter Ssemwanga, MAK",date:"2026-07-01",tags:["Space Policy","International"],popularity:88,img:"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80"},
-  {cat:"tools",title:"Uganda EO Data Portal",desc:"Web platform for accessing and analyzing Sentinel-2 and Landsat imagery over Uganda.",author:"Space Hub Uganda",date:"2026-05-01",tags:["Earth Observation","Data Science"],popularity:90,img:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"},
-  {cat:"tools",title:"CubeSat Simulator",desc:"Open-source CubeSat simulation toolkit for university student teams.",author:"Makerere Space Lab",date:"2026-01-01",tags:["Satellite Tech","Engineering"],popularity:83,img:"https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=600&q=80"},
-  {cat:"datasets",title:"Uganda Land Cover Classification 2025",desc:"30m resolution land cover map of Uganda derived from Sentinel-2 imagery.",author:"UNOSAT/UNITAR",date:"2025-12-01",tags:["Earth Observation","GIS"],popularity:86,img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80"},
-  {cat:"datasets",title:"Uganda Meteorological Station Network",desc:"Real-time and historical weather station data from 120+ stations across Uganda.",author:"UNMA",date:"2026-01-15",tags:["Climate","Data Science"],popularity:79,img:"https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&q=80"},
-  {cat:"guides",title:"Getting Started with Google Earth Engine",desc:"Step-by-step tutorial for processing satellite imagery using Google Earth Engine.",author:"Michael Ochieng, SHU",date:"2026-02-01",tags:["Earth Observation","Data Science"],popularity:94,img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80"},
-  {cat:"guides",title:"How to Write a Space Policy Brief",desc:"Guide for researchers and policymakers on crafting effective space policy documents.",author:"Esther Nabirye, MoSTI",date:"2026-05-01",tags:["Space Policy","Writing"],popularity:81,img:"https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80"}
-];
-
-const grid=document.getElementById('resourcesGrid');
-const searchInput=document.getElementById('searchInput');
-const sortSelect=document.getElementById('sortSelect');
-let activeCat='all';
+var resources=[];
+var grid=document.getElementById('resourcesGrid');
+var searchInput=document.getElementById('searchInput');
+var sortSelect=document.getElementById('sortSelect');
+var activeCat='all';
 
 function dateLabel(d){
-  if(d==='2026-01-15')return'Ongoing';
-  const dt=new Date(d);
+  if(!d)return'';
+  var dt=new Date(d);
   return dt.toLocaleDateString('en-US',{month:'short',year:'numeric'});
 }
 
+function catSlug(cat){
+  var map={'Research Paper':'papers','Policy Document':'policies','Technical Guide':'tools','Guide':'guides','Dataset':'datasets','Course Material':'guides','Case Study':'tools'};
+  return map[cat]||'papers';
+}
+
+async function loadKnowledge(){
+  try{
+    var res=await fetch('data/content.json');
+    var data=await res.json();
+    resources=(data.knowledge||[]).map(function(k){
+      return{
+        cat:k.category||'Research Paper',
+        title:k.title||'',
+        desc:k.summary||'',
+        author:(k.author||'')+(k.institution?' , '+k.institution:''),
+        date:k.date||'',
+        tags:k.tags||[],
+        img:k.image||'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
+        slug:k.slug||''
+      };
+    });
+    updateStats();
+    renderCards();
+  }catch(e){
+    grid.innerHTML='<div class="no-results">Failed to load resources.</div>';
+  }
+}
+
+function updateStats(){
+  var counts={};
+  resources.forEach(function(r){
+    var s=catSlug(r.cat);
+    counts[s]=(counts[s]||0)+1;
+  });
+  document.getElementById('stat-total').textContent=resources.length;
+  document.getElementById('stat-papers').textContent=counts.papers||0;
+  document.getElementById('stat-policies').textContent=counts.policies||0;
+  document.getElementById('stat-tools').textContent=(counts.tools||0)+(counts.guides||0);
+  document.getElementById('stat-datasets').textContent=counts.datasets||0;
+  document.getElementById('stat-guides').textContent=counts.guides||0;
+}
+
 function renderCards(){
-  const q=searchInput.value.toLowerCase().trim();
-  let filtered=resources.filter(r=>{
+  var q=searchInput.value.toLowerCase().trim();
+  var filtered=resources.filter(function(r){
     if(activeCat!=='all'&&r.cat!==activeCat)return false;
     if(q&&!(r.title.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)))return false;
     return true;
   });
-  const s=sortSelect.value;
+  var s=sortSelect.value;
   if(s==='newest'){
-    filtered.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    filtered.sort(function(a,b){return new Date(b.date)-new Date(a.date)});
   }else{
-    filtered.sort((a,b)=>b.popularity-a.popularity);
+    filtered.sort(function(a,b){return b.title.length-a.title.length});
   }
   if(!filtered.length){
     grid.innerHTML='<div class="no-results">No resources found matching your filters.</div>';
     return;
   }
-  grid.innerHTML=filtered.map(r=>`
-    <a href="#" class="res-card" data-cat="${r.cat}">
-      <div class="res-card-img" style="background-image:url('${r.img}')">
-        <span class="badge badge-${r.cat}">${r.cat}</span>
-      </div>
-      <div class="res-card-body">
-        <h3>${r.title}</h3>
-        <p class="desc">${r.desc}</p>
-        <div class="res-meta">
-          <span class="author">${r.author}</span>
-          <span>${dateLabel(r.date)}</span>
-        </div>
-        <div class="res-tags">${r.tags.map(t=>`<span class="res-tag">${t}</span>`).join('')}</div>
-      </div>
-    </a>
-  `).join('');
+  grid.innerHTML=filtered.map(function(r){
+    var badgeClass='badge-'+catSlug(r.cat);
+    var link=r.slug?'knowledge.html?id='+r.slug:'#';
+    return '<a href="'+link+'" class="res-card">' +
+      '<div class="res-card-img" style="background-image:url(\''+r.img+'\')">' +
+        '<span class="badge '+badgeClass+'">'+r.cat+'</span>' +
+      '</div>' +
+      '<div class="res-card-body">' +
+        '<h3>'+r.title+'</h3>' +
+        '<p class="desc">'+r.desc+'</p>' +
+        '<div class="res-meta">' +
+          '<span class="author">'+r.author+'</span>' +
+          '<span>'+dateLabel(r.date)+'</span>' +
+        '</div>' +
+        '<div class="res-tags">'+r.tags.map(function(t){return '<span class="res-tag">'+t+'</span>'}).join('')+'</div>' +
+      '</div>' +
+    '</a>';
+  }).join('');
 }
 
-document.querySelectorAll('.chip').forEach(c=>{
-  c.addEventListener('click',()=>{
-    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('active')});
     c.classList.add('active');
     activeCat=c.dataset.cat;
     renderCards();
@@ -266,7 +291,7 @@ document.querySelectorAll('.chip').forEach(c=>{
 });
 searchInput.addEventListener('input',renderCards);
 sortSelect.addEventListener('change',renderCards);
-renderCards();
+loadKnowledge();
 </script>
 </body>
 </html>

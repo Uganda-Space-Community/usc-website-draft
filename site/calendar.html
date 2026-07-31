@@ -125,7 +125,7 @@
 .cal-cta{padding:28px 32px;border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;background:var(--gold-dim);margin-top:40px;margin-bottom:40px}
 .cal-cta h3{font-size:1.05rem;margin-bottom:8px}
 .cal-cta p{font-size:0.85rem;color:var(--text-2);margin-bottom:18px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.6}
-.year-days{position:absolute;left:-40px;top:0;bottom:0;display:grid;grid-template-rows:repeat(7,1fr);gap:2px;font-size:0.52rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.04em}
+.year-days{position:absolute;left:-40px;top:0;bottom:0;display:grid;grid-template-rows:repeat(9,1fr);gap:2px;font-size:0.52rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.04em}
 .year-days span{display:flex;align-items:center;justify-content:flex-end;padding-right:6px;height:100%}
 .year-wrap{position:relative;margin-left:40px}
 
@@ -509,7 +509,7 @@ function renderYear(){
 
   // Month labels row (grid with 53 columns, each month spans its weeks)
   let html='<div class="year-wrap"><div class="year-days">';
-  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>html+='<span>'+d+'</span>');
+  ['W/K','Sun','Mon','Tue','Wed','Thu','Fri','Sat','--'].forEach(d=>html+='<span>'+d+'</span>');
   html+='</div><div class="year-months" style="grid-template-columns:repeat(53,1fr)">';
   for(let m=0;m<12;m++){
     const span=Math.max(1,monthCols[m+1]-monthCols[m]);

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>African Space Agency Scholarship — Uganda Space Community</title>
-<meta name="description" content="Full scholarship for African students pursuing space science and engineering.">
+<title>Opportunity — Uganda Space Community</title>
+<meta name="description" content="Opportunity details from Uganda's space community.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
@@ -28,8 +28,6 @@
 .detail-body h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:16px}
 .detail-body p{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
 .detail-body h3{font-size:1rem;margin:28px 0 12px}
-.detail-body ul{margin-bottom:16px;padding-left:20px}
-.detail-body li{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:6px}
 
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
@@ -38,18 +36,10 @@
 .sidebar-card .info-row:last-child{border-bottom:none}
 .sidebar-card .info-row .label{color:var(--text-3)}
 .sidebar-card .info-row .value{color:var(--text);font-weight:500}
-.sidebar-card 
 
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
-.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
-.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.organizer-avatar svg{width:18px;height:18px}
-.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
-.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
-
-.deadline-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--red);background:var(--red-dim);padding:8px 16px;border-radius:var(--radius);margin-top:16px}
-.deadline-badge svg{width:16px;height:16px}
+.not-found{padding:80px 0;text-align:center}
+.not-found h2{font-size:1.4rem;margin-bottom:8px}
+.not-found p{color:var(--text-2);font-size:0.92rem}
 
 /* ═══ Footer ═══ */
 
@@ -104,19 +94,19 @@
 </div>
 
 <div class="detail-hero">
-  <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80" alt="African Space Agency Scholarship">
+  <img id="opp-image" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80" alt="Opportunity">
   <div class="detail-hero-body">
     <div class="wrapper">
-      <a href="updates.html#opportunities" class="detail-back">
+      <a href="launchpad.html" class="detail-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
         Back to Opportunities
       </a>
-      <div class="detail-cat">Scholarship</div>
-      <h1>African Space Agency Scholarship</h1>
+      <div class="detail-cat" id="opp-type"></div>
+      <h1 id="opp-title">Loading...</h1>
       <div class="meta">
-        <span>Deadline: 30 Sep 2026</span>
-        <span>·</span>
-        <span>Full Funding</span>
+        <span id="opp-deadline"></span>
+        <span id="opp-org-sep" style="display:none">·</span>
+        <span id="opp-org"></span>
       </div>
     </div>
   </div>
@@ -124,70 +114,22 @@
 
 <div class="detail-content" id="main">
   <div class="wrapper">
-    <div class="detail-layout">
+    <div class="detail-layout" id="opp-layout">
       <div class="detail-body">
-        <h2>Full Scholarship for African Students</h2>
-        <p>The African Space Agency is offering full scholarships for African students pursuing undergraduate or postgraduate degrees in space science, aerospace engineering, or related fields. This prestigious program covers tuition, living expenses, and research costs for the duration of the study program.</p>
-        <p>Selected scholars will have the opportunity to study at leading African universities and participate in research projects aligned with the African Space Agency's mission to advance space capabilities across the continent.</p>
+        <h2 id="opp-heading"></h2>
+        <p id="opp-description"></p>
 
         <h3>Eligibility</h3>
-        <ul>
-          <li>Citizen of an African Union member state</li>
-          <li>Admitted to or enrolled in an accredited university program in space science, aerospace engineering, physics, or related fields</li>
-          <li>Minimum GPA of 3.5 or equivalent</li>
-          <li>Demonstrated commitment to Africa's space development</li>
-          <li>Not currently receiving another full scholarship</li>
-        </ul>
-
-        <h3>What's Covered</h3>
-        <ul>
-          <li>Full tuition and fees</li>
-          <li>Monthly living stipend</li>
-          <li>Research and conference travel grants</li>
-          <li>Health insurance</li>
-          <li>Mentorship from African Space Agency professionals</li>
-        </ul>
-
-        <h3>How to Apply</h3>
-        <p>Applications must include a completed application form, academic transcripts, two letters of recommendation, a personal statement of purpose, and a research proposal aligned with the agency's strategic priorities. Applications are reviewed by a committee of space science professionals.</p>
-
-        <div class="detail-tags">
-          <span>Scholarship</span>
-          <span>Space Science</span>
-          <span>African Space Agency</span>
-          <span>Full Funding</span>
-          <span>Postgraduate</span>
-        </div>
+        <p id="opp-eligible"></p>
       </div>
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
           <h4>Opportunity Details</h4>
-          <div class="info-row"><span class="label">Type</span><span class="value">Scholarship</span></div>
-          <div class="info-row"><span class="label">Funding</span><span class="value">Full</span></div>
-          <div class="info-row"><span class="label">Deadline</span><span class="value">30 Sep 2026</span></div>
-          <div class="info-row"><span class="label">Duration</span><span class="value">2–4 years</span></div>
-          <div class="info-row"><span class="label">Location</span><span class="value">Africa</span></div>
-          <div class="info-row"><span class="label">Applicants</span><span class="value">124 so far</span></div>
-          <a href="#" class="btn btn-gold">Apply Now</a>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Organizers</h4>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">African Space Agency</div>
-              <div class="role">Scholarship Provider</div>
-            </div>
-          </div>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">Peter Ssemwanga</div>
-              <div class="role">Scholarship Coordinator</div>
-            </div>
-          </div>
+          <div class="info-row"><span class="label">Type</span><span class="value" id="sidebar-type"></span></div>
+          <div class="info-row"><span class="label">Organization</span><span class="value" id="sidebar-org"></span></div>
+          <div class="info-row"><span class="label">Deadline</span><span class="value" id="sidebar-deadline"></span></div>
+          <div class="info-row"><span class="label">Eligible</span><span class="value" id="sidebar-eligible"></span></div>
         </div>
       </div>
     </div>
@@ -217,11 +159,47 @@
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
-const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
+const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
+
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+
+async function loadOpportunity(){
+  var params=new URLSearchParams(window.location.search);
+  var slug=params.get('id');
+  if(!slug){showNotFound();return}
+  try{
+    var res=await fetch('data/content.json');
+    var data=await res.json();
+    var items=data.opportunities||[];
+    var item=items.find(function(o){return slugify(o.title)===slug});
+    if(!item){showNotFound();return}
+
+    document.title=item.title+' — Uganda Space Community';
+    document.querySelector('meta[name="description"]').content=item.description||'Opportunity from Uganda\'s space community.';
+    document.getElementById('opp-type').textContent=item.type||'';
+    document.getElementById('opp-title').textContent=item.title;
+    document.getElementById('opp-deadline').textContent=item.deadline?'Deadline: '+item.deadline:'';
+    document.getElementById('opp-org').textContent=item.organization||'';
+    document.getElementById('opp-org-sep').style.display=item.organization?'inline':'none';
+    document.getElementById('opp-heading').textContent=item.title;
+    document.getElementById('opp-description').textContent=item.description||'';
+    document.getElementById('opp-eligible').textContent=item.eligible||'';
+    document.getElementById('sidebar-type').textContent=item.type||'';
+    document.getElementById('sidebar-org').textContent=item.organization||'';
+    document.getElementById('sidebar-deadline').textContent=item.deadline||'';
+    document.getElementById('sidebar-eligible').textContent=item.eligible||'';
+  }catch(e){showNotFound()}
+}
+
+function showNotFound(){
+  document.getElementById('opp-title').textContent='';
+  document.getElementById('opp-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Opportunity Not Found</h2><p>The opportunity you are looking for does not exist or has been removed.</p><a href="launchpad.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Launchpad</a></div>';
+}
+loadOpportunity();
 </script>
 </body>
 </html>

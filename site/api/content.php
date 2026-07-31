@@ -2,10 +2,12 @@
 require_once __DIR__ . '/config.php';
 
 $action = $_GET['action'] ?? '';
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$slug = $_GET['slug'] ?? '';
 
 switch ($action) {
 
-  // ── Approved submissions by type ──
+  // ── List approved submissions by type ──
   case 'events':
   case 'programs':
   case 'projects':
@@ -13,9 +15,12 @@ switch ($action) {
   case 'opportunities':
   case 'news':
   case 'articles':
+  case 'profiles':
+  case 'questions':
     $db = db();
+    $type = $action === 'articles' ? 'article' : ($action === 'news' ? 'news' : ($action === 'profiles' ? 'profile' : ($action === 'questions' ? 'question' : $action)));
     $stmt = $db->prepare('SELECT id, payload, created_at FROM submissions WHERE type = ? AND status = ? ORDER BY created_at DESC');
-    $stmt->execute([$action === 'articles' ? 'article' : ($action === 'news' ? 'news' : $action), 'approved']);
+    $stmt->execute([$type, 'approved']);
     $rows = $stmt->fetchAll();
     $items = array_map(function($row) {
       $payload = json_decode($row['payload'], true);
@@ -26,28 +31,19 @@ switch ($action) {
     respond([$action => $items]);
     break;
 
-  // ── Community profiles ──
-  case 'profiles':
+  // ── Get single submission by ID ──
+  case 'get':
+    if (!$id) respond(['error' => 'id required'], 400);
     $db = db();
-    $stmt = $db->prepare('SELECT payload FROM submissions WHERE type = ? AND status = ? ORDER BY created_at DESC');
-    $stmt->execute(['profile', 'approved']);
-    $rows = $stmt->fetchAll();
-    $items = array_map(fn($r) => json_decode($r['payload'], true), $rows);
-    respond(['profiles' => $items]);
-    break;
-
-  // ── FAQ questions ──
-  case 'faqs':
-    $db = db();
-    $stmt = $db->prepare('SELECT id, payload, created_at FROM submissions WHERE type = ? AND status = ? ORDER BY created_at DESC');
-    $stmt->execute(['question', 'approved']);
-    $rows = $stmt->fetchAll();
-    $items = array_map(function($row) {
-      $payload = json_decode($row['payload'], true);
-      $payload['id'] = (int)$row['id'];
-      return $payload;
-    }, $rows);
-    respond(['faqs' => $items]);
+    $stmt = $db->prepare('SELECT id, type, payload, status, created_at FROM submissions WHERE id = ? AND status = ?');
+    $stmt->execute([$id, 'approved']);
+    $row = $stmt->fetch();
+    if (!$row) respond(['error' => 'Not found'], 404);
+    $payload = json_decode($row['payload'], true);
+    $payload['id'] = (int)$row['id'];
+    $payload['type'] = $row['type'];
+    $payload['created_at'] = $row['created_at'];
+    respond($payload);
     break;
 
   // ── Stats ──

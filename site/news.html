@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uganda Signs Artemis Accords — Uganda Space Community</title>
-<meta name="description" content="Uganda becomes the latest African nation to commit to responsible space exploration principles.">
+<title>News — Uganda Space Community</title>
+<meta name="description" content="News and updates from Uganda's space community.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
@@ -37,13 +37,9 @@
 .sidebar-card .info-row .label{color:var(--text-3)}
 .sidebar-card .info-row .value{color:var(--text);font-weight:500}
 
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
-.organizer{display:flex;align-items:center;gap:12px;padding:10px 0}
-.organizer-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.organizer-avatar svg{width:18px;height:18px}
-.organizer-info .name{font-size:0.84rem;font-weight:500;color:var(--text)}
-.organizer-info .role{font-size:0.72rem;color:var(--text-3)}
+.not-found{padding:80px 0;text-align:center}
+.not-found h2{font-size:1.4rem;margin-bottom:8px}
+.not-found p{color:var(--text-2);font-size:0.92rem}
 
 /* ═══ Footer ═══ */
 
@@ -98,19 +94,19 @@
 </div>
 
 <div class="detail-hero">
-  <img src="https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=1200&q=80" alt="Uganda Signs Artemis Accords">
+  <img id="news-image" src="https://images.unsplash.com/photo-1446776858070-70c3d5ed6758?w=1200&q=80" alt="News">
   <div class="detail-hero-body">
     <div class="wrapper">
-      <a href="updates.html#news" class="detail-back">
+      <a href="updates.html" class="detail-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
         Back to Updates
       </a>
-      <div class="detail-cat">Policy</div>
-      <h1>Uganda Signs Artemis Accords</h1>
+      <div class="detail-cat" id="news-category"></div>
+      <h1 id="news-title">Loading...</h1>
       <div class="meta">
-        <span>15 Jul 2026</span>
-        <span>·</span>
-        <span>Policy &amp; Governance</span>
+        <span id="news-date"></span>
+        <span id="news-source-sep" style="display:none">·</span>
+        <span id="news-source"></span>
       </div>
     </div>
   </div>
@@ -118,52 +114,17 @@
 
 <div class="detail-content" id="main">
   <div class="wrapper">
-    <div class="detail-layout">
+    <div class="detail-layout" id="news-layout">
       <div class="detail-body">
-        <h2>Uganda Commits to Responsible Space Exploration</h2>
-        <p>Uganda has officially signed the Artemis Accords, becoming the latest African nation to commit to the principles of responsible, peaceful, and sustainable exploration and use of outer space. The signing ceremony took place at the Ministry of Science and Technology headquarters in Kampala.</p>
-        <p>The Artemis Accords, led by the United States in partnership with NASA, establish a set of norms for civilian space exploration and the use of the Moon, Mars, comets, and asteroids for peaceful purposes. By signing, Uganda joins a growing coalition of nations committed to transparency, interoperability, and the release of scientific data.</p>
-
-        <h3>What This Means for Uganda</h3>
-        <p>This milestone opens the door for Ugandan researchers and institutions to participate in international space missions and data-sharing agreements. It also strengthens Uganda's position in regional and continental space governance discussions, particularly within the African Space Agency framework.</p>
-        <p>The Uganda Space Agency will serve as the primary coordinating body for implementing the accords' principles, working closely with universities, research institutions, and international partners.</p>
-
-        <h3>Key Provisions</h3>
-        <p>The accords commit signatories to peaceful exploration, transparency in space operations, the release of scientific data, protection of heritage sites, deconfliction of activities, and the responsible management of space resources. Uganda's signing aligns with its broader national space policy goals.</p>
-
-        <div class="detail-tags">
-          <span>Artemis Accords</span>
-          <span>Space Policy</span>
-          <span>International Cooperation</span>
-          <span>African Space Agency</span>
-        </div>
+        <p id="news-excerpt"></p>
       </div>
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
           <h4>Article Details</h4>
-          <div class="info-row"><span class="label">Published</span><span class="value">15 Jul 2026</span></div>
-          <div class="info-row"><span class="label">Category</span><span class="value">Policy</span></div>
-          <div class="info-row"><span class="label">Author</span><span class="value">USC Editorial</span></div>
-          <div class="info-row"><span class="label">Source</span><span class="value">Ministry of Science</span></div>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Author</h4>
-          <div class="organizer">
-            <div class="organizer-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-            <div class="organizer-info">
-              <div class="name">Grace Nakamya</div>
-              <div class="role">Policy Correspondent</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Related</h4>
-          <div class="info-row"><span class="label">Uganda Space Agency</span><span class="value">→</span></div>
-          <div class="info-row"><span class="label">Artemis Accords</span><span class="value">→</span></div>
-          <div class="info-row"><span class="label">African Space Agency</span><span class="value">→</span></div>
+          <div class="info-row"><span class="label">Published</span><span class="value" id="sidebar-date"></span></div>
+          <div class="info-row"><span class="label">Category</span><span class="value" id="sidebar-category"></span></div>
+          <div class="info-row"><span class="label">Source</span><span class="value" id="sidebar-source"></span></div>
         </div>
       </div>
     </div>
@@ -193,11 +154,45 @@
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
-const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
+const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
+
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+
+async function loadNews(){
+  var params=new URLSearchParams(window.location.search);
+  var slug=params.get('id');
+  if(!slug){showNotFound();return}
+  try{
+    var res=await fetch('data/content.json');
+    var data=await res.json();
+    var items=data.announcements||[];
+    var item=items.find(function(a){return slugify(a.title)===slug});
+    if(!item){showNotFound();return}
+
+    document.title=item.title+' — Uganda Space Community';
+    document.querySelector('meta[name="description"]').content=item.excerpt||'News from Uganda\'s space community.';
+    document.getElementById('news-category').textContent=item.category||'';
+    document.getElementById('news-title').textContent=item.title;
+    document.getElementById('news-date').textContent=item.date||'';
+    document.getElementById('news-source').textContent=item.source||'';
+    document.getElementById('news-source-sep').style.display=item.source?'inline':'none';
+    document.getElementById('news-excerpt').textContent=item.excerpt||'';
+    if(item.image){document.getElementById('news-image').src=item.image}
+    document.getElementById('sidebar-date').textContent=item.date||'';
+    document.getElementById('sidebar-category').textContent=item.category||'';
+    document.getElementById('sidebar-source').textContent=item.source||'';
+  }catch(e){showNotFound()}
+}
+
+function showNotFound(){
+  document.getElementById('news-title').textContent='';
+  document.getElementById('news-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Article Not Found</h2><p>The article you are looking for does not exist or has been removed.</p><a href="updates.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Updates</a></div>';
+}
+loadNews();
 </script>
 </body>
 </html>

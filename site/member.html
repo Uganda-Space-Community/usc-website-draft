@@ -33,6 +33,7 @@
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
 .sidebar-card.profile-card{text-align:center;padding:32px 24px}
 .profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--bg-alt-subtle));border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.profile-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
 .profile-avatar svg{width:32px;height:32px;color:var(--gold)}
 .profile-name{font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:4px}
 .profile-title{font-size:0.78rem;color:var(--text-2)}
@@ -45,20 +46,9 @@
 .detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
 .detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
 
-.org-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}
-.org-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:border-color 0.2s}
-.org-row:hover{border-color:var(--gold)}
-.org-row .org-icon{width:28px;height:28px;border-radius:6px;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.org-row .org-icon svg{width:12px;height:12px}
-.org-row .org-info .name{font-size:0.82rem;font-weight:500}
-.org-row .org-info .type{font-size:0.68rem;color:var(--text-3)}
-
-.activity-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}
-.activity-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.activity-row:last-child{border-bottom:none}
-.activity-row .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.activity-row .info .name{font-size:0.82rem;font-weight:500}
-.activity-row .info .type{font-size:0.68rem;color:var(--text-3)}
+.not-found{padding:80px 0;text-align:center}
+.not-found h2{font-size:1.4rem;margin-bottom:8px}
+.not-found p{color:var(--text-2);font-size:0.92rem}
 
 /* ═══ Footer ═══ */
 
@@ -113,14 +103,14 @@
 </div>
 
 <div class="detail-hero" id="main">
-  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')"></div>
+  <div class="hero-bg" id="member-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')"></div>
   <div class="wrapper">
     <a href="community.html" class="detail-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
       Back to Community
     </a>
     <div class="detail-cat" id="member-identity"></div>
-    <h1 id="member-name"></h1>
+    <h1 id="member-name">Loading...</h1>
     <div class="meta">
       <span id="member-org"></span>
     </div>
@@ -129,19 +119,13 @@
 
 <div class="detail-content">
   <div class="wrapper">
-    <div class="detail-layout">
+    <div class="detail-layout" id="member-layout">
       <div class="detail-body">
         <h2>About</h2>
         <p id="member-about"></p>
 
         <h3>Interests</h3>
         <div class="detail-tags" id="member-tags"></div>
-
-        <h3>Organizations</h3>
-        <div class="org-list" id="member-orgs"></div>
-
-        <h3>Activities</h3>
-        <div class="activity-list" id="member-activities"></div>
       </div>
 
       <div class="detail-sidebar">
@@ -153,15 +137,8 @@
 
         <div class="sidebar-card">
           <h4>Profile</h4>
-          <div class="info-row"><span class="label">Identity</span><span class="value" id="sidebar-identity"></span></div>
-          <div class="info-row"><span class="label">Interests</span><span class="value" id="sidebar-interests"></span></div>
-          <div class="info-row"><span class="label">Orgs</span><span class="value" id="sidebar-orgs"></span></div>
-          <div class="info-row"><span class="label">Location</span><span class="value" id="sidebar-location"></span></div>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Connected</h4>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px" id="member-social"></div>
+          <div class="info-row"><span class="label">Organisation</span><span class="value" id="sidebar-org"></span></div>
+          <div class="info-row"><span class="label">Role</span><span class="value" id="sidebar-role"></span></div>
         </div>
       </div>
     </div>
@@ -196,82 +173,46 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
-const crew=[
-  {name:'Dr. Sarah Nabukenya',identity:'researcher',summary:'Senior Lecturer in Physics at Makerere University, specializing in Earth observation and satellite communications. Leading research on crop monitoring using Sentinel-2 imagery across East Africa.',interests:['earth-observation','satellite-tech'],affiliations:['SGAC','MAK','AfSA'],location:'Kampala',social:{twitter:'@snabukenya',linkedin:'sarah-nabukenya'}},
-  {name:'James Okello',identity:'student',summary:'PhD candidate in Astrophysics at Makerere, researching variable stars and stellar populations. Published 3 papers on RR Lyrae stars in the Milky Way bulge.',interests:['astrophysics','data-science'],affiliations:['MAK','UAS'],location:'Kampala',social:{twitter:'@jokello_astro'}},
-  {name:'Grace Nakamya',identity:'engineer',summary:'Satellite systems engineer at Uganda Space Agency, working on CubeSat design and ground station operations. Previously at ESA on the Juice mission.',interests:['satellite-tech','data-science'],affiliations:['USA','IEEE','SGAC'],location:'Entebbe',social:{linkedin:'grace-nakamya'}},
-  {name:'Peter Ssemwanga',identity:'policy',summary:'Research Fellow in Space Policy at Makerere, focusing on African space governance and the Artemis Accords. Advisor to the Ministry of Science on space legislation.',interests:['space-policy'],affiliations:['MAK','AfSA','SGAC'],location:'Kampala',social:{linkedin:'peter-ssemwanga'}},
-  {name:'Alice Nabukera',identity:'student',summary:'MSc student in Remote Sensing at Busitema, analyzing land use change using Sentinel-2 imagery. Passionate about applying EO data for agricultural monitoring.',interests:['earth-observation','data-science'],affiliations:['BUS','AfAS'],location:'Mbale',social:{}},
-  {name:'David Mugisha',identity:'engineer',summary:'Lecturer in Aerospace Engineering at Makerere, leading the university\'s robotics and CubeSat programs. Built Uganda\'s first university ground station.',interests:['satellite-tech','robotics'],affiliations:['MAK','IEEE'],location:'Kampala',social:{twitter:'@dmugisha_eng'}},
-  {name:'Sarah Akello',identity:'manager',summary:'Program Manager for outreach initiatives at Uganda Space Agency, coordinating national STEM education programs reaching 10,000+ students annually.',interests:['education'],affiliations:['USA','AfSA'],location:'Kampala',social:{linkedin:'sarah-akello'}},
-  {name:'Michael Ochieng',identity:'engineer',summary:'Data Scientist at Space Hub Uganda, building EO analytics pipelines and machine learning models for environmental monitoring.',interests:['data-science','earth-observation'],affiliations:['SHU','IEEE'],location:'Kampala',social:{twitter:'@mochieng_ds'}},
-  {name:'Fatuma Nakato',identity:'student',summary:'PhD student in Satellite Communications at Makerere, researching LEO constellation design for rural connectivity solutions.',interests:['satellite-tech'],affiliations:['MAK','SGAC'],location:'Kampala',social:{}},
-  {name:'Brian Ssemakula',identity:'engineer',summary:'Software Engineer building ground station infrastructure and satellite data processing systems. Contributor to open-source satellite tools.',interests:['satellite-tech','data-science'],affiliations:['SHU','IEEE'],location:'Kampala',social:{twitter:'@bssemakula'}},
-  {name:'Esther Nabirye',identity:'policy',summary:'Policy Analyst at the Ministry of Science, advising on space legislation and international cooperation agreements.',interests:['space-policy'],affiliations:['MoSTI','AfSA'],location:'Kampala',social:{linkedin:'esther-nabirye'}},
-  {name:'John Mukasa',identity:'researcher',summary:'Director of Entebbe Observatory, leading public astronomy programs and telescope operations. Organized National Astronomy Week since 2020.',interests:['astrophysics','education'],affiliations:['UAS','ENT'],location:'Entebbe',social:{twitter:'@jmukasa_astro'}},
-  {name:'Patricia Owino',identity:'journalist',summary:'Science journalist covering Uganda\'s space sector for national and international outlets. Editor of Space Africa Magazine.',interests:['education'],affiliations:['UJF'],location:'Kampala',social:{twitter:'@powino_science'}},
-  {name:'Samuel Tumusiime',identity:'student',summary:'Final year Aerospace Engineering student at Makerere, building Uganda\'s first university CubeSat as part of the ESA Fly Your Satellite program.',interests:['satellite-tech','robotics'],affiliations:['MAK'],location:'Kampala',social:{}},
-  {name:'Dr. Florence Akello',identity:'researcher',summary:'Associate Professor of Physics at Makerere, leading the astrophysics research group. Expert in stellar spectroscopy and galaxy evolution.',interests:['astrophysics'],affiliations:['MAK','AfAS'],location:'Kampala',social:{linkedin:'florence-akello'}},
-  {name:'Moses Kabanda',identity:'engineer',summary:'GIS and remote sensing specialist at UNOSAT, supporting humanitarian mapping in East Africa. Expert in drone mapping and spatial analysis.',interests:['earth-observation'],affiliations:['UNOSAT','AfAS'],location:'Kampala',social:{linkedin:'moses-kabanda'}}
-];
 
-const identityLabels={researcher:'Researcher',student:'Student',engineer:'Engineer',scientist:'Scientist',journalist:'Journalist',policy:'Policy Analyst',manager:'Program Manager',entrepreneur:'Entrepreneur'};
-const interestLabels={'earth-observation':'Earth Observation','astrophysics':'Astrophysics','satellite-tech':'Satellite Tech','space-policy':'Space Policy','data-science':'Data Science','robotics':'Robotics','education':'Education','aerospace':'Aerospace Engineering','space-medicine':'Space Medicine','planetary':'Planetary Science','space-entrepreneurship':'Space Entrepreneurship'};
-const orgLabels={SGAC:'Space Generation Advisory Council',MAK:'Makerere University',AfSA:'African Space Agency',USA:'Uganda Space Agency',IEEE:'IEEE',UAS:'Uganda Astronomical Society',AfAS:'African Astronomical Society',SHU:'Space Hub Uganda',MoSTI:'Ministry of Science',UNOSAT:'UNOSAT',BUS:'Busitema University',ENT:'Entebbe Observatory',UJF:'Uganda Journalists Federation'};
-const orgIcons={SGAC:'<path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',MAK:'<path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',AfSA:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>',USA:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>',IEEE:'<rect x="2" y="2" width="20" height="20" rx="4"/>',UAS:'<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>',AfAS:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>',SHU:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>',MoSTI:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',UNOSAT:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>',BUS:'<path d="M9 3h6v4H9z"/><path d="M4 9h16v12H4z"/>',ENT:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>',UJF:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>'};
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 
-const meshActivities=[
-  {name:'CubeSat Build Series',type:'project',areas:['sat','eng','ds']},
-  {name:'EO for Agriculture',type:'project',areas:['eo','climate','ds']},
-  {name:'Space Pioneers Webinar',type:'event',areas:['astro','edu']},
-  {name:'National Astronomy Week',type:'event',areas:['astro','edu']},
-  {name:'Drone Mapping Workshop',type:'event',areas:['gis','robo','eo']},
-  {name:'Space Policy Forum',type:'event',areas:['sp','def']},
-  {name:'Hack for Space',type:'event',areas:['ds','sat','robo','eng']},
-  {name:'Climate Data Pipeline',type:'project',areas:['climate','ds','eo']},
-  {name:'STEM School Outreach',type:'project',areas:['edu','robo']}
-];
+async function loadMember(){
+  const params=new URLSearchParams(window.location.search);
+  const slug=params.get('id');
+  if(!slug){showNotFound();return}
+  try{
+    const res=await fetch('data/content.json');
+    const data=await res.json();
+    const members=data.teamMembers||[];
+    const member=members.find(m=>slugify(m.name)===slug);
+    if(!member){showNotFound();return}
 
-const params=new URLSearchParams(window.location.search);
-const memberIdx=parseInt(params.get('id'))||0;
-const member=crew[memberIdx]||crew[0];
+    document.title=member.name+' — Uganda Space Community';
+    document.querySelector('meta[name="description"]').content=member.bio||'Member profile in Uganda\'s space community.';
+    document.getElementById('member-identity').textContent=member.role||'';
+    document.getElementById('member-name').textContent=member.name;
+    document.getElementById('member-org').textContent=member.organisation||'';
+    document.getElementById('member-about').textContent=member.bio||'';
+    if(member.image){document.getElementById('member-hero-bg').style.backgroundImage="url('"+member.image+"')"}
+    if(member.affiliations&&member.affiliations.length){
+      document.getElementById('member-tags').innerHTML=member.affiliations.map(function(t){return '<span>'+t+'</span>'}).join('');
+    }
+    var avatarHtml=member.image
+      ?'<img src="'+member.image+'" alt="'+member.name+'">'
+      :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>';
+    document.getElementById('sidebar-avatar').innerHTML=avatarHtml;
+    document.getElementById('sidebar-name').textContent=member.name;
+    document.getElementById('sidebar-title').textContent=member.role||'';
+    document.getElementById('sidebar-org').textContent=member.organisation||'';
+    document.getElementById('sidebar-role').textContent=member.role||'';
+  }catch(e){showNotFound()}
+}
 
-document.title=member.name+' — Uganda Space Community';
-document.getElementById('member-identity').textContent=identityLabels[member.identity]||member.identity;
-document.getElementById('member-name').textContent=member.name;
-document.getElementById('member-org').textContent=member.affiliations.map(a=>orgLabels[a]||a).join(' · ');
-document.getElementById('member-about').textContent=member.summary;
-document.getElementById('member-tags').innerHTML=member.interests.map(i=>`<span>${interestLabels[i]||i}</span>`).join('');
-document.getElementById('sidebar-avatar').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>`;
-document.getElementById('sidebar-name').textContent=member.name;
-document.getElementById('sidebar-title').textContent=identityLabels[member.identity]||member.identity;
-document.getElementById('sidebar-identity').textContent=identityLabels[member.identity]||member.identity;
-document.getElementById('sidebar-interests').textContent=member.interests.map(i=>interestLabels[i]||i).join(', ');
-document.getElementById('sidebar-orgs').textContent=member.affiliations.length;
-document.getElementById('sidebar-location').textContent=member.location||'Uganda';
-
-document.getElementById('member-orgs').innerHTML=member.affiliations.map(a=>{
-  const name=orgLabels[a]||a;
-  const icon=orgIcons[a]||'<circle cx="12" cy="12" r="10"/>';
-  return`<div class="org-row" onclick="window.location='organization.html?id=${a.toLowerCase()}'">
-    <div class="org-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${icon}</svg></div>
-    <div class="org-info"><div class="name">${name}</div><div class="type">Organization</div></div>
-  </div>`;
-}).join('');
-
-const memberAreas=member.interests.map(i=>{const m={'earth-observation':'eo','astrophysics':'astro','satellite-tech':'sat','space-policy':'sp','data-science':'ds','robotics':'robo','education':'edu','aerospace':'eng','space-medicine':'smed','planetary':'pln','space-entrepreneurship':'sentr'};return m[i]}).filter(Boolean);
-const memberActs=meshActivities.filter(a=>a.areas.some(ar=>memberAreas.includes(ar)));
-document.getElementById('member-activities').innerHTML=memberActs.length?memberActs.map(a=>`
-  <div class="activity-row">
-    <div class="dot"></div>
-    <div class="info"><div class="name">${a.name}</div><div class="type">${a.type}</div></div>
-  </div>
-`).join(''):'<p style="font-size:0.82rem;color:var(--text-3)">No activities listed yet.</p>';
-
-const socialHtml=[];
-if(member.social.twitter)socialHtml.push(`<a href="https://twitter.com/${member.social.twitter.replace('@','')}" target="_blank" style="font-size:0.78rem;padding:6px 12px;border:1px solid var(--border);border-radius:100px;display:inline-flex;align-items:center;gap:5px;transition:border-color 0.2s">${member.social.twitter}</a>`);
-if(member.social.linkedin)socialHtml.push(`<a href="https://linkedin.com/in/${member.social.linkedin}" target="_blank" style="font-size:0.78rem;padding:6px 12px;border:1px solid var(--border);border-radius:100px;display:inline-flex;align-items:center;gap:5px;transition:border-color 0.2s">LinkedIn</a>`);
-document.getElementById('member-social').innerHTML=socialHtml.join('')||'<p style="font-size:0.78rem;color:var(--text-3)">No social links</p>';
+function showNotFound(){
+  document.getElementById('member-name').textContent='';
+  document.getElementById('member-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Member Not Found</h2><p>The member you are looking for does not exist or has been removed.</p><a href="community.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Community</a></div>';
+}
+loadMember();
 </script>
 </body>
 </html>

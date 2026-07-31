@@ -41,23 +41,10 @@
 .sidebar-card .info-row:last-child{border-bottom:none}
 .sidebar-card .info-row .label{color:var(--text-3)}
 .sidebar-card .info-row .value{color:var(--text);font-weight:500}
-.sidebar-card 
 
-.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
-.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
-
-.member-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.member-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.member-row:last-child{border-bottom:none}
-.member-row .avatar{width:32px;height:32px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.member-row .avatar svg{width:14px;height:14px}
-.member-row .info .name{font-size:0.82rem;font-weight:500}
-.member-row .info .role{font-size:0.68rem;color:var(--text-3)}
-
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.stat-box{text-align:center;padding:16px;background:var(--bg-alt-subtle);border-radius:var(--radius)}
-.stat-box .n{font-family:'Inter',sans-serif;font-size:1.6rem;font-weight:700;color:var(--gold)}
-.stat-box .l{font-size:0.68rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
+.not-found{padding:80px 0;text-align:center}
+.not-found h2{font-size:1.4rem;margin-bottom:8px}
+.not-found p{color:var(--text-2);font-size:0.92rem}
 
 /* ═══ Footer ═══ */
 
@@ -73,7 +60,6 @@
   .wrapper{padding:0 18px}
   .detail-hero{height:260px}
   .detail-hero h1{font-size:1.5rem}
-  .stat-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:20px}
 }</style>
 </head>
@@ -113,37 +99,26 @@
 </div>
 
 <div class="detail-hero" id="main">
-  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')"></div>
+  <div class="hero-bg" id="org-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')"></div>
   <div class="wrapper">
     <a href="community.html" class="detail-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
       Back to Community
     </a>
     <div class="detail-cat" id="org-type"></div>
-    <h1 id="org-name"></h1>
+    <h1 id="org-name">Loading...</h1>
     <div class="meta">
       <span id="org-location"></span>
-      <span>·</span>
-      <span id="org-founded"></span>
     </div>
   </div>
 </div>
 
 <div class="detail-content">
   <div class="wrapper">
-    <div class="detail-layout">
+    <div class="detail-layout" id="org-layout">
       <div class="detail-body">
         <h2>About</h2>
         <p id="org-about"></p>
-
-        <h3>Mission</h3>
-        <p id="org-mission"></p>
-
-        <h3>Focus Areas</h3>
-        <div class="detail-tags" id="org-tags"></div>
-
-        <h3>Key Members</h3>
-        <div class="member-list" id="org-members"></div>
       </div>
 
       <div class="detail-sidebar">
@@ -155,21 +130,8 @@
 
         <div class="sidebar-card">
           <h4>Organization Info</h4>
-          <div class="info-row"><span class="label">Type</span><span class="value" id="sidebar-type"></span></div>
+          <div class="info-row"><span class="label">Category</span><span class="value" id="sidebar-type"></span></div>
           <div class="info-row"><span class="label">Location</span><span class="value" id="sidebar-location"></span></div>
-          <div class="info-row"><span class="label">Founded</span><span class="value" id="sidebar-founded"></span></div>
-          <div class="info-row"><span class="label">Members</span><span class="value" id="sidebar-members"></span></div>
-          <a href="#" class="btn btn-gold" id="org-visit">Visit Website</a>
-        </div>
-
-        <div class="sidebar-card">
-          <h4>Stats</h4>
-          <div class="stat-grid">
-            <div class="stat-box"><div class="n" id="stat-members">0</div><div class="l">Members</div></div>
-            <div class="stat-box"><div class="n" id="stat-projects">0</div><div class="l">Projects</div></div>
-            <div class="stat-box"><div class="n" id="stat-events">0</div><div class="l">Events</div></div>
-            <div class="stat-box"><div class="n" id="stat-partners">0</div><div class="l">Partners</div></div>
-          </div>
         </div>
       </div>
     </div>
@@ -204,46 +166,41 @@ function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(wi
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 USC.init();
-const orgs={
-  'uganda-space-community':{name:'Uganda Space Community',type:'Community Platform',location:'Kampala, Uganda',founded:'2024',about:'Uganda Space Community is the central platform connecting students, researchers, professionals, and organizations across Uganda\'s growing space ecosystem. We facilitate collaboration, knowledge sharing, and capacity building in space science and technology.',mission:'To build a thriving, inclusive space community in Uganda that drives innovation, education, and policy development for the benefit of all Ugandans.',tags:['Community Building','Education','Networking','Policy'],members:[{name:'Dr. Sarah Nabukenya',role:'Founder & Lead',interests:['earth-observation','satellite-tech']},{name:'Peter Ssemwanga',role:'Policy Director',interests:['space-policy']},{name:'Grace Nakamya',role:'Technical Lead',interests:['satellite-tech']}],stats:{members:340,projects:8,events:24,partners:12},icon:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'},
-  'uganda-space-agency':{name:'Uganda Space Agency',type:'Government Agency',location:'Entebbe, Uganda',founded:'2022',about:'The Uganda Space Agency (USA) is the national body responsible for coordinating and regulating Uganda\'s space activities. It oversees satellite programs, Earth observation initiatives, and space research policy.',mission:'To harness space technology for national development through coordination of space activities, research, and international cooperation.',tags:['Policy','Satellite Programs','Earth Observation','Regulation'],members:[{name:'Dr. Francis Nkwanga',role:'Director General',interests:['satellite-tech','space-policy']},{name:'Sarah Akello',role:'Program Manager',interests:['education']}],stats:{members:45,projects:6,events:12,partners:8},icon:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>'},
-  'space-hub-uganda':{name:'Space Hub Uganda',type:'Innovation Hub',location:'Kampala, Uganda',founded:'2021',about:'Space Hub Uganda is a technology incubator and innovation center focused on space-related startups and projects. It provides mentorship, workspace, and funding connections for space entrepreneurs.',mission:'To accelerate Uganda\'s space economy by supporting startups, innovators, and entrepreneurs in building space-derived solutions.',tags:['Innovation','Startups','Entrepreneurship','Technology'],members:[{name:'Michael Ochieng',role:'Lead Data Scientist',interests:['data-science','earth-observation']},{name:'Brian Ssemakula',role:'CTO',interests:['satellite-tech','data-science']}],stats:{members:28,projects:5,events:18,partners:6},icon:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>'},
-  'makerere-university':{name:'Makerere University',type:'Public University',location:'Kampala, Uganda',founded:'1922',about:'Makerere University is East Africa\'s oldest and most prestigious university. Its Department of Physics and space research programs have been central to Uganda\'s space science development.',mission:'To advance knowledge and technology in space science through education, research, and innovation.',tags:['Academia','Research','Physics','Engineering'],members:[{name:'Dr. Sarah Nabukenya',role:'Senior Lecturer',interests:['earth-observation','satellite-tech']},{name:'James Okello',role:'PhD Candidate',interests:['astrophysics','data-science']},{name:'Dr. Florence Akello',role:'Associate Professor',interests:['astrophysics']}],stats:{members:89,projects:4,events:8,partners:10},icon:'<path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>'},
-  'uganda-astronomical-society':{name:'Uganda Astronomical Society',type:'Amateur Astronomy Network',location:'Kampala, Uganda',founded:'2018',about:'The Uganda Astronomical Society (UAS) brings together amateur and professional astronomers for stargazing events, public outreach, and astronomical research.',mission:'To promote astronomy education and public engagement with the night sky across Uganda.',tags:['Astronomy','Public Outreach','Stargazing','Education'],members:[{name:'John Mukasa',role:'Director',interests:['astrophysics','education']}],stats:{members:42,projects:3,events:30,partners:4},icon:'<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>'}
-};
 
-const params=new URLSearchParams(window.location.search);
-const slug=params.get('id')||'uganda-space-community';
-const org=orgs[slug]||orgs['uganda-space-community'];
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 
-document.title=org.name+' — Uganda Space Community';
-document.getElementById('org-type').textContent=org.type;
-document.getElementById('org-name').textContent=org.name;
-document.getElementById('org-location').textContent=org.location;
-document.getElementById('org-founded').textContent='Est. '+org.founded;
-document.getElementById('org-about').textContent=org.about;
-document.getElementById('org-mission').textContent=org.mission;
-document.getElementById('org-tags').innerHTML=org.tags.map(t=>`<span>${t}</span>`).join('');
-document.getElementById('sidebar-avatar').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${org.icon}</svg>`;
-document.getElementById('sidebar-name').textContent=org.name;
-document.getElementById('sidebar-title').textContent=org.type;
-document.getElementById('sidebar-type').textContent=org.type;
-document.getElementById('sidebar-location').textContent=org.location;
-document.getElementById('sidebar-founded').textContent=org.founded;
-document.getElementById('sidebar-members').textContent=org.stats.members+' members';
-document.getElementById('stat-members').textContent=org.stats.members;
-document.getElementById('stat-projects').textContent=org.stats.projects;
-document.getElementById('stat-events').textContent=org.stats.events;
-document.getElementById('stat-partners').textContent=org.stats.partners;
-document.getElementById('org-members').innerHTML=org.members.map(m=>`
-  <div class="member-row">
-    <div class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-    <div class="info">
-      <div class="name">${m.name}</div>
-      <div class="role">${m.role}</div>
-    </div>
-  </div>
-`).join('');
+async function loadOrg(){
+  var params=new URLSearchParams(window.location.search);
+  var slug=params.get('id');
+  if(!slug){showNotFound();return}
+  try{
+    var res=await fetch('data/content.json');
+    var data=await res.json();
+    var orgs=data.organizations||[];
+    var org=orgs.find(function(o){return slugify(o.name)===slug});
+    if(!org){showNotFound();return}
+
+    document.title=org.name+' — Uganda Space Community';
+    document.querySelector('meta[name="description"]').content='Profile for '+org.name+' in Uganda\'s space ecosystem.';
+    document.getElementById('org-type').textContent=org.category||'';
+    document.getElementById('org-name').textContent=org.name;
+    document.getElementById('org-location').textContent=org.location||'Uganda';
+    document.getElementById('org-about').textContent=org.category+' — '+org.location;
+    document.getElementById('sidebar-name').textContent=org.name;
+    document.getElementById('sidebar-title').textContent=org.category||'';
+    document.getElementById('sidebar-type').textContent=org.category||'';
+    document.getElementById('sidebar-location').textContent=org.location||'';
+    var iconMap={users:'<circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>',globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>',star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',plane:'<path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',building:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>',graduation:'<path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',tool:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',rocket:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>',signal:'<path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/>',code:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'};
+    var iconPath=iconMap[org.icon]||iconMap['globe'];
+    document.getElementById('sidebar-avatar').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">'+iconPath+'</svg>';
+  }catch(e){showNotFound()}
+}
+
+function showNotFound(){
+  document.getElementById('org-name').textContent='';
+  document.getElementById('org-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Organization Not Found</h2><p>The organization you are looking for does not exist.</p><a href="community.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Community</a></div>';
+}
+loadOrg();
 </script>
 </body>
 </html>
