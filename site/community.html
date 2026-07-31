@@ -187,12 +187,12 @@
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
     <ul class="nav-c">
-      <li><a href="updates.html">Updates</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="launchpad.html">Launchpad</a></li>
-      <li><a href="knowledge.html">Knowledge</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="updates">Updates</a></li>
+      <li><a href="calendar">Calendar</a></li>
+        <li><a href="launchpad">Launchpad</a></li>
+      <li><a href="knowledge">Knowledge</a></li>
+      <li><a href="community">Community</a></li>
+      <li><a href="faq">FAQ</a></li>
     </ul>
       <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
@@ -420,8 +420,8 @@
     <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--gold)" stroke-width="1.5" fill="none" style="margin:0 auto 16px;display:block"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     <h3>Login Required</h3>
     <p>You need to be logged in to submit content.</p>
-    <a href="login.html" class="btn btn-gold">Log In</a>
-    <p style="font-size:0.78rem;color:var(--text-3);margin-top:12px">Don't have an account? <a href="login.html" style="color:var(--gold)">Sign Up</a></p>
+    <a href="login" class="btn btn-gold">Log In</a>
+    <p style="font-size:0.78rem;color:var(--text-3);margin-top:12px">Don't have an account? <a href="login" style="color:var(--gold)">Sign Up</a></p>
   </div>
 </div>
 
@@ -487,9 +487,9 @@
           <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
         </div>
       </div>
-      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="calendar.html">Calendar</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
-      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
-      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad">Launchpad</a><a href="calendar">Calendar</a><a href="knowledge">Knowledge Base</a><a href="faq">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community">Members</a><a href="community#organizations">Organizations</a><a href="community">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about">About</a><a href="code-of-conduct">Code of Conduct</a><a href="privacy">Privacy Policy</a><a href="terms">Terms of Use</a></div>
     </div>
     <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
   </div>
@@ -586,7 +586,7 @@ function renderOrgs(orgs) {
     item.addEventListener('click', function() {
       const name = this.querySelector('h4')?.textContent;
       const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      window.location = 'organization.html?id=' + slug;
+      window.location = 'organizations/' + slug;
     });
   });
 }
@@ -962,7 +962,7 @@ function renderCrew(){
   });
   grid.innerHTML=filtered.map((m,i)=>{
     const memberSlug=m.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    return`<div class="crew-card" onclick="window.location='member.html?id=${memberSlug}'" style="cursor:pointer">
+    return`<div class="crew-card" onclick="window.location='members/${memberSlug}'" style="cursor:pointer">
       <div class="crew-card-top">
         <div class="crew-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
         <div class="info">

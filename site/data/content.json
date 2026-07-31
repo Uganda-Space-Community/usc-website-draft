@@ -153,7 +153,8 @@
         "text": "Uganda becomes the latest African nation to commit to responsible space exploration principles.",
         "date": "15 Jul 2026",
         "source": "Ministry of Science & Technology",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "related": ["sticu-uganda-2025"]
       },
       {
         "category": "University",
@@ -161,7 +162,8 @@
         "text": "New dedicated laboratory for satellite design and testing at Makerere University.",
         "date": "10 Jul 2026",
         "source": "Makerere University",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "related": ["cubesat-101-student-workshop", "wsw-uganda-2026-flagship-physical-day"]
       },
       {
         "category": "Infrastructure",
@@ -169,7 +171,8 @@
         "text": "Two new ground stations added to the national satellite receiving network.",
         "date": "8 Jul 2026",
         "source": "Uganda National Meteorology Authority",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "related": ["cubesat-build-series"]
       },
       {
         "category": "Competition",
@@ -177,7 +180,8 @@
         "text": "Student teams invited to compete in the annual rocketry challenge.",
         "date": "3 Jul 2026",
         "source": "Kampala",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "related": ["the-rocket-revolution-launch-demonstrations"]
       },
       {
         "category": "Policy",
@@ -185,7 +189,8 @@
         "text": "Minister Monica Musenero announces Uganda will establish its own space agency, joining Kenya and Rwanda in the region.",
         "date": "5 Aug 2025",
         "source": "allAfrica",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "related": ["sticu-uganda-2025"]
       },
       {
         "category": "Infrastructure",
@@ -193,7 +198,8 @@
         "text": "Egypt-Kenya-Uganda ClimCam climate monitoring payload successfully launched to ISS Bartolomeo platform.",
         "date": "1 Dec 2025",
         "source": "UNOOSA",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "related": ["climcam-launched-to-iss"]
       },
       {
         "category": "Collaboration",
@@ -201,7 +207,8 @@
         "text": "Inaugural African Development Satellite project workshop in Kampala with 6 nations collaborating.",
         "date": "31 May 2025",
         "source": "Space in Africa",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "related": ["afdev-sat-inaugural-workshop"]
       },
       {
         "category": "Milestone",
@@ -217,7 +224,8 @@
         "text": "UICT and STI Secretariat co-host Uganda's largest hackathon with 100+ participants solving NASA challenges.",
         "date": "6 Oct 2024",
         "source": "UICT",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "related": ["nasa-space-apps-challenge-kampala-2024"]
       },
       {
         "category": "Education",
@@ -225,7 +233,8 @@
         "text": "Derrick Tebusweke completes CLTP14 CanSat/CubeSat Leader Training at Nihon University.",
         "date": "30 Sep 2025",
         "source": "CanSat Uganda",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "related": ["cansat-uganda-program"]
       },
       {
         "category": "Ecosystem",
@@ -233,7 +242,8 @@
         "text": "National Science Week at Kololo draws 300+ exhibitors under 'Made in Uganda: Innovation to Market'.",
         "date": "20 Jun 2025",
         "source": "STI Secretariat",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "related": ["national-science-week-2025"]
       },
       {
         "category": "Policy",
@@ -241,7 +251,8 @@
         "text": "Uganda's delegation presents at Cairo conference on space-driven digital transformation for Africa.",
         "date": "24 Apr 2025",
         "source": "HiPipo Foundation",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "related": ["newspace-africa-conference-2025"]
       }
     ],
     "headlines": [
@@ -270,11 +281,12 @@
         "text": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
         "date": "10 Oct 2026",
         "location": "Kampala",
-        "image": "img/wsw-2026-save-the-date.png.jpg",
+        "image": "img/wsw-2026-save-the-date.png",
         "organizer": "Space Junkies Uganda",
         "capacity": 500,
         "registration": "Open",
         "tags": ["World Space Week", "Flagship Event", "Networking"],
+        "organization": "space-junkies-uganda",
         "agenda": [
           { "time": "09:00", "description": "Registration & Welcome" },
           { "time": "10:00", "description": "Mission Briefing & Keynote Address" },
@@ -294,6 +306,7 @@
         "capacity": 300,
         "registration": "Open",
         "tags": ["Rocketry", "Aerospace Engineering", "Demonstration"],
+        "organization": "noas-quest",
         "agenda": [
           { "time": "09:00", "description": "Introduction to Rocketry & Propulsion Theory" },
           { "time": "10:30", "description": "Model Rocket Build Workshop" },
@@ -313,6 +326,7 @@
         "capacity": 200,
         "registration": "Open",
         "tags": ["Astronomy", "Stargazing", "Public Engagement"],
+        "organization": "uganda-astronomical-society",
         "agenda": [
           { "time": "18:00", "description": "Telescope Setup & Orientation" },
           { "time": "19:30", "description": "Guided Constellation Tour" },
@@ -332,6 +346,7 @@
         "capacity": "Open",
         "registration": "Open",
         "tags": ["Virtual", "Briefing", "World Space Week"],
+        "organization": "space-junkies-uganda",
         "agenda": [
           { "time": "10:00", "description": "Welcome & WSW Overview" },
           { "time": "10:30", "description": "Rocket Revolution Theme Presentation" },
@@ -351,6 +366,7 @@
         "capacity": 150,
         "registration": "Open",
         "tags": ["Regional", "Astronomy", "Public Outreach"],
+        "organization": "uganda-astronomical-society",
         "agenda": [
           { "time": "17:00", "description": "Astronomy Talks & Solar Observation" },
           { "time": "19:00", "description": "Dinner & Networking" },
@@ -370,6 +386,7 @@
         "capacity": 60,
         "registration": "Open",
         "tags": ["CubeSat", "Workshop", "Student Training"],
+        "organization": "nile-orbitals",
         "agenda": [
           { "time": "09:00", "description": "What is a CubeSat? — History & Types" },
           { "time": "10:30", "description": "Mission Design & Requirements" },
@@ -389,6 +406,7 @@
         "capacity": "Open",
         "registration": "Closed",
         "tags": ["Announcement", "World Space Week", "Virtual"],
+        "organization": "space-junkies-uganda",
         "agenda": [
           { "time": "14:00", "description": "Opening & Welcome" },
           { "time": "14:15", "description": "WSW 2026 Theme Reveal" },
@@ -408,6 +426,7 @@
         "capacity": 120,
         "registration": "Closed",
         "tags": ["Hackathon", "NASA", "Innovation"],
+        "organization": "nasa-space-apps-kampala",
         "agenda": [
           { "time": "08:00", "description": "Registration & Team Formation" },
           { "time": "09:30", "description": "Challenge Briefings & Mentor Introduction" },
@@ -427,6 +446,7 @@
         "capacity": 350,
         "registration": "Closed",
         "tags": ["World Space Week", "National Celebration", "Makerere"],
+        "organization": "space-junkies-uganda",
         "agenda": [
           { "time": "09:00", "description": "Opening Ceremony & Keynote" },
           { "time": "11:00", "description": "DIY Rocket Building & Launch" },
@@ -446,6 +466,7 @@
         "capacity": 2000,
         "registration": "Closed",
         "tags": ["Science Week", "Exhibition", "Innovation"],
+        "organization": "sti-secretariat",
         "agenda": [
           { "time": "08:00", "description": "Exhibition Opens to Public" },
           { "time": "10:00", "description": "Panel: Innovation to Market" },
@@ -465,6 +486,7 @@
         "capacity": 400,
         "registration": "Closed",
         "tags": ["Conference", "Space Technology", "Policy"],
+        "organization": "uganda-space-community",
         "agenda": [
           { "time": "09:00", "description": "Opening Keynote: Africa's Space Future" },
           { "time": "11:00", "description": "Satellite Technology & AI Panel" },
@@ -484,6 +506,7 @@
         "capacity": 40,
         "registration": "Closed",
         "tags": ["Machine Learning", "Space Weather", "Training"],
+        "organization": "mbarara-university-of-science-and-technology",
         "agenda": [
           { "time": "09:00", "description": "Introduction to Space Weather Physics" },
           { "time": "11:00", "description": "ML Algorithms for Ionospheric Data" },
@@ -503,6 +526,7 @@
         "capacity": 600,
         "registration": "Closed",
         "tags": ["Conference", "Africa", "Space Economy"],
+        "organization": "african-space-agency",
         "agenda": [
           { "time": "09:00", "description": "Opening Ceremony & Ministerial Session" },
           { "time": "11:00", "description": "Africa's Space Economy Panel" },
@@ -522,6 +546,7 @@
         "capacity": 80,
         "registration": "Closed",
         "tags": ["AfDev-Sat", "Collaboration", "Satellite"],
+        "organization": "african-space-agency",
         "agenda": [
           { "time": "09:00", "description": "AfDev-Sat Vision & Mission Overview" },
           { "time": "11:00", "description": "Technical Requirements & Mission Design" },
@@ -541,6 +566,7 @@
         "capacity": "Open",
         "registration": "Closed",
         "tags": ["ISS", "Climate Monitoring", "Milestone"],
+        "organization": "unoosa",
         "agenda": [
           { "time": "08:00", "description": "Live Launch Broadcast" },
           { "time": "08:45", "description": "Payload Confirmation" },
@@ -574,7 +600,8 @@
       "organizer": "Uganda Astronomical Society",
       "outcomes": ["500+ public participants across 5 cities", "New astronomy clubs established at 3 universities", "Media coverage reaching 10,000+ Ugandans"],
       "participants": 520,
-      "region": "National"
+      "region": "National",
+      "related": ["outdoor-stargazing-and-night-sky-experience", "regional-stargazing-night-mbarara", "cubesat-101-student-workshop"]
     },
     {
       "status": "active",
@@ -588,7 +615,8 @@
       "organizer": "Nile Orbitals",
       "outcomes": ["Flight-ready CubeSat prototype by December 2026", "20+ students trained in satellite engineering", "Partnerships with 3 international space agencies"],
       "participants": 24,
-      "region": "Central"
+      "region": "Central",
+      "related": ["cubesat-101-student-workshop", "cubeSat-integration-workshop", "earth-observation-data-training"]
     },
     {
       "status": "completed",
@@ -602,7 +630,8 @@
       "organizer": "Space Junkies Uganda",
       "outcomes": ["22 schools visited across 4 regions", "1,200+ students directly engaged", "15 student teams formed for rocketry challenge"],
       "participants": 1200,
-      "region": "National"
+      "region": "National",
+      "related": ["rocketry-build-day-student-edition", "wsw-2025-physical-meetup-makerere"]
     },
     {
       "status": "planned",
@@ -616,7 +645,8 @@
       "organizer": "Space Junkies Uganda",
       "outcomes": ["10 events across 4 regions", "500+ expected participants", "National media coverage campaign"],
       "participants": 500,
-      "region": "National"
+      "region": "National",
+      "related": ["wsw-uganda-2026-flagship-physical-day", "the-rocket-revolution-launch-demonstrations", "outdoor-stargazing-and-night-sky-experience"]
     },
     {
       "status": "proposed",
@@ -630,7 +660,8 @@
       "organizer": "Uganda National Meteorology Authority",
       "outcomes": ["30 researchers trained in EO data analysis", "Open-access EO dataset for Uganda", "3 pilot applications in agriculture and environment"],
       "participants": 30,
-      "region": "National"
+      "region": "National",
+      "related": ["earth-observation-data-training", "afdev-sat-inaugural-workshop"]
     },
     {
       "status": "proposed",
@@ -644,7 +675,8 @@
       "organizer": "StellarView Technologies",
       "outcomes": ["60 teachers trained across 4 regions", "New curriculum module approved by NCPE", "Teacher network established for ongoing support"],
       "participants": 60,
-      "region": "National"
+      "region": "National",
+      "related": ["rocketry-build-day-student-edition", "wsw-2025-physical-meetup-makerere"]
     },
     {
       "status": "proposed",
@@ -658,7 +690,8 @@
       "organizer": "Uganda Space Community",
       "outcomes": ["8 university teams from 4 countries", "2 payloads selected for flight opportunity", "Regional collaboration framework established"],
       "participants": 48,
-      "region": "East Africa"
+      "region": "East Africa",
+      "related": ["cubesat-101-student-workshop", "cubeSat-integration-workshop", "afdev-sat-inaugural-workshop"]
     },
     {
       "status": "active",
@@ -672,7 +705,8 @@
       "organizer": "CanSat Uganda",
       "outcomes": ["12 student teams participated", "2 teams competed internationally", "Training of 4 CanSat team leaders"],
       "participants": 48,
-      "region": "Central"
+      "region": "Central",
+      "related": ["cubesat-101-student-workshop", "nasa-space-apps-challenge-kampala-2024"]
     },
     {
       "status": "in_progress",
@@ -686,7 +720,8 @@
       "organizer": "African Space Agency",
       "outcomes": ["6 nations contributing to satellite design", "Earth observation payload integration underway", "Knowledge transfer to 30+ African engineers"],
       "participants": 30,
-      "region": "Africa"
+      "region": "Africa",
+      "related": ["afdev-sat-inaugural-workshop", "newspace-africa-conference-2025"]
     }
   ],
 
@@ -879,7 +914,9 @@
       "website": "#",
       "founded": 2022,
       "members": 45,
-      "focus": ["Space Outreach", "Event Coordination", "Youth Engagement"]
+      "focus": ["Space Outreach", "Event Coordination", "Youth Engagement"],
+      "programs": ["world-space-week-uganda-2026", "space-outreach-tour"],
+      "events": ["wsw-uganda-2026-flagship-physical-day", "online-mission-briefing-wsw-opening", "wsw-2026-theme-announcement-webinar", "uganda-space-week-2025"]
     },
     {
       "name": "StellarView Technologies",
@@ -891,7 +928,8 @@
       "website": "#",
       "founded": 2023,
       "members": 28,
-      "focus": ["Space Education", "STEM Media", "Public Outreach"]
+      "focus": ["Space Education", "STEM Media", "Public Outreach"],
+      "programs": ["national-astronomy-week-2026", "space-for-schools-teacher-training"]
     },
     {
       "name": "Uganda Astronomical Society",
@@ -903,7 +941,9 @@
       "website": "#",
       "founded": 2020,
       "members": 52,
-      "focus": ["Astronomy", "Public Observation", "Science Education"]
+      "focus": ["Astronomy", "Public Observation", "Science Education"],
+      "programs": ["national-astronomy-week-2026"],
+      "events": ["outdoor-stargazing-and-night-sky-experience", "regional-stargazing-night-mbarara"]
     },
     {
       "name": "Holistic Inclusive Aviation Africa",
@@ -939,7 +979,9 @@
       "website": "#",
       "founded": 2024,
       "members": 340,
-      "focus": ["Community Building", "Knowledge Sharing", "Ecosystem Development"]
+      "focus": ["Community Building", "Knowledge Sharing", "Ecosystem Development"],
+      "programs": ["east-african-cubesat-challenge"],
+      "events": ["sticu-uganda-2025"]
     },
     {
       "name": "Uganda Industrial Research Institute",
@@ -1071,7 +1113,8 @@
       "website": "#",
       "founded": 2021,
       "members": 30,
-      "focus": ["Rocketry", "Propulsion Systems", "STEM Education"]
+      "focus": ["Rocketry", "Propulsion Systems", "STEM Education"],
+      "events": ["the-rocket-revolution-launch-demonstrations"]
     },
     {
       "name": "Infinity Computers",
@@ -1095,7 +1138,9 @@
       "website": "#",
       "founded": 2022,
       "members": 18,
-      "focus": ["Satellite Systems", "Ground Stations", "Aerospace Engineering"]
+      "focus": ["Satellite Systems", "Ground Stations", "Aerospace Engineering"],
+      "programs": ["cubesat-build-series"],
+      "events": ["cubesat-101-student-workshop"]
     },
     {
       "name": "Young Engineers Uganda",
@@ -1131,7 +1176,8 @@
       "website": "#",
       "founded": 2022,
       "members": 100,
-      "focus": ["Hackathons", "Open Data", "Innovation"]
+      "focus": ["Hackathons", "Open Data", "Innovation"],
+      "events": ["nasa-space-apps-challenge-kampala-2024"]
     },
     {
       "name": "GDG On Campus Makerere University",
@@ -1167,7 +1213,9 @@
       "website": "#",
       "founded": 2018,
       "members": 120,
-      "focus": ["Space Policy", "Satellite Programs", "Continental Cooperation"]
+      "focus": ["Space Policy", "Satellite Programs", "Continental Cooperation"],
+      "programs": ["afdev-sat-joint-satellite-mission"],
+      "events": ["newspace-africa-conference-2025", "afdev-sat-inaugural-workshop"]
     },
     {
       "name": "East African Astronomical Society",

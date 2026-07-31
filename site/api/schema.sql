@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
   role ENUM('member','curator','admin') DEFAULT 'member',
   bio TEXT,
   interests TEXT,
+  affiliations JSON,
+  connections JSON,
   location VARCHAR(255),
   avatar_url VARCHAR(500),
   website VARCHAR(500),
@@ -41,3 +43,15 @@ CREATE TABLE IF NOT EXISTS faq_votes (
   PRIMARY KEY (user_id, answer_key),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS audit_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  user_name VARCHAR(255),
+  action_type VARCHAR(50) NOT NULL,
+  target_type VARCHAR(50),
+  target_id INT,
+  details TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB;

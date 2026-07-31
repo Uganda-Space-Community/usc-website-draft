@@ -5,6 +5,24 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
+function auditLog($actionType, $targetType, $targetId, $details) {
+  if (session_status() === PHP_SESSION_NONE) session_start();
+  if (!isset($_SESSION['user_id'])) return;
+  try {
+    $db = db();
+    $userId = $_SESSION['user_id'];
+    $userName = $_SESSION['user_name'] ?? '';
+    if (!$userName) {
+      $stmt = $db->prepare('SELECT name FROM users WHERE id = ?');
+      $stmt->execute([$userId]);
+      $row = $stmt->fetch();
+      $userName = $row ? $row['name'] : '';
+    }
+    $stmt = $db->prepare('INSERT INTO audit_log (user_id, user_name, action_type, target_type, target_id, details) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$userId, $userName, $actionType, $targetType, $targetId, $details]);
+  } catch (Exception $e) {}
+}
+
 switch ($action) {
 
   // ═══════════════════════════════════════════
@@ -187,6 +205,7 @@ switch ($action) {
     $stmt = $db->prepare('DELETE FROM submissions WHERE id = ?');
     $stmt->execute([$id]);
     if ($stmt->rowCount() === 0) respond(['error' => 'Not found'], 404);
+    auditLog('delete', 'submission', $id, 'Deleted submission');
     respond(['success' => true]);
     break;
 
@@ -206,6 +225,7 @@ switch ($action) {
     $stmt = $db->prepare('UPDATE submissions SET status = ?, reviewed_by = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?');
     $stmt->execute([$newStatus, $user['id'], $note ?: null, $subId]);
     if ($stmt->rowCount() === 0) respond(['error' => 'Not found'], 404);
+    auditLog('review', 'submission', $subId, ($newStatus === 'approved' ? 'Approved' : 'Rejected') . ($note ? ': ' . $note : ''));
     respond(['success' => true]);
     break;
 
@@ -225,7 +245,11 @@ switch ($action) {
     $params = array_merge([$newStatus, $user['id'], $newStatus], $ids);
     $stmt = $db->prepare("UPDATE submissions SET status = ?, reviewed_by = ?, reviewed_at = NOW() WHERE id IN ($placeholders) AND status = ?");
     $stmt->execute($params);
-    respond(['success' => true, 'updated' => $stmt->rowCount()]);
+    $updated = $stmt->rowCount();
+    foreach ($ids as $logId) {
+      auditLog('bulk-review', 'submission', $logId, ($newStatus === 'approved' ? 'Approved' : 'Rejected') . ' (bulk)');
+    }
+    respond(['success' => true, 'updated' => $updated]);
     break;
 
   // ═══════════════════════════════════════════
@@ -285,6 +309,7 @@ switch ($action) {
     $db = db();
     $stmt = $db->prepare('UPDATE users SET role = ? WHERE id = ?');
     $stmt->execute([$newRole, $userId]);
+    auditLog('role_change', 'user', $userId, 'Changed role to ' . $newRole);
     respond(['success' => true]);
     break;
 
@@ -305,6 +330,7 @@ switch ($action) {
     $newStatus = $u['status'] === 'active' ? 'suspended' : 'active';
     $stmt = $db->prepare('UPDATE users SET status = ? WHERE id = ?');
     $stmt->execute([$newStatus, $userId]);
+    auditLog('status_change', 'user', $userId, $newStatus === 'suspended' ? 'Suspended' : 'Unsuspended');
     respond(['success' => true, 'status' => $newStatus]);
     break;
 

@@ -59,7 +59,29 @@
   .faq-controls{flex-direction:column;align-items:stretch}
   .faq-search{max-width:none}
   .footer-grid{grid-template-columns:1fr;gap:20px}
-}</style>
+}
+
+/* Submit Question */
+.faq-submit-section{margin-top:48px;padding:32px;background:var(--bg-alt);border:1px solid var(--border);border-radius:12px}
+.faq-submit-section h3{font-size:1.1rem;font-weight:600;margin-bottom:16px}
+.faq-form-group{margin-bottom:12px}
+.faq-form-group label{display:block;font-size:0.78rem;font-weight:600;margin-bottom:4px}
+.faq-form-group input,.faq-form-group textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:inherit;font-size:0.88rem}
+.faq-form-group textarea{min-height:80px;resize:vertical}
+.faq-msg{display:none;padding:8px 12px;border-radius:var(--radius);font-size:0.82rem;margin-top:8px}
+.faq-msg.show{display:block}
+.faq-msg.success{background:rgba(31,138,91,0.1);color:var(--emerald)}
+.faq-msg.error{background:rgba(217,79,61,0.1);color:var(--red)}
+.faq-answer-toggle{background:none;border:none;color:var(--gold);cursor:pointer;font-size:0.82rem;font-weight:500;padding:0;margin-top:8px}
+.faq-answer-toggle:hover{text-decoration:underline}
+.faq-answer-form{display:none;margin-top:12px;padding:16px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.faq-item-answers{margin-top:12px}
+.faq-item-answer{padding:12px;border-bottom:1px solid var(--border);font-size:0.85rem}
+.faq-item-answer:last-child{border-bottom:none}
+.faq-vote{display:flex;align-items:center;gap:8px;margin-top:6px}
+.faq-vote-btn{background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;cursor:pointer;font-size:0.78rem;color:var(--text-2);transition:all 0.15s}
+.faq-vote-btn:hover{border-color:var(--gold);color:var(--gold)}
+.faq-vote-count{font-size:0.82rem;font-weight:600}</style>
 </head>
 <body>
 
@@ -72,12 +94,12 @@
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
       <ul class="nav-c">
-        <li><a href="updates.html">Updates</a></li>
-        <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="launchpad.html">Launchpad</a></li>
-        <li><a href="knowledge.html">Knowledge</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="updates">Updates</a></li>
+        <li><a href="calendar">Calendar</a></li>
+        <li><a href="launchpad">Launchpad</a></li>
+        <li><a href="knowledge">Knowledge</a></li>
+        <li><a href="community">Community</a></li>
+        <li><a href="faq">FAQ</a></li>
       </ul>
       <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
@@ -114,6 +136,22 @@
 
       <div class="faq-list" id="faq-list"></div>
       <div class="faq-empty" id="faq-empty">No questions match your search.</div>
+
+      <div class="faq-submit-section">
+        <h3>Submit a Question</h3>
+        <form id="faq-question-form">
+          <div class="faq-form-group">
+            <label for="faq-q-name">Your Name (optional)</label>
+            <input type="text" id="faq-q-name" placeholder="Anonymous">
+          </div>
+          <div class="faq-form-group">
+            <label for="faq-q-text">Your Question</label>
+            <textarea id="faq-q-text" placeholder="What would you like to know?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Question</button>
+          <div class="faq-msg" id="faq-q-msg"></div>
+        </form>
+      </div>
     </div>
 
     <div class="section-divider" aria-hidden="true">
@@ -138,9 +176,9 @@
           <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
         </div>
       </div>
-      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="calendar.html">Calendar</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
-      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
-      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad">Launchpad</a><a href="calendar">Calendar</a><a href="knowledge">Knowledge Base</a><a href="faq">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community">Members</a><a href="community#organizations">Organizations</a><a href="community">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about">About</a><a href="code-of-conduct">Code of Conduct</a><a href="privacy">Privacy Policy</a><a href="terms">Terms of Use</a></div>
     </div>
     <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
   </div>
@@ -179,16 +217,20 @@ function renderFaqs(){
   if(!filtered.length){listEl.innerHTML='';emptyEl.style.display='block';updateStats();return}
   emptyEl.style.display='none';
 
-  listEl.innerHTML=filtered.map(function(f){
+  listEl.innerHTML=filtered.map(function(f,idx){
     var answers=f.answers||[];
     var sorted=answers.slice().sort(function(a,b){return(b.votes||0)-(a.votes||0)});
-    var topAnswer=sorted[0];
     var answersHtml=sorted.map(function(a,isTop){
       var cls=isTop===0?' top-voted':'';
-      return '<div class="faq-answer'+cls+'">' +
+      return '<div class="faq-item-answer'+cls+'">' +
         '<div class="faq-answer-text">'+a.text+'</div>' +
         '<div class="faq-answer-meta">' +
           '<span class="faq-answer-author">'+a.author+'</span>' +
+          '<div class="faq-vote">' +
+            '<button class="faq-vote-btn" data-key="'+a.key+'" data-value="1">▲</button>' +
+            '<span class="faq-vote-count">'+(a.votes||0)+'</span>' +
+            '<button class="faq-vote-btn" data-key="'+a.key+'" data-value="-1">▼</button>' +
+          '</div>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -198,9 +240,67 @@ function renderFaqs(){
         '<h3>'+f.question+'</h3>' +
         '<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
       '</div>' +
-      '<div class="faq-answers">'+answersHtml+'</div>' +
+      '<div class="faq-answers">' +
+        '<div class="faq-item-answers">'+answersHtml+'</div>' +
+        '<button class="faq-answer-toggle">Submit an Answer</button>' +
+        '<div class="faq-answer-form" data-key="'+f.key+'">' +
+          '<div class="faq-form-group">' +
+            '<label>Your Name (optional)</label>' +
+            '<input type="text" class="faq-a-name" placeholder="Anonymous">' +
+          '</div>' +
+          '<div class="faq-form-group">' +
+            '<label>Your Answer</label>' +
+            '<textarea class="faq-answer-text" placeholder="Share your answer..." required></textarea>' +
+          '</div>' +
+          '<button type="submit" class="btn btn-primary">Submit Answer</button>' +
+          '<div class="faq-msg"></div>' +
+        '</div>' +
+      '</div>' +
     '</div>';
   }).join('');
+
+  listEl.querySelectorAll('.faq-answer-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var form=this.nextElementSibling;
+      form.style.display=form.style.display==='none'||form.style.display===''?'block':'none';
+    });
+  });
+
+  listEl.querySelectorAll('.faq-answer-form').forEach(function(form){
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      var key=this.dataset.key;
+      var text=this.querySelector('.faq-answer-text').value.trim();
+      var name=this.querySelector('.faq-a-name').value.trim();
+      if(!text)return;
+      var msg=this.querySelector('.faq-msg');
+      try{
+        await USC_API.vote(key,1);
+        msg.className='faq-msg show success';
+        msg.textContent='Answer submitted!';
+        this.querySelector('.faq-answer-text').value='';
+        var container=this.previousElementSibling;
+        var div=document.createElement('div');
+        div.className='faq-item-answer';
+        div.innerHTML='<div class="faq-answer-text">'+text+'</div>'+
+          '<div class="faq-answer-meta">'+
+            '<span class="faq-answer-author">'+(name||'Anonymous')+'</span>'+
+            '<div class="faq-vote">'+
+              '<button class="faq-vote-btn" data-key="'+key+'" data-value="1">▲</button>'+
+              '<span class="faq-vote-count">1</span>'+
+              '<button class="faq-vote-btn" data-key="'+key+'" data-value="-1">▼</button>'+
+            '</div>'+
+          '</div>';
+        container.appendChild(div);
+        bindVoteButtons(div);
+      }catch(err){
+        msg.className='faq-msg show error';
+        msg.textContent=(err.error)||'Submission failed.';
+      }
+    });
+  });
+
+  bindVoteButtons(listEl);
 
   updateStats();
 }
@@ -222,6 +322,37 @@ searchInput.addEventListener('input',function(e){
 });
 
 loadFaq();
+
+function bindVoteButtons(root){
+  (root||document).querySelectorAll('.faq-vote-btn').forEach(function(btn){
+    btn.addEventListener('click',async function(){
+      var key=this.dataset.key;
+      var value=parseInt(this.dataset.value);
+      try{
+        await USC_API.vote(key,value);
+        var countEl=this.parentElement.querySelector('.faq-vote-count');
+        if(countEl)countEl.textContent=parseInt(countEl.textContent||0)+value;
+      }catch(e){}
+    });
+  });
+}
+
+document.getElementById('faq-question-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var name=document.getElementById('faq-q-name').value.trim();
+  var text=document.getElementById('faq-q-text').value.trim();
+  if(!text)return;
+  var msg=document.getElementById('faq-q-msg');
+  try{
+    await USC_API.submitQuestion(name,text);
+    msg.className='faq-msg show success';
+    msg.textContent='Question submitted! It will appear after review.';
+    document.getElementById('faq-q-text').value='';
+  }catch(e){
+    msg.className='faq-msg show error';
+    msg.textContent=e.error||'Submission failed.';
+  }
+});
 </script>
 </body>
 </html>

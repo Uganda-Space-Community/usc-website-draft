@@ -14,6 +14,8 @@ switch ($action) {
     $stmt = $db->prepare('SELECT id, name, email, role, bio, interests, location, avatar_url, website, twitter, linkedin, created_at FROM users WHERE id = ?');
     $stmt->execute([$user['id']]);
     $profile = $stmt->fetch();
+    $profile['affiliations'] = json_decode($profile['affiliations'] ?? '[]', true);
+    $profile['connections'] = json_decode($profile['connections'] ?? '[]', true);
     respond(['user' => $profile]);
     break;
 
@@ -30,6 +32,14 @@ switch ($action) {
         $fields[] = "$field = ?";
         $params[] = trim($input[$field]);
       }
+    }
+    if (array_key_exists('affiliations', $input)) {
+      $fields[] = "affiliations = ?";
+      $params[] = json_encode($input['affiliations']);
+    }
+    if (array_key_exists('connections', $input)) {
+      $fields[] = "connections = ?";
+      $params[] = json_encode($input['connections']);
     }
     if (empty($fields)) respond(['error' => 'No fields to update'], 400);
 

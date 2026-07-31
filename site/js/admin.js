@@ -868,7 +868,7 @@ const USC_ADMIN = (function () {
   async function checkAuth() {
     try {
       var res = await api('auth.php?action=check');
-      if (!res.user) { window.location.href = 'login.html'; return; }
+      if (!res.user) { window.location.href = 'login'; return; }
       if (res.user.role !== 'admin' && res.user.role !== 'curator') {
         document.getElementById('admin-content').innerHTML = '<div class="admin-error"><h2>Access Denied</h2><p>You need admin or curator permissions to access this panel.</p><a href="index.html" class="admin-btn admin-btn--gold">Go Home</a></div>';
         return;
@@ -879,13 +879,13 @@ const USC_ADMIN = (function () {
       renderSidebar();
       handleRoute();
     } catch (e) {
-      window.location.href = 'login.html';
+      window.location.href = 'login';
     }
   }
 
   async function signOut() {
     try { await api('auth.php?action=logout', { method: 'POST' }); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = 'login';
   }
 
   // ─────────────────────────────────────

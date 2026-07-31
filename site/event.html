@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<base href="/usc/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Event — Uganda Space Community</title>
 <meta name="description" content="Event details from Uganda's space community.">
@@ -71,12 +72,12 @@
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
     <ul class="nav-c">
-      <li><a href="updates.html">Updates</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="launchpad.html">Launchpad</a></li>
-      <li><a href="knowledge.html">Knowledge</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="updates">Updates</a></li>
+      <li><a href="calendar">Calendar</a></li>
+        <li><a href="launchpad">Launchpad</a></li>
+      <li><a href="knowledge">Knowledge</a></li>
+      <li><a href="community">Community</a></li>
+      <li><a href="faq">FAQ</a></li>
     </ul>
       <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
@@ -94,10 +95,10 @@
 </div>
 
 <div class="detail-hero">
-  <img id="event-image" src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&q=80" alt="Event">
+  <img id="event-image" src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&q=80" alt="Event" onerror="this.src='img/hero-3.jpg'">
   <div class="detail-hero-body">
     <div class="wrapper">
-      <a href="calendar.html" class="detail-back">
+      <a href="calendar" class="detail-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
         Back to Events
       </a>
@@ -145,9 +146,9 @@
           <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
         </div>
       </div>
-      <div class="footer-col"><h5>Platform</h5><a href="launchpad.html">Launchpad</a><a href="calendar.html">Calendar</a><a href="knowledge.html">Knowledge Base</a><a href="faq.html">FAQ</a></div>
-      <div class="footer-col"><h5>Community</h5><a href="community.html">Members</a><a href="community.html#organizations">Organizations</a><a href="community.html">Submit Org</a></div>
-      <div class="footer-col"><h5>More</h5><a href="about.html">About</a><a href="code-of-conduct.html">Code of Conduct</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div class="footer-col"><h5>Platform</h5><a href="launchpad">Launchpad</a><a href="calendar">Calendar</a><a href="knowledge">Knowledge Base</a><a href="faq">FAQ</a></div>
+      <div class="footer-col"><h5>Community</h5><a href="community">Members</a><a href="community#organizations">Organizations</a><a href="community">Submit Org</a></div>
+      <div class="footer-col"><h5>More</h5><a href="about">About</a><a href="code-of-conduct">Code of Conduct</a><a href="privacy">Privacy Policy</a><a href="terms">Terms of Use</a></div>
     </div>
     <div class="footer-bot">© 2026 Uganda Space Community · <span class="hl">The Constellation</span></div>
   </div>
@@ -163,10 +164,10 @@ USC.updateNav();
 USC.init();
 
 function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function getSlug(){var p=window.location.pathname.replace(/\/+$/,'').split('/');return p[p.length-1]||''}
 
 async function loadEvent(){
-  var params=new URLSearchParams(window.location.search);
-  var slug=params.get('id');
+  var slug=getSlug()||new URLSearchParams(window.location.search).get('id');
   if(!slug){showNotFound();return}
   try{
     var res=await fetch('data/content.json');
@@ -183,18 +184,47 @@ async function loadEvent(){
     document.getElementById('event-location').textContent=event.location||'';
     document.getElementById('event-location-sep').style.display=event.location?'inline':'none';
     document.getElementById('event-description').textContent=event.text||'';
-    if(event.image){document.getElementById('event-image').src=event.image}
+    if(event.image){var img=document.getElementById('event-image');img.src=event.image;img.onerror=function(){this.src='img/hero-3.jpg'}}
     document.getElementById('sidebar-date').textContent=event.date||'';
     document.getElementById('sidebar-type').textContent=event.type||'';
     document.getElementById('sidebar-status').textContent=event.status||'';
     document.getElementById('sidebar-location').textContent=event.location||'';
+    renderEventCrossRefs(data, slug);
   }catch(e){showNotFound()}
 }
 
 function showNotFound(){
   document.getElementById('event-title').textContent='';
-  document.getElementById('event-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Event Not Found</h2><p>The event you are looking for does not exist or has been removed.</p><a href="calendar.html" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Calendar</a></div>';
+  document.getElementById('event-layout').innerHTML='<div class="not-found" style="grid-column:1/-1"><h2>Event Not Found</h2><p>The event you are looking for does not exist or has been removed.</p><a href="calendar" class="btn btn-gold" style="margin-top:16px;display:inline-block">Back to Calendar</a></div>';
 }
+
+function renderEventCrossRefs(data, eventSlug){
+  var programs=data.programs||[];
+  var orgs=data.organizations||[];
+  var relatedPrograms=programs.filter(function(p){return p.related&&p.related.indexOf(eventSlug)!==-1});
+  var event=(data.events.featured||[]).find(function(e){return slugify(e.title)===eventSlug});
+  var hostingOrg=null;
+  if(event&&event.organization){
+    hostingOrg=orgs.find(function(o){return slugify(o.name)===event.organization});
+  }
+  if(!relatedPrograms.length&&!hostingOrg)return;
+  var html='';
+  if(relatedPrograms.length){
+    html+='<div class="detail-section" style="margin-top:32px"><h3 style="font-size:1rem;font-weight:600;margin-bottom:16px">Related Programs</h3><div style="display:flex;gap:12px;flex-wrap:wrap">';
+    relatedPrograms.forEach(function(p){
+      html+='<a href="programs/'+slugify(p.title)+'" class="related-card"><span class="dash-badge dash-badge--blue">Program</span><strong>'+p.title+'</strong></a>';
+    });
+    html+='</div></div>';
+  }
+  if(hostingOrg){
+    html+='<div class="detail-section" style="margin-top:32px"><h3 style="font-size:1rem;font-weight:600;margin-bottom:16px">Hosted By</h3><div style="display:flex;gap:12px;flex-wrap:wrap">';
+    html+='<a href="organizations/'+slugify(hostingOrg.name)+'" class="related-card"><span class="dash-badge dash-badge--gold">Organization</span><strong>'+hostingOrg.name+'</strong></a>';
+    html+='</div></div>';
+  }
+  var body=document.querySelector('.detail-body');
+  if(body)body.insertAdjacentHTML('beforeend',html);
+}
+
 loadEvent();
 </script>
 </body>

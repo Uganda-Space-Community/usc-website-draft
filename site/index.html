@@ -1087,12 +1087,12 @@ body::before {
         <span class="logo-txt">Uganda <span>Space</span></span>
       </div>
     <ul class="nav-c">
-      <li><a href="updates.html">Updates</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="launchpad.html">Launchpad</a></li>
-      <li><a href="knowledge.html">Knowledge</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="updates">Updates</a></li>
+      <li><a href="calendar">Calendar</a></li>
+        <li><a href="launchpad">Launchpad</a></li>
+      <li><a href="knowledge">Knowledge</a></li>
+      <li><a href="community">Community</a></li>
+      <li><a href="faq">FAQ</a></li>
     </ul>
       <div class="nav-r" id="nav-r">
         <button class="theme-toggle" aria-label="Toggle dark mode">
@@ -1340,7 +1340,7 @@ body::before {
             <div class="meta">Physical · 19:00 · Kampala</div>
           </div>
         </div>
-        <a href="calendar.html" class="tc-view-all">Open Calendar →</a>
+        <a href="calendar" class="tc-view-all">Open Calendar →</a>
       </div>
     </div>
   </div>
@@ -1381,7 +1381,7 @@ body::before {
           <div class="updates-feat-body">
             <h4>Space Uganda Opens As A Year-Round Umbrella</h4>
             <p>The ecosystem is organising under one national domain for communities, campaigns, partners, and public opportunities.</p>
-            <a href="updates.html" class="read-more">Read More →</a>
+            <a href="updates" class="read-more">Read More →</a>
             <div class="updates-feat-meta">26 Jul 2026 · Space Uganda</div>
           </div>
         </div>
@@ -1390,7 +1390,7 @@ body::before {
           <div class="updates-feat-body">
             <h4>WSW Uganda 2026 Theme Confirmed</h4>
             <p>World Space Week 2026 will run under the global theme Rocket Revolution from October 4-10.</p>
-            <a href="updates.html" class="read-more">Read More →</a>
+            <a href="updates" class="read-more">Read More →</a>
             <div class="updates-feat-meta">26 Jul 2026 · Space Uganda</div>
           </div>
         </div>
@@ -1399,7 +1399,7 @@ body::before {
 
       <!-- Latest (authored, scrollable list) -->
       <div>
-        <div class="updates-col-head">Latest <a href="updates.html">View All →</a></div>
+        <div class="updates-col-head">Latest <a href="updates">View All →</a></div>
         <div class="updates-list scroll-fade">
           <div class="updates-list-item" data-cat="ecosystem">
             <div class="updates-list-img" style="background-image: url('img/hero-1.jpg')"></div>
@@ -1520,7 +1520,7 @@ body::before {
             <h3>Earth &amp; Space for Uganda</h3>
             <p>Earth observation, climate, water, food security, and Uganda's space journey through practical satellite-data applications.</p>
             <div class="pc-program-meta">4–10 Oct 2026 <span class="dot-sep"></span> WSW Track <span class="dot-sep"></span> StellarView, NOAS, UAS</div>
-            <a href="launchpad.html" class="pc-program-link">View Programme →</a>
+            <a href="launchpad" class="pc-program-link">View Programme →</a>
           </div>
         </div>
         <div class="pc-program" data-duration="5000" style="background-image: url('img/hero-2.jpg')">
@@ -1529,7 +1529,7 @@ body::before {
             <h3>The Rocket Revolution</h3>
             <p>Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.</p>
             <div class="pc-program-meta">4–10 Oct 2026 <span class="dot-sep"></span> WSW Track <span class="dot-sep"></span> NOA's Quest, Nakuja Project</div>
-            <a href="launchpad.html" class="pc-program-link">View Programme →</a>
+            <a href="launchpad" class="pc-program-link">View Programme →</a>
           </div>
         </div>
         <div class="pc-program" data-duration="5000" style="background-image: url('img/hero-3.jpg')">
@@ -1538,7 +1538,7 @@ body::before {
             <h3>Star Gazing</h3>
             <p>Guided telescope nights that make Uganda's night sky easier to see, understand, and love.</p>
             <div class="pc-program-meta">Ongoing <span class="dot-sep"></span> Evening sessions <span class="dot-sep"></span> Uganda Astronomical Society</div>
-            <a href="launchpad.html" class="pc-program-link">View Activities →</a>
+            <a href="launchpad" class="pc-program-link">View Activities →</a>
           </div>
         </div>
         <div class="pc-program-track">
@@ -1708,22 +1708,22 @@ body::before {
       </div>
       <div class="footer-col">
         <h5>Platform</h5>
-        <a href="launchpad.html">Launchpad</a>
-        <a href="knowledge.html">Knowledge Base</a>
-        <a href="faq.html">FAQ</a>
+        <a href="launchpad">Launchpad</a>
+        <a href="knowledge">Knowledge Base</a>
+        <a href="faq">FAQ</a>
       </div>
       <div class="footer-col">
         <h5>Community</h5>
-        <a href="community.html">Members</a>
-        <a href="community.html#organizations">Organizations</a>
-        <a href="community.html">Submit Org</a>
+        <a href="community">Members</a>
+        <a href="community#organizations">Organizations</a>
+        <a href="community">Submit Org</a>
       </div>
       <div class="footer-col">
         <h5>More</h5>
-        <a href="about.html">About</a>
-        <a href="code-of-conduct.html">Code of Conduct</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
+        <a href="about">About</a>
+        <a href="code-of-conduct">Code of Conduct</a>
+        <a href="privacy">Privacy Policy</a>
+        <a href="terms">Terms of Use</a>
       </div>
     </div>
     <div class="footer-bot">
@@ -1844,7 +1844,7 @@ USC.init();
             if (tcGrid) {
               tcGrid.innerHTML = data.events.featured.map(e => {
                 const slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-                return `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}'); cursor:pointer" onclick="window.location='event.html?id=${slug}'">
+                return `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}'); cursor:pointer" onclick="window.location='events/${slug}'">
                   <div class="tc-event-card-body">
                     <div class="tc-card-label">${e.type}${e.status ? ' · <span class="status-'+e.status+'">'+e.status+'</span>' : ''}</div>
                     <h4>${e.title}</h4>
@@ -1870,14 +1870,14 @@ USC.init();
               compactList.innerHTML = sorted.slice(0,5).map(function(e){
                 const slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
                 const dateParts = e.date.split(' ');
-                return '<div class="event-compact" style="cursor:pointer" onclick="window.location=\'event.html?id='+slug+'\'">' +
+                return '<div class="event-compact" style="cursor:pointer" onclick="window.location=\'events/'+slug+'\'">' +
                   '<div class="date">' + dateParts[0] + ' ' + dateParts[1].substring(0,3) + '</div>' +
                   '<div class="info">' +
                     '<h4>' + e.title + '</h4>' +
                     '<div class="meta">' + e.type + ' · ' + e.location + '</div>' +
                   '</div>' +
                 '</div>';
-              }).join('') + '<a href="calendar.html" class="tc-view-all">Open Calendar →</a>';
+              }).join('') + '<a href="calendar" class="tc-view-all">Open Calendar →</a>';
             }
           }
 
@@ -1890,7 +1890,7 @@ USC.init();
                   <div class="updates-feat-body">
                     <h4>${a.title}</h4>
                     <p>${a.excerpt}</p>
-                    <a href="updates.html" class="read-more">Read More →</a>
+                    <a href="updates" class="read-more">Read More →</a>
                     <div class="updates-feat-meta">${a.date} · ${a.source}</div>
                   </div>
                 </div>`
@@ -1923,7 +1923,7 @@ USC.init();
                     <h3>${p.title}</h3>
                     <p>${p.description}</p>
                     <div class="pc-program-meta">${p.track} <span class="dot-sep"></span> WSW Track</div>
-                    <a href="launchpad.html" class="pc-program-link">View Programme →</a>
+                    <a href="launchpad" class="pc-program-link">View Programme →</a>
                   </div>
                 </div>`
               ).join('');

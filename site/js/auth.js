@@ -90,17 +90,17 @@ const USC = (function () {
     if (user) {
       var roleLinks = '';
       if (user.role === 'admin' || user.role === 'curator') {
-        roleLinks = '<a href="admin.html">Review Queue</a>';
+        roleLinks = '<a href="dashboard#review">Review Queue</a>';
       }
       if (user.role === 'admin') {
-        roleLinks += '<a href="admin.html#users">Admin Panel</a>';
+        roleLinks += '<a href="dashboard#users">Admin Panel</a>';
       }
-      container.innerHTML = '<div class="nav-user"><button class="nav-avatar" id="nav-avatar-btn">' + getInitials(user.name) + '</button><div class="user-dropdown" id="user-dropdown"><div class="user-dropdown-head"><div class="user-dropdown-avatar">' + getInitials(user.name) + '</div><div><div class="user-dropdown-name">' + user.name + '</div><div class="user-dropdown-email">' + user.email + '</div></div></div><hr><a href="dashboard.html">My Dashboard</a>' + roleLinks + '<a href="community.html">My Profile</a><a href="#" id="nav-logout">Log out</a></div></div>' + themeBtn + hamburger;
+      container.innerHTML = '<div class="nav-user"><button class="nav-avatar" id="nav-avatar-btn">' + getInitials(user.name) + '</button><div class="user-dropdown" id="user-dropdown"><div class="user-dropdown-head"><div class="user-dropdown-avatar">' + getInitials(user.name) + '</div><div><div class="user-dropdown-name">' + user.name + '</div><div class="user-dropdown-email">' + user.email + '</div></div></div><hr><a href="dashboard">My Dashboard</a>' + roleLinks + '<a href="community">My Profile</a><a href="#" id="nav-logout">Log out</a></div></div>' + themeBtn + hamburger;
       document.getElementById('nav-avatar-btn').addEventListener('click', function (e) { e.stopPropagation(); document.getElementById('user-dropdown').classList.toggle('open') });
       document.addEventListener('click', function () { var d = document.getElementById('user-dropdown'); if (d) d.classList.remove('open') });
       document.getElementById('nav-logout').addEventListener('click', function (e) { e.preventDefault(); logout() });
     } else {
-      container.innerHTML = '<a href="login.html" class="nav-login">Log in</a>' + themeBtn + hamburger;
+      container.innerHTML = '<a href="login" class="nav-login">Log in</a>' + themeBtn + hamburger;
     }
 
     // Re-bind theme toggle
