@@ -961,8 +961,8 @@ function renderCrew(){
     return true;
   });
   grid.innerHTML=filtered.map((m,i)=>{
-    const idx=crew.indexOf(m);
-    return`<div class="crew-card" onclick="window.location='member.html?id=${idx}'" style="cursor:pointer">
+    const memberSlug=m.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+    return`<div class="crew-card" onclick="window.location='member.html?id=${memberSlug}'" style="cursor:pointer">
       <div class="crew-card-top">
         <div class="crew-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
         <div class="info">

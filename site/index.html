@@ -1842,8 +1842,9 @@ USC.init();
           if (data.events && data.events.featured) {
             const tcGrid = document.querySelector('.tc-featured');
             if (tcGrid) {
-              tcGrid.innerHTML = data.events.featured.map(e =>
-                `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}')">
+              tcGrid.innerHTML = data.events.featured.map(e => {
+                const slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+                return `<div class="tc-event-card" data-cat="${e.type.toLowerCase()}" style="background-image: url('${e.image}')" onclick="window.location='event.html?id=${slug}'" style="cursor:pointer">
                   <div class="tc-event-card-body">
                     <div class="tc-card-label">${e.type}${e.status ? ' · <span class="status-'+e.status+'">'+e.status+'</span>' : ''}</div>
                     <h4>${e.title}</h4>
@@ -1855,15 +1856,27 @@ USC.init();
             }
             const compactList = document.querySelector('.events-compact');
             if (compactList) {
-              compactList.innerHTML = data.events.featured.map(e => {
+              const today = new Date();
+              const parseDate = function(d) {
+                var parts = d.split(' ');
+                var months = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+                return new Date(parseInt(parts[2])||2026, months[parts[1]]||0, parseInt(parts[0])||1);
+              };
+              const sorted = data.events.featured.slice().sort(function(a,b){
+                var da=Math.abs(parseDate(a.date)-today);
+                var db=Math.abs(parseDate(b.date)-today);
+                return da-db;
+              });
+              compactList.innerHTML = sorted.slice(0,5).map(function(e){
+                const slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
                 const dateParts = e.date.split(' ');
-                return `<div class="event-compact">
-                  <div class="date">${dateParts[0]} ${dateParts[1].substring(0,3)}</div>
-                  <div class="info">
-                    <h4>${e.title}</h4>
-                    <div class="meta">${e.type} · ${e.location}</div>
-                  </div>
-                </div>`;
+                return '<div class="event-compact" style="cursor:pointer" onclick="window.location=\'event.html?id='+slug+'\'">' +
+                  '<div class="date">' + dateParts[0] + ' ' + dateParts[1].substring(0,3) + '</div>' +
+                  '<div class="info">' +
+                    '<h4>' + e.title + '</h4>' +
+                    '<div class="meta">' + e.type + ' · ' + e.location + '</div>' +
+                  '</div>' +
+                '</div>';
               }).join('') + '<a href="calendar.html" class="tc-view-all">Open Calendar →</a>';
             }
           }
