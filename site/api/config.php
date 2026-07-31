@@ -57,12 +57,25 @@ function require_auth() {
     respond(['error' => 'Authentication required'], 401);
   }
   $db = db();
-  $stmt = $db->prepare('SELECT id, name, email, role FROM users WHERE id = ?');
+  $stmt = $db->prepare('SELECT id, name, email, role, status FROM users WHERE id = ?');
   $stmt->execute([$_SESSION['user_id']]);
   $user = $stmt->fetch();
   if (!$user) {
     session_destroy();
     respond(['error' => 'User not found'], 401);
+  }
+  if ($user['status'] === 'suspended') {
+    respond(['error' => 'Account suspended'], 403);
+  }
+  return $user;
+}
+
+// Require specific role(s)
+function require_role($roles) {
+  $user = require_auth();
+  if (!is_array($roles)) $roles = [$roles];
+  if (!in_array($user['role'], $roles)) {
+    respond(['error' => 'Insufficient permissions'], 403);
   }
   return $user;
 }

@@ -88,7 +88,14 @@ const USC = (function () {
     const hamburger = '<button class="nav-toggle" aria-label="Toggle menu"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>';
 
     if (user) {
-      container.innerHTML = '<div class="nav-user"><button class="nav-avatar" id="nav-avatar-btn">' + getInitials(user.name) + '</button><div class="user-dropdown" id="user-dropdown"><div class="user-dropdown-head"><div class="user-dropdown-avatar">' + getInitials(user.name) + '</div><div><div class="user-dropdown-name">' + user.name + '</div><div class="user-dropdown-email">' + user.email + '</div></div></div><hr><a href="community.html">My Profile</a><a href="#" id="nav-logout">Log out</a></div></div>' + themeBtn + hamburger;
+      var roleLinks = '';
+      if (user.role === 'admin' || user.role === 'curator') {
+        roleLinks = '<a href="admin.html">Review Queue</a>';
+      }
+      if (user.role === 'admin') {
+        roleLinks += '<a href="admin.html#users">Admin Panel</a>';
+      }
+      container.innerHTML = '<div class="nav-user"><button class="nav-avatar" id="nav-avatar-btn">' + getInitials(user.name) + '</button><div class="user-dropdown" id="user-dropdown"><div class="user-dropdown-head"><div class="user-dropdown-avatar">' + getInitials(user.name) + '</div><div><div class="user-dropdown-name">' + user.name + '</div><div class="user-dropdown-email">' + user.email + '</div></div></div><hr><a href="dashboard.html">My Dashboard</a>' + roleLinks + '<a href="community.html">My Profile</a><a href="#" id="nav-logout">Log out</a></div></div>' + themeBtn + hamburger;
       document.getElementById('nav-avatar-btn').addEventListener('click', function (e) { e.stopPropagation(); document.getElementById('user-dropdown').classList.toggle('open') });
       document.addEventListener('click', function () { var d = document.getElementById('user-dropdown'); if (d) d.classList.remove('open') });
       document.getElementById('nav-logout').addEventListener('click', function (e) { e.preventDefault(); logout() });

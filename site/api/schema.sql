@@ -6,10 +6,16 @@ CREATE TABLE IF NOT EXISTS users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  role ENUM('member','admin','moderator') DEFAULT 'member',
+  role ENUM('member','curator','admin') DEFAULT 'member',
   bio TEXT,
   interests TEXT,
   location VARCHAR(255),
+  avatar_url VARCHAR(500),
+  website VARCHAR(500),
+  twitter VARCHAR(255),
+  linkedin VARCHAR(255),
+  status ENUM('active','suspended') DEFAULT 'active',
+  last_login TIMESTAMP NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -21,9 +27,11 @@ CREATE TABLE IF NOT EXISTS submissions (
   payload JSON NOT NULL,
   status ENUM('pending','approved','rejected') DEFAULT 'pending',
   reviewed_by INT,
+  review_note TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   reviewed_at TIMESTAMP NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+  FOREIGN KEY (reviewed_by) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS faq_votes (
