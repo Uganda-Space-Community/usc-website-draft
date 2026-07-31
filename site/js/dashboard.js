@@ -72,6 +72,7 @@ const USC_DASH = (function () {
     'database':     '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
     'eye':          '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
     'calendar':     '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+    'link':         '<path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>',
   };
 
   function icon(name, size) {
@@ -241,7 +242,11 @@ const USC_DASH = (function () {
     var html = '';
     // Preview card
     html += '<div class="dash-preview">';
-    html += '<div class="dash-preview-avatar">' + icon('user', 32) + '</div>';
+    if (u.avatar_url) {
+      html += '<div class="dash-preview-avatar"><img src="' + esc(u.avatar_url) + '" alt="Avatar" onerror="this.parentElement.innerHTML=\'<svg viewBox=\\\'0 0 24 24\\\' width=\\\'32\\\' height=\\\'32\\\' stroke=\\\'currentColor\\\' fill=\\\'none\\\'>' + (ICONS['user'] || '') + '</svg>\''" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>';
+    } else {
+      html += '<div class="dash-preview-avatar">' + icon('user', 32) + '</div>';
+    }
     html += '<div class="dash-preview-name">' + esc(u.name) + '</div>';
     html += '<div class="dash-preview-email">' + esc(u.email) + '</div>';
     html += '<div class="dash-preview-meta">';
@@ -256,6 +261,20 @@ const USC_DASH = (function () {
       html += '</div>';
     }
     if (u.website) html += '<a href="' + esc(u.website) + '" class="dash-preview-link" target="_blank">Visit Website</a>';
+    if (u.affiliations && u.affiliations.length) {
+      html += '<div class="dash-preview-tags">';
+      u.affiliations.forEach(function (a) {
+        html += '<span>' + esc(a.acronym || a.name) + '</span>';
+      });
+      html += '</div>';
+    }
+    if (u.connections && u.connections.length) {
+      html += '<div class="dash-preview-tags" style="margin-top:4px">';
+      u.connections.forEach(function (c) {
+        html += '<span>' + esc(c.type) + '</span>';
+      });
+      html += '</div>';
+    }
     html += '</div>';
 
     // Edit form
@@ -270,6 +289,7 @@ const USC_DASH = (function () {
     html += fieldGroup('website', 'Website', 'url', u.website);
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
     html += '<label>Interests</label>';
+    html += '<input type="hidden" id="field-interests" value="' + esc(u.interests || '') + '">';
     html += '<div class="dash-tags-input" id="dash-tags-interests">';
     html += '<div class="dash-tags-list" id="interests-tags"></div>';
     html += '<input type="text" id="field-interests-input" placeholder="Type to add interests..." class="dash-input" style="flex:1;min-width:120px;border:none;box-shadow:none">';
@@ -278,6 +298,7 @@ const USC_DASH = (function () {
     html += '</div>';
     html += fieldGroup('twitter', 'Twitter', 'text', u.twitter);
     html += fieldGroup('linkedin', 'LinkedIn', 'text', u.linkedin);
+    html += fieldGroup('avatar_url', 'Avatar URL', 'url', u.avatar_url, false, 'Paste a URL to your profile image');
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
     html += '<label>Bio</label>';
     html += '<textarea id="field-bio" rows="3">' + esc(u.bio || '') + '</textarea>';
@@ -437,7 +458,7 @@ const USC_DASH = (function () {
       e.preventDefault();
       var msg = document.getElementById('dash-profile-msg');
       var payload = {};
-      ['name','email','location','website','interests','twitter','linkedin','bio'].forEach(function (k) {
+      ['name','email','location','website','interests','twitter','linkedin','bio','avatar_url'].forEach(function (k) {
         var f = document.getElementById('field-' + k);
         if (f) payload[k] = f.value.trim();
       });

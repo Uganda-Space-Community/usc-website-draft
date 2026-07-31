@@ -11,7 +11,7 @@ switch ($action) {
   case 'profile':
     $user = require_auth();
     $db = db();
-    $stmt = $db->prepare('SELECT id, name, email, role, bio, interests, location, avatar_url, website, twitter, linkedin, created_at FROM users WHERE id = ?');
+    $stmt = $db->prepare('SELECT id, name, email, role, bio, interests, affiliations, connections, location, avatar_url, website, twitter, linkedin, created_at FROM users WHERE id = ?');
     $stmt->execute([$user['id']]);
     $profile = $stmt->fetch();
     $profile['affiliations'] = json_decode($profile['affiliations'] ?? '[]', true);
