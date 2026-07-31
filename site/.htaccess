@@ -1,0 +1,44 @@
+RewriteEngine On
+RewriteBase /usc/
+
+# Pass through existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Detail pages: /events/slug → event.html?id=slug
+RewriteRule ^events/(.+)$ event.html?id=$1 [L,QSA]
+
+# /news/slug → news.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^news/(.+)$ news.html?id=$1 [L,QSA]
+
+# /programs/slug → program.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^programs/(.+)$ program.html?id=$1 [L,QSA]
+
+# /projects/slug → project.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^projects/(.+)$ project.html?id=$1 [L,QSA]
+
+# /organizations/slug → organization.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^organizations/(.+)$ organization.html?id=$1 [L,QSA]
+
+# /members/slug → member.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^members/(.+)$ member.html?id=$1 [L,QSA]
+
+# /opportunities/slug → opportunity.html?id=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^opportunities/(.+)$ opportunity.html?id=$1 [L,QSA]
+
+# Clean page URLs: /calendar → calendar.html (strip .html extension)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z0-9-]+)$ $1.html [L]
