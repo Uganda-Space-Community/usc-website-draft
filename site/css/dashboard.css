@@ -28,7 +28,7 @@
 .dash-signout-btn:hover{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.2)}
 
 /* ═══ Main Content ═══ */
-.dash-main{padding:32px 40px;max-width:1200px;width:100%}
+.dash-main{padding:32px 40px;max-width:1200px;width:100%;margin-left:260px}
 .dash-header{margin-bottom:32px}
 .dash-header-top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 .dash-header-top h1{font-size:1.8rem;font-weight:700;color:var(--text);flex:1}
@@ -245,14 +245,14 @@
   .dash-sidebar{position:fixed;left:-280px;top:0;bottom:0;width:260px;z-index:1000;transition:left 0.25s}
   .dash-sidebar.open{left:0}
   .dash-hamburger{display:flex}
-  .dash-main{padding:20px 16px}
+  .dash-main{padding:20px 16px;margin-left:0}
   .dash-admin-form-grid{grid-template-columns:1fr}
   .dash-form-row,.dash-form-row-3{grid-template-columns:1fr}
   .dash-profile-grid{grid-template-columns:1fr}
   .dash-header-row{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:640px){
-  .dash-main{padding:16px 12px}
+  .dash-main{padding:16px 12px;margin-left:0}
   .dash-header-top h1{font-size:1.4rem}
   .dash-quick-links{grid-template-columns:1fr 1fr}
   .dash-sub-filters{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
