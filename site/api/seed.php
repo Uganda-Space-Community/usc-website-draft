@@ -48,15 +48,7 @@ if (!$stmt->fetch()) {
 $count = 0;
 if (!empty($content['events']['featured'])) {
   foreach ($content['events']['featured'] as $e) {
-    $payload = [
-      'title' => $e['title'],
-      'description' => $e['text'] ?? '',
-      'date' => $e['date'] ?? '',
-      'location' => $e['location'] ?? '',
-      'type' => $e['type'] ?? 'Event',
-      'status' => $e['status'] ?? 'planned',
-      'image' => $e['image'] ?? ''
-    ];
+    $payload = $e;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['event', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -64,12 +56,7 @@ if (!empty($content['events']['featured'])) {
 }
 if (!empty($content['events']['headlines'])) {
   foreach ($content['events']['headlines'] as $e) {
-    $payload = [
-      'title' => $e['title'],
-      'date' => $e['date'] ?? '',
-      'type' => $e['type'] ?? 'Event',
-      'status' => $e['status'] ?? 'planned'
-    ];
+    $payload = $e;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['event', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -84,15 +71,7 @@ echo "Seeded $count events\n";
 $count = 0;
 if (!empty($content['programs'])) {
   foreach ($content['programs'] as $p) {
-    $payload = [
-      'title' => $p['title'],
-      'description' => $p['text'] ?? '',
-      'status' => $p['status'] ?? 'active',
-      'start' => $p['start'] ?? '',
-      'end' => $p['end'] ?? '',
-      'totalEvents' => $p['totalEvents'] ?? 0,
-      'completedEvents' => $p['completedEvents'] ?? 0
-    ];
+    $payload = $p;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['program', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -107,13 +86,7 @@ echo "Seeded $count programs\n";
 $count = 0;
 if (!empty($content['organizations'])) {
   foreach ($content['organizations'] as $o) {
-    $payload = [
-      'name' => $o['name'],
-      'category' => $o['category'] ?? '',
-      'location' => $o['location'] ?? '',
-      'icon' => $o['icon'] ?? 'globe',
-      'featured' => $o['featured'] ?? false
-    ];
+    $payload = $o;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['organization', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -128,14 +101,7 @@ echo "Seeded $count organizations\n";
 $count = 0;
 if (!empty($content['announcements'])) {
   foreach ($content['announcements'] as $a) {
-    $payload = [
-      'title' => $a['title'],
-      'excerpt' => $a['excerpt'] ?? '',
-      'category' => $a['category'] ?? '',
-      'date' => $a['date'] ?? '',
-      'source' => $a['source'] ?? '',
-      'image' => $a['image'] ?? ''
-    ];
+    $payload = $a;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['news', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -150,15 +116,7 @@ echo "Seeded $count news items\n";
 $count = 0;
 if (!empty($content['teamMembers'])) {
   foreach ($content['teamMembers'] as $m) {
-    $payload = [
-      'name' => $m['name'],
-      'role' => $m['role'] ?? '',
-      'organisation' => $m['organisation'] ?? '',
-      'bio' => $m['bio'] ?? '',
-      'affiliations' => $m['affiliations'] ?? [],
-      'image' => $m['image'] ?? '',
-      'featured' => $m['featured'] ?? false
-    ];
+    $payload = $m;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['profile', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -173,13 +131,7 @@ echo "Seeded $count team profiles\n";
 $count = 0;
 if (!empty($content['programmeTracks'])) {
   foreach ($content['programmeTracks'] as $t) {
-    $payload = [
-      'title' => $t['title'],
-      'description' => $t['description'] ?? '',
-      'track' => $t['track'] ?? '',
-      'status' => 'active',
-      'image' => $t['image'] ?? ''
-    ];
+    $payload = $t;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['program', 1, json_encode($payload), 'approved', 1]);
     $count++;
@@ -194,17 +146,58 @@ echo "Seeded $count programme tracks\n";
 $count = 0;
 if (!empty($content['faq'])) {
   foreach ($content['faq'] as $f) {
-    $payload = [
-      'question' => $f['question'] ?? '',
-      'answers' => $f['answers'] ?? [],
-      'category' => $f['category'] ?? ''
-    ];
+    $payload = $f;
     $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
       ->execute(['question', null, json_encode($payload), 'approved', 1]);
     $count++;
   }
 }
 echo "Seeded $count FAQ questions\n";
+
+// ═══════════════════════════════════════
+//  9. SEED OPPORTUNITIES
+// ═══════════════════════════════════════
+
+$count = 0;
+if (!empty($content['opportunities'])) {
+  foreach ($content['opportunities'] as $o) {
+    $payload = $o;
+    $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
+      ->execute(['opportunity', 1, json_encode($payload), 'approved', 1]);
+    $count++;
+  }
+}
+echo "Seeded $count opportunities\n";
+
+// ═══════════════════════════════════════
+//  10. SEED KNOWLEDGE BASE
+// ═══════════════════════════════════════
+
+$count = 0;
+if (!empty($content['knowledge'])) {
+  foreach ($content['knowledge'] as $k) {
+    $payload = $k;
+    $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
+      ->execute(['article', 1, json_encode($payload), 'approved', 1]);
+    $count++;
+  }
+}
+echo "Seeded $count knowledge articles\n";
+
+// ═══════════════════════════════════════
+//  11. SEED ACTIVITIES
+// ═══════════════════════════════════════
+
+$count = 0;
+if (!empty($content['activities'])) {
+  foreach ($content['activities'] as $a) {
+    $payload = $a;
+    $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())')
+      ->execute(['event', 1, json_encode($payload), 'approved', 1]);
+    $count++;
+  }
+}
+echo "Seeded $count activities\n";
 
 echo "\n=== Done ===\n";
 echo "Admin login: admin@space.org.ug / admin123\n";
