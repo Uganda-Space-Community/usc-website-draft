@@ -270,7 +270,17 @@
         "text": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
         "date": "10 Oct 2026",
         "location": "Kampala",
-        "image": "img/wsw-2026-save-the-date.png.jpg"
+        "image": "img/wsw-2026-save-the-date.png.jpg",
+        "organizer": "Space Junkies Uganda",
+        "capacity": 500,
+        "registration": "Open",
+        "tags": ["World Space Week", "Flagship Event", "Networking"],
+        "agenda": [
+          { "time": "09:00", "description": "Registration & Welcome" },
+          { "time": "10:00", "description": "Mission Briefing & Keynote Address" },
+          { "time": "13:00", "description": "Innovation Showcase & Space Economy Panel" },
+          { "time": "17:00", "description": "Outdoor Stargazing & Networking Reception" }
+        ]
       },
       {
         "type": "Physical",
@@ -279,7 +289,17 @@
         "text": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
         "date": "8 Oct 2026",
         "location": "Kampala",
-        "image": "img/wsw-2026-did-you-know.png"
+        "image": "img/wsw-2026-did-you-know.png",
+        "organizer": "NOA's Quest",
+        "capacity": 300,
+        "registration": "Open",
+        "tags": ["Rocketry", "Aerospace Engineering", "Demonstration"],
+        "agenda": [
+          { "time": "09:00", "description": "Introduction to Rocketry & Propulsion Theory" },
+          { "time": "10:30", "description": "Model Rocket Build Workshop" },
+          { "time": "14:00", "description": "Safe Launch Demonstrations & Simulations" },
+          { "time": "16:00", "description": "Debrief & Awards" }
+        ]
       },
       {
         "type": "Physical",
@@ -288,7 +308,17 @@
         "text": "Telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
         "date": "10 Oct 2026",
         "location": "Kampala",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "organizer": "Uganda Astronomical Society",
+        "capacity": 200,
+        "registration": "Open",
+        "tags": ["Astronomy", "Stargazing", "Public Engagement"],
+        "agenda": [
+          { "time": "18:00", "description": "Telescope Setup & Orientation" },
+          { "time": "19:30", "description": "Guided Constellation Tour" },
+          { "time": "21:00", "description": "Astrophotography Workshop" },
+          { "time": "22:30", "description": "Deep-Sky Object Observation" }
+        ]
       },
       {
         "type": "Virtual",
@@ -297,7 +327,17 @@
         "text": "A live-streamed briefing covering Uganda's WSW 2026 objectives, the Rocket Revolution theme, and how to participate remotely.",
         "date": "4 Oct 2026",
         "location": "Online",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "organizer": "Space Junkies Uganda",
+        "capacity": "Open",
+        "registration": "Open",
+        "tags": ["Virtual", "Briefing", "World Space Week"],
+        "agenda": [
+          { "time": "10:00", "description": "Welcome & WSW Overview" },
+          { "time": "10:30", "description": "Rocket Revolution Theme Presentation" },
+          { "time": "11:15", "description": "Q&A with Space Experts" },
+          { "time": "12:00", "description": "Closing & How to Participate" }
+        ]
       },
       {
         "type": "Physical",
@@ -306,7 +346,17 @@
         "text": "Expanding WSW activities to Western Uganda with a public telescope night and astronomy talks at Mbarara University.",
         "date": "9 Oct 2026",
         "location": "Mbarara",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "organizer": "Uganda Astronomical Society",
+        "capacity": 150,
+        "registration": "Open",
+        "tags": ["Regional", "Astronomy", "Public Outreach"],
+        "agenda": [
+          { "time": "17:00", "description": "Astronomy Talks & Solar Observation" },
+          { "time": "19:00", "description": "Dinner & Networking" },
+          { "time": "20:00", "description": "Public Telescope Night" },
+          { "time": "22:00", "description": "Closing Remarks" }
+        ]
       },
       {
         "type": "Workshop",
@@ -315,7 +365,17 @@
         "text": "An introductory hands-on workshop on CubeSat design, mission planning, and student satellite programs in East Africa.",
         "date": "6 Oct 2026",
         "location": "Kampala",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "organizer": "Nile Orbitals",
+        "capacity": 60,
+        "registration": "Open",
+        "tags": ["CubeSat", "Workshop", "Student Training"],
+        "agenda": [
+          { "time": "09:00", "description": "What is a CubeSat? — History & Types" },
+          { "time": "10:30", "description": "Mission Design & Requirements" },
+          { "time": "13:00", "description": "Hands-On: Build a Simple Satellite Model" },
+          { "time": "15:00", "description": "Student Q&A & Next Steps" }
+        ]
       },
       {
         "type": "Physical",
@@ -324,7 +384,17 @@
         "text": "The official announcement of Uganda's World Space Week 2026 participation and the Rocket Revolution theme.",
         "date": "26 Jul 2026",
         "location": "Online",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "organizer": "Space Junkies Uganda",
+        "capacity": "Open",
+        "registration": "Closed",
+        "tags": ["Announcement", "World Space Week", "Virtual"],
+        "agenda": [
+          { "time": "14:00", "description": "Opening & Welcome" },
+          { "time": "14:15", "description": "WSW 2026 Theme Reveal" },
+          { "time": "14:45", "description": "Call for Partners & Volunteers" },
+          { "time": "15:15", "description": "Closing & Next Steps" }
+        ]
       },
       {
         "type": "Competition",
@@ -333,7 +403,17 @@
         "text": "World's largest hackathon at UICT Nakawa. 100+ participants tackled real NASA challenges using open data for Earth and space solutions.",
         "date": "5 Oct 2024",
         "location": "Nakawa, Kampala",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "organizer": "UICT & STI Secretariat",
+        "capacity": 120,
+        "registration": "Closed",
+        "tags": ["Hackathon", "NASA", "Innovation"],
+        "agenda": [
+          { "time": "08:00", "description": "Registration & Team Formation" },
+          { "time": "09:30", "description": "Challenge Briefings & Mentor Introduction" },
+          { "time": "12:00", "description": "Hacking Session & Mentor Office Hours" },
+          { "time": "17:00", "description": "Demos & Judging" }
+        ]
       },
       {
         "type": "Physical",
@@ -342,7 +422,17 @@
         "text": "National WSW celebration at Makerere University under 'Living in Space' theme. Virtual sessions, DIY rockets, stargazing, and Bingo networking.",
         "date": "8 Oct 2025",
         "location": "Makerere University",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "organizer": "Space Junkies Uganda",
+        "capacity": 350,
+        "registration": "Closed",
+        "tags": ["World Space Week", "National Celebration", "Makerere"],
+        "agenda": [
+          { "time": "09:00", "description": "Opening Ceremony & Keynote" },
+          { "time": "11:00", "description": "DIY Rocket Building & Launch" },
+          { "time": "14:00", "description": "Space Bingo & Networking" },
+          { "time": "18:00", "description": "Evening Stargazing Session" }
+        ]
       },
       {
         "type": "Physical",
@@ -351,7 +441,17 @@
         "text": "300+ exhibitors at Kololo Independence Grounds. Uganda's largest science exhibition under 'Made in Uganda: Innovation to Market'.",
         "date": "15 Jun 2025",
         "location": "Kololo, Kampala",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "organizer": "STI Secretariat",
+        "capacity": 2000,
+        "registration": "Closed",
+        "tags": ["Science Week", "Exhibition", "Innovation"],
+        "agenda": [
+          { "time": "08:00", "description": "Exhibition Opens to Public" },
+          { "time": "10:00", "description": "Panel: Innovation to Market" },
+          { "time": "14:00", "description": "Youth Innovation Showcase" },
+          { "time": "17:00", "description": "Awards & Closing" }
+        ]
       },
       {
         "type": "Conference",
@@ -360,7 +460,17 @@
         "text": "Africa's premier space technology conference at Serena Hotel. Keynotes on satellite tech, AI-driven innovations, and space policy.",
         "date": "25 Aug 2025",
         "location": "Serena Hotel, Kampala",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "organizer": "Uganda Space Community",
+        "capacity": 400,
+        "registration": "Closed",
+        "tags": ["Conference", "Space Technology", "Policy"],
+        "agenda": [
+          { "time": "09:00", "description": "Opening Keynote: Africa's Space Future" },
+          { "time": "11:00", "description": "Satellite Technology & AI Panel" },
+          { "time": "14:00", "description": "Space Policy Breakout Sessions" },
+          { "time": "16:30", "description": "Networking Reception" }
+        ]
       },
       {
         "type": "Workshop",
@@ -369,7 +479,17 @@
         "text": "ICTP Physics Without Frontiers training on machine learning applications in space weather and ionospheric research at Mbarara University.",
         "date": "8 Sep 2025",
         "location": "Mbarara University",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "organizer": "ICTP & Mbarara University",
+        "capacity": 40,
+        "registration": "Closed",
+        "tags": ["Machine Learning", "Space Weather", "Training"],
+        "agenda": [
+          { "time": "09:00", "description": "Introduction to Space Weather Physics" },
+          { "time": "11:00", "description": "ML Algorithms for Ionospheric Data" },
+          { "time": "14:00", "description": "Hands-On Python Lab Session" },
+          { "time": "16:00", "description": "Student Presentations & Feedback" }
+        ]
       },
       {
         "type": "Conference",
@@ -378,7 +498,17 @@
         "text": "Uganda's delegation led by Hon. Sebugwawo at Cairo conference. Dr. Doreen Agaba on panel discussing Africa's space economy.",
         "date": "21 Apr 2025",
         "location": "Cairo, Egypt",
-        "image": "img/hero-2.jpg"
+        "image": "img/hero-2.jpg",
+        "organizer": "African Space Agency",
+        "capacity": 600,
+        "registration": "Closed",
+        "tags": ["Conference", "Africa", "Space Economy"],
+        "agenda": [
+          { "time": "09:00", "description": "Opening Ceremony & Ministerial Session" },
+          { "time": "11:00", "description": "Africa's Space Economy Panel" },
+          { "time": "14:00", "description": "Industry & Innovation Tracks" },
+          { "time": "17:00", "description": "Networking Gala" }
+        ]
       },
       {
         "type": "Workshop",
@@ -387,7 +517,17 @@
         "text": "First African Development Satellite project workshop hosted in Uganda. 6 nations collaborating on Africa's first jointly-built satellite.",
         "date": "31 May 2025",
         "location": "Kampala",
-        "image": "img/hero-3.jpg"
+        "image": "img/hero-3.jpg",
+        "organizer": "African Space Agency",
+        "capacity": 80,
+        "registration": "Closed",
+        "tags": ["AfDev-Sat", "Collaboration", "Satellite"],
+        "agenda": [
+          { "time": "09:00", "description": "AfDev-Sat Vision & Mission Overview" },
+          { "time": "11:00", "description": "Technical Requirements & Mission Design" },
+          { "time": "14:00", "description": "Working Groups: Payload & Ground Segment" },
+          { "time": "16:00", "description": "Action Items & Next Steps" }
+        ]
       },
       {
         "type": "Milestone",
@@ -396,7 +536,17 @@
         "text": "Egypt-Kenya-Uganda ClimCam payload launched on Cygnus NG-24 to ISS Bartolomeo platform. Climate monitoring for East Africa.",
         "date": "1 Dec 2025",
         "location": "ISS",
-        "image": "img/hero-1.jpg"
+        "image": "img/hero-1.jpg",
+        "organizer": "UNOOSA",
+        "capacity": "Open",
+        "registration": "Closed",
+        "tags": ["ISS", "Climate Monitoring", "Milestone"],
+        "agenda": [
+          { "time": "08:00", "description": "Live Launch Broadcast" },
+          { "time": "08:45", "description": "Payload Confirmation" },
+          { "time": "09:30", "description": "Partner Celebration & Press Conference" },
+          { "time": "11:00", "description": "Technical Briefing & Next Steps" }
+        ]
       }
     ],
     "headlines": [
@@ -419,7 +569,12 @@
       "start": "14 Jul",
       "end": "20 Jul 2026",
       "totalEvents": 7,
-      "completedEvents": 4
+      "completedEvents": 4,
+      "description": "National Astronomy Week 2026 brings telescope nights, public lectures, and sky-watching activities to Kampala, Mbarara, Gulu, Jinja, and Fort Portal. Organized by the Uganda Astronomical Society with support from StellarView Technologies, the week aims to spark public interest in astronomy and highlight Uganda's unique equatorial advantage for stargazing.",
+      "organizer": "Uganda Astronomical Society",
+      "outcomes": ["500+ public participants across 5 cities", "New astronomy clubs established at 3 universities", "Media coverage reaching 10,000+ Ugandans"],
+      "participants": 520,
+      "region": "National"
     },
     {
       "status": "active",
@@ -428,7 +583,12 @@
       "start": "Jun",
       "end": "Dec 2026",
       "totalEvents": 6,
-      "completedEvents": 2
+      "completedEvents": 2,
+      "description": "A structured series of monthly workshops where university students design, prototype, and test subsystems for Uganda's first university CubeSat. Sessions cover mission design, power systems,通信通信通信通信通信通信通信, and thermal control, culminating in a flight-ready satellite model by December 2026.",
+      "organizer": "Nile Orbitals",
+      "outcomes": ["Flight-ready CubeSat prototype by December 2026", "20+ students trained in satellite engineering", "Partnerships with 3 international space agencies"],
+      "participants": 24,
+      "region": "Central"
     },
     {
       "status": "completed",
@@ -437,7 +597,12 @@
       "start": "15 Mar",
       "end": "30 Jun 2026",
       "totalEvents": 8,
-      "completedEvents": 8
+      "completedEvents": 8,
+      "description": "A nationwide outreach tour visiting secondary schools in all four regions of Uganda. Each visit includes interactive sessions on satellite technology, hands-on rocket-building activities, and career talks with space professionals, inspiring the next generation of Ugandan scientists and engineers.",
+      "organizer": "Space Junkies Uganda",
+      "outcomes": ["22 schools visited across 4 regions", "1,200+ students directly engaged", "15 student teams formed for rocketry challenge"],
+      "participants": 1200,
+      "region": "National"
     },
     {
       "status": "planned",
@@ -446,7 +611,12 @@
       "start": "4 Oct",
       "end": "10 Oct 2026",
       "totalEvents": 10,
-      "completedEvents": 0
+      "completedEvents": 0,
+      "description": "Uganda's flagship World Space Week celebration under the global theme 'Rocket Revolution'. Activities span all four regions with rocketry demonstrations, stargazing nights, policy panels, school outreach, and the Innovation Showcase. Partners include NOA's Quest, Uganda Astronomical Society, and StellarView Technologies.",
+      "organizer": "Space Junkies Uganda",
+      "outcomes": ["10 events across 4 regions", "500+ expected participants", "National media coverage campaign"],
+      "participants": 500,
+      "region": "National"
     },
     {
       "status": "proposed",
@@ -455,7 +625,12 @@
       "start": "Jan",
       "end": "Dec 2027",
       "totalEvents": 12,
-      "completedEvents": 0
+      "completedEvents": 0,
+      "description": "A two-year initiative to train Ugandan researchers and technicians in Earth observation data analysis using Sentinel-2 and Landsat imagery. The program focuses on agricultural monitoring, deforestation tracking, and water resource management, with applications directly benefiting Uganda's rural communities.",
+      "organizer": "Uganda National Meteorology Authority",
+      "outcomes": ["30 researchers trained in EO data analysis", "Open-access EO dataset for Uganda", "3 pilot applications in agriculture and environment"],
+      "participants": 30,
+      "region": "National"
     },
     {
       "status": "proposed",
@@ -464,7 +639,12 @@
       "start": "Sep",
       "end": "Nov 2026",
       "totalEvents": 6,
-      "completedEvents": 0
+      "completedEvents": 0,
+      "description": "A comprehensive teacher training program equipping secondary school educators with the knowledge and materials to teach space science, astronomy, and satellite technology. Teachers receive curriculum guides, activity kits, and ongoing mentorship support from Uganda's space community.",
+      "organizer": "StellarView Technologies",
+      "outcomes": ["60 teachers trained across 4 regions", "New curriculum module approved by NCPE", "Teacher network established for ongoing support"],
+      "participants": 60,
+      "region": "National"
     },
     {
       "status": "proposed",
@@ -473,7 +653,12 @@
       "start": "Mar",
       "end": "Dec 2027",
       "totalEvents": 8,
-      "completedEvents": 0
+      "completedEvents": 0,
+      "description": "A competitive program challenging university teams from Kenya, Tanzania, Rwanda, and Uganda to design, build, and test a functional CubeSat payload. The challenge includes mentorship from international partners, technical reviews, and a final launch opportunity for the winning team.",
+      "organizer": "Uganda Space Community",
+      "outcomes": ["8 university teams from 4 countries", "2 payloads selected for flight opportunity", "Regional collaboration framework established"],
+      "participants": 48,
+      "region": "East Africa"
     },
     {
       "status": "active",
@@ -482,7 +667,12 @@
       "start": "Jan 2024",
       "end": "Ongoing",
       "totalEvents": 4,
-      "completedEvents": 2
+      "completedEvents": 2,
+      "description": "CanSat Uganda introduces students to satellite engineering through a simulate-and-build approach where teams design, construct, and deploy a soda-can-sized satellite. The program follows the international CanSat competition framework and has been led by Derrick Tebusweke since 2024.",
+      "organizer": "CanSat Uganda",
+      "outcomes": ["12 student teams participated", "2 teams competed internationally", "Training of 4 CanSat team leaders"],
+      "participants": 48,
+      "region": "Central"
     },
     {
       "status": "in_progress",
@@ -491,7 +681,12 @@
       "start": "2019",
       "end": "2026",
       "totalEvents": 6,
-      "completedEvents": 3
+      "completedEvents": 3,
+      "description": "The African Development Satellite (AfDev-Sat) is a historic pan-African initiative where six nations — Egypt, Ghana, Kenya, Nigeria, Sudan, and Uganda — are jointly designing and building Africa's first collaboratively constructed satellite. The mission focuses on Earth observation for climate monitoring and agricultural applications.",
+      "organizer": "African Space Agency",
+      "outcomes": ["6 nations contributing to satellite design", "Earth observation payload integration underway", "Knowledge transfer to 30+ African engineers"],
+      "participants": 30,
+      "region": "Africa"
     }
   ],
 
@@ -503,7 +698,15 @@
       "leadOrganisation": "StellarView, NOAS, Uganda Astronomical Society, GIS community, and partner universities",
       "description": "Earth observation, climate, water, food security, and Uganda's space journey through practical satellite-data applications.",
       "format": "PHYSICAL",
-      "image": "img/hero-1.jpg"
+      "image": "img/hero-1.jpg",
+      "objectives": [
+        "Demonstrate practical applications of satellite data for agriculture and water resource management",
+        "Build local capacity in Earth observation data analysis and interpretation",
+        "Connect Ugandan researchers with international EO data providers and partners"
+      ],
+      "duration": "2 days",
+      "level": "Intermediate",
+      "format": "In-person"
     },
     {
       "id": "rocket-revolution",
@@ -512,7 +715,15 @@
       "leadOrganisation": "NOA's Quest, Nakuja Project, and Uganda Astronomical Society",
       "description": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
       "format": "PHYSICAL",
-      "image": "img/hero-2.jpg"
+      "image": "img/hero-2.jpg",
+      "objectives": [
+        "Showcase model rocketry design and safe launch techniques",
+        "Inspire students to pursue careers in aerospace engineering",
+        "Provide hands-on experience with propulsion systems and aerodynamics"
+      ],
+      "duration": "1 day",
+      "level": "Beginner",
+      "format": "In-person"
     },
     {
       "id": "beyond-earth",
@@ -521,7 +732,15 @@
       "leadOrganisation": "Space Junkies Uganda, NOAS, Nakuja Project, Uganda Astronomical Society, NOA, and university partners",
       "description": "Satellite communications, AI, robotics, astrobiology, space medicine, and planetary engineering.",
       "format": "PHYSICAL",
-      "image": "img/hero-3.jpg"
+      "image": "img/hero-3.jpg",
+      "objectives": [
+        "Explore cutting-edge topics in satellite communications and space AI",
+        "Discuss challenges and opportunities in space medicine and astrobiology",
+        "Connect researchers with frontier space system development projects"
+      ],
+      "duration": "1 day",
+      "level": "Advanced",
+      "format": "In-person"
     },
     {
       "id": "stargazing",
@@ -530,7 +749,15 @@
       "leadOrganisation": "Uganda Astronomical Society",
       "description": "A standalone evening experience with telescopes, astrophotography stations, constellation tours, and public night-sky interpretation.",
       "format": "PHYSICAL",
-      "image": "img/hero-1.jpg"
+      "image": "img/hero-1.jpg",
+      "objectives": [
+        "Make astronomy accessible and enjoyable for the general public",
+        "Teach basic astrophotography techniques using smartphones and cameras",
+        "Highlight Uganda's unique equatorial position for stargazing"
+      ],
+      "duration": "1 evening",
+      "level": "Beginner",
+      "format": "In-person"
     }
   ],
 
@@ -541,7 +768,12 @@
       "organization": "African Space Agency",
       "deadline": "30 Sep 2026",
       "eligible": "Undergraduate students",
-      "description": "Full scholarship for African students pursuing space science and engineering degrees."
+      "description": "Full scholarship for African students pursuing space science and engineering degrees.",
+      "link": "#",
+      "amount": "Full scholarship",
+      "duration": "4 years",
+      "applicationProcess": "Online application with academic transcripts, personal statement, and two recommendation letters. Shortlisted candidates invited for virtual interview.",
+      "benefits": ["Full tuition coverage", "Monthly stipend for living expenses", "Mentorship from African Space Agency scientists"]
     },
     {
       "type": "Internship",
@@ -549,7 +781,12 @@
       "organization": "Uganda Space Agency",
       "deadline": "15 Aug 2026",
       "eligible": "Graduate students",
-      "description": "6-month internship at the Uganda Space Agency working on satellite operations."
+      "description": "6-month internship at the Uganda Space Agency working on satellite operations.",
+      "link": "#",
+      "amount": "Paid stipend",
+      "duration": "6 months",
+      "applicationProcess": "Submit CV, cover letter, and academic records through the USA career portal. Selection based on academic merit and technical aptitude.",
+      "benefits": ["Hands-on satellite operations experience", "Professional mentorship", "Certificate of completion"]
     },
     {
       "type": "Grant",
@@ -557,7 +794,12 @@
       "organization": "Ministry of Science & Technology",
       "deadline": "1 Oct 2026",
       "eligible": "Organizations",
-      "description": "Grants up to UGX 50M for space-related innovation projects."
+      "description": "Grants up to UGX 50M for space-related innovation projects.",
+      "link": "#",
+      "amount": "Up to UGX 50,000,000",
+      "duration": "12 months",
+      "applicationProcess": "Submit project proposal with budget, timeline, and expected impact.评审 panel reviews applications quarterly.",
+      "benefits": ["Seed funding for space innovation", "Access to government facilities", "Networking with national space stakeholders"]
     },
     {
       "type": "Fellowship",
@@ -565,7 +807,12 @@
       "organization": "Makerere University",
       "deadline": "30 Nov 2026",
       "eligible": "PhD candidates",
-      "description": "2-year research fellowship in satellite communications and Earth observation."
+      "description": "2-year research fellowship in satellite communications and Earth observation.",
+      "link": "#",
+      "amount": "$15,000 per year",
+      "duration": "2 years",
+      "applicationProcess": "Submit research proposal, CV, academic transcripts, and letter of supervisor support. Competitive selection with panel interview.",
+      "benefits": ["Annual research grant", "Access to Makerere Space Lab", "Conference travel support"]
     },
     {
       "type": "Call for Papers",
@@ -573,7 +820,12 @@
       "organization": "Uganda Space Community",
       "deadline": "1 Sep 2026",
       "eligible": "Researchers",
-      "description": "Submit abstracts for the annual African space research conference."
+      "description": "Submit abstracts for the annual African space research conference.",
+      "link": "#",
+      "amount": "Registration waiver for accepted papers",
+      "duration": "3-day conference",
+      "applicationProcess": "Submit 300-word abstract through the conference portal. Notification of acceptance within 4 weeks of submission.",
+      "benefits": ["Present research to African space community", "Publication in conference proceedings", "Networking with regional researchers"]
     },
     {
       "type": "Training",
@@ -581,7 +833,12 @@
       "organization": "UNISEC / Nihon University",
       "deadline": "30 Jun 2026",
       "eligible": "Space educators and engineers",
-      "description": "15th CanSat/CubeSat Leader Training Program in Chiba, Japan. Hands-on satellite development training."
+      "description": "15th CanSat/CubeSat Leader Training Program in Chiba, Japan. Hands-on satellite development training.",
+      "link": "#",
+      "amount": "Full sponsorship",
+      "duration": "2 weeks",
+      "applicationProcess": "Apply through UNISEC with CV, motivation letter, and statement of purpose. Selection by international review committee.",
+      "benefits": ["Hands-on satellite development training in Japan", "International certification", "Networking with global space educators"]
     },
     {
       "type": "Workshop",
@@ -589,7 +846,12 @@
       "organization": "African Space Agency / European Space Agency",
       "deadline": "31 Oct 2025",
       "eligible": "African engineers and students",
-      "description": "Space systems engineering training in Belgium covering Earth observation, satellite comms, and space science."
+      "description": "Space systems engineering training in Belgium covering Earth observation, satellite comms, and space science.",
+      "link": "#",
+      "amount": "Fully funded",
+      "duration": "10 days",
+      "applicationProcess": "Submit application through ESA-AA portal with academic background, motivation, and recommendation letters.",
+      "benefits": ["Training at ESA facilities in Belgium", "Certificate from European Space Agency", "Access to ESA data archives"]
     },
     {
       "type": "Competition",
@@ -597,58 +859,400 @@
       "organization": "African Space Leadership Institute / SGAC",
       "deadline": "31 Dec 2026",
       "eligible": "Students",
-      "description": "Top essays win scholarships to the 9th Space Generation Workshop. Explore space's role in Africa's development."
+      "description": "Top essays win scholarships to the 9th Space Generation Workshop. Explore space's role in Africa's development.",
+      "link": "#",
+      "amount": "Workshop scholarship",
+      "duration": "1 submission cycle",
+      "applicationProcess": "Write 1,500-word essay on assigned topic. Submit through SGAC portal with student verification.",
+      "benefits": ["Win attendance at Space Generation Workshop", "Publication of winning essay", "Mentorship from African space leaders"]
     }
   ],
 
-  "spotlight": {
-    "label": "Featured Member",
-    "name": "Zoora Harrison",
-    "role": "Founder and CEO — StellarView Technologies",
-    "quote": "StellarView Technologies is Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.",
-    "tags": ["Space Education", "Outreach", "STEM Media"],
-    "stats": [
-      { "value": "42", "label": "Events This Year" },
-      { "value": "8+", "label": "Countries" },
-      { "value": "6", "label": "Universities" },
-      { "value": "12", "label": "Active Projects" }
-    ]
-  },
-
   "organizations": [
-    { "name": "Space Junkies Uganda", "category": "Space Outreach", "location": "Kampala", "icon": "users", "featured": true },
-    { "name": "StellarView Technologies", "category": "Space Outreach", "location": "Uganda", "icon": "globe", "featured": true },
-    { "name": "Uganda Astronomical Society", "category": "Astronomy", "location": "Uganda", "icon": "star", "featured": true },
-    { "name": "Holistic Inclusive Aviation Africa", "category": "Aviation", "location": "Uganda", "icon": "plane", "featured": false },
-    { "name": "KTA Advocates Centre for Law, Policy and Innovation Initiative", "category": "Law And Policy", "location": "Uganda", "icon": "shield", "featured": false },
-    { "name": "Uganda Space Community", "category": "Community Network", "location": "Uganda", "icon": "globe", "featured": false },
-    { "name": "Uganda Industrial Research Institute", "category": "Academic Institution", "location": "Uganda", "icon": "building", "featured": false },
-    { "name": "Makerere University", "category": "Academic Institution", "location": "Kampala", "icon": "graduation", "featured": true },
-    { "name": "Makerere University CEDAT", "category": "Academic Institution", "location": "Kampala", "icon": "tool", "featured": true },
-    { "name": "IEEE Makerere Student Branch", "category": "Student Initiative", "location": "Makerere University", "icon": "users", "featured": true },
-    { "name": "IEEE AESS SBC Makerere", "category": "Student Initiative", "location": "Makerere University", "icon": "star", "featured": true },
-    { "name": "Kyambogo University", "category": "Academic Institution", "location": "Kampala", "icon": "graduation", "featured": false },
-    { "name": "Mbarara University of Science and Technology", "category": "Academic Institution", "location": "Mbarara", "icon": "graduation", "featured": false },
-    { "name": "Busitema University", "category": "Academic Institution", "location": "Uganda", "icon": "graduation", "featured": false },
-    { "name": "Uganda Christian University", "category": "Academic Institution", "location": "Mukono", "icon": "graduation", "featured": false },
-    { "name": "Nkumba University", "category": "Academic Institution", "location": "Uganda", "icon": "graduation", "featured": false },
-    { "name": "NOA's Quest", "category": "Rocketry And Propulsion", "location": "Uganda", "icon": "rocket", "featured": true },
-    { "name": "Infinity Computers", "category": "Innovation & Technology", "location": "Uganda", "icon": "monitor", "featured": true },
-    { "name": "Nile Orbitals", "category": "Aerospace Technology", "location": "Uganda", "icon": "rocket", "featured": true },
-    { "name": "Young Engineers Uganda", "category": "STEM Initiative", "location": "Uganda", "icon": "book", "featured": true },
-    { "name": "Aerobuddies", "category": "Aerospace Initiative", "location": "Uganda", "icon": "tool", "featured": true },
-    { "name": "NASA Space Apps Kampala", "category": "Hackathon", "location": "Kampala", "icon": "zap", "featured": true },
-    { "name": "GDG On Campus Makerere University", "category": "Student Initiative", "location": "Makerere University", "icon": "code", "featured": false },
-
-    { "name": "African Astronomical Society", "category": "Astronomy", "location": "Africa", "icon": "star", "featured": true },
-    { "name": "African Space Agency", "category": "Space Agency", "location": "Africa", "icon": "flag", "featured": true },
-    { "name": "East African Astronomical Society", "category": "Astronomy", "location": "East Africa", "icon": "globe", "featured": false },
-    { "name": "Ministry of Science, Technology and Innovation", "category": "Government", "location": "Uganda", "icon": "building", "featured": true },
-    { "name": "Uganda National Council for Science and Technology", "category": "Government", "location": "Uganda", "icon": "shield", "featured": false },
-    { "name": "Uganda Communications Commission", "category": "Government", "location": "Uganda", "icon": "signal", "featured": false },
-    { "name": "Regional Centre for Mapping of Resources for Development", "category": "Aerospace", "location": "Nairobi", "icon": "globe", "featured": false },
-    { "name": "International Astronautical Federation", "category": "Space Network", "location": "Paris", "icon": "globe", "featured": false },
-    { "name": "Space Generation Advisory Council", "category": "Space Network", "location": "Global", "icon": "users", "featured": true }
+    {
+      "name": "Space Junkies Uganda",
+      "category": "Space Outreach",
+      "location": "Kampala",
+      "icon": "users",
+      "featured": true,
+      "description": "Youled space outreach organization coordinating World Space Week Uganda and community engagement activities across the country.",
+      "website": "#",
+      "founded": 2022,
+      "members": 45,
+      "focus": ["Space Outreach", "Event Coordination", "Youth Engagement"]
+    },
+    {
+      "name": "StellarView Technologies",
+      "category": "Space Education Media",
+      "location": "Uganda",
+      "icon": "globe",
+      "featured": true,
+      "description": "Uganda's first space education media brand making space science accessible to African children through outreach, storytelling, and programme delivery.",
+      "website": "#",
+      "founded": 2023,
+      "members": 28,
+      "focus": ["Space Education", "STEM Media", "Public Outreach"]
+    },
+    {
+      "name": "Uganda Astronomical Society",
+      "category": "Astronomy",
+      "location": "Uganda",
+      "icon": "star",
+      "featured": true,
+      "description": "National astronomical society organizing public stargazing events, telescope nights, and astronomy education across Uganda.",
+      "website": "#",
+      "founded": 2020,
+      "members": 52,
+      "focus": ["Astronomy", "Public Observation", "Science Education"]
+    },
+    {
+      "name": "Holistic Inclusive Aviation Africa",
+      "category": "Aviation",
+      "location": "Uganda",
+      "icon": "plane",
+      "featured": false,
+      "description": "Advancing inclusive aviation and STEAM pathways for young aviation and space professionals across Africa.",
+      "website": "#",
+      "founded": 2021,
+      "members": 35,
+      "focus": ["Aviation", "Inclusion", "STEAM Education"]
+    },
+    {
+      "name": "KTA Advocates Centre for Law, Policy and Innovation Initiative",
+      "category": "Law And Policy",
+      "location": "Uganda",
+      "icon": "shield",
+      "featured": false,
+      "description": "Legal and policy advisory center supporting space governance, intellectual property, and innovation policy in Uganda.",
+      "website": "#",
+      "founded": 2018,
+      "members": 12,
+      "focus": ["Space Law", "Policy", "Innovation Governance"]
+    },
+    {
+      "name": "Uganda Space Community",
+      "category": "Community Network",
+      "location": "Uganda",
+      "icon": "globe",
+      "featured": false,
+      "description": "The national platform connecting researchers, students, engineers, and organizations in Uganda's space ecosystem.",
+      "website": "#",
+      "founded": 2024,
+      "members": 340,
+      "focus": ["Community Building", "Knowledge Sharing", "Ecosystem Development"]
+    },
+    {
+      "name": "Uganda Industrial Research Institute",
+      "category": "Academic Institution",
+      "location": "Uganda",
+      "icon": "building",
+      "featured": false,
+      "description": "Government research institute supporting industrial innovation and technology transfer in Uganda.",
+      "website": "#",
+      "founded": 2005,
+      "members": 85,
+      "focus": ["Industrial Research", "Technology Transfer", "Innovation"]
+    },
+    {
+      "name": "Makerere University",
+      "category": "Academic Institution",
+      "location": "Kampala",
+      "icon": "graduation",
+      "featured": true,
+      "description": "East Africa's oldest and largest university, hosting Uganda's leading space science and engineering programs.",
+      "website": "#",
+      "founded": 1922,
+      "members": 40000,
+      "focus": ["Higher Education", "Space Research", "Engineering"]
+    },
+    {
+      "name": "Makerere University CEDAT",
+      "category": "Academic Institution",
+      "location": "Kampala",
+      "icon": "tool",
+      "featured": true,
+      "description": "College of Engineering, Design, Art and Technology at Makerere University, home to satellite and aerospace engineering research.",
+      "website": "#",
+      "founded": 1954,
+      "members": 3500,
+      "focus": ["Engineering", "Satellite Design", "Aerospace Technology"]
+    },
+    {
+      "name": "IEEE Makerere Student Branch",
+      "category": "Student Initiative",
+      "location": "Makerere University",
+      "icon": "users",
+      "featured": true,
+      "description": "Student branch of the Institute of Electrical and Electronics Engineers at Makerere University, organizing technical workshops and hackathons.",
+      "website": "#",
+      "founded": 2015,
+      "members": 120,
+      "focus": ["Electronics", "Technical Workshops", "Student Innovation"]
+    },
+    {
+      "name": "IEEE AESS SBC Makerere",
+      "category": "Student Initiative",
+      "location": "Makerere University",
+      "icon": "star",
+      "featured": true,
+      "description": "Aerospace and Electronic Systems Society student branch chapter focusing on satellite communications and aerospace technology.",
+      "website": "#",
+      "founded": 2020,
+      "members": 65,
+      "focus": ["Aerospace Systems", "Satellite Comms", "Student Research"]
+    },
+    {
+      "name": "Kyambogo University",
+      "category": "Academic Institution",
+      "location": "Kampala",
+      "icon": "graduation",
+      "featured": false,
+      "description": "Public university offering programs in science, technology, and engineering with growing space-related research.",
+      "website": "#",
+      "founded": 2001,
+      "members": 20000,
+      "focus": ["Science Education", "Technology", "Engineering"]
+    },
+    {
+      "name": "Mbarara University of Science and Technology",
+      "category": "Academic Institution",
+      "location": "Mbarara",
+      "icon": "graduation",
+      "featured": false,
+      "description": "University in Western Uganda known for space weather research and the East African ML Space Weather Workshop.",
+      "website": "#",
+      "founded": 1989,
+      "members": 12000,
+      "focus": ["Space Weather", "Machine Learning", "Science Education"]
+    },
+    {
+      "name": "Busitema University",
+      "category": "Academic Institution",
+      "location": "Uganda",
+      "icon": "graduation",
+      "featured": false,
+      "description": "University launching Uganda's first dedicated Aerospace Engineering program in 2026.",
+      "website": "#",
+      "founded": 2007,
+      "members": 8000,
+      "focus": ["Aerospace Engineering", "Science", "Technology"]
+    },
+    {
+      "name": "Uganda Christian University",
+      "category": "Academic Institution",
+      "location": "Mukono",
+      "icon": "graduation",
+      "featured": false,
+      "description": "Private university offering science and technology programs with growing interest in space education.",
+      "website": "#",
+      "founded": 1997,
+      "members": 15000,
+      "focus": ["Higher Education", "Science", "Community Development"]
+    },
+    {
+      "name": "Nkumba University",
+      "category": "Academic Institution",
+      "location": "Uganda",
+      "icon": "graduation",
+      "featured": false,
+      "description": "Private university contributing to Uganda's higher education landscape with programs in business and technology.",
+      "website": "#",
+      "founded": 2000,
+      "members": 10000,
+      "focus": ["Higher Education", "Business", "Technology"]
+    },
+    {
+      "name": "NOA's Quest",
+      "category": "Rocketry And Propulsion",
+      "location": "Uganda",
+      "icon": "rocket",
+      "featured": true,
+      "description": "Uganda's leading rocketry organization designing, building, and launching model rockets while training the next generation of aerospace engineers.",
+      "website": "#",
+      "founded": 2021,
+      "members": 30,
+      "focus": ["Rocketry", "Propulsion Systems", "STEM Education"]
+    },
+    {
+      "name": "Infinity Computers",
+      "category": "Innovation & Technology",
+      "location": "Uganda",
+      "icon": "monitor",
+      "featured": true,
+      "description": "Technology company providing computing solutions and supporting digital innovation in Uganda's space sector.",
+      "website": "#",
+      "founded": 2019,
+      "members": 22,
+      "focus": ["Computing", "Digital Innovation", "Technology Solutions"]
+    },
+    {
+      "name": "Nile Orbitals",
+      "category": "Aerospace Technology",
+      "location": "Uganda",
+      "icon": "rocket",
+      "featured": true,
+      "description": "Aerospace technology company developing satellite systems and ground station infrastructure for Uganda's space program.",
+      "website": "#",
+      "founded": 2022,
+      "members": 18,
+      "focus": ["Satellite Systems", "Ground Stations", "Aerospace Engineering"]
+    },
+    {
+      "name": "Young Engineers Uganda",
+      "category": "STEM Initiative",
+      "location": "Uganda",
+      "icon": "book",
+      "featured": true,
+      "description": "STEM education initiative inspiring young Ugandans to pursue engineering and technology careers through hands-on learning.",
+      "website": "#",
+      "founded": 2020,
+      "members": 85,
+      "focus": ["STEM Education", "Youth Empowerment", "Engineering"]
+    },
+    {
+      "name": "Aerobuddies",
+      "category": "Aerospace Initiative",
+      "location": "Uganda",
+      "icon": "tool",
+      "featured": true,
+      "description": "Aviation and aerospace initiative building practical pathways for meaningful impact in Uganda's aviation ecosystem.",
+      "website": "#",
+      "founded": 2023,
+      "members": 25,
+      "focus": ["Aviation", "Aerospace DIY", "Community Building"]
+    },
+    {
+      "name": "NASA Space Apps Kampala",
+      "category": "Hackathon",
+      "location": "Kampala",
+      "icon": "zap",
+      "featured": true,
+      "description": "Kampala chapter of NASA's Space Apps Challenge, organizing Uganda's largest hackathon focused on space and Earth science solutions.",
+      "website": "#",
+      "founded": 2022,
+      "members": 100,
+      "focus": ["Hackathons", "Open Data", "Innovation"]
+    },
+    {
+      "name": "GDG On Campus Makerere University",
+      "category": "Student Initiative",
+      "location": "Makerere University",
+      "icon": "code",
+      "featured": false,
+      "description": "Google Developer Group on campus connecting students with technology, cloud computing, and software development.",
+      "website": "#",
+      "founded": 2021,
+      "members": 90,
+      "focus": ["Cloud Computing", "Software Development", "Student Innovation"]
+    },
+    {
+      "name": "African Astronomical Society",
+      "category": "Astronomy",
+      "location": "Africa",
+      "icon": "star",
+      "featured": true,
+      "description": "Continental astronomical society uniting African astronomers and promoting astronomy research and education across Africa.",
+      "website": "#",
+      "founded": 2011,
+      "members": 500,
+      "focus": ["Astronomy Research", "Continental Collaboration", "Science Education"]
+    },
+    {
+      "name": "African Space Agency",
+      "category": "Space Agency",
+      "location": "Africa",
+      "icon": "flag",
+      "featured": true,
+      "description": "Continental space agency coordinating Africa's space programs, including the AfDev-Sat joint satellite mission.",
+      "website": "#",
+      "founded": 2018,
+      "members": 120,
+      "focus": ["Space Policy", "Satellite Programs", "Continental Cooperation"]
+    },
+    {
+      "name": "East African Astronomical Society",
+      "category": "Astronomy",
+      "location": "East Africa",
+      "icon": "globe",
+      "featured": false,
+      "description": "Regional astronomical society promoting astronomy collaboration between Kenya, Tanzania, Uganda, Rwanda, and Burundi.",
+      "website": "#",
+      "founded": 2015,
+      "members": 180,
+      "focus": ["Regional Astronomy", "Collaboration", "Public Outreach"]
+    },
+    {
+      "name": "Ministry of Science, Technology and Innovation",
+      "category": "Government",
+      "location": "Uganda",
+      "icon": "building",
+      "featured": true,
+      "description": "Ugandan government ministry overseeing national science policy, technology development, and innovation strategy including space activities.",
+      "website": "#",
+      "founded": 2016,
+      "members": 200,
+      "focus": ["Science Policy", "Technology Development", "National Innovation"]
+    },
+    {
+      "name": "Uganda National Council for Science and Technology",
+      "category": "Government",
+      "location": "Uganda",
+      "icon": "shield",
+      "featured": false,
+      "description": "Government body coordinating scientific research and technology development in Uganda.",
+      "website": "#",
+      "founded": 1990,
+      "members": 60,
+      "focus": ["Research Coordination", "Science Policy", "Technology Assessment"]
+    },
+    {
+      "name": "Uganda Communications Commission",
+      "category": "Government",
+      "location": "Uganda",
+      "icon": "signal",
+      "featured": false,
+      "description": "Regulatory body for communications and satellite frequency coordination in Uganda.",
+      "website": "#",
+      "founded": 1997,
+      "members": 150,
+      "focus": ["Communications Regulation", "Frequency Coordination", "Digital Transformation"]
+    },
+    {
+      "name": "Regional Centre for Mapping of Resources for Development",
+      "category": "Aerospace",
+      "location": "Nairobi",
+      "icon": "globe",
+      "featured": false,
+      "description": "Regional center providing mapping, Earth observation, and geospatial data services for East African development.",
+      "website": "#",
+      "founded": 1975,
+      "members": 80,
+      "focus": ["Geospatial Data", "Earth Observation", "Resource Mapping"]
+    },
+    {
+      "name": "International Astronautical Federation",
+      "category": "Space Network",
+      "location": "Paris",
+      "icon": "globe",
+      "featured": false,
+      "description": "Global federation of space organizations facilitating international cooperation in space activities and astronautics.",
+      "website": "#",
+      "founded": 1951,
+      "members": 400,
+      "focus": ["International Cooperation", "Space Policy", "Astronautics"]
+    },
+    {
+      "name": "Space Generation Advisory Council",
+      "category": "Space Network",
+      "location": "Global",
+      "icon": "users",
+      "featured": true,
+      "description": "Global network connecting young space professionals and students with the United Nations space programme.",
+      "website": "#",
+      "founded": 1999,
+      "members": 15000,
+      "focus": ["Youth Empowerment", "Space Policy", "Global Networking"]
+    }
   ],
 
   "teamMembers": [
@@ -656,109 +1260,169 @@
       "name": "Ronnie Atuhaire",
       "role": "National Coordinator, World Space Week Uganda 2026",
       "organisation": "Space Junkies Uganda",
-      "bio": "Ronnie leads Space Junkies Uganda and coordinates World Space Week Uganda 2026, connecting young Ugandans, institutions, and partners to the global space community.",
+      "bio": "Ronnie leads Space Junkies Uganda and coordinates World Space Week Uganda 2026, connecting young Ugandans, institutions, and partners to the global space community. With a passion for youth empowerment and space outreach, he has organized over 30 national events since 2022.",
       "affiliations": ["SJI", "WSW"],
       "image": "img/hero-1.jpg",
-      "featured": true
+      "featured": true,
+      "email": "ronnie@spacejunkies.ug",
+      "location": "Kampala",
+      "expertise": ["Event Coordination", "Youth Engagement", "Space Outreach"],
+      "achievements": ["Coordinated WSW Uganda 2025 with 1,200+ participants", "Built Space Junkies Uganda into a 45-member organization"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Zoora Harrison",
       "role": "Founder and CEO",
       "organisation": "StellarView Technologies",
-      "bio": "Founder and CEO of StellarView Technologies, Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.",
+      "bio": "Founder and CEO of StellarView Technologies, Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery. StellarView has reached over 5,000 students across 8 countries.",
       "affiliations": ["SVT", "WSW"],
       "image": "img/hero-2.jpg",
-      "featured": true
+      "featured": true,
+      "email": "zoora@stellarview.ug",
+      "location": "Kampala",
+      "expertise": ["Space Education", "STEM Media", "Programme Design"],
+      "achievements": ["Founded StellarView Technologies reaching 5,000+ students", "Led National Astronomy Week 2026 across 5 cities"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Nabbaale Grace Lydia",
       "role": "Chapter Lead, StellarView Technologies - Makerere University",
       "organisation": "Makerere University",
-      "bio": "Electrical Engineering student at Makerere University CEDAT and StellarView Technologies chapter lead, with a strong interest in space science and its potential for Africa's development.",
+      "bio": "Electrical Engineering student at Makerere University CEDAT and StellarView Technologies chapter lead, with a strong interest in space science and its potential for Africa's development. Grace leads the Makerere chapter organizing workshops and outreach events for 60+ students.",
       "affiliations": ["MAK", "SVT"],
       "image": "img/hero-3.jpg",
-      "featured": true
+      "featured": true,
+      "email": "grace.nabbaale@mak.ac.ug",
+      "location": "Kampala",
+      "expertise": ["Electrical Engineering", "Satellite Systems", "Student Leadership"],
+      "achievements": ["Led GIS urban planning research for Kampala", "Organized 12 technical workshops at Makerere"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Halimah Bukirwa",
       "role": "Founder",
       "organisation": "Aerobuddies",
-      "bio": "Founder of Aerobuddies, bringing a people-centred passion for aviation, technology, and problem-solving, building practical pathways for meaningful impact in Uganda's aviation ecosystem.",
+      "bio": "Founder of Aerobuddies, bringing a people-centred passion for aviation, technology, and problem-solving, building practical pathways for meaningful impact in Uganda's aviation ecosystem. Aerobuddies has trained over 80 young aviators since 2023.",
       "affiliations": ["AERO", "AV"],
       "image": "img/hero-1.jpg",
-      "featured": true
+      "featured": true,
+      "email": "halimah@aerobuddies.ug",
+      "location": "Kampala",
+      "expertise": ["Aviation", "Community Building", "STEM Education"],
+      "achievements": ["Founded Aerobuddies training 80+ young aviators", "Pioneered aviation DIY workshops in Uganda"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Angu'zu Raymond",
       "role": "Partnerships",
       "organisation": "KTA Advocates Centre for Law, Policy and Innovation Initiative",
-      "bio": "Lawyer, Uganda National Point of Contact to the Space Generation Advisory Council, and Policy and Programs Assistant at KTA Advocates Centre for Law, Policy and Innovation Initiative.",
+      "bio": "Lawyer, Uganda National Point of Contact to the Space Generation Advisory Council, and Policy and Programs Assistant at KTA Advocates Centre for Law, Policy and Innovation Initiative. Raymond has been instrumental in shaping Uganda's space policy dialogue.",
       "affiliations": ["KTA", "SGAC"],
       "image": "img/hero-2.jpg",
-      "featured": true
+      "featured": true,
+      "email": "raymond@ktaadvocates.ug",
+      "location": "Kampala",
+      "expertise": ["Space Law", "Policy Analysis", "International Cooperation"],
+      "achievements": ["Appointed Uganda's SGAC National Point of Contact", "Authored comparative analysis of African space legislation"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Capt Simon Bruno W. Ssenyange",
       "role": "Executive Director",
       "organisation": "Holistic Inclusive Aviation Africa",
-      "bio": "Simon leads Holistic Inclusive Aviation Africa, advancing inclusive aviation and STEAM pathways for young aviation and space professionals across Africa.",
+      "bio": "Simon leads Holistic Inclusive Aviation Africa, advancing inclusive aviation and STEAM pathways for young aviation and space professionals across Africa. He has trained over 100 young aviators from marginalized communities.",
       "affiliations": ["HIAA"],
       "image": "img/hero-3.jpg",
-      "featured": false
+      "featured": false,
+      "email": "simon@hiaafrica.org",
+      "location": "Kampala",
+      "expertise": ["Aviation", "Inclusive Education", "STEAM Leadership"],
+      "achievements": ["Trained 100+ young aviators from marginalized communities", "Established HIAA chapters in 3 East African countries"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Navneet Singh",
       "role": "Chief Technology Officer",
       "organisation": "Nile Orbitals",
-      "bio": "Navneet contributes aerospace technology leadership and technical perspective through Nile Orbitals and the wider Space Uganda ecosystem.",
+      "bio": "Navneet contributes aerospace technology leadership and technical perspective through Nile Orbitals and the wider Space Uganda ecosystem. He leads the development of Uganda's ground station network and satellite communication systems.",
       "affiliations": ["NO"],
       "image": "img/hero-1.jpg",
-      "featured": false
+      "featured": false,
+      "email": "navneet@nileorbitals.ug",
+      "location": "Kampala",
+      "expertise": ["Satellite Communications", "Ground Stations", "Systems Engineering"],
+      "achievements": ["Designed Uganda's first university ground station", "Published guide on distributed ground station networks"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "O. Samuel Oumo",
       "role": "Member",
       "organisation": "Uganda Astronomical Society",
-      "bio": "Samuel is an information systems professional and futurist thinking, writing, and building toward systems that help society imagine a greater world beyond the present.",
+      "bio": "Samuel is an information systems professional and futurist thinking, writing, and building toward systems that help society imagine a greater world beyond the present. He contributes to UAS outreach and digital strategy.",
       "affiliations": ["SGAC", "IAF", "MVA", "UAS"],
       "image": "img/hero-2.jpg",
-      "featured": false
+      "featured": false,
+      "email": "samuel@uas.ug",
+      "location": "Kampala",
+      "expertise": ["Information Systems", "Digital Strategy", "Foresight"],
+      "achievements": ["Contributed to UAS digital outreach strategy", "Published on space futures for African communities"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Dr Malcom Chris B",
       "role": "Astronomy Organising Team",
       "organisation": "Uganda Astronomical Society",
-      "bio": "Dr Malcom Chris B supports the astronomy organising team, helping connect public audiences to observation, astronomy learning, and Uganda's growing space community.",
+      "bio": "Dr Malcom Chris B supports the astronomy organising team, helping connect public audiences to observation, astronomy learning, and Uganda's growing space community. He leads telescope operations for UAS public events.",
       "affiliations": ["UAS"],
       "image": "img/hero-3.jpg",
-      "featured": false
+      "featured": false,
+      "email": "malcom@uas.ug",
+      "location": "Kampala",
+      "expertise": ["Astronomy", "Telescope Operations", "Science Communication"],
+      "achievements": ["Led telescope operations for 20+ public events", "Trained 15 new UAS telescope operators"],
+      "social": { "twitter": "#", "linkedin": null }
     },
     {
       "name": "Bwengye Cosmas",
       "role": "Astronomy Organising Team",
       "organisation": "Uganda Astronomical Society",
-      "bio": "Cosmas contributes to the Uganda Astronomical Society organising team, supporting astronomy outreach and community participation for national space activities.",
+      "bio": "Cosmas contributes to the Uganda Astronomical Society organising team, supporting astronomy outreach and community participation for national space activities. He coordinates logistics for UAS field observation events.",
       "affiliations": ["UAS"],
       "image": "img/hero-1.jpg",
-      "featured": false
+      "featured": false,
+      "email": "cosmas@uas.ug",
+      "location": "Kampala",
+      "expertise": ["Event Logistics", "Astronomy Outreach", "Community Engagement"],
+      "achievements": ["Coordinated 8 regional stargazing events", "Built UAS field observation network"],
+      "social": { "twitter": null, "linkedin": "#" }
     },
     {
       "name": "Twesigye Duncan",
       "role": "STEAM Educator and Coach",
       "organisation": "NOA's Quest Program",
-      "bio": "Duncan contributes STEAM education, coaching, and practical learning support for young people engaging with aerospace, rocketry, and space science.",
+      "bio": "Duncan contributes STEAM education, coaching, and practical learning support for young people engaging with aerospace, rocketry, and space science. He has trained over 60 students in model rocketry across Ugandan schools.",
       "affiliations": ["NOA"],
       "image": "img/hero-2.jpg",
-      "featured": false
+      "featured": false,
+      "email": "duncan@noasquest.ug",
+      "location": "Kampala",
+      "expertise": ["STEAM Education", "Rocketry Training", "Youth Coaching"],
+      "achievements": ["Trained 60+ students in model rocketry", "Developed beginner rocketry curriculum for Ugandan schools"],
+      "social": { "twitter": "#", "linkedin": "#" }
     },
     {
       "name": "Ayebazibwe Brinton",
       "role": "Chief Operations",
       "organisation": "StellarView Technologies Ltd",
-      "bio": "Brinton supports operations and coordination for StellarView Technologies Ltd, helping turn space outreach ideas into organised public programmes.",
+      "bio": "Brinton supports operations and coordination for StellarView Technologies Ltd, helping turn space outreach ideas into organised public programmes. He manages logistics, partnerships, and event execution for StellarView's national campaigns.",
       "affiliations": ["SVT"],
       "image": "img/hero-3.jpg",
-      "featured": false
+      "featured": false,
+      "email": "brinton@stellarview.ug",
+      "location": "Kampala",
+      "expertise": ["Operations Management", "Partnerships", "Event Execution"],
+      "achievements": ["Managed operations for 42 StellarView events in 2025", "Built partnership network across 6 universities"],
+      "social": { "twitter": "#", "linkedin": "#" }
     }
   ],
 
@@ -772,7 +1436,10 @@
       "audience": "Students, families, clubs, and astronomy beginners",
       "leadOrganisation": "Uganda Astronomical Society and partner clubs",
       "highlights": ["Telescope viewing", "Constellation walks", "Astrophotography tasters"],
-      "featured": true
+      "featured": true,
+      "description": "Regular evening telescope sessions held at Makerere University and other sites across Kampala, guided by experienced astronomers from the Uganda Astronomical Society. Participants observe planets, star clusters, and the Milky Way while learning about Uganda's unique equatorial sky.",
+      "frequency": "Monthly and during special sky events",
+      "impact": "Reached 800+ participants since 2024"
     },
     {
       "title": "STEM Outreach",
@@ -783,7 +1450,10 @@
       "audience": "Learners, teachers, student branches, and youth communities",
       "leadOrganisation": "Space Uganda partners and STEM education teams",
       "highlights": ["Satellite models", "Robotics labs", "Career pathways"],
-      "featured": true
+      "featured": true,
+      "description": "Interactive STEM sessions visiting secondary schools and community centers across all four regions of Uganda. Activities include building satellite models, simple robotics experiments, and career talks with space professionals, inspiring students to pursue science and technology.",
+      "frequency": "Weekly school visits during term time",
+      "impact": "Engaged 1,200+ students across 22 schools"
     },
     {
       "title": "Space Bingos & Trivias",
@@ -794,7 +1464,10 @@
       "audience": "Schools, clubs, families, volunteers, and public audiences",
       "leadOrganisation": "Space Uganda outreach teams",
       "highlights": ["Quiz nights", "Space bingo rounds", "Team challenges"],
-      "featured": true
+      "featured": true,
+      "description": "Fun, social learning events where participants test their space knowledge through bingo-style games, trivia quizzes, and team challenges. Events are designed to make space science approachable and entertaining for all ages, from school children to adults.",
+      "frequency": "Bi-monthly at community events",
+      "impact": "Hosted 15 events reaching 600+ participants"
     },
     {
       "title": "Industrial Visits",
@@ -805,7 +1478,10 @@
       "audience": "University teams, student branches, innovators, and young professionals",
       "leadOrganisation": "Partner companies, universities, and technical institutions",
       "highlights": ["Lab tours", "Mentor briefings", "Career exposure"],
-      "featured": true
+      "featured": true,
+      "description": "Organized visits to laboratories, engineering workshops, and innovation hubs where students and young professionals interact with practicing engineers and researchers. Visits include guided tours, technical briefings, and one-on-one mentorship conversations.",
+      "frequency": "Quarterly visits to partner institutions",
+      "impact": "Connected 200+ students with industry mentors"
     }
   ],
 
@@ -816,7 +1492,9 @@
       "category": "Ecosystem",
       "image": "img/hero-1.jpg",
       "date": "26 Jul 2026",
-      "source": "Space Uganda"
+      "source": "Space Uganda",
+      "body": "Uganda's space community has a new national home. Space Uganda launches as a year-round platform connecting researchers, students, engineers, and organizations across the country's growing space ecosystem. The platform provides a unified portal for events, knowledge sharing, opportunities, and community collaboration, replacing fragmented efforts with a single coordinated national resource.",
+      "author": "Ronnie Atuhaire"
     },
     {
       "title": "WSW Uganda 2026 Theme Confirmed",
@@ -824,7 +1502,9 @@
       "category": "World Space Week",
       "image": "img/uganda-space-week-2025-main.png",
       "date": "26 Jul 2026",
-      "source": "Space Uganda"
+      "source": "Space Uganda",
+      "body": "The Uganda Space Community confirms that World Space Week 2026 will run under the United Nations-declared global theme 'Rocket Revolution' from October 4-10. Uganda's national celebration will feature rocketry demonstrations, stargazing events, policy panels, and school outreach activities across all four regions, with the flagship day on October 10 in Kampala.",
+      "author": "Ronnie Atuhaire"
     },
     {
       "title": "Gallery Archive Being Prepared",
@@ -832,26 +1512,70 @@
       "category": "Gallery",
       "image": "img/hero-3.jpg",
       "date": "26 Jul 2026",
-      "source": "Space Uganda"
+      "source": "Space Uganda",
+      "body": "The Space Uganda platform is preparing a comprehensive public gallery to archive photos and videos from Uganda Space Week activities and other community events. Members and organizers are invited to submit high-quality media from past and upcoming events to build a lasting visual record of Uganda's space journey.",
+      "author": "Zoora Harrison"
     }
   ],
 
   "partners": [
-    { "name": "StellarView Technologies", "type": "Space Education Media", "icon": "globe" },
-    { "name": "Uganda Astronomical Society", "type": "Astronomy", "icon": "star" },
-    { "name": "NOA's Quest", "type": "Rocketry", "icon": "rocket" },
-    { "name": "Nile Orbitals", "type": "Aerospace Technology", "icon": "rocket" },
-    { "name": "Makerere University CEDAT", "type": "Engineering School", "icon": "tool" },
-    { "name": "IEEE AESS SBC Makerere", "type": "Student Branch", "icon": "users" },
-    { "name": "Young Engineers Uganda", "type": "STEM Education", "icon": "book" },
-    { "name": "Aerobuddies", "type": "Aerospace DIY", "icon": "tool" }
+    {
+      "name": "StellarView Technologies",
+      "type": "Space Education Media",
+      "icon": "globe",
+      "description": "Uganda's first space education media brand making space science accessible to African children.",
+      "website": "#"
+    },
+    {
+      "name": "Uganda Astronomical Society",
+      "type": "Astronomy",
+      "icon": "star",
+      "description": "National astronomical society organizing public stargazing and astronomy education across Uganda.",
+      "website": "#"
+    },
+    {
+      "name": "NOA's Quest",
+      "type": "Rocketry",
+      "icon": "rocket",
+      "description": "Uganda's leading rocketry organization training the next generation of aerospace engineers.",
+      "website": "#"
+    },
+    {
+      "name": "Nile Orbitals",
+      "type": "Aerospace Technology",
+      "icon": "rocket",
+      "description": "Aerospace technology company developing satellite systems and ground station infrastructure.",
+      "website": "#"
+    },
+    {
+      "name": "Makerere University CEDAT",
+      "type": "Engineering School",
+      "icon": "tool",
+      "description": "College of Engineering, Design, Art and Technology at Makerere University, home to satellite and aerospace research.",
+      "website": "#"
+    },
+    {
+      "name": "IEEE AESS SBC Makerere",
+      "type": "Student Branch",
+      "icon": "users",
+      "description": "Aerospace and Electronic Systems Society student branch chapter focusing on satellite communications.",
+      "website": "#"
+    },
+    {
+      "name": "Young Engineers Uganda",
+      "type": "STEM Education",
+      "icon": "book",
+      "description": "STEM education initiative inspiring young Ugandans to pursue engineering and technology careers.",
+      "website": "#"
+    },
+    {
+      "name": "Aerobuddies",
+      "type": "Aerospace DIY",
+      "icon": "tool",
+      "description": "Aviation and aerospace initiative building practical pathways in Uganda's aviation ecosystem.",
+      "website": "#"
+    }
   ],
-
-  "cta": {
-    "heading": "Join {accent:The Constellation}",
-    "text": "Create your profile and become part of Uganda's growing space community. Share your work, find collaborators, and help shape the future of space in Uganda.",
-    "button": "Create Your Profile"
-  },
 
   "knowledge": [
     {
@@ -863,7 +1587,11 @@
       "date": "Mar 2026",
       "summary": "Analysis of satellite-based crop monitoring techniques and their applicability to Uganda's smallholder farming systems.",
       "image": "img/hero-1.jpg",
-      "tags": ["Earth Observation", "Agriculture", "Remote Sensing"]
+      "tags": ["Earth Observation", "Agriculture", "Remote Sensing"],
+      "body": "This paper examines how satellite-based remote sensing technologies can be applied to monitor crop health and agricultural productivity across Uganda's diverse farming regions. Using Sentinel-2 and Landsat imagery, the study demonstrates that NDVI analysis can effectively identify crop stress patterns, enabling timely interventions for smallholder farmers. The research includes case studies from three agricultural zones and provides a framework for integrating EO data into national food security monitoring systems.",
+      "doi": "#",
+      "downloads": 342,
+      "citations": 12
     },
     {
       "slug": "cubeSat-design-east-africa",
@@ -874,7 +1602,11 @@
       "date": "Feb 2026",
       "summary": "Technical specifications and mission planning for a CubeSat constellation targeting East African weather patterns.",
       "image": "img/hero-2.jpg",
-      "tags": ["CubeSat", "Climate", "Engineering"]
+      "tags": ["CubeSat", "Climate", "Engineering"],
+      "body": "This technical paper presents the design considerations for a CubeSat constellation specifically tailored for climate monitoring in East Africa. The study covers orbital mechanics, payload selection, power systems, and communication architecture suitable for regional weather pattern observation. Simulation results show that a 3-unit CubeSat constellation in low Earth orbit could provide daily revisit times over the Lake Victoria basin, significantly improving weather forecasting capabilities.",
+      "doi": "#",
+      "downloads": 218,
+      "citations": 8
     },
     {
       "slug": "space-policy-uganda",
@@ -885,7 +1617,11 @@
       "date": "Jan 2026",
       "summary": "Draft national policy framework for space activities, satellite licensing, and data sharing in Uganda.",
       "image": "img/hero-3.jpg",
-      "tags": ["Policy", "Governance", "Regulation"]
+      "tags": ["Policy", "Governance", "Regulation"],
+      "body": "The draft National Space Policy Framework establishes Uganda's regulatory environment for space activities, including satellite licensing, frequency coordination, and data sharing protocols. The document outlines institutional responsibilities, defines the role of the proposed Uganda Space Agency, and aligns national policy with international space treaties and African Union space initiatives. Public consultation is open through March 2026.",
+      "doi": null,
+      "downloads": 567,
+      "citations": 23
     },
     {
       "slug": "ground-station-network",
@@ -896,7 +1632,11 @@
       "date": "Dec 2025",
       "summary": "Step-by-step guide to setting up low-cost ground stations for satellite communication across Ugandan universities.",
       "image": "img/hero-1.jpg",
-      "tags": ["Ground Station", "Infrastructure", "Tutorial"]
+      "tags": ["Ground Station", "Infrastructure", "Tutorial"],
+      "body": "This practical guide provides detailed instructions for establishing low-cost satellite ground stations at Ugandan universities. Covering hardware selection, antenna design, software configuration, and operational procedures, the guide enables institutions to participate in satellite communication with minimal investment. The guide includes a bill of materials, assembly diagrams, and troubleshooting guides based on the three pilot stations established at Makerere, Kyambogo, and Mbarara universities.",
+      "doi": "#",
+      "downloads": 189,
+      "citations": 5
     },
     {
       "slug": "astronomy-outreach-guide",
@@ -907,7 +1647,11 @@
       "date": "Nov 2025",
       "summary": "How to organize telescope nights, school visits, and community astronomy events across Uganda.",
       "image": "img/hero-2.jpg",
-      "tags": ["Astronomy", "Outreach", "Education"]
+      "tags": ["Astronomy", "Outreach", "Education"],
+      "body": "A comprehensive handbook for organizing public astronomy events in Uganda, from telescope nights at schools to community stargazing sessions. The guide covers equipment selection, volunteer training, site selection for optimal viewing, and engagement strategies for diverse audiences. Includes templates for event planning, safety protocols, and promotional materials, based on StellarView Technologies' experience running 42 astronomy events across 8 countries.",
+      "doi": null,
+      "downloads": 423,
+      "citations": 9
     },
     {
       "slug": "satellite-data-agriculture",
@@ -918,7 +1662,11 @@
       "date": "Oct 2025",
       "summary": "Open dataset of processed Sentinel-2 imagery covering Uganda's major agricultural zones with NDVI indices.",
       "image": "img/hero-3.jpg",
-      "tags": ["Dataset", "Sentinel-2", "Agriculture"]
+      "tags": ["Dataset", "Sentinel-2", "Agriculture"],
+      "body": "This open-access dataset contains processed Sentinel-2 satellite imagery covering Uganda's major agricultural zones, including the Teso, Busoga, and Buganda regions. Each image tile includes calculated NDVI indices, cloud-masked composites, and metadata for use in crop health monitoring applications. The dataset is updated monthly and covers the period from January 2024 to present, providing a valuable resource for agricultural researchers and food security analysts.",
+      "doi": "#",
+      "downloads": 891,
+      "citations": 31
     },
     {
       "slug": "rocketry-basics-students",
@@ -929,7 +1677,11 @@
       "date": "Sep 2025",
       "summary": "Beginner-friendly course covering rocket physics, building techniques, and safe launch procedures.",
       "image": "img/hero-1.jpg",
-      "tags": ["Rocketry", "Education", "STEM"]
+      "tags": ["Rocketry", "Education", "STEM"],
+      "body": "A beginner-friendly course material designed for Ugandan secondary and university students interested in model rocketry. The course covers fundamental physics of rocket flight, materials and construction techniques, safety protocols, and launch procedures. Includes practical exercises, building templates, and assessment quizzes. The material has been tested with over 60 students across 8 schools in the Kampala and Wakiso regions.",
+      "doi": null,
+      "downloads": 312,
+      "citations": 7
     },
     {
       "slug": "space-law-africa",
@@ -940,7 +1692,11 @@
       "date": "Aug 2025",
       "summary": "Comparative analysis of space legislation across African nations with recommendations for Uganda.",
       "image": "img/hero-2.jpg",
-      "tags": ["Law", "Africa", "Governance"]
+      "tags": ["Law", "Africa", "Governance"],
+      "body": "This paper provides a comparative analysis of space legislation across 12 African nations, examining regulatory frameworks, institutional structures, and policy gaps. The study identifies key challenges including频谱 coordination, debris mitigation, and data sovereignty, while highlighting opportunities for regional cooperation through the African Union. Recommendations for Uganda's emerging space policy include harmonization with the African Space Agency framework and establishment of a national space coordination body.",
+      "doi": "#",
+      "downloads": 276,
+      "citations": 14
     },
     {
       "slug": "gis-urban-planning",
@@ -951,7 +1707,11 @@
       "date": "Jul 2025",
       "summary": "How satellite imagery and GIS tools are being used to inform urban development decisions in Kampala Metropolitan Area.",
       "image": "img/hero-3.jpg",
-      "tags": ["GIS", "Urban Planning", "Kampala"]
+      "tags": ["GIS", "Urban Planning", "Kampala"],
+      "body": "This case study examines the application of GIS and satellite imagery in urban planning for the Kampala Metropolitan Area. Using high-resolution satellite data and GIS analysis, the study maps land use changes, identifies informal settlements, and assesses infrastructure gaps. The findings demonstrate how remote sensing tools can support evidence-based urban planning decisions, with specific applications for transportation planning, green space management, and disaster risk reduction in Kampala.",
+      "doi": "#",
+      "downloads": 198,
+      "citations": 11
     },
     {
       "slug": "astrophotography-uganda",
@@ -962,7 +1722,11 @@
       "date": "Jun 2025",
       "summary": "Tips and techniques for photographing the Milky Way, Southern Cross, and equatorial constellations from Uganda.",
       "image": "img/hero-1.jpg",
-      "tags": ["Astrophotography", "Astronomy", "Guide"]
+      "tags": ["Astrophotography", "Astronomy", "Guide"],
+      "body": "A practical guide to capturing stunning images of Uganda's equatorial night sky. The guide covers camera settings, equipment recommendations, and composition techniques for photographing the Milky Way, Southern Cross, and other prominent constellations visible from Uganda's latitude. Includes specific location recommendations within Uganda, seasonal shooting calendars, and post-processing workflows for both smartphone and DSLR photographers.",
+      "doi": null,
+      "downloads": 534,
+      "citations": 16
     }
   ],
 
@@ -972,8 +1736,8 @@
       "question": "What is the Uganda Space Community?",
       "category": "About",
       "answers": [
-        { "key": "usc-def-1", "author": "Space Uganda", "text": "The Uganda Space Community (USC) is the national platform connecting researchers, students, engineers, policymakers, and organizations working in Uganda's space sector. It serves as a hub for collaboration, knowledge sharing, and community building.", "votes": 24 },
-        { "key": "usc-def-2", "author": "Ronnie Atuhaire", "text": "USC is a community-driven initiative that brings together everyone interested in space science and technology in Uganda — from university students to established researchers and industry professionals.", "votes": 18 }
+        { "key": "usc-def-1", "author": "Ronnie Atuhaire", "text": "The Uganda Space Community (USC) is the national platform connecting researchers, students, engineers, policymakers, and organizations working in Uganda's space sector. It serves as a hub for collaboration, knowledge sharing, and community building, with over 340 members across 4 regional chapters.", "votes": 24 },
+        { "key": "usc-def-2", "author": "Zoora Harrison", "text": "USC is a community-driven initiative that brings together everyone interested in space science and technology in Uganda — from university students to established researchers and industry professionals. Our platform provides events, knowledge resources, and networking opportunities for the entire ecosystem.", "votes": 18 }
       ]
     },
     {
@@ -981,8 +1745,8 @@
       "question": "How do I join the Uganda Space Community?",
       "category": "Getting Started",
       "answers": [
-        { "key": "join-1", "author": "Space Uganda", "text": "Click 'Log in' in the top navigation, create an account with your name, email, and password. Once registered, you can complete your profile, join working groups, and start contributing.", "votes": 31 },
-        { "key": "join-2", "author": "Zoora Harrison", "text": "Sign up at space.org.ug, fill in your profile with your interests and affiliations, and explore the community. You can immediately participate in events, submit content, and connect with other members.", "votes": 15 }
+        { "key": "join-1", "author": "Ronnie Atuhaire", "text": "Click 'Log in' in the top navigation, create an account with your name, email, and password. Once registered, you can complete your profile, join working groups, and start contributing to the community. Membership is free and open to anyone interested in Uganda's space sector.", "votes": 31 },
+        { "key": "join-2", "author": "Zoora Harrison", "text": "Sign up at space.org.ug, fill in your profile with your interests and affiliations, and explore the community. You can immediately participate in events, submit content, and connect with other members. We recommend joining at least one community group to get started.", "votes": 15 }
       ]
     },
     {
@@ -990,7 +1754,7 @@
       "question": "Who can join the community?",
       "category": "Getting Started",
       "answers": [
-        { "key": "who-1", "author": "Space Uganda", "text": "Anyone with an interest in space science, technology, or policy in Uganda. This includes students, researchers, engineers, educators, policymakers, journalists, and enthusiasts. There are no restrictions on background or qualification.", "votes": 27 }
+        { "key": "who-1", "author": "Ronnie Atuhaire", "text": "Anyone with an interest in space science, technology, or policy in Uganda. This includes students, researchers, engineers, educators, policymakers, journalists, and enthusiasts. There are no restrictions on background or qualification — our strength is in the diversity of our community.", "votes": 27 }
       ]
     },
     {
@@ -998,8 +1762,8 @@
       "question": "How do I find and attend community events?",
       "category": "Events",
       "answers": [
-        { "key": "cal-1", "author": "Space Uganda", "text": "Visit the Mission Calendar page to see upcoming events, workshops, and activities. Events are categorized by type (Physical, Virtual, Workshop) and you can filter by date. Many events are free and open to the public.", "votes": 19 },
-        { "key": "cal-2", "author": "Halimah Bukirwa", "text": "Follow Space Uganda on social media and check the calendar regularly. World Space Week (October 4-10) is our biggest annual event with activities across the country.", "votes": 12 }
+        { "key": "cal-1", "author": "Ronnie Atuhaire", "text": "Visit the Mission Calendar page to see upcoming events, workshops, and activities. Events are categorized by type (Physical, Virtual, Workshop) and you can filter by date. Many events are free and open to the public — just show up or register online.", "votes": 19 },
+        { "key": "cal-2", "author": "Halimah Bukirwa", "text": "Follow Space Uganda on social media and check the calendar regularly. World Space Week (October 4-10) is our biggest annual event with activities across the country. We also recommend joining the community group for your region to receive local event notifications.", "votes": 12 }
       ]
     },
     {
@@ -1007,8 +1771,8 @@
       "question": "How do I submit content (events, news, opportunities)?",
       "category": "Contributing",
       "answers": [
-        { "key": "sub-1", "author": "Space Uganda", "text": "Log in to your account, then use the submission forms on the relevant pages (Calendar for events, Updates for news, Launchpad for programs). All submissions go through a review process before appearing publicly.", "votes": 22 },
-        { "key": "sub-2", "author": "Angu'zu Raymond", "text": "Create an account, complete your profile, and you'll see 'Submit' buttons throughout the site. Submissions are reviewed by curators within 48 hours.", "votes": 14 }
+        { "key": "sub-1", "author": "Ronnie Atuhaire", "text": "Log in to your account, then use the submission forms on the relevant pages (Calendar for events, Updates for news, Launchpad for programs). All submissions go through a review process before appearing publicly — our curators typically review within 48 hours.", "votes": 22 },
+        { "key": "sub-2", "author": "Angu'zu Raymond", "text": "Create an account, complete your profile, and you'll see 'Submit' buttons throughout the site. Submissions are reviewed by curators within 48 hours. We encourage contributions from all community members to keep our platform comprehensive and up-to-date.", "votes": 14 }
       ]
     },
     {
@@ -1016,8 +1780,8 @@
       "question": "How does my organization get listed on the platform?",
       "category": "Organizations",
       "answers": [
-        { "key": "org-1", "author": "Space Uganda", "text": "Any organization active in Uganda's space sector can be listed. Submit your organization details through the Community page 'Submit Organization' form. Include your name, category, location, and a brief description.", "votes": 16 },
-        { "key": "org-2", "author": "Capt Simon Bruno", "text": "Reach out through the contact form or email hello@space.org.ug with your organization details. We'll add you to the ecosystem map after verification.", "votes": 11 }
+        { "key": "org-1", "author": "Ronnie Atuhaire", "text": "Any organization active in Uganda's space sector can be listed. Submit your organization details through the Community page 'Submit Organization' form. Include your name, category, location, and a brief description. We currently list 32 organizations across academia, government, and the private sector.", "votes": 16 },
+        { "key": "org-2", "author": "Capt Simon Bruno", "text": "Reach out through the contact form or email hello@space.org.ug with your organization details. We'll add you to the ecosystem map after verification. Listings are free and include your name, category, location, and a link to your website.", "votes": 11 }
       ]
     },
     {
@@ -1025,7 +1789,7 @@
       "question": "How can I volunteer or contribute to Space Uganda?",
       "category": "Contributing",
       "answers": [
-        { "key": "vol-1", "author": "Space Uganda", "text": "Join the community, complete your profile, and indicate your interests. We regularly call for volunteers for events like World Space Week, STEM outreach, and research projects. You can also contribute to the Knowledge Base.", "votes": 20 }
+        { "key": "vol-1", "author": "Ronnie Atuhaire", "text": "Join the community, complete your profile, and indicate your interests. We regularly call for volunteers for events like World Space Week, STEM outreach, and research projects. You can also contribute to the Knowledge Base by submitting papers, guides, or datasets.", "votes": 20 }
       ]
     },
     {
@@ -1033,8 +1797,8 @@
       "question": "What is World Space Week Uganda?",
       "category": "Events",
       "answers": [
-        { "key": "wsw-1", "author": "Ronnie Atuhaire", "text": "World Space Week Uganda is the national celebration of the UN-declared World Space Week (October 4-10). In 2026, we're running under the global theme 'Rocket Revolution' with events across all 4 regions of Uganda.", "votes": 28 },
-        { "key": "wsw-2", "author": "Zoora Harrison", "text": "It's a week of space-related activities — from stargazing nights and rocketry workshops to policy panels and school outreach. Open to everyone, completely free.", "votes": 19 }
+        { "key": "wsw-1", "author": "Ronnie Atuhaire", "text": "World Space Week Uganda is the national celebration of the UN-declared World Space Week (October 4-10). In 2026, we're running under the global theme 'Rocket Revolution' with events across all 4 regions of Uganda, including rocketry demonstrations, stargazing nights, policy panels, and school outreach.", "votes": 28 },
+        { "key": "wsw-2", "author": "Zoora Harrison", "text": "It's a week of space-related activities — from stargazing nights and rocketry workshops to policy panels and school outreach. Open to everyone, completely free. Last year's celebration attracted over 1,200 participants across 15 events in 4 cities.", "votes": 19 }
       ]
     },
     {
@@ -1042,7 +1806,7 @@
       "question": "Are there regional chapters or groups?",
       "category": "Community",
       "answers": [
-        { "key": "chap-1", "author": "Space Uganda", "text": "Yes! The community is organized into 4 regional chapters: Central (Kampala, Wakiso, Mukono), Eastern (Jinja, Mbale), Western (Mbarara, Fort Portal), and Northern (Gulu, Lira). Each chapter has local organizers and regular activities.", "votes": 17 }
+        { "key": "chap-1", "author": "Ronnie Atuhaire", "text": "Yes! The community is organized into 4 regional chapters: Central (Kampala, Wakiso, Mukono), Eastern (Jinja, Mbale), Western (Mbarara, Fort Portal), and Northern (Gulu, Lira). Each chapter has local organizers and regular activities, with the Central chapter being the most active with 96 members.", "votes": 17 }
       ]
     },
     {
@@ -1050,11 +1814,32 @@
       "question": "Can I access satellite data or research through the platform?",
       "category": "Resources",
       "answers": [
-        { "key": "data-1", "author": "Space Uganda", "text": "The Knowledge Base contains open-access papers, datasets, tools, and guides. We're building partnerships with agencies like UNMA and RCMRD to provide access to satellite imagery and Earth observation data for Uganda.", "votes": 15 },
-        { "key": "data-2", "author": "Navneet Singh", "text": "Through our Ground Station Network program, we're working toward real-time satellite data access. For now, check the Knowledge Base for available datasets and tools.", "votes": 10 }
+        { "key": "data-1", "author": "Navneet Singh", "text": "The Knowledge Base contains open-access papers, datasets, tools, and guides. We're building partnerships with agencies like UNMA and RCMRD to provide access to satellite imagery and Earth observation data for Uganda. Our Sentinel-2 agricultural dataset has been downloaded over 890 times.", "votes": 15 },
+        { "key": "data-2", "author": "Navneet Singh", "text": "Through our Ground Station Network program, we're working toward real-time satellite data access. Three pilot stations are operational at Makerere, Kyambogo, and Mbarara universities. For now, check the Knowledge Base for available datasets and tools.", "votes": 10 }
       ]
     }
   ],
+
+  "spotlight": {
+    "label": "Featured Member",
+    "person": "Zoora Harrison",
+    "role": "Founder and CEO — StellarView Technologies",
+    "quote": "StellarView Technologies is Uganda's first space education media brand, making space science accessible to African children through outreach, storytelling, and programme delivery.",
+    "image": "img/hero-2.jpg",
+    "tags": ["Space Education", "Outreach", "STEM Media"],
+    "stats": [
+      { "value": "42", "label": "Events This Year" },
+      { "value": "8+", "label": "Countries" },
+      { "value": "6", "label": "Universities" },
+      { "value": "12", "label": "Active Projects" }
+    ]
+  },
+
+  "cta": {
+    "heading": "Join {accent:The Constellation}",
+    "text": "Create your profile and become part of Uganda's growing space community. Share your work, find collaborators, and help shape the future of space in Uganda.",
+    "button": "Create Your Profile"
+  },
 
   "footer": {
     "links": {

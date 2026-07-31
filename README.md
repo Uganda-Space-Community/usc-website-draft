@@ -25,7 +25,8 @@ site/
 │   ├── admin.php           # Admin panel API (stats, review, user mgmt)
 │   ├── upload.php          # File upload handler
 │   ├── schema.sql          # Database schema (run in phpMyAdmin)
-│   └── seed.php            # Seed DB from content.json (run once)
+│   ├── seed.php            # Seed DB from content.json (run once)
+│   └── seed-team.php       # Create team accounts + curator roles + authorship
 ├── css/
 │   └── base.css            # Shared styles (nav, footer, buttons, etc.)
 ├── data/
@@ -81,10 +82,28 @@ mklink /J "C:\xampp\htdocs\usc" "M:\Dev\projects\New folder\uas\usc\site"
 "C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS usc_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 "C:\xampp\mysql\bin\mysql.exe" -u root usc_database < site\api\schema.sql
 "C:\xampp\php\php.exe" site\api\seed.php
+"C:\xampp\php\php.exe" site\api\seed-team.php
 ```
 
 4. Open **http://localhost/usc/** in your browser
-5. Admin login: `admin@space.org.ug` / `admin123`
+
+### Accounts
+
+| Email | Password | Role |
+|-------|----------|------|
+| admin@space.org.ug | admin123 | admin |
+| ronnie@spacejunkies.ug | space2026 | curator |
+| zoora@stellarview.ug | space2026 | curator |
+| halimah@aerobuddies.ug | space2026 | curator |
+| raymond@ktaadvocates.ug | space2026 | curator |
+| navneet@nileorbitals.ug | space2026 | curator |
+| duncan@noasquest.ug | space2026 | curator |
+| grace.nabbaale@mak.ac.ug | space2026 | member |
+| simon@hiaafrica.org | space2026 | member |
+| samuel@uas.ug | space2026 | member |
+| malcom@uas.ug | space2026 | member |
+| cosmas@uas.ug | space2026 | member |
+| brinton@stellarview.ug | space2026 | member |
 
 > **Note:** The API credentials in `site/api/config.php` default to XAMPP's root user with no password. Update them for production.
 
