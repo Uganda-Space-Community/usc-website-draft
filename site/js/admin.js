@@ -32,7 +32,7 @@ const USC_ADMIN = (function () {
         { label: 'Workshop', value: 'Workshop' }, { label: 'Competition', value: 'Competition' }
       ]},
       { name: 'description', label: 'Description', type: 'textarea' },
-      { name: 'image',       label: 'Image URL',   type: 'url' }
+      { name: 'image',       label: 'Image',        type: 'image-upload' }
     ],
     program: [
       { name: 'title',       label: 'Title',       type: 'text',     required: true },
@@ -40,7 +40,7 @@ const USC_ADMIN = (function () {
       { name: 'start',       label: 'Start Date',  type: 'date' },
       { name: 'end',         label: 'End Date',    type: 'date' },
       { name: 'tags',        label: 'Tags',        type: 'text',     helpText: 'Comma-separated' },
-      { name: 'image',       label: 'Image URL',   type: 'url' },
+      { name: 'image',       label: 'Image',        type: 'image-upload' },
       { name: 'status',      label: 'Status',      type: 'select',   options: [
         { label: 'Active', value: 'active' }, { label: 'Completed', value: 'completed' },
         { label: 'Planned', value: 'planned' }, { label: 'Proposed', value: 'proposed' }
@@ -53,7 +53,7 @@ const USC_ADMIN = (function () {
         { label: 'Active', value: 'Active' }, { label: 'Completed', value: 'Completed' }
       ]},
       { name: 'tags',        label: 'Tags',        type: 'text',     helpText: 'Comma-separated' },
-      { name: 'image',       label: 'Image URL',   type: 'url' }
+      { name: 'image',       label: 'Image',        type: 'image-upload' }
     ],
     organization: [
       { name: 'name',         label: 'Name',         type: 'text',     required: true },
@@ -75,7 +75,7 @@ const USC_ADMIN = (function () {
         { label: 'Infrastructure', value: 'Infrastructure' }, { label: 'General', value: 'General' }
       ]},
       { name: 'summary',  label: 'Summary',  type: 'textarea' },
-      { name: 'image',    label: 'Image URL', type: 'url' }
+      { name: 'image',    label: 'Image',     type: 'image-upload' }
     ],
     article: [
       { name: 'title',    label: 'Title',    type: 'text',     required: true },
@@ -86,7 +86,7 @@ const USC_ADMIN = (function () {
       ]},
       { name: 'summary',  label: 'Summary',  type: 'textarea' },
       { name: 'content',  label: 'Content',  type: 'textarea',  tall: true },
-      { name: 'image',    label: 'Image URL', type: 'url' }
+      { name: 'image',    label: 'Image',     type: 'image-upload' }
     ],
     opportunity: [
       { name: 'title',       label: 'Title',       type: 'text',     required: true },
@@ -97,7 +97,7 @@ const USC_ADMIN = (function () {
       { name: 'deadline',    label: 'Deadline',    type: 'date' },
       { name: 'description', label: 'Description', type: 'textarea' },
       { name: 'link',        label: 'Link URL',    type: 'url' },
-      { name: 'image',       label: 'Image URL',   type: 'url' }
+      { name: 'image',       label: 'Image',        type: 'image-upload' }
     ]
   };
 
@@ -182,6 +182,15 @@ const USC_ADMIN = (function () {
     const d = document.createElement('div');
     d.textContent = String(str);
     return d.innerHTML;
+  }
+
+  async function uploadImage(file) {
+    var formData = new FormData();
+    formData.append('image', file);
+    var resp = await fetch('api/upload.php', { method: 'POST', body: formData });
+    var data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || 'Upload failed');
+    return data.url;
   }
 
   function formatDate(dateStr) {
@@ -459,6 +468,13 @@ const USC_ADMIN = (function () {
         html += '</select>';
       } else if (f.type === 'checkbox') {
         html += '<label class="admin-checkbox"><input type="checkbox" id="field-' + f.name + '" name="' + f.name + '"' + (val ? ' checked' : '') + '> ' + esc(f.label) + '</label>';
+      } else if (f.type === 'image-upload') {
+        var preview = val ? '<img src="' + esc(val) + '" style="max-width:200px;max-height:120px;border-radius:8px;margin-top:8px;display:block">' : '';
+        html += '<div class="admin-image-upload">';
+        html += '<input type="file" id="file-' + f.name + '" name="' + f.name + '" accept="image/jpeg,image/png,image/webp" onchange="USC_ADMIN.handleImageUpload(this,\'' + f.name + '\')">';
+        html += '<input type="hidden" id="field-' + f.name + '" name="' + f.name + '" value="' + esc(val) + '">';
+        html += '<div id="preview-' + f.name + '">' + preview + '</div>';
+        html += '</div>';
       } else {
         html += '<input type="' + f.type + '" id="field-' + f.name + '" name="' + f.name + '" value="' + esc(val) + '"' + (f.required ? ' required' : '') + '>';
       }
@@ -893,6 +909,22 @@ const USC_ADMIN = (function () {
     toggleStatus: toggleStatus,
     saveSettings: saveSettings,
     searchResource: searchResource,
-    goPage: function (slug, page) { navigate('#' + slug + '?page=' + page); }
+    goPage: function (slug, page) { navigate('#' + slug + '?page=' + page); },
+    handleImageUpload: handleImageUpload
   };
+
+  async function handleImageUpload(input, fieldName) {
+    var file = input.files[0];
+    if (!file) return;
+    var preview = document.getElementById('preview-' + fieldName);
+    var hidden = document.getElementById('field-' + fieldName);
+    if (preview) preview.innerHTML = '<small style="color:var(--text-3)">Uploading...</small>';
+    try {
+      var url = await uploadImage(file);
+      hidden.value = url;
+      if (preview) preview.innerHTML = '<img src="' + esc(url) + '" style="max-width:200px;max-height:120px;border-radius:8px;margin-top:8px;display:block">';
+    } catch (e) {
+      if (preview) preview.innerHTML = '<small style="color:var(--red)">' + esc(e.message) + '</small>';
+    }
+  }
 })();

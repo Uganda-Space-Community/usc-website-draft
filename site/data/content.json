@@ -178,11 +178,79 @@
         "date": "3 Jul 2026",
         "source": "Kampala",
         "image": "img/hero-1.jpg"
+      },
+      {
+        "category": "Policy",
+        "title": "Uganda Plans Space Agency Launch in 2026",
+        "text": "Minister Monica Musenero announces Uganda will establish its own space agency, joining Kenya and Rwanda in the region.",
+        "date": "5 Aug 2025",
+        "source": "allAfrica",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "category": "Infrastructure",
+        "title": "ClimCam Launched to ISS on Cygnus NG-24",
+        "text": "Egypt-Kenya-Uganda ClimCam climate monitoring payload successfully launched to ISS Bartolomeo platform.",
+        "date": "1 Dec 2025",
+        "source": "UNOOSA",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "category": "Collaboration",
+        "title": "Uganda Hosts First AfDev-Sat Workshop",
+        "text": "Inaugural African Development Satellite project workshop in Kampala with 6 nations collaborating.",
+        "date": "31 May 2025",
+        "source": "Space in Africa",
+        "image": "img/hero-1.jpg"
+      },
+      {
+        "category": "Milestone",
+        "title": "PearlAfricaSat-1 Completes Mission",
+        "text": "Uganda's first satellite reentered atmosphere after completing its Earth observation mission.",
+        "date": "16 May 2023",
+        "source": "JAXA",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "category": "Competition",
+        "title": "NASA Space Apps Kampala 2024 Draws 100+ Participants",
+        "text": "UICT and STI Secretariat co-host Uganda's largest hackathon with 100+ participants solving NASA challenges.",
+        "date": "6 Oct 2024",
+        "source": "UICT",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "category": "Education",
+        "title": "CanSat Uganda Founder Trains in Japan",
+        "text": "Derrick Tebusweke completes CLTP14 CanSat/CubeSat Leader Training at Nihon University.",
+        "date": "30 Sep 2025",
+        "source": "CanSat Uganda",
+        "image": "img/hero-1.jpg"
+      },
+      {
+        "category": "Ecosystem",
+        "title": "Science Week 2025 Showcases 300+ Innovations",
+        "text": "National Science Week at Kololo draws 300+ exhibitors under 'Made in Uganda: Innovation to Market'.",
+        "date": "20 Jun 2025",
+        "source": "STI Secretariat",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "category": "Policy",
+        "title": "Uganda Champions Space at NewSpace Africa 2025",
+        "text": "Uganda's delegation presents at Cairo conference on space-driven digital transformation for Africa.",
+        "date": "24 Apr 2025",
+        "source": "HiPipo Foundation",
+        "image": "img/hero-3.jpg"
       }
     ],
     "headlines": [
       { "category": "University", "title": "Busitema Launches Aerospace Engineering Program", "date": "1 Jul 2026" },
-      { "category": "Infrastructure", "title": "New Telescope Installed at Entebbe Observatory", "date": "28 Jun 2026" }
+      { "category": "Infrastructure", "title": "New Telescope Installed at Entebbe Observatory", "date": "28 Jun 2026" },
+      { "category": "Milestone", "title": "AfDev-Sat Satellite Integration Underway", "date": "15 Jun 2025" },
+      { "category": "Policy", "title": "Uganda Aerospace Policy Drafting Progresses", "date": "10 May 2025" },
+      { "category": "Education", "title": "CLTP15 Applications Open for Space Educators", "date": "21 Feb 2026" },
+      { "category": "Collaboration", "title": "ESA-AA Space Systems Workshop Calls for Applicants", "date": "7 Jun 2025" }
     ]
   },
 
@@ -257,13 +325,89 @@
         "date": "26 Jul 2026",
         "location": "Online",
         "image": "img/hero-2.jpg"
+      },
+      {
+        "type": "Competition",
+        "status": "completed",
+        "title": "NASA Space Apps Challenge Kampala 2024",
+        "text": "World's largest hackathon at UICT Nakawa. 100+ participants tackled real NASA challenges using open data for Earth and space solutions.",
+        "date": "5 Oct 2024",
+        "location": "Nakawa, Kampala",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Physical",
+        "status": "completed",
+        "title": "Uganda Space Week 2025",
+        "text": "National WSW celebration at Makerere University under 'Living in Space' theme. Virtual sessions, DIY rockets, stargazing, and Bingo networking.",
+        "date": "8 Oct 2025",
+        "location": "Makerere University",
+        "image": "img/hero-1.jpg"
+      },
+      {
+        "type": "Physical",
+        "status": "completed",
+        "title": "National Science Week 2025",
+        "text": "300+ exhibitors at Kololo Independence Grounds. Uganda's largest science exhibition under 'Made in Uganda: Innovation to Market'.",
+        "date": "15 Jun 2025",
+        "location": "Kololo, Kampala",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "type": "Conference",
+        "status": "completed",
+        "title": "STICU Uganda 2025",
+        "text": "Africa's premier space technology conference at Serena Hotel. Keynotes on satellite tech, AI-driven innovations, and space policy.",
+        "date": "25 Aug 2025",
+        "location": "Serena Hotel, Kampala",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Workshop",
+        "status": "completed",
+        "title": "East African ML Space Weather Workshop",
+        "text": "ICTP Physics Without Frontiers training on machine learning applications in space weather and ionospheric research at Mbarara University.",
+        "date": "8 Sep 2025",
+        "location": "Mbarara University",
+        "image": "img/hero-1.jpg"
+      },
+      {
+        "type": "Conference",
+        "status": "completed",
+        "title": "NewSpace Africa Conference 2025",
+        "text": "Uganda's delegation led by Hon. Sebugwawo at Cairo conference. Dr. Doreen Agaba on panel discussing Africa's space economy.",
+        "date": "21 Apr 2025",
+        "location": "Cairo, Egypt",
+        "image": "img/hero-2.jpg"
+      },
+      {
+        "type": "Workshop",
+        "status": "completed",
+        "title": "AfDev-Sat Inaugural Workshop",
+        "text": "First African Development Satellite project workshop hosted in Uganda. 6 nations collaborating on Africa's first jointly-built satellite.",
+        "date": "31 May 2025",
+        "location": "Kampala",
+        "image": "img/hero-3.jpg"
+      },
+      {
+        "type": "Milestone",
+        "status": "completed",
+        "title": "ClimCam Launched to ISS",
+        "text": "Egypt-Kenya-Uganda ClimCam payload launched on Cygnus NG-24 to ISS Bartolomeo platform. Climate monitoring for East Africa.",
+        "date": "1 Dec 2025",
+        "location": "ISS",
+        "image": "img/hero-1.jpg"
       }
     ],
     "headlines": [
       { "type": "Physical", "status": "planned", "title": "Space Policy Roundtable", "date": "20 Aug 2026" },
       { "type": "Physical", "status": "planned", "title": "CubeSat Integration Workshop", "date": "1 Sep 2026" },
       { "type": "Workshop", "status": "proposed", "title": "Rocketry Build Day — Student Edition", "date": "15 Aug 2026" },
-      { "type": "Virtual", "status": "proposed", "title": "Earth Observation Data Training", "date": "22 Sep 2026" }
+      { "type": "Virtual", "status": "proposed", "title": "Earth Observation Data Training", "date": "22 Sep 2026" },
+      { "type": "Physical", "status": "completed", "title": "ClimCam ISS Deployment", "date": "2 Dec 2025" },
+      { "type": "Workshop", "status": "completed", "title": "AfDev-Sat Component Integration Review", "date": "15 Nov 2025" },
+      { "type": "Physical", "status": "completed", "title": "WSW 2025 Physical Meetup — Makerere", "date": "10 Oct 2025" },
+      { "type": "Virtual", "status": "completed", "title": "WSW 2025 Space Science & Astronomy Basics", "date": "9 Oct 2025" }
     ]
   },
 
@@ -330,6 +474,24 @@
       "end": "Dec 2027",
       "totalEvents": 8,
       "completedEvents": 0
+    },
+    {
+      "status": "active",
+      "title": "CanSat Uganda Program",
+      "text": "CanSat satellite simulation program inspiring young innovators through hands-on space engineering education.",
+      "start": "Jan 2024",
+      "end": "Ongoing",
+      "totalEvents": 4,
+      "completedEvents": 2
+    },
+    {
+      "status": "in_progress",
+      "title": "AfDev-Sat Joint Satellite Mission",
+      "text": "Africa's first jointly-built satellite. Egypt, Ghana, Kenya, Nigeria, Sudan, and Uganda collaborating on Earth observation.",
+      "start": "2019",
+      "end": "2026",
+      "totalEvents": 6,
+      "completedEvents": 3
     }
   ],
 
@@ -412,6 +574,30 @@
       "deadline": "1 Sep 2026",
       "eligible": "Researchers",
       "description": "Submit abstracts for the annual African space research conference."
+    },
+    {
+      "type": "Training",
+      "title": "CLTP15 CanSat/CubeSat Leader Training",
+      "organization": "UNISEC / Nihon University",
+      "deadline": "30 Jun 2026",
+      "eligible": "Space educators and engineers",
+      "description": "15th CanSat/CubeSat Leader Training Program in Chiba, Japan. Hands-on satellite development training."
+    },
+    {
+      "type": "Workshop",
+      "title": "ESA-AA Space Systems Engineering Workshop",
+      "organization": "African Space Agency / European Space Agency",
+      "deadline": "31 Oct 2025",
+      "eligible": "African engineers and students",
+      "description": "Space systems engineering training in Belgium covering Earth observation, satellite comms, and space science."
+    },
+    {
+      "type": "Competition",
+      "title": "3rd Space for Africa Essay Competition",
+      "organization": "African Space Leadership Institute / SGAC",
+      "deadline": "31 Dec 2026",
+      "eligible": "Students",
+      "description": "Top essays win scholarships to the 9th Space Generation Workshop. Explore space's role in Africa's development."
     }
   ],
 

@@ -335,3 +335,57 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 | News | Gold | Newspaper |
 | Opportunity | Gold | Briefcase/Document |
 | Project | Gold | Layers/Box |
+
+---
+
+## 15. Dashboard Architecture
+
+### User Dashboard (`dashboard.html`)
+
+| Aspect | Detail |
+|---|---|
+| Access | Any logged-in member |
+| Layout | Standard site (nav + hero + footer) |
+| URL | `dashboard.html` |
+
+**Features:**
+- **Profile Editor**: Edit name, bio, interests, location, social links
+- **Password Change**: Current + new password form
+- **Live Profile Preview**: Real-time card showing avatar, name, email, location, interests
+- **Submissions Tracker**: Own submissions filtered by type, delete pending only
+- **Quick Submit Cards**: Links to calendar, launchpad, community, updates pages
+
+### Admin Panel (`admin.html`)
+
+| Aspect | Detail |
+|---|---|
+| Access | Curators + admins only |
+| Layout | 260px dark sidebar + main content area |
+| URL | `admin.html` |
+
+**Features:**
+- **Dashboard**: Record counts (submissions by status, programs, events, users) + recent reviews + recent submissions
+- **Config-Driven CRUD**: 10 resource types with dynamic form/table rendering
+- **Submission Review**: Individual approve/reject with notes, bulk review
+- **User Management**: Search, filter by role, change roles, suspend/unsuspend
+- **User Profile View**: Click user name → profile card + their submissions
+- **Site Settings**: Tagline, contact email, social links
+
+### Operational Differences
+
+| Operation | User Dashboard | Admin Panel |
+|---|---|---|
+| View own profile | ✓ (live preview) | — |
+| Edit own profile | ✓ | — |
+| Change own password | ✓ | — |
+| View any user profile | — | ✓ (click name) |
+| View own submissions | ✓ | — |
+| View all submissions | — | ✓ |
+| Delete own submissions | ✓ (pending only) | ✓ (any status) |
+| Edit any submission | — | ✓ |
+| Approve/reject submissions | — | ✓ |
+| Change user roles | — | ✓ |
+| Suspend users | — | ✓ |
+| Direct content create | — | ✓ (auto-approved) |
+| View activity log | — | ✓ (recent reviews/submissions) |
+| Site settings | — | ✓ |
