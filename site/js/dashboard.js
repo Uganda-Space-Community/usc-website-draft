@@ -243,7 +243,7 @@ const USC_DASH = (function () {
     // Preview card
     html += '<div class="dash-preview">';
     if (u.avatar_url) {
-      html += '<div class="dash-preview-avatar"><img src="' + esc(u.avatar_url) + '" alt="Avatar" onerror="this.parentElement.innerHTML=\'<svg viewBox=\\\'0 0 24 24\\\' width=\\\'32\\\' height=\\\'32\\\' stroke=\\\'currentColor\\\' fill=\\\'none\\\'>' + (ICONS['user'] || '') + '</svg>\''" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>';
+      html += '<div class="dash-preview-avatar"><img src="' + esc(u.avatar_url) + '" alt="Avatar" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><span style="display:none">' + icon('user', 32) + '</span></div>';
     } else {
       html += '<div class="dash-preview-avatar">' + icon('user', 32) + '</div>';
     }
