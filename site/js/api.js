@@ -6,10 +6,10 @@ const USC_API = (function () {
     const url = BASE + '/' + endpoint;
     const config = {
       credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
       ...options,
     };
-    if (config.body && typeof config.body === 'object') {
+    if (config.body && typeof config.body === 'object' && !(config.body instanceof FormData)) {
+      config.headers = { 'Content-Type': 'application/json', ...config.headers };
       config.body = JSON.stringify(config.body);
     }
     try {
@@ -19,7 +19,6 @@ const USC_API = (function () {
       return data;
     } catch (e) {
       if (e.status) throw e;
-      // Network error — API server likely offline
       throw { error: 'Network error. Please try again.', offline: true };
     }
   }

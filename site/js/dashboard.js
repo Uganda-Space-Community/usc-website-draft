@@ -300,7 +300,22 @@ const USC_DASH = (function () {
     html += '</div>';
     html += fieldGroup('twitter', 'Twitter', 'text', u.twitter);
     html += fieldGroup('linkedin', 'LinkedIn', 'text', u.linkedin);
-    html += fieldGroup('avatar_url', 'Avatar URL', 'url', u.avatar_url, false, 'Paste a URL to your profile image');
+    html += '<div class="dash-admin-form-group dash-admin-form-full">';
+    html += '<label>Profile Picture</label>';
+    html += '<div style="display:flex;align-items:center;gap:16px">';
+    html += '<div id="avatar-preview" style="width:64px;height:64px;border-radius:50%;border:2px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg)">';
+    if (u.avatar_url) {
+      html += '<img src="' + esc(u.avatar_url) + '" style="width:100%;height:100%;object-fit:cover">';
+    } else {
+      html += icon('user', 28);
+    }
+    html += '</div>';
+    html += '<div>';
+    html += '<input type="file" id="field-avatar-file" accept="image/jpeg,image/png,image/webp" style="font-size:0.82rem;color:var(--text-2)">';
+    html += '<input type="hidden" id="field-avatar_url" value="' + esc(u.avatar_url || '') + '">';
+    html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="upload-avatar-btn" style="margin-top:8px">' + icon('upload', 14) + ' Upload</button>';
+    html += '<div id="avatar-upload-msg" style="font-size:0.75rem;margin-top:4px"></div>';
+    html += '</div></div></div>';
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
     html += '<label>Bio</label>';
     html += '<textarea id="field-bio" rows="3">' + esc(u.bio || '') + '</textarea>';
@@ -454,6 +469,32 @@ const USC_DASH = (function () {
       connections.push({url:'',type:'social'});
       renderConnections();
     });
+
+    // Bind avatar upload
+    var uploadBtn = document.getElementById('upload-avatar-btn');
+    if (uploadBtn) {
+      uploadBtn.addEventListener('click', async function() {
+        var fileInput = document.getElementById('field-avatar-file');
+        var msg = document.getElementById('avatar-upload-msg');
+        var file = fileInput.files[0];
+        if (!file) { msg.textContent = 'Choose an image first.'; msg.style.color = 'var(--text-3)'; return; }
+        if (file.size > 5 * 1024 * 1024) { msg.textContent = 'Max 5MB.'; msg.style.color = 'var(--red)'; return; }
+        msg.textContent = 'Uploading...'; msg.style.color = 'var(--text-3)';
+        uploadBtn.disabled = true;
+        try {
+          var formData = new FormData();
+          formData.append('image', file);
+          var resp = await USC_API.request('upload.php', { method: 'POST', body: formData, isForm: true });
+          document.getElementById('field-avatar_url').value = resp.url;
+          var preview = document.getElementById('avatar-preview');
+          preview.innerHTML = '<img src="' + esc(resp.url) + '" style="width:100%;height:100%;object-fit:cover">';
+          msg.textContent = 'Uploaded!'; msg.style.color = 'var(--emerald)';
+        } catch (e) {
+          msg.textContent = e.error || 'Upload failed.'; msg.style.color = 'var(--red)';
+        }
+        uploadBtn.disabled = false;
+      });
+    }
 
     // Bind profile save
     document.getElementById('dash-profile-form').addEventListener('submit', async function (e) {

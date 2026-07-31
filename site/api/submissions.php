@@ -67,8 +67,12 @@ switch ($action) {
     }
 
     $db = db();
-    $stmt = $db->prepare('INSERT INTO faq_votes (user_id, answer_key, value) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE value = VALUES(value)');
-    $stmt->execute([$user['id'], $answerKey, $value]);
+    try {
+      $stmt = $db->prepare('INSERT INTO faq_votes (user_id, answer_key, value) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE value = VALUES(value)');
+      $stmt->execute([$user['id'], $answerKey, $value]);
+    } catch (PDOException $e) {
+      respond(['error' => 'Vote failed. The faq_votes table may not exist on the server.'], 500);
+    }
 
     respond(['success' => true]);
     break;
