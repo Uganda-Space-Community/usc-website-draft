@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-
-if (session_status() === PHP_SESSION_NONE) session_start();
+start_session();
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
@@ -44,10 +43,9 @@ switch ($action) {
     ]);
     break;
 
+  // Log endpoint restricted to admin/curator only
   case 'log':
-    if (!isset($_SESSION['user_id'])) {
-      respond(['ok' => false, 'error' => 'Not authenticated'], 401);
-    }
+    $user = require_role(['curator', 'admin']);
 
     $input = json_input();
     $actionType = $input['action_type'] ?? '';
@@ -55,21 +53,15 @@ switch ($action) {
     $targetId = $input['target_id'] ?? null;
     $details = $input['details'] ?? '';
 
-    if (!$actionType) {
-      respond(['error' => 'action_type required'], 400);
+    // Whitelist valid action types
+    $validTypes = ['review', 'bulk-review', 'role_change', 'status_change', 'delete', 'create', 'update'];
+    if (!$actionType || !in_array($actionType, $validTypes)) {
+      respond(['error' => 'Invalid action_type'], 400);
     }
 
     $db = db();
-
-    $userId = $_SESSION['user_id'];
-    $userName = $_SESSION['user_name'] ?? '';
-
-    if (!$userName) {
-      $stmt = $db->prepare('SELECT name FROM users WHERE id = ?');
-      $stmt->execute([$userId]);
-      $row = $stmt->fetch();
-      $userName = $row ? $row['name'] : '';
-    }
+    $userId = $user['id'];
+    $userName = $user['name'];
 
     $stmt = $db->prepare('INSERT INTO audit_log (user_id, user_name, action_type, target_type, target_id, details) VALUES (?, ?, ?, ?, ?, ?)');
     $stmt->execute([$userId, $userName, $actionType, $targetType ?: null, $targetId, $details ?: null]);

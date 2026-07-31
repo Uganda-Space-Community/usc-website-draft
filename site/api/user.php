@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-
-if (session_status() === PHP_SESSION_NONE) session_start();
+start_session();
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
@@ -21,16 +20,24 @@ switch ($action) {
 
   // ── Update my profile ──
   case 'update-profile':
+    require_csrf();
     $user = require_auth();
     $input = json_input();
     $db = db();
 
     $fields = [];
     $params = [];
-    foreach (['name', 'bio', 'interests', 'location', 'avatar_url', 'website', 'twitter', 'linkedin'] as $field) {
+    foreach (['name', 'bio', 'interests', 'location'] as $field) {
       if (array_key_exists($field, $input)) {
         $fields[] = "$field = ?";
         $params[] = trim($input[$field]);
+      }
+    }
+    // URL fields — validate
+    foreach (['avatar_url', 'website', 'twitter', 'linkedin'] as $field) {
+      if (array_key_exists($field, $input)) {
+        $fields[] = "$field = ?";
+        $params[] = validate_url(trim($input[$field]));
       }
     }
     if (array_key_exists('affiliations', $input)) {
@@ -44,20 +51,22 @@ switch ($action) {
     if (empty($fields)) respond(['error' => 'No fields to update'], 400);
 
     $params[] = $user['id'];
-    $stmt = $db->prepare("UPDATE users SET " . implode(', ', $fields) . " WHERE id = ?");
+    $stmt = $db->prepare("UPDATE users SET " . implode(', ', $fields) . ", updated_at = NOW() WHERE id = ?");
     $stmt->execute($params);
     respond(['success' => true]);
     break;
 
   // ── Change password ──
   case 'change-password':
+    require_csrf();
     $user = require_auth();
     $input = json_input();
     $current = $input['current_password'] ?? '';
     $newPass = $input['new_password'] ?? '';
 
     if (!$current || !$newPass) respond(['error' => 'Current and new password required'], 400);
-    if (strlen($newPass) < 6) respond(['error' => 'New password must be at least 6 characters'], 400);
+    $pwError = validate_password($newPass);
+    if ($pwError) respond(['error' => $pwError], 400);
 
     $db = db();
     $stmt = $db->prepare('SELECT password FROM users WHERE id = ?');
@@ -69,7 +78,7 @@ switch ($action) {
     }
 
     $newHash = password_hash($newPass, PASSWORD_DEFAULT);
-    $stmt = $db->prepare('UPDATE users SET password = ? WHERE id = ?');
+    $stmt = $db->prepare('UPDATE users SET password = ?, updated_at = NOW() WHERE id = ?');
     $stmt->execute([$newHash, $user['id']]);
     respond(['success' => true]);
     break;
@@ -116,6 +125,7 @@ switch ($action) {
 
   // ── Delete my submission ──
   case 'delete-submission':
+    require_csrf();
     $user = require_auth();
     $input = json_input();
     $subId = (int)($input['id'] ?? 0);

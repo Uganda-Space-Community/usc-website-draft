@@ -5,6 +5,13 @@
  * Reads data/content.json and populates the database with seed data.
  */
 
+// CLI only — prevent web execution
+if (php_sapi_name() !== 'cli') {
+  http_response_code(403);
+  echo 'Forbidden';
+  exit(1);
+}
+
 require_once __DIR__ . '/config.php';
 
 $db = db();

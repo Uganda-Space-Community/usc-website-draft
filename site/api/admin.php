@@ -1,26 +1,24 @@
 <?php
 require_once __DIR__ . '/config.php';
-
-if (session_status() === PHP_SESSION_NONE) session_start();
+start_session();
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
 function auditLog($actionType, $targetType, $targetId, $details) {
-  if (session_status() === PHP_SESSION_NONE) session_start();
+  start_session();
   if (!isset($_SESSION['user_id'])) return;
   try {
     $db = db();
     $userId = $_SESSION['user_id'];
-    $userName = $_SESSION['user_name'] ?? '';
-    if (!$userName) {
-      $stmt = $db->prepare('SELECT name FROM users WHERE id = ?');
-      $stmt->execute([$userId]);
-      $row = $stmt->fetch();
-      $userName = $row ? $row['name'] : '';
-    }
+    $stmt = $db->prepare('SELECT name FROM users WHERE id = ?');
+    $stmt->execute([$userId]);
+    $row = $stmt->fetch();
+    $userName = $row ? $row['name'] : '';
     $stmt = $db->prepare('INSERT INTO audit_log (user_id, user_name, action_type, target_type, target_id, details) VALUES (?, ?, ?, ?, ?, ?)');
     $stmt->execute([$userId, $userName, $actionType, $targetType, $targetId, $details]);
-  } catch (Exception $e) {}
+  } catch (Exception $e) {
+    error_log('Audit log failed: ' . $e->getMessage());
+  }
 }
 
 switch ($action) {
@@ -34,13 +32,11 @@ switch ($action) {
     $db = db();
     $stats = [];
 
-    // Submission counts by status
     $stmt = $db->query('SELECT status, COUNT(*) as c FROM submissions GROUP BY status');
     foreach ($stmt->fetchAll() as $row) {
       $stats['submissions_' . $row['status']] = (int)$row['c'];
     }
 
-    // Submission counts by type (approved)
     $types = ['event','program','project','organization','news','article','opportunity'];
     foreach ($types as $type) {
       $stmt = $db->prepare('SELECT COUNT(*) as c FROM submissions WHERE type = ? AND status = ?');
@@ -48,15 +44,12 @@ switch ($action) {
       $stats[$type . 's'] = (int)$stmt->fetch()['c'];
     }
 
-    // Total submissions
     $stmt = $db->query('SELECT COUNT(*) as c FROM submissions');
     $stats['submissions_total'] = (int)$stmt->fetch()['c'];
 
-    // Pending count
     $stmt = $db->query('SELECT COUNT(*) as c FROM submissions WHERE status = "pending"');
     $stats['submissions_pending'] = (int)$stmt->fetch()['c'];
 
-    // User counts
     $stmt = $db->query('SELECT role, COUNT(*) as c FROM users GROUP BY role');
     foreach ($stmt->fetchAll() as $row) {
       $stats['users_' . $row['role']] = (int)$row['c'];
@@ -64,15 +57,12 @@ switch ($action) {
     $stmt = $db->query('SELECT COUNT(*) as c FROM users');
     $stats['users_total'] = (int)$stmt->fetch()['c'];
 
-    // Recent activity (30 days)
     $stmt = $db->query('SELECT DATE(created_at) as day, COUNT(*) as c FROM submissions WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY day ORDER BY day');
     $stats['activity_30d'] = $stmt->fetchAll();
 
-    // Recent reviews (last 10)
     $stmt = $db->query('SELECT s.id, s.type, s.status, s.reviewed_at, u.name as reviewer_name FROM submissions s LEFT JOIN users u ON s.reviewed_by = u.id WHERE s.reviewed_at IS NOT NULL ORDER BY s.reviewed_at DESC LIMIT 10');
     $stats['recent_reviews'] = $stmt->fetchAll();
 
-    // Recent submissions (last 10)
     $stmt = $db->query('SELECT s.id, s.type, s.status, s.created_at, u.name as author_name FROM submissions s LEFT JOIN users u ON s.user_id = u.id ORDER BY s.created_at DESC LIMIT 10');
     $stats['recent_submissions'] = $stmt->fetchAll();
 
@@ -83,7 +73,6 @@ switch ($action) {
   //  UNIFIED CONTENT CRUD (submissions table)
   // ═══════════════════════════════════════════
 
-  // ── List records ──
   case 'list':
     $user = require_role(['curator', 'admin']);
     $db = db();
@@ -112,15 +101,13 @@ switch ($action) {
 
     if ($search) {
       $where .= ' AND JSON_EXTRACT(s.payload, "$.title") LIKE ?';
-      $params[] = "%$search%";
+      $params[] = '%' . escape_like($search) . '%';
     }
 
-    // Count
     $countStmt = $db->prepare("SELECT COUNT(*) as c FROM submissions s WHERE $where");
     $countStmt->execute($params);
     $total = (int)$countStmt->fetch()['c'];
 
-    // Fetch
     $stmt = $db->prepare("SELECT s.id, s.type, s.payload, s.status, s.review_note, s.created_at, s.reviewed_at, u.name as author_name, u.email as author_email FROM submissions s LEFT JOIN users u ON s.user_id = u.id WHERE $where ORDER BY s.created_at DESC LIMIT $limit OFFSET $offset");
     $stmt->execute($params);
     $rows = $stmt->fetchAll();
@@ -140,7 +127,6 @@ switch ($action) {
     ]);
     break;
 
-  // ── Get single record ──
   case 'get':
     $user = require_role(['curator', 'admin']);
     $db = db();
@@ -156,8 +142,8 @@ switch ($action) {
     respond($row);
     break;
 
-  // ── Create record (admin only) ──
   case 'create':
+    require_csrf();
     $user = require_role('admin');
     $input = json_input();
     $type = $input['type'] ?? '';
@@ -177,8 +163,8 @@ switch ($action) {
     respond(['success' => true, 'id' => (int)$db->lastInsertId()]);
     break;
 
-  // ── Update record (admin only) ──
   case 'update':
+    require_csrf();
     $user = require_role('admin');
     $input = json_input();
     $id = (int)($input['id'] ?? 0);
@@ -194,8 +180,8 @@ switch ($action) {
     respond(['success' => true]);
     break;
 
-  // ── Delete record (admin only) ──
   case 'delete':
+    require_csrf();
     $user = require_role('admin');
     $input = json_input();
     $id = (int)($input['id'] ?? 0);
@@ -209,8 +195,8 @@ switch ($action) {
     respond(['success' => true]);
     break;
 
-  // ── Review submission (curator or admin) ──
   case 'review':
+    require_csrf();
     $user = require_role(['curator', 'admin']);
     $input = json_input();
     $subId = (int)($input['id'] ?? 0);
@@ -229,8 +215,8 @@ switch ($action) {
     respond(['success' => true]);
     break;
 
-  // ── Bulk review ──
   case 'bulk-review':
+    require_csrf();
     $user = require_role(['curator', 'admin']);
     $input = json_input();
     $ids = $input['ids'] ?? [];
@@ -268,9 +254,10 @@ switch ($action) {
     $where = '1=1';
     $params = [];
     if ($search) {
+      $safe = escape_like($search);
       $where .= ' AND (name LIKE ? OR email LIKE ?)';
-      $params[] = "%$search%";
-      $params[] = "%$search%";
+      $params[] = "%$safe%";
+      $params[] = "%$safe%";
     }
     if ($role && in_array($role, ['member','curator','admin'])) {
       $where .= ' AND role = ?';
@@ -294,6 +281,7 @@ switch ($action) {
     break;
 
   case 'update-role':
+    require_csrf();
     $admin = require_role('admin');
     $input = json_input();
     $userId = (int)($input['user_id'] ?? 0);
@@ -314,6 +302,7 @@ switch ($action) {
     break;
 
   case 'toggle-status':
+    require_csrf();
     $admin = require_role('admin');
     $input = json_input();
     $userId = (int)($input['user_id'] ?? 0);
@@ -342,12 +331,14 @@ switch ($action) {
     $admin = require_role('admin');
     $db = db();
 
-    // Create settings table if not exists
     $db->exec('CREATE TABLE IF NOT EXISTS settings (`key` VARCHAR(255) PRIMARY KEY, value TEXT, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      require_csrf();
       $input = json_input();
+      $allowed = ['site_name', 'site_description', 'contact_email', 'maintenance_mode'];
       foreach ($input as $key => $value) {
+        if (!in_array($key, $allowed)) continue;
         $stmt = $db->prepare('INSERT INTO settings (`key`, value) VALUES (?, ?) ON DUPLICATE KEY UPDATE value = VALUES(value)');
         $stmt->execute([$key, is_string($value) ? $value : json_encode($value)]);
       }

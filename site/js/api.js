@@ -2,12 +2,29 @@
 const USC_API = (function () {
   const BASE = 'api';
 
+  // ═══ CSRF Token ═══
+  function getCsrfToken() {
+    // Try meta tag first
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    if (meta) return meta.content;
+    // Fallback: read from cookie
+    const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
   async function request(endpoint, options = {}) {
     const url = BASE + '/' + endpoint;
     const config = {
       credentials: 'same-origin',
       ...options,
     };
+    // Auto-inject CSRF token on state-changing requests
+    if (config.method && config.method !== 'GET') {
+      config.headers = {
+        'X-CSRF-Token': getCsrfToken(),
+        ...config.headers,
+      };
+    }
     if (config.body && typeof config.body === 'object' && !(config.body instanceof FormData)) {
       config.headers = { 'Content-Type': 'application/json', ...config.headers };
       config.body = JSON.stringify(config.body);

@@ -32,9 +32,19 @@ const USC = (function () {
 
   // Check server session on page load — updates cache silently
   async function init() {
-    if (typeof USC_API === 'undefined') return; // API not loaded
+    if (typeof USC_API === 'undefined') return;
     try {
       const res = await USC_API.checkSession();
+      // Store CSRF token for API requests
+      if (res.csrf_token) {
+        let meta = document.querySelector('meta[name="csrf-token"]');
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.name = 'csrf-token';
+          document.head.appendChild(meta);
+        }
+        meta.content = res.csrf_token;
+      }
       if (res.user) {
         _user = res.user;
         _saveCache(_user);
@@ -42,7 +52,7 @@ const USC = (function () {
         _user = null;
         _saveCache(null);
       }
-      updateNav(); // refresh nav with server state
+      updateNav();
     } catch (e) {
       // API offline — keep cached user
     }
