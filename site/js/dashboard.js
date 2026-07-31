@@ -279,27 +279,22 @@ const USC_DASH = (function () {
     }
     html += '</div>';
 
-    // Edit form
+    // Edit form — reordered for UX flow
     html += '<div class="dash-section">';
     html += '<div class="dash-section-title">' + icon('edit', 18) + ' Edit Profile</div>';
     html += '<form id="dash-profile-form" class="dash-admin-form">';
     html += '<div id="dash-profile-msg" class="dash-msg"></div>';
     html += '<div class="dash-admin-form-grid">';
+    // Row 1: Name, Email, Location
     html += fieldGroup('name', 'Name', 'text', u.name, true);
     html += fieldGroup('email', 'Email', 'email', u.email, true);
     html += fieldGroup('location', 'Location', 'text', u.location);
-    html += fieldGroup('website', 'Website', 'url', u.website);
+    // Row 2: Bio (full width)
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
-    html += '<label>Interests</label>';
-    html += '<input type="hidden" id="field-interests" value="' + esc(u.interests || '') + '">';
-    html += '<div class="dash-tags-input" id="dash-tags-interests">';
-    html += '<div class="dash-tags-list" id="interests-tags"></div>';
-    html += '<input type="text" id="field-interests-input" placeholder="Type to add interests..." class="dash-input" style="flex:1;min-width:120px;border:none;box-shadow:none">';
+    html += '<label>Bio</label>';
+    html += '<textarea id="field-bio" rows="3">' + esc(u.bio || '') + '</textarea>';
     html += '</div>';
-    html += '<small>Press Enter or comma to add. Suggestions: Astronomy, Satellite Tech, Earth Observation, STEM Education, Policy, Rocketry, Data Science</small>';
-    html += '</div>';
-    html += fieldGroup('twitter', 'Twitter', 'text', u.twitter);
-    html += fieldGroup('linkedin', 'LinkedIn', 'text', u.linkedin);
+    // Row 3: Profile Picture (full width)
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
     html += '<label>Profile Picture</label>';
     html += '<div style="display:flex;align-items:center;gap:16px">';
@@ -316,9 +311,19 @@ const USC_DASH = (function () {
     html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="upload-avatar-btn" style="margin-top:8px">' + icon('upload', 14) + ' Upload</button>';
     html += '<div id="avatar-upload-msg" style="font-size:0.75rem;margin-top:4px"></div>';
     html += '</div></div></div>';
+    // Row 4: Social Links (grouped)
+    html += fieldGroup('website', 'Website', 'url', u.website);
+    html += fieldGroup('twitter', 'Twitter', 'text', u.twitter);
+    html += fieldGroup('linkedin', 'LinkedIn', 'text', u.linkedin);
+    // Row 5: Interests (full width)
     html += '<div class="dash-admin-form-group dash-admin-form-full">';
-    html += '<label>Bio</label>';
-    html += '<textarea id="field-bio" rows="3">' + esc(u.bio || '') + '</textarea>';
+    html += '<label>Interests</label>';
+    html += '<input type="hidden" id="field-interests" value="' + esc(u.interests || '') + '">';
+    html += '<div class="dash-tags-input" id="dash-tags-interests">';
+    html += '<div class="dash-tags-list" id="interests-tags"></div>';
+    html += '<input type="text" id="field-interests-input" placeholder="Type to add interests..." class="dash-input" style="flex:1;min-width:120px;border:none;box-shadow:none">';
+    html += '</div>';
+    html += '<small>Press Enter or comma to add. Suggestions: Astronomy, Satellite Tech, Earth Observation, STEM Education, Policy, Rocketry, Data Science</small>';
     html += '</div>';
     html += '</div>';
     html += '<div class="dash-admin-form-actions">';
@@ -326,7 +331,21 @@ const USC_DASH = (function () {
     html += '</div></form>';
     html += '</div>';
 
-    // Password change
+    // Affiliations
+    html += '<div class="dash-section">';
+    html += '<div class="dash-section-title">' + icon('users', 18) + ' Affiliations</div>';
+    html += '<div id="dash-affiliations-list" class="dash-sub-grid"></div>';
+    html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="add-affiliation-btn" style="margin-top:12px">' + icon('plus', 14) + ' Add Affiliation</button>';
+    html += '</div>';
+
+    // Connections
+    html += '<div class="dash-section">';
+    html += '<div class="dash-section-title">' + icon('link', 18) + ' Connections</div>';
+    html += '<div id="dash-connections-list" class="dash-sub-grid"></div>';
+    html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="add-connection-btn" style="margin-top:12px">' + icon('plus', 14) + ' Add Connection</button>';
+    html += '</div>';
+
+    // Password change — last (security, least frequent)
     html += '<div class="dash-section dash-password-section">';
     html += '<div class="dash-section-title">' + icon('settings', 18) + ' Change Password</div>';
     html += '<form id="dash-pass-form" class="dash-admin-form">';
@@ -338,18 +357,6 @@ const USC_DASH = (function () {
     html += '<div class="dash-admin-form-actions">';
     html += '<button type="submit" class="dash-btn dash-btn--gold">' + icon('check', 16) + ' Update Password</button>';
     html += '</div></form>';
-    html += '</div>';
-
-    html += '<div class="dash-section">';
-    html += '<div class="dash-section-title">' + icon('users', 18) + ' Affiliations</div>';
-    html += '<div id="dash-affiliations-list" class="dash-sub-grid"></div>';
-    html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="add-affiliation-btn" style="margin-top:12px">' + icon('plus', 14) + ' Add Affiliation</button>';
-    html += '</div>';
-
-    html += '<div class="dash-section">';
-    html += '<div class="dash-section-title">' + icon('link', 18) + ' Connections</div>';
-    html += '<div id="dash-connections-list" class="dash-sub-grid"></div>';
-    html += '<button type="button" class="dash-btn dash-btn--outline dash-btn--sm" id="add-connection-btn" style="margin-top:12px">' + icon('plus', 14) + ' Add Connection</button>';
     html += '</div>';
 
     el.innerHTML = html;
