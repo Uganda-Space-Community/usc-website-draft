@@ -193,12 +193,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');
 function updateNav(){if(window.scrollY>0)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 
 const defaultFaqs=[
   {q:"How do I join the Uganda Space Community?",answers:[{author:"Admin",text:"Create your profile on the platform. Fill in your interests, affiliation, and background. You'll be matched with relevant programs and events.",votes:24},{author:"Dr. Sarah Nabukenya",text:"Just sign up and complete your profile. The community is open to anyone with an interest in Uganda's space sector — students, researchers, professionals, and enthusiasts.",votes:18}]},
@@ -309,16 +311,23 @@ searchInput.addEventListener('input',(e)=>{
   renderFaqs();
 });
 
-document.getElementById('question-form').addEventListener('submit',function(e){
+document.getElementById('question-form').addEventListener('submit',async function(e){
   e.preventDefault();
   const name=document.getElementById('q-name').value.trim();
   const text=document.getElementById('q-text').value.trim();
   if(!name||!text)return;
-  faqs.push({q:text,answers:[{author:name,text:"Awaiting community response.",votes:0}]});
-  localStorage.setItem('usc-faq-custom',JSON.stringify(faqs));
-  this.reset();
-  this.closest('.modal-overlay').classList.remove('open');
-  renderFaqs();
+  const btn=this.querySelector('[type=submit]');btn.textContent='Submitting...';btn.disabled=true;
+  try{
+    await USC_API.submitQuestion(name,text);
+    faqs.push({q:text,answers:[{author:name,text:"Awaiting community response.",votes:0}]});
+    localStorage.setItem('usc-faq-custom',JSON.stringify(faqs));
+    this.reset();this.closest('.modal-overlay').classList.remove('open');
+    btn.textContent='Submit Question';btn.disabled=false;
+    renderFaqs();
+  }catch(err){
+    btn.textContent='Submit Question';btn.disabled=false;
+    alert(err.error||'Failed to submit question.');
+  }
 });
 
 document.querySelectorAll('.modal-overlay').forEach(m=>{

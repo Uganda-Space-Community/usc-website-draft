@@ -425,15 +425,15 @@ body.dark-mode {
       <h3>Submit Event</h3>
       <p>Share an upcoming event with the community.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Title</label><input type="text" placeholder="Event name"></div>
+    <form id="event-form">
+      <div class="form-group"><label>Title</label><input type="text" id="upd-ev-title" placeholder="Event name"></div>
       <div class="form-row">
-        <div class="form-group"><label>Date</label><input type="date"></div>
-        <div class="form-group"><label>Location</label><input type="text" placeholder="City or Online"></div>
+        <div class="form-group"><label>Date</label><input type="date" id="upd-ev-date"></div>
+        <div class="form-group"><label>Location</label><input type="text" id="upd-ev-location" placeholder="City or Online"></div>
       </div>
-      <div class="form-group"><label>Category</label><select><option>Physical</option><option>Webinar</option><option>Competition</option><option>Workshop</option></select></div>
-      <div class="form-group"><label>Description</label><textarea placeholder="Brief description of the event..."></textarea></div>
-      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="form-group"><label>Category</label><select id="upd-ev-category"><option>Physical</option><option>Webinar</option><option>Competition</option><option>Workshop</option></select></div>
+      <div class="form-group"><label>Description</label><textarea id="upd-ev-desc" placeholder="Brief description of the event..."></textarea></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" id="upd-ev-img" placeholder="https://..."></div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Submit Event</button>
@@ -450,14 +450,14 @@ body.dark-mode {
       <h3>Post News</h3>
       <p>Share news or an article with the community.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Title</label><input type="text" placeholder="Article title"></div>
+    <form id="news-form">
+      <div class="form-group"><label>Title</label><input type="text" id="upd-news-title" placeholder="Article title"></div>
       <div class="form-row">
-        <div class="form-group"><label>Author</label><input type="text" placeholder="Your name"></div>
-        <div class="form-group"><label>Category</label><select><option>Policy</option><option>University</option><option>Infrastructure</option><option>General</option></select></div>
+        <div class="form-group"><label>Author</label><input type="text" id="upd-news-author" placeholder="Your name"></div>
+        <div class="form-group"><label>Category</label><select id="upd-news-category"><option>Policy</option><option>University</option><option>Infrastructure</option><option>General</option></select></div>
       </div>
-      <div class="form-group"><label>Summary</label><textarea placeholder="Brief summary..."></textarea></div>
-      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="form-group"><label>Summary</label><textarea id="upd-news-summary" placeholder="Brief summary..."></textarea></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" id="upd-news-img" placeholder="https://..."></div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Post News</button>
@@ -474,15 +474,15 @@ body.dark-mode {
       <h3>Post Opportunity</h3>
       <p>Share a scholarship, internship, grant, or fellowship.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Title</label><input type="text" placeholder="Opportunity title"></div>
+    <form id="opp-form">
+      <div class="form-group"><label>Title</label><input type="text" id="upd-opp-title" placeholder="Opportunity title"></div>
       <div class="form-row">
-        <div class="form-group"><label>Type</label><select><option>Scholarship</option><option>Internship</option><option>Grant</option><option>Fellowship</option></select></div>
-        <div class="form-group"><label>Deadline</label><input type="date"></div>
+        <div class="form-group"><label>Type</label><select id="upd-opp-type"><option>Scholarship</option><option>Internship</option><option>Grant</option><option>Fellowship</option></select></div>
+        <div class="form-group"><label>Deadline</label><input type="date" id="upd-opp-deadline"></div>
       </div>
-      <div class="form-group"><label>Description</label><textarea placeholder="Describe the opportunity..."></textarea></div>
-      <div class="form-group"><label>Link URL (optional)</label><input type="url" placeholder="https://..."></div>
-      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="form-group"><label>Description</label><textarea id="upd-opp-desc" placeholder="Describe the opportunity..."></textarea></div>
+      <div class="form-group"><label>Link URL (optional)</label><input type="url" id="upd-opp-link" placeholder="https://..."></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" id="upd-opp-img" placeholder="https://..."></div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Post Opportunity</button>
@@ -499,15 +499,15 @@ body.dark-mode {
       <h3>Post Article</h3>
       <p>Share an in-depth article or analysis with the community.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Title</label><input type="text" placeholder="Article title"></div>
+    <form id="article-form">
+      <div class="form-group"><label>Title</label><input type="text" id="upd-art-title" placeholder="Article title"></div>
       <div class="form-row">
-        <div class="form-group"><label>Author</label><input type="text" placeholder="Your name"></div>
-        <div class="form-group"><label>Category</label><select><option>Analysis</option><option>Tutorial</option><option>Opinion</option><option>Research</option></select></div>
+        <div class="form-group"><label>Author</label><input type="text" id="upd-art-author" placeholder="Your name"></div>
+        <div class="form-group"><label>Category</label><select id="upd-art-category"><option>Analysis</option><option>Tutorial</option><option>Opinion</option><option>Research</option></select></div>
       </div>
-      <div class="form-group"><label>Summary</label><textarea placeholder="Brief summary..."></textarea></div>
-      <div class="form-group"><label>Content</label><textarea placeholder="Write your article..." style="min-height:120px"></textarea></div>
-      <div class="form-group"><label>Image URL (optional)</label><input type="url" placeholder="https://..."></div>
+      <div class="form-group"><label>Summary</label><textarea id="upd-art-summary" placeholder="Brief summary..."></textarea></div>
+      <div class="form-group"><label>Content</label><textarea id="upd-art-content" placeholder="Write your article..." style="min-height:120px"></textarea></div>
+      <div class="form-group"><label>Image URL (optional)</label><input type="url" id="upd-art-img" placeholder="https://..."></div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Post Article</button>
@@ -556,6 +556,7 @@ body.dark-mode {
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 // Nav scroll effect
@@ -564,6 +565,7 @@ const navBar=document.querySelector('.nav-bar');const hero=document.querySelecto
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 
 // Load data from JSON
 fetch('data/content.json')
@@ -841,7 +843,7 @@ if(hash){
 // Modal system
 document.querySelectorAll('[data-modal]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    if(!localStorage.getItem('usc-user')){
+    if(!USC.isLoggedIn()){
       document.getElementById('login-gate').classList.add('open');
       return;
     }
@@ -853,6 +855,65 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{
 });
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
+});
+
+// Submit Event
+document.getElementById('event-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const title=document.getElementById('upd-ev-title').value.trim();
+  const date=document.getElementById('upd-ev-date').value;
+  const location=document.getElementById('upd-ev-location').value.trim();
+  const category=document.getElementById('upd-ev-category').value;
+  const description=document.getElementById('upd-ev-desc').value.trim();
+  const image=document.getElementById('upd-ev-img').value.trim();
+  if(!title||!date)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Submitting...';btn.disabled=true;
+  try{await USC_API.submit('event',{title,date,location,category,description,image});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Submit Event';btn.disabled=false;}
+  catch(err){btn.textContent='Submit Event';btn.disabled=false;alert(err.error||'Failed.');}
+});
+
+// Post News
+document.getElementById('news-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const title=document.getElementById('upd-news-title').value.trim();
+  const author=document.getElementById('upd-news-author').value.trim();
+  const category=document.getElementById('upd-news-category').value;
+  const summary=document.getElementById('upd-news-summary').value.trim();
+  const image=document.getElementById('upd-news-img').value.trim();
+  if(!title)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Posting...';btn.disabled=true;
+  try{await USC_API.submit('news',{title,author,category,summary,image});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Post News';btn.disabled=false;}
+  catch(err){btn.textContent='Post News';btn.disabled=false;alert(err.error||'Failed.');}
+});
+
+// Post Opportunity
+document.getElementById('opp-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const title=document.getElementById('upd-opp-title').value.trim();
+  const type=document.getElementById('upd-opp-type').value;
+  const deadline=document.getElementById('upd-opp-deadline').value;
+  const description=document.getElementById('upd-opp-desc').value.trim();
+  const link=document.getElementById('upd-opp-link').value.trim();
+  const image=document.getElementById('upd-opp-img').value.trim();
+  if(!title)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Posting...';btn.disabled=true;
+  try{await USC_API.submit('opportunity',{title,type,deadline,description,link,image});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Post Opportunity';btn.disabled=false;}
+  catch(err){btn.textContent='Post Opportunity';btn.disabled=false;alert(err.error||'Failed.');}
+});
+
+// Post Article
+document.getElementById('article-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const title=document.getElementById('upd-art-title').value.trim();
+  const author=document.getElementById('upd-art-author').value.trim();
+  const category=document.getElementById('upd-art-category').value;
+  const summary=document.getElementById('upd-art-summary').value.trim();
+  const content=document.getElementById('upd-art-content').value.trim();
+  const image=document.getElementById('upd-art-img').value.trim();
+  if(!title)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Posting...';btn.disabled=true;
+  try{await USC_API.submit('article',{title,author,category,summary,content,image});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Post Article';btn.disabled=false;}
+  catch(err){btn.textContent='Post Article';btn.disabled=false;alert(err.error||'Failed.');}
 });
 </script>
 </body>

@@ -346,12 +346,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');
 function updateNav(){if(window.scrollY>0)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 </script>
 </body>
 </html>

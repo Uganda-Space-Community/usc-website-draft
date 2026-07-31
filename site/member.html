@@ -188,12 +188,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 const crew=[
   {name:'Dr. Sarah Nabukenya',identity:'researcher',summary:'Senior Lecturer in Physics at Makerere University, specializing in Earth observation and satellite communications. Leading research on crop monitoring using Sentinel-2 imagery across East Africa.',interests:['earth-observation','satellite-tech'],affiliations:['SGAC','MAK','AfSA'],location:'Kampala',social:{twitter:'@snabukenya',linkedin:'sarah-nabukenya'}},
   {name:'James Okello',identity:'student',summary:'PhD candidate in Astrophysics at Makerere, researching variable stars and stellar populations. Published 3 papers on RR Lyrae stars in the Milky Way bulge.',interests:['astrophysics','data-science'],affiliations:['MAK','UAS'],location:'Kampala',social:{twitter:'@jokello_astro'}},

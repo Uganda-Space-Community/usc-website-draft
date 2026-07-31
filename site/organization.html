@@ -196,12 +196,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.detail-hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 const orgs={
   'uganda-space-community':{name:'Uganda Space Community',type:'Community Platform',location:'Kampala, Uganda',founded:'2024',about:'Uganda Space Community is the central platform connecting students, researchers, professionals, and organizations across Uganda\'s growing space ecosystem. We facilitate collaboration, knowledge sharing, and capacity building in space science and technology.',mission:'To build a thriving, inclusive space community in Uganda that drives innovation, education, and policy development for the benefit of all Ugandans.',tags:['Community Building','Education','Networking','Policy'],members:[{name:'Dr. Sarah Nabukenya',role:'Founder & Lead',interests:['earth-observation','satellite-tech']},{name:'Peter Ssemwanga',role:'Policy Director',interests:['space-policy']},{name:'Grace Nakamya',role:'Technical Lead',interests:['satellite-tech']}],stats:{members:340,projects:8,events:24,partners:12},icon:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'},
   'uganda-space-agency':{name:'Uganda Space Agency',type:'Government Agency',location:'Entebbe, Uganda',founded:'2022',about:'The Uganda Space Agency (USA) is the national body responsible for coordinating and regulating Uganda\'s space activities. It oversees satellite programs, Earth observation initiatives, and space research policy.',mission:'To harness space technology for national development through coordination of space activities, research, and international cooperation.',tags:['Policy','Satellite Programs','Earth Observation','Regulation'],members:[{name:'Dr. Francis Nkwanga',role:'Director General',interests:['satellite-tech','space-policy']},{name:'Sarah Akello',role:'Program Manager',interests:['education']}],stats:{members:45,projects:6,events:12,partners:8},icon:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/>'},

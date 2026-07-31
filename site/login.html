@@ -38,6 +38,9 @@ body.dark-mode
 .logged-in p{font-size:0.85rem;color:var(--text-2);margin-bottom:20px}
 .btn-outline{background:var(--bg-alt);color:var(--text-2);border:1px solid var(--border)}
 .btn-outline:hover{border-color:var(--border-hover);color:var(--text)}
+.auth-error{background:rgba(217,79,61,0.1);border:1px solid rgba(217,79,61,0.3);border-radius:var(--radius);padding:10px 14px;font-size:0.82rem;color:#D94F3D;margin-bottom:16px;display:none}
+.auth-error.show{display:block}
+.auth-loading{opacity:0.6;pointer-events:none}
 
 /* Footer */
 
@@ -94,6 +97,7 @@ body.dark-mode
       </div>
       <h1>Welcome Back</h1>
       <p class="subtitle">Log in to your Uganda Space Community account.</p>
+      <div class="auth-error" id="login-error"></div>
       <form onsubmit="return false">
         <div class="form-group">
           <label>Email</label>
@@ -120,6 +124,7 @@ body.dark-mode
       </div>
       <h1>Create Account</h1>
       <p class="subtitle">Join Uganda's growing space community.</p>
+      <div class="auth-error" id="signup-error"></div>
       <form onsubmit="return false">
         <div class="form-group">
           <label>Full Name</label>
@@ -176,6 +181,7 @@ body.dark-mode
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
@@ -184,43 +190,66 @@ window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
 
 // Auth state
-const user=USC.getUser();
 const loginForm=document.getElementById('login-form');
 const signupForm=document.getElementById('signup-form');
 const loggedIn=document.getElementById('logged-in');
+const loginError=document.getElementById('login-error');
+const signupError=document.getElementById('signup-error');
 
 function showState(s){
   loginForm.style.display=s==='login'?'block':'none';
   signupForm.style.display=s==='signup'?'block':'none';
   loggedIn.style.display=s==='logged-in'?'block':'none';
+  loginError.classList.remove('show');
+  signupError.classList.remove('show');
 }
 
-if(user){
-  showState('logged-in');
-  document.getElementById('user-display').textContent='Logged in as '+user.name;
-}else{
-  showState('login');
-}
+function showError(el,msg){el.textContent=msg;el.classList.add('show')}
+
+// Check session on load
+USC.init().then(()=>{
+  const user=USC.getUser();
+  if(user){showState('logged-in');document.getElementById('user-display').textContent='Logged in as '+user.name}
+  else{showState('login')}
+});
 
 document.getElementById('show-signup')?.addEventListener('click',e=>{e.preventDefault();showState('signup')});
 document.getElementById('show-login')?.addEventListener('click',e=>{e.preventDefault();showState('login')});
 
-document.getElementById('login-btn')?.addEventListener('click',()=>{
-  const email=document.getElementById('login-email').value;
+// Login
+document.getElementById('login-btn')?.addEventListener('click',async()=>{
+  const email=document.getElementById('login-email').value.trim();
   const password=document.getElementById('login-password').value;
   if(!email){document.getElementById('login-email').focus();return}
-  const name=email.split('@')[0];
-  USC.login({name:name,email:email});
-  window.location.href='index.html';
+  if(!password){document.getElementById('login-password').focus();return}
+  const btn=document.getElementById('login-btn');
+  btn.classList.add('auth-loading');btn.textContent='Logging in...';loginError.classList.remove('show');
+  try{
+    await USC.login(email,password);
+    window.location.href='index.html';
+  }catch(e){
+    btn.classList.remove('auth-loading');btn.textContent='Log In';
+    showError(loginError,e.error||'Login failed. Please try again.');
+  }
 });
 
-document.getElementById('signup-btn')?.addEventListener('click',()=>{
-  const name=document.getElementById('signup-name').value;
-  const email=document.getElementById('signup-email').value;
+// Signup
+document.getElementById('signup-btn')?.addEventListener('click',async()=>{
+  const name=document.getElementById('signup-name').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
   const password=document.getElementById('signup-password').value;
-  if(!name||!email){if(!name)document.getElementById('signup-name').focus();else document.getElementById('signup-email').focus();return}
-  USC.login({name:name,email:email});
-  window.location.href='index.html';
+  if(!name){document.getElementById('signup-name').focus();return}
+  if(!email){document.getElementById('signup-email').focus();return}
+  if(!password||password.length<6){showError(signupError,'Password must be at least 6 characters.');return}
+  const btn=document.getElementById('signup-btn');
+  btn.classList.add('auth-loading');btn.textContent='Creating account...';signupError.classList.remove('show');
+  try{
+    await USC.signup(name,email,password);
+    window.location.href='index.html';
+  }catch(e){
+    btn.classList.remove('auth-loading');btn.textContent='Create Account';
+    showError(signupError,e.error||'Signup failed. Please try again.');
+  }
 });
 
 document.getElementById('logout-btn')?.addEventListener('click',()=>{USC.logout()});

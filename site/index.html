@@ -1732,6 +1732,7 @@ body::before {
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 // Nav scroll effect — show background when scrolling past hero
@@ -1748,6 +1749,7 @@ function updateNav() {
 window.addEventListener('scroll', updateNav);
 updateNav();
 USC.updateNav();
+USC.init();
 
 // Mission Slideshow — loads from content.json
 (function() {

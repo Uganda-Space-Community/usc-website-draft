@@ -433,15 +433,15 @@
       <h3>Submit Organisation</h3>
       <p>Add your organization to the community directory.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Organisation Name</label><input type="text" placeholder="e.g. Space Hub Uganda"></div>
-      <div class="form-group"><label>Type</label><select><option>University</option><option>Agency</option><option>NGO</option><option>Innovation Hub</option><option>Government</option><option>Other</option></select></div>
-      <div class="form-group"><label>Description</label><textarea placeholder="Brief description of the organisation..."></textarea></div>
+    <form id="org-form">
+      <div class="form-group"><label>Organisation Name</label><input id="org-name" type="text" placeholder="e.g. Space Hub Uganda"></div>
+      <div class="form-group"><label>Type</label><select id="org-type"><option>University</option><option>Agency</option><option>NGO</option><option>Innovation Hub</option><option>Government</option><option>Other</option></select></div>
+      <div class="form-group"><label>Description</label><textarea id="org-desc" placeholder="Brief description of the organisation..."></textarea></div>
       <div class="form-row">
-        <div class="form-group"><label>Website</label><input type="url" placeholder="https://..."></div>
-        <div class="form-group"><label>Location</label><input type="text" placeholder="City, Uganda"></div>
+        <div class="form-group"><label>Website</label><input id="org-website" type="url" placeholder="https://..."></div>
+        <div class="form-group"><label>Location</label><input id="org-location" type="text" placeholder="City, Uganda"></div>
       </div>
-      <div class="form-group"><label>Contact Email</label><input type="email" placeholder="hello@org.ug"></div>
+      <div class="form-group"><label>Contact Email</label><input id="org-email" type="email" placeholder="hello@org.ug"></div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Submit Organisation</button>
@@ -458,14 +458,14 @@
       <h3>Create Your Profile</h3>
       <p>Join Uganda's space community and connect with others.</p>
     </div>
-    <form onsubmit="return false">
-      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
-      <div class="form-group"><label>Role</label><select><option>Student</option><option>Researcher</option><option>Professional</option><option>Enthusiast</option></select></div>
-      <div class="form-group"><label>Bio</label><textarea placeholder="Tell us about yourself..."></textarea></div>
-      <div class="form-group"><label>Interests (comma-separated)</label><input type="text" placeholder="e.g. Satellite Tech, Earth Observation"></div>
+    <form id="profile-form">
+      <div class="form-group"><label>Full Name</label><input id="prof-name" type="text" placeholder="Your name"></div>
+      <div class="form-group"><label>Role</label><select id="prof-role"><option>Student</option><option>Researcher</option><option>Professional</option><option>Enthusiast</option></select></div>
+      <div class="form-group"><label>Bio</label><textarea id="prof-bio" placeholder="Tell us about yourself..."></textarea></div>
+      <div class="form-group"><label>Interests (comma-separated)</label><input id="prof-interests" type="text" placeholder="e.g. Satellite Tech, Earth Observation"></div>
       <div class="form-row">
-        <div class="form-group"><label>Affiliations</label><input type="text" placeholder="e.g. MAK, SGAC"></div>
-        <div class="form-group"><label>Location</label><input type="text" placeholder="City, Uganda"></div>
+        <div class="form-group"><label>Affiliations</label><input id="prof-affiliations" type="text" placeholder="e.g. MAK, SGAC"></div>
+        <div class="form-group"><label>Location</label><input id="prof-location" type="text" placeholder="City, Uganda"></div>
       </div>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
@@ -495,12 +495,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 
 // Load data from JSON
 fetch('data/content.json')
@@ -1061,7 +1063,7 @@ renderCrew();
 // Modal system
 document.querySelectorAll('[data-modal]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    if(!localStorage.getItem('usc-user')){
+    if(!USC.isLoggedIn()){
       document.getElementById('login-gate').classList.add('open');
       return;
     }
@@ -1073,6 +1075,34 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{
 });
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
+});
+
+document.getElementById('org-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const name=document.getElementById('org-name').value.trim();
+  const type=document.getElementById('org-type').value;
+  const description=document.getElementById('org-desc').value.trim();
+  const website=document.getElementById('org-website').value.trim();
+  const location=document.getElementById('org-location').value.trim();
+  const contactEmail=document.getElementById('org-email').value.trim();
+  if(!name)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Submitting...';btn.disabled=true;
+  try{await USC_API.submit('organization',{name,type,description,website,location,contactEmail});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Submit Organisation';btn.disabled=false;}
+  catch(err){btn.textContent='Submit Organisation';btn.disabled=false;alert(err.error||'Failed.');}
+});
+
+document.getElementById('profile-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const name=document.getElementById('prof-name').value.trim();
+  const role=document.getElementById('prof-role').value;
+  const bio=document.getElementById('prof-bio').value.trim();
+  const interests=document.getElementById('prof-interests').value.trim();
+  const affiliations=document.getElementById('prof-affiliations').value.trim();
+  const location=document.getElementById('prof-location').value.trim();
+  if(!name)return;
+  const btn=this.querySelector('[type=submit]');btn.textContent='Submitting...';btn.disabled=true;
+  try{await USC_API.submit('profile',{name,role,bio,interests,affiliations,location});this.reset();this.closest('.modal-overlay').classList.remove('open');btn.textContent='Create Profile';btn.disabled=false;}
+  catch(err){btn.textContent='Create Profile';btn.disabled=false;alert(err.error||'Failed.');}
 });
 </script>
 </body>

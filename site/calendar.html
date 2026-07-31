@@ -302,15 +302,15 @@
   <div class="modal-card">
     <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('open')">×</button>
     <h3>Submit Event</h3>
-    <form onsubmit="event.preventDefault();this.closest('.modal-overlay').classList.remove('open')">
+    <form id="event-form">
       <label>Event Name</label>
-      <input type="text" placeholder="e.g. East Africa Space Symposium" required>
+      <input type="text" id="ev-title" placeholder="e.g. East Africa Space Symposium" required>
       <label>Date</label>
-      <input type="date" required>
+      <input type="date" id="ev-date" required>
       <label>Location</label>
-      <input type="text" placeholder="e.g. Kampala, Uganda">
+      <input type="text" id="ev-location" placeholder="e.g. Kampala, Uganda">
       <label>Description</label>
-      <textarea placeholder="Brief description of the event..."></textarea>
+      <textarea id="ev-desc" placeholder="Brief description of the event..."></textarea>
       <div class="modal-actions">
         <button type="button" class="btn" style="border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2)" onclick="this.closest('.modal-overlay').classList.remove('open')">Cancel</button>
         <button type="submit" class="btn btn-gold">Submit Event</button>
@@ -340,12 +340,14 @@
   </div>
 </footer>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
 const navBar=document.querySelector('.nav-bar');const hero=document.querySelector('.hero');
 function updateNav(){if(!hero){navBar.classList.add('nav-scrolled');return}if(window.scrollY>hero.offsetHeight-80)navBar.classList.add('nav-scrolled');else navBar.classList.remove('nav-scrolled')}
 window.addEventListener('scroll',updateNav);updateNav();
 USC.updateNav();
+USC.init();
 
 // Date helper: "10 Oct 2026" → "2026-10-10"
 function parseEventDate(str){
@@ -621,10 +623,9 @@ fetch('data/content.json')
   .catch(function(){});
 
 // Modal open/close
-const user=localStorage.getItem('usc-user');
 document.querySelectorAll('[data-modal]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    if(!user){document.getElementById('login-gate').classList.add('open');return}
+    if(!USC.isLoggedIn()){document.getElementById('login-gate').classList.add('open');return}
     const id=btn.getAttribute('data-modal');
     document.getElementById(id).classList.add('open');
   });
@@ -633,6 +634,26 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{
   m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'))});
+
+// Submit Event
+document.getElementById('event-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const title=document.getElementById('ev-title').value.trim();
+  const date=document.getElementById('ev-date').value;
+  const location=document.getElementById('ev-location').value.trim();
+  const description=document.getElementById('ev-desc').value.trim();
+  if(!title||!date)return;
+  const btn=this.querySelector('[type=submit]');
+  btn.textContent='Submitting...';btn.disabled=true;
+  try{
+    await USC_API.submit('event',{title,date,location,description});
+    this.reset();this.closest('.modal-overlay').classList.remove('open');
+    btn.textContent='Submit Event';btn.disabled=false;
+  }catch(err){
+    btn.textContent='Submit Event';btn.disabled=false;
+    alert(err.error||'Submission failed. Please try again.');
+  }
+});
 </script>
 </body>
 </html>
