@@ -7,14 +7,230 @@ $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
 switch ($action) {
 
-  // ── List all users (admin only) ──
+  // ═══════════════════════════════════════════
+  //  DASHBOARD STATS
+  // ═══════════════════════════════════════════
+
+  case 'stats':
+    $user = require_role(['curator', 'admin']);
+    $db = db();
+    $stats = [];
+
+    // Submission counts by status
+    $stmt = $db->query('SELECT status, COUNT(*) as c FROM submissions GROUP BY status');
+    foreach ($stmt->fetchAll() as $row) {
+      $stats['submissions_' . $row['status']] = (int)$row['c'];
+    }
+
+    // Submission counts by type (approved)
+    $types = ['event','program','project','organization','news','article','opportunity'];
+    foreach ($types as $type) {
+      $stmt = $db->prepare('SELECT COUNT(*) as c FROM submissions WHERE type = ? AND status = ?');
+      $stmt->execute([$type, 'approved']);
+      $stats[$type . 's'] = (int)$stmt->fetch()['c'];
+    }
+
+    // Total submissions
+    $stmt = $db->query('SELECT COUNT(*) as c FROM submissions');
+    $stats['submissions_total'] = (int)$stmt->fetch()['c'];
+
+    // Pending count
+    $stmt = $db->query('SELECT COUNT(*) as c FROM submissions WHERE status = "pending"');
+    $stats['submissions_pending'] = (int)$stmt->fetch()['c'];
+
+    // User counts
+    $stmt = $db->query('SELECT role, COUNT(*) as c FROM users GROUP BY role');
+    foreach ($stmt->fetchAll() as $row) {
+      $stats['users_' . $row['role']] = (int)$row['c'];
+    }
+    $stmt = $db->query('SELECT COUNT(*) as c FROM users');
+    $stats['users_total'] = (int)$stmt->fetch()['c'];
+
+    // Recent activity (30 days)
+    $stmt = $db->query('SELECT DATE(created_at) as day, COUNT(*) as c FROM submissions WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY day ORDER BY day');
+    $stats['activity_30d'] = $stmt->fetchAll();
+
+    respond($stats);
+    break;
+
+  // ═══════════════════════════════════════════
+  //  UNIFIED CONTENT CRUD (submissions table)
+  // ═══════════════════════════════════════════
+
+  // ── List records ──
+  case 'list':
+    $user = require_role(['curator', 'admin']);
+    $db = db();
+
+    $type = $_GET['type'] ?? '';
+    $status = $_GET['status'] ?? '';
+    $search = $_GET['search'] ?? '';
+    $page = max(1, (int)($_GET['page'] ?? 1));
+    $limit = min(100, max(1, (int)($_GET['limit'] ?? 20)));
+    $offset = ($page - 1) * $limit;
+
+    $where = '1=1';
+    $params = [];
+
+    $validTypes = ['event','program','project','organization','profile','question','news','article','opportunity'];
+    if ($type && in_array($type, $validTypes)) {
+      $where .= ' AND s.type = ?';
+      $params[] = $type;
+    }
+
+    $validStatuses = ['pending','approved','rejected'];
+    if ($status && in_array($status, $validStatuses)) {
+      $where .= ' AND s.status = ?';
+      $params[] = $status;
+    }
+
+    if ($search) {
+      $where .= ' AND JSON_EXTRACT(s.payload, "$.title") LIKE ?';
+      $params[] = "%$search%";
+    }
+
+    // Count
+    $countStmt = $db->prepare("SELECT COUNT(*) as c FROM submissions s WHERE $where");
+    $countStmt->execute($params);
+    $total = (int)$countStmt->fetch()['c'];
+
+    // Fetch
+    $stmt = $db->prepare("SELECT s.id, s.type, s.payload, s.status, s.review_note, s.created_at, s.reviewed_at, u.name as author_name, u.email as author_email FROM submissions s LEFT JOIN users u ON s.user_id = u.id WHERE $where ORDER BY s.created_at DESC LIMIT $limit OFFSET $offset");
+    $stmt->execute($params);
+    $rows = $stmt->fetchAll();
+
+    foreach ($rows as &$row) {
+      $payload = json_decode($row['payload'], true);
+      $row['payload'] = $payload;
+      $row['title'] = $payload['title'] ?? $payload['name'] ?? $payload['question'] ?? '(untitled)';
+    }
+
+    respond([
+      'records' => $rows,
+      'total' => $total,
+      'page' => $page,
+      'pages' => ceil($total / $limit),
+      'limit' => $limit
+    ]);
+    break;
+
+  // ── Get single record ──
+  case 'get':
+    $user = require_role(['curator', 'admin']);
+    $db = db();
+    $id = (int)($_GET['id'] ?? 0);
+    if (!$id) respond(['error' => 'id required'], 400);
+
+    $stmt = $db->prepare('SELECT s.id, s.type, s.payload, s.status, s.review_note, s.user_id, s.created_at, s.reviewed_at, u.name as author_name, u.email as author_email FROM submissions s LEFT JOIN users u ON s.user_id = u.id WHERE s.id = ?');
+    $stmt->execute([$id]);
+    $row = $stmt->fetch();
+    if (!$row) respond(['error' => 'Not found'], 404);
+
+    $row['payload'] = json_decode($row['payload'], true);
+    respond($row);
+    break;
+
+  // ── Create record (admin only) ──
+  case 'create':
+    $user = require_role('admin');
+    $input = json_input();
+    $type = $input['type'] ?? '';
+    $payload = $input['payload'] ?? null;
+
+    $validTypes = ['event','program','project','organization','news','article','opportunity'];
+    if (!$type || !in_array($type, $validTypes)) {
+      respond(['error' => 'Invalid type'], 400);
+    }
+    if (!$payload || !is_array($payload)) {
+      respond(['error' => 'payload required'], 400);
+    }
+
+    $db = db();
+    $stmt = $db->prepare('INSERT INTO submissions (type, user_id, payload, status, reviewed_by, reviewed_at) VALUES (?, ?, ?, ?, ?, NOW())');
+    $stmt->execute([$type, $user['id'], json_encode($payload), 'approved', $user['id']]);
+    respond(['success' => true, 'id' => (int)$db->lastInsertId()]);
+    break;
+
+  // ── Update record (admin only) ──
+  case 'update':
+    $user = require_role('admin');
+    $input = json_input();
+    $id = (int)($input['id'] ?? 0);
+    $payload = $input['payload'] ?? null;
+
+    if (!$id) respond(['error' => 'id required'], 400);
+    if (!$payload || !is_array($payload)) respond(['error' => 'payload required'], 400);
+
+    $db = db();
+    $stmt = $db->prepare('UPDATE submissions SET payload = ? WHERE id = ?');
+    $stmt->execute([json_encode($payload), $id]);
+    if ($stmt->rowCount() === 0) respond(['error' => 'Not found'], 404);
+    respond(['success' => true]);
+    break;
+
+  // ── Delete record (admin only) ──
+  case 'delete':
+    $user = require_role('admin');
+    $input = json_input();
+    $id = (int)($input['id'] ?? 0);
+    if (!$id) respond(['error' => 'id required'], 400);
+
+    $db = db();
+    $stmt = $db->prepare('DELETE FROM submissions WHERE id = ?');
+    $stmt->execute([$id]);
+    if ($stmt->rowCount() === 0) respond(['error' => 'Not found'], 404);
+    respond(['success' => true]);
+    break;
+
+  // ── Review submission (curator or admin) ──
+  case 'review':
+    $user = require_role(['curator', 'admin']);
+    $input = json_input();
+    $subId = (int)($input['id'] ?? 0);
+    $newStatus = $input['status'] ?? '';
+    $note = trim($input['note'] ?? '');
+
+    if (!$subId || !in_array($newStatus, ['approved', 'rejected'])) {
+      respond(['error' => 'id and status (approved/rejected) required'], 400);
+    }
+
+    $db = db();
+    $stmt = $db->prepare('UPDATE submissions SET status = ?, reviewed_by = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?');
+    $stmt->execute([$newStatus, $user['id'], $note ?: null, $subId]);
+    if ($stmt->rowCount() === 0) respond(['error' => 'Not found'], 404);
+    respond(['success' => true]);
+    break;
+
+  // ── Bulk review ──
+  case 'bulk-review':
+    $user = require_role(['curator', 'admin']);
+    $input = json_input();
+    $ids = $input['ids'] ?? [];
+    $newStatus = $input['status'] ?? '';
+
+    if (empty($ids) || !in_array($newStatus, ['approved', 'rejected'])) {
+      respond(['error' => 'ids array and status required'], 400);
+    }
+
+    $db = db();
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $params = array_merge([$newStatus, $user['id'], $newStatus], $ids);
+    $stmt = $db->prepare("UPDATE submissions SET status = ?, reviewed_by = ?, reviewed_at = NOW() WHERE id IN ($placeholders) AND status = ?");
+    $stmt->execute($params);
+    respond(['success' => true, 'updated' => $stmt->rowCount()]);
+    break;
+
+  // ═══════════════════════════════════════════
+  //  USER MANAGEMENT (admin only)
+  // ═══════════════════════════════════════════
+
   case 'users':
     $admin = require_role('admin');
     $db = db();
     $search = $_GET['search'] ?? '';
     $role = $_GET['role'] ?? '';
     $page = max(1, (int)($_GET['page'] ?? 1));
-    $limit = 20;
+    $limit = min(100, max(1, (int)($_GET['limit'] ?? 20)));
     $offset = ($page - 1) * $limit;
 
     $where = '1=1';
@@ -45,7 +261,6 @@ switch ($action) {
     ]);
     break;
 
-  // ── Update user role (admin only) ──
   case 'update-role':
     $admin = require_role('admin');
     $input = json_input();
@@ -65,7 +280,6 @@ switch ($action) {
     respond(['success' => true]);
     break;
 
-  // ── Suspend/unsuspend user (admin only) ──
   case 'toggle-status':
     $admin = require_role('admin');
     $input = json_input();
@@ -77,137 +291,41 @@ switch ($action) {
     $db = db();
     $stmt = $db->prepare('SELECT status FROM users WHERE id = ?');
     $stmt->execute([$userId]);
-    $user = $stmt->fetch();
-    if (!$user) respond(['error' => 'User not found'], 404);
+    $u = $stmt->fetch();
+    if (!$u) respond(['error' => 'User not found'], 404);
 
-    $newStatus = $user['status'] === 'active' ? 'suspended' : 'active';
+    $newStatus = $u['status'] === 'active' ? 'suspended' : 'active';
     $stmt = $db->prepare('UPDATE users SET status = ? WHERE id = ?');
     $stmt->execute([$newStatus, $userId]);
     respond(['success' => true, 'status' => $newStatus]);
     break;
 
-  // ── List pending submissions (curator or admin) ──
-  case 'pending':
-    $user = require_role(['curator', 'admin']);
-    $db = db();
-    $type = $_GET['type'] ?? '';
-    $page = max(1, (int)($_GET['page'] ?? 1));
-    $limit = 20;
-    $offset = ($page - 1) * $limit;
+  // ═══════════════════════════════════════════
+  //  SETTINGS (admin only)
+  // ═══════════════════════════════════════════
 
-    $where = 'status = ?';
-    $params = ['pending'];
-    if ($type && in_array($type, ['event','program','project','organization','profile','question','news','article','opportunity'])) {
-      $where .= ' AND type = ?';
-      $params[] = $type;
-    }
-
-    $countStmt = $db->prepare("SELECT COUNT(*) as c FROM submissions WHERE $where");
-    $countStmt->execute($params);
-    $total = (int)$countStmt->fetch()['c'];
-
-    $stmt = $db->prepare("SELECT s.id, s.type, s.payload, s.status, s.created_at, u.name as author_name, u.email as author_email FROM submissions s LEFT JOIN users u ON s.user_id = u.id WHERE $where ORDER BY s.created_at ASC LIMIT $limit OFFSET $offset");
-    $stmt->execute($params);
-    $submissions = $stmt->fetchAll();
-
-    // Decode JSON payload for each
-    foreach ($submissions as &$sub) {
-      $sub['payload'] = json_decode($sub['payload'], true);
-    }
-
-    respond([
-      'submissions' => $submissions,
-      'total' => $total,
-      'page' => $page,
-      'pages' => ceil($total / $limit)
-    ]);
-    break;
-
-  // ── Review submission (curator or admin) ──
-  case 'review':
-    $user = require_role(['curator', 'admin']);
-    $input = json_input();
-    $subId = (int)($input['id'] ?? 0);
-    $newStatus = $input['status'] ?? '';
-    $note = trim($input['note'] ?? '');
-
-    if (!$subId || !in_array($newStatus, ['approved', 'rejected'])) {
-      respond(['error' => 'id and status (approved/rejected) required'], 400);
-    }
-
-    $db = db();
-    $stmt = $db->prepare('UPDATE submissions SET status = ?, reviewed_by = ?, review_note = ?, reviewed_at = NOW() WHERE id = ? AND status = ?');
-    $stmt->execute([$newStatus, $user['id'], $note ?: null, $subId, 'pending']);
-
-    if ($stmt->rowCount() === 0) {
-      respond(['error' => 'Submission not found or already reviewed'], 404);
-    }
-    respond(['success' => true]);
-    break;
-
-  // ── Bulk review (curator or admin) ──
-  case 'bulk-review':
-    $user = require_role(['curator', 'admin']);
-    $input = json_input();
-    $ids = $input['ids'] ?? [];
-    $newStatus = $input['status'] ?? '';
-
-    if (empty($ids) || !in_array($newStatus, ['approved', 'rejected'])) {
-      respond(['error' => 'ids array and status required'], 400);
-    }
-
-    $db = db();
-    $placeholders = implode(',', array_fill(0, count($ids), '?'));
-    $params = array_merge([$newStatus, $user['id'], $newStatus], $ids);
-    $stmt = $db->prepare("UPDATE submissions SET status = ?, reviewed_by = ?, reviewed_at = NOW() WHERE id IN ($placeholders) AND status = ?");
-    $stmt->execute($params);
-    respond(['success' => true, 'updated' => $stmt->rowCount()]);
-    break;
-
-  // ── Delete submission (admin only) ──
-  case 'delete-submission':
-    $admin = require_role('admin');
-    $input = json_input();
-    $subId = (int)($input['id'] ?? 0);
-    if (!$subId) respond(['error' => 'id required'], 400);
-
-    $db = db();
-    $stmt = $db->prepare('DELETE FROM submissions WHERE id = ?');
-    $stmt->execute([$subId]);
-    respond(['success' => true]);
-    break;
-
-  // ── Platform stats (admin only) ──
-  case 'stats':
+  case 'settings':
     $admin = require_role('admin');
     $db = db();
 
-    $stats = [];
-    // User counts
-    $stmt = $db->query('SELECT role, COUNT(*) as c FROM users GROUP BY role');
-    foreach ($stmt->fetchAll() as $row) {
-      $stats['users_' . $row['role']] = (int)$row['c'];
-    }
-    $stmt = $db->query('SELECT COUNT(*) as c FROM users');
-    $stats['users_total'] = (int)$stmt->fetch()['c'];
+    // Create settings table if not exists
+    $db->exec('CREATE TABLE IF NOT EXISTS settings (`key` VARCHAR(255) PRIMARY KEY, value TEXT, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)');
 
-    // Submission counts by status
-    $stmt = $db->query('SELECT status, COUNT(*) as c FROM submissions GROUP BY status');
-    foreach ($stmt->fetchAll() as $row) {
-      $stats['subs_' . $row['status']] = (int)$row['c'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $input = json_input();
+      foreach ($input as $key => $value) {
+        $stmt = $db->prepare('INSERT INTO settings (`key`, value) VALUES (?, ?) ON DUPLICATE KEY UPDATE value = VALUES(value)');
+        $stmt->execute([$key, is_string($value) ? $value : json_encode($value)]);
+      }
+      respond(['success' => true]);
     }
 
-    // Submission counts by type
-    $stmt = $db->query('SELECT type, COUNT(*) as c FROM submissions WHERE status = "approved" GROUP BY type');
+    $stmt = $db->query('SELECT `key`, value FROM settings');
+    $settings = [];
     foreach ($stmt->fetchAll() as $row) {
-      $stats[$row['type'] . '_approved'] = (int)$row['c'];
+      $settings[$row['key']] = $row['value'];
     }
-
-    // Recent activity
-    $stmt = $db->query('SELECT DATE(created_at) as day, COUNT(*) as c FROM submissions WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY day ORDER BY day');
-    $stats['activity_30d'] = $stmt->fetchAll();
-
-    respond($stats);
+    respond(['settings' => $settings]);
     break;
 
   default:
