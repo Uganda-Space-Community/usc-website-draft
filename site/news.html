@@ -118,6 +118,13 @@
     <div class="detail-layout" id="news-layout">
       <div class="detail-body">
         <p id="news-excerpt"></p>
+        <div id="news-body-section" style="display:none">
+          <p id="news-body"></p>
+        </div>
+        <div id="news-author-section" style="display:none;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)">
+          <span style="font-size:0.78rem;color:var(--text-3)">Written by</span>
+          <span id="news-author" style="font-size:0.88rem;font-weight:500;color:var(--text);margin-left:8px"></span>
+        </div>
       </div>
 
       <div class="detail-sidebar">
@@ -182,6 +189,11 @@ async function loadNews(){
     document.getElementById('news-source').textContent=item.source||'';
     document.getElementById('news-source-sep').style.display=item.source?'inline':'none';
     document.getElementById('news-excerpt').textContent=item.excerpt||'';
+    if(item.body&&item.body!==item.excerpt){
+      document.getElementById('news-body-section').style.display='block';
+      document.getElementById('news-body').textContent=item.body;
+    }
+    if(item.author){document.getElementById('news-author-section').style.display='block';document.getElementById('news-author').textContent=item.author}
     if(item.image){var img=document.getElementById('news-image');img.src=item.image;img.onerror=function(){this.src='img/hero-3.jpg'}}
     document.getElementById('sidebar-date').textContent=item.date||'';
     document.getElementById('sidebar-category').textContent=item.category||'';

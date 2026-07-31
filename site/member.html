@@ -125,6 +125,16 @@
         <h2>About</h2>
         <p id="member-about"></p>
 
+        <div id="member-expertise-section" style="display:none">
+          <h3>Expertise</h3>
+          <div class="detail-tags" id="member-expertise"></div>
+        </div>
+
+        <div id="member-achievements-section" style="display:none">
+          <h3>Achievements</h3>
+          <ul id="member-achievements" style="font-size:0.92rem;color:var(--text-2);line-height:1.8;padding-left:20px"></ul>
+        </div>
+
         <h3>Interests</h3>
         <div class="detail-tags" id="member-tags"></div>
       </div>
@@ -140,6 +150,13 @@
           <h4>Profile</h4>
           <div class="info-row"><span class="label">Organisation</span><span class="value" id="sidebar-org"></span></div>
           <div class="info-row"><span class="label">Role</span><span class="value" id="sidebar-role"></span></div>
+          <div class="info-row" id="sidebar-email-row" style="display:none"><span class="label">Email</span><span class="value" id="sidebar-email"></span></div>
+          <div class="info-row" id="sidebar-location-row" style="display:none"><span class="label">Location</span><span class="value" id="sidebar-location"></span></div>
+        </div>
+
+        <div class="sidebar-card" id="sidebar-social-card" style="display:none">
+          <h4>Connect</h4>
+          <div id="sidebar-social" style="display:flex;gap:12px;flex-wrap:wrap"></div>
         </div>
       </div>
     </div>
@@ -194,6 +211,14 @@ async function loadMember(){
     document.getElementById('member-name').textContent=member.name;
     document.getElementById('member-org').textContent=member.organisation||'';
     document.getElementById('member-about').textContent=member.bio||'';
+    if(member.expertise&&member.expertise.length){
+      document.getElementById('member-expertise-section').style.display='block';
+      document.getElementById('member-expertise').innerHTML=member.expertise.map(function(t){return '<span>'+t+'</span>'}).join('');
+    }
+    if(member.achievements&&member.achievements.length){
+      document.getElementById('member-achievements-section').style.display='block';
+      document.getElementById('member-achievements').innerHTML=member.achievements.map(function(a){return '<li>'+a+'</li>'}).join('');
+    }
     if(member.image){document.getElementById('member-hero-bg').style.backgroundImage="url('"+member.image+"')"} else {document.getElementById('member-hero-bg').style.backgroundImage="url('img/hero-3.jpg')"}
     if(member.affiliations&&member.affiliations.length){
       document.getElementById('member-tags').innerHTML=member.affiliations.map(function(t){return '<span>'+t+'</span>'}).join('');
@@ -206,6 +231,15 @@ async function loadMember(){
     document.getElementById('sidebar-title').textContent=member.role||'';
     document.getElementById('sidebar-org').textContent=member.organisation||'';
     document.getElementById('sidebar-role').textContent=member.role||'';
+    if(member.email){document.getElementById('sidebar-email-row').style.display='flex';document.getElementById('sidebar-email').textContent=member.email}
+    if(member.location){document.getElementById('sidebar-location-row').style.display='flex';document.getElementById('sidebar-location').textContent=member.location}
+    if(member.social&&(member.social.twitter||member.social.linkedin)){
+      document.getElementById('sidebar-social-card').style.display='block';
+      var socialHtml='';
+      if(member.social.twitter&&member.social.twitter!=='#')socialHtml+='<a href="'+member.social.twitter+'" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--gold);text-decoration:none">Twitter</a>';
+      if(member.social.linkedin&&member.social.linkedin!=='#')socialHtml+='<a href="'+member.social.linkedin+'" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--gold);text-decoration:none">LinkedIn</a>';
+      document.getElementById('sidebar-social').innerHTML=socialHtml;
+    }
   }catch(e){showNotFound()}
 }
 

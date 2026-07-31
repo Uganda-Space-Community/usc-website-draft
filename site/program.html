@@ -126,6 +126,12 @@
       <div class="detail-body">
         <h2>About This Program</h2>
         <p id="program-text"></p>
+        <p id="program-description" style="display:none"></p>
+
+        <div id="program-outcomes-section" style="display:none">
+          <h3>Expected Outcomes</h3>
+          <ul id="program-outcomes" style="font-size:0.92rem;color:var(--text-2);line-height:1.8;padding-left:20px"></ul>
+        </div>
 
         <div id="program-status-badge"></div>
       </div>
@@ -138,6 +144,9 @@
           <div class="info-row"><span class="label">Start</span><span class="value" id="sidebar-start"></span></div>
           <div class="info-row"><span class="label">End</span><span class="value" id="sidebar-end"></span></div>
           <div class="info-row"><span class="label">Events</span><span class="value" id="sidebar-events"></span></div>
+          <div class="info-row" id="sidebar-organizer-row" style="display:none"><span class="label">Organizer</span><span class="value" id="sidebar-organizer"></span></div>
+          <div class="info-row" id="sidebar-participants-row" style="display:none"><span class="label">Participants</span><span class="value" id="sidebar-participants"></span></div>
+          <div class="info-row" id="sidebar-region-row" style="display:none"><span class="label">Region</span><span class="value" id="sidebar-region"></span></div>
         </div>
       </div>
     </div>
@@ -191,6 +200,14 @@ async function loadProgram(){
     document.getElementById('program-title').textContent=item.title;
     document.getElementById('program-dates').textContent=(item.start||'')+(item.end?' – '+item.end:'');
     document.getElementById('program-text').textContent=item.text||'';
+    if(item.description&&item.description!==item.text){
+      document.getElementById('program-description').style.display='block';
+      document.getElementById('program-description').textContent=item.description;
+    }
+    if(item.outcomes&&item.outcomes.length){
+      document.getElementById('program-outcomes-section').style.display='block';
+      document.getElementById('program-outcomes').innerHTML=item.outcomes.map(function(o){return '<li>'+o+'</li>'}).join('');
+    }
     var statusMap={active:'Active',completed:'Completed',planned:'Planned',proposed:'Proposed',in_progress:'In Progress'};
     var badgeClass='status-active';
     if(item.status==='completed')badgeClass='status-planned';
@@ -202,6 +219,9 @@ async function loadProgram(){
     document.getElementById('sidebar-start').textContent=item.start||'';
     document.getElementById('sidebar-end').textContent=item.end||'';
     document.getElementById('sidebar-events').textContent=(item.completedEvents||0)+' / '+(item.totalEvents||0);
+    if(item.organizer){document.getElementById('sidebar-organizer-row').style.display='flex';document.getElementById('sidebar-organizer').textContent=item.organizer}
+    if(item.participants){document.getElementById('sidebar-participants-row').style.display='flex';document.getElementById('sidebar-participants').textContent=item.participants}
+    if(item.region){document.getElementById('sidebar-region-row').style.display='flex';document.getElementById('sidebar-region').textContent=item.region}
     renderProgramCrossRefs(data, slug);
   }catch(e){showNotFound()}
 }

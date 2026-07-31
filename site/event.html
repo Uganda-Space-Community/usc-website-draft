@@ -29,6 +29,8 @@
 .detail-body h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:400;margin-bottom:16px}
 .detail-body p{font-size:0.92rem;color:var(--text-2);line-height:1.8;margin-bottom:16px}
 .detail-body h3{font-size:1rem;margin:28px 0 12px}
+.detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.detail-tags span{font-size:0.68rem;padding:4px 12px;background:var(--gold-dim);color:var(--gold);border-radius:100px}
 
 .detail-sidebar{position:sticky;top:100px}
 .sidebar-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px}
@@ -119,6 +121,11 @@
       <div class="detail-body">
         <h2>About This Event</h2>
         <p id="event-description"></p>
+
+        <div id="event-agenda-section" style="display:none">
+          <h3>Schedule</h3>
+          <div id="event-agenda"></div>
+        </div>
       </div>
 
       <div class="detail-sidebar">
@@ -128,6 +135,13 @@
           <div class="info-row"><span class="label">Type</span><span class="value" id="sidebar-type"></span></div>
           <div class="info-row"><span class="label">Status</span><span class="value" id="sidebar-status"></span></div>
           <div class="info-row"><span class="label">Location</span><span class="value" id="sidebar-location"></span></div>
+          <div class="info-row" id="sidebar-organizer-row" style="display:none"><span class="label">Organizer</span><span class="value" id="sidebar-organizer"></span></div>
+          <div class="info-row" id="sidebar-capacity-row" style="display:none"><span class="label">Capacity</span><span class="value" id="sidebar-capacity"></span></div>
+          <div class="info-row" id="sidebar-registration-row" style="display:none"><span class="label">Registration</span><span class="value" id="sidebar-registration"></span></div>
+        </div>
+        <div class="sidebar-card" id="sidebar-tags-card" style="display:none">
+          <h4>Tags</h4>
+          <div class="detail-tags" id="sidebar-tags"></div>
         </div>
       </div>
     </div>
@@ -189,6 +203,16 @@ async function loadEvent(){
     document.getElementById('sidebar-type').textContent=event.type||'';
     document.getElementById('sidebar-status').textContent=event.status||'';
     document.getElementById('sidebar-location').textContent=event.location||'';
+    if(event.organizer){document.getElementById('sidebar-organizer-row').style.display='flex';document.getElementById('sidebar-organizer').textContent=event.organizer}
+    if(event.capacity){document.getElementById('sidebar-capacity-row').style.display='flex';document.getElementById('sidebar-capacity').textContent=event.capacity}
+    if(event.registration){document.getElementById('sidebar-registration-row').style.display='flex';document.getElementById('sidebar-registration').textContent=event.registration}
+    if(event.tags&&event.tags.length){document.getElementById('sidebar-tags-card').style.display='block';document.getElementById('sidebar-tags').innerHTML=event.tags.map(function(t){return '<span>'+t+'</span>'}).join('')}
+    if(event.agenda&&event.agenda.length){
+      document.getElementById('event-agenda-section').style.display='block';
+      document.getElementById('event-agenda').innerHTML=event.agenda.map(function(a){
+        return '<div style="display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)"><span style="font-size:0.82rem;font-weight:600;color:var(--gold);white-space:nowrap;min-width:60px">'+a.time+'</span><span style="font-size:0.88rem;color:var(--text-2)">'+a.description+'</span></div>';
+      }).join('');
+    }
     renderEventCrossRefs(data, slug);
   }catch(e){showNotFound()}
 }
