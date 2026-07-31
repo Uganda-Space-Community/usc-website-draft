@@ -270,7 +270,7 @@
         "text": "A full-day national experience moving from mission briefing through immersive exhibits, the Innovation Showcase, a space economy panel, and outdoor stargazing.",
         "date": "10 Oct 2026",
         "location": "Kampala",
-        "image": "img/hero-1.jpg"
+        "image": "img/wsw-2026-save-the-date.png.jpg"
       },
       {
         "type": "Physical",
@@ -279,7 +279,7 @@
         "text": "Mechanical rocket engineering demonstrations, launch systems, propulsion concepts, and safe simulations.",
         "date": "8 Oct 2026",
         "location": "Kampala",
-        "image": "img/hero-2.jpg"
+        "image": "img/wsw-2026-did-you-know.png"
       },
       {
         "type": "Physical",
@@ -617,38 +617,38 @@
 
   "organizations": [
     { "name": "Space Junkies Uganda", "category": "Space Outreach", "location": "Kampala", "icon": "users", "featured": true },
-    { "name": "StellarView Technologies", "category": "Space Arts And Outreach", "location": "Uganda", "icon": "globe", "featured": true },
+    { "name": "StellarView Technologies", "category": "Space Outreach", "location": "Uganda", "icon": "globe", "featured": true },
     { "name": "Uganda Astronomical Society", "category": "Astronomy", "location": "Uganda", "icon": "star", "featured": true },
     { "name": "Holistic Inclusive Aviation Africa", "category": "Aviation", "location": "Uganda", "icon": "plane", "featured": false },
     { "name": "KTA Advocates Centre for Law, Policy and Innovation Initiative", "category": "Law And Policy", "location": "Uganda", "icon": "shield", "featured": false },
     { "name": "Uganda Space Community", "category": "Community Network", "location": "Uganda", "icon": "globe", "featured": false },
-    { "name": "Uganda Industrial Research Institute", "category": "Research Institute", "location": "Uganda", "icon": "building", "featured": false },
-    { "name": "Makerere University", "category": "University", "location": "Kampala", "icon": "graduation", "featured": true },
-    { "name": "Makerere University CEDAT", "category": "Engineering School", "location": "Kampala", "icon": "tool", "featured": true },
-    { "name": "IEEE Makerere Student Branch", "category": "Student Branch", "location": "Makerere University", "icon": "users", "featured": true },
-    { "name": "IEEE AESS SBC Makerere", "category": "Aerospace And Systems", "location": "Makerere University", "icon": "star", "featured": true },
-    { "name": "Kyambogo University", "category": "University", "location": "Kampala", "icon": "graduation", "featured": false },
-    { "name": "Mbarara University of Science and Technology", "category": "University", "location": "Mbarara", "icon": "graduation", "featured": false },
-    { "name": "Busitema University", "category": "University", "location": "Uganda", "icon": "graduation", "featured": false },
-    { "name": "Uganda Christian University", "category": "University", "location": "Mukono", "icon": "graduation", "featured": false },
-    { "name": "Nkumba University", "category": "University", "location": "Uganda", "icon": "graduation", "featured": false },
+    { "name": "Uganda Industrial Research Institute", "category": "Academic Institution", "location": "Uganda", "icon": "building", "featured": false },
+    { "name": "Makerere University", "category": "Academic Institution", "location": "Kampala", "icon": "graduation", "featured": true },
+    { "name": "Makerere University CEDAT", "category": "Academic Institution", "location": "Kampala", "icon": "tool", "featured": true },
+    { "name": "IEEE Makerere Student Branch", "category": "Student Initiative", "location": "Makerere University", "icon": "users", "featured": true },
+    { "name": "IEEE AESS SBC Makerere", "category": "Student Initiative", "location": "Makerere University", "icon": "star", "featured": true },
+    { "name": "Kyambogo University", "category": "Academic Institution", "location": "Kampala", "icon": "graduation", "featured": false },
+    { "name": "Mbarara University of Science and Technology", "category": "Academic Institution", "location": "Mbarara", "icon": "graduation", "featured": false },
+    { "name": "Busitema University", "category": "Academic Institution", "location": "Uganda", "icon": "graduation", "featured": false },
+    { "name": "Uganda Christian University", "category": "Academic Institution", "location": "Mukono", "icon": "graduation", "featured": false },
+    { "name": "Nkumba University", "category": "Academic Institution", "location": "Uganda", "icon": "graduation", "featured": false },
     { "name": "NOA's Quest", "category": "Rocketry And Propulsion", "location": "Uganda", "icon": "rocket", "featured": true },
-    { "name": "Infinity Computers", "category": "Technology Partner", "location": "Uganda", "icon": "monitor", "featured": true },
+    { "name": "Infinity Computers", "category": "Innovation & Technology", "location": "Uganda", "icon": "monitor", "featured": true },
     { "name": "Nile Orbitals", "category": "Aerospace Technology", "location": "Uganda", "icon": "rocket", "featured": true },
-    { "name": "Young Engineers Uganda", "category": "STEM Education", "location": "Uganda", "icon": "book", "featured": true },
-    { "name": "Aerobuddies", "category": "Aerospace DIY", "location": "Uganda", "icon": "tool", "featured": true },
+    { "name": "Young Engineers Uganda", "category": "STEM Initiative", "location": "Uganda", "icon": "book", "featured": true },
+    { "name": "Aerobuddies", "category": "Aerospace Initiative", "location": "Uganda", "icon": "tool", "featured": true },
     { "name": "NASA Space Apps Kampala", "category": "Hackathon", "location": "Kampala", "icon": "zap", "featured": true },
-    { "name": "GDG On Campus Makerere University", "category": "Developer Community", "location": "Makerere University", "icon": "code", "featured": false },
+    { "name": "GDG On Campus Makerere University", "category": "Student Initiative", "location": "Makerere University", "icon": "code", "featured": false },
 
-    { "name": "African Astronomical Society", "category": "Pan-African Astronomy", "location": "Africa", "icon": "star", "featured": true },
-    { "name": "African Space Agency", "category": "Continental Space Agency", "location": "Africa", "icon": "flag", "featured": true },
-    { "name": "East African Astronomical Society", "category": "Regional Astronomy", "location": "East Africa", "icon": "globe", "featured": false },
-    { "name": "Ministry of Science, Technology and Innovation", "category": "Government Ministry", "location": "Uganda", "icon": "building", "featured": true },
-    { "name": "Uganda National Council for Science and Technology", "category": "Research Oversight", "location": "Uganda", "icon": "shield", "featured": false },
-    { "name": "Uganda Communications Commission", "category": "Spectrum Regulation", "location": "Uganda", "icon": "signal", "featured": false },
-    { "name": "Regional Centre for Mapping of Resources for Development", "category": "Regional EO", "location": "Nairobi", "icon": "globe", "featured": false },
-    { "name": "International Astronautical Federation", "category": "Global Space Body", "location": "Paris", "icon": "globe", "featured": false },
-    { "name": "Space Generation Advisory Council", "category": "Youth Space Network", "location": "Global", "icon": "users", "featured": true }
+    { "name": "African Astronomical Society", "category": "Astronomy", "location": "Africa", "icon": "star", "featured": true },
+    { "name": "African Space Agency", "category": "Space Agency", "location": "Africa", "icon": "flag", "featured": true },
+    { "name": "East African Astronomical Society", "category": "Astronomy", "location": "East Africa", "icon": "globe", "featured": false },
+    { "name": "Ministry of Science, Technology and Innovation", "category": "Government", "location": "Uganda", "icon": "building", "featured": true },
+    { "name": "Uganda National Council for Science and Technology", "category": "Government", "location": "Uganda", "icon": "shield", "featured": false },
+    { "name": "Uganda Communications Commission", "category": "Government", "location": "Uganda", "icon": "signal", "featured": false },
+    { "name": "Regional Centre for Mapping of Resources for Development", "category": "Aerospace", "location": "Nairobi", "icon": "globe", "featured": false },
+    { "name": "International Astronautical Federation", "category": "Space Network", "location": "Paris", "icon": "globe", "featured": false },
+    { "name": "Space Generation Advisory Council", "category": "Space Network", "location": "Global", "icon": "users", "featured": true }
   ],
 
   "teamMembers": [
@@ -822,7 +822,7 @@
       "title": "WSW Uganda 2026 Theme Confirmed",
       "excerpt": "World Space Week 2026 will run under the global theme Rocket Revolution from October 4-10.",
       "category": "World Space Week",
-      "image": "img/hero-2.jpg",
+      "image": "img/uganda-space-week-2025-main.png",
       "date": "26 Jul 2026",
       "source": "Space Uganda"
     },

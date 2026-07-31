@@ -21,7 +21,11 @@ site/
 │   ├── auth.php            # Signup, login, logout, session check
 │   ├── submissions.php     # Form submissions, voting
 │   ├── content.php         # Read-only content endpoints
-│   └── schema.sql          # Database schema (run in phpMyAdmin)
+│   ├── user.php            # Profile CRUD, password change
+│   ├── admin.php           # Admin panel API (stats, review, user mgmt)
+│   ├── upload.php          # File upload handler
+│   ├── schema.sql          # Database schema (run in phpMyAdmin)
+│   └── seed.php            # Seed DB from content.json (run once)
 ├── css/
 │   └── base.css            # Shared styles (nav, footer, buttons, etc.)
 ├── data/
@@ -29,7 +33,8 @@ site/
 ├── img/                    # Images and emblem
 ├── js/
 │   ├── api.js              # Fetch wrapper for API calls
-│   └── auth.js             # Auth module (API + localStorage fallback)
+│   ├── auth.js             # Auth module (API + localStorage fallback)
+│   └── admin.js            # Admin panel logic
 ├── admin.html              # Admin panel
 ├── dashboard.html          # User dashboard (profile, submissions)
 ├── index.html              # Homepage
@@ -55,40 +60,47 @@ site/
 
 ## Setup
 
-### 1. Database
+### Prerequisites
+
+- PHP 8.0+ (XAMPP recommended for local dev)
+- MySQL (via XAMPP)
+- A local web server (Apache via XAMPP)
+
+### 1. Local Development (XAMPP)
+
+1. Start **Apache** and **MySQL** from the XAMPP Control Panel
+2. Create a junction from `htdocs` so the site is accessible:
+
+```cmd
+mklink /J "C:\xampp\htdocs\usc" "M:\Dev\projects\New folder\uas\usc\site"
+```
+
+3. Create the database and seed data:
+
+```cmd
+"C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS usc_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+"C:\xampp\mysql\bin\mysql.exe" -u root usc_database < site\api\schema.sql
+"C:\xampp\php\php.exe" site\api\seed.php
+```
+
+4. Open **http://localhost/usc/** in your browser
+5. Admin login: `admin@space.org.ug` / `admin123`
+
+> **Note:** The API credentials in `site/api/config.php` default to XAMPP's root user with no password. Update them for production.
+
+### 2. Production Deployment (cPanel)
 
 1. In cPanel, go to **MySQL Databases** and create a database + user
 2. Open **phpMyAdmin**, select your database
 3. Import `site/api/schema.sql`
-
-### 2. API Configuration
-
-Edit `site/api/config.php` with your database credentials:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'your_db_name');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_password');
-```
-
-### 3. Deploy
-
-Upload the `site/` directory contents to `public_html/` on your cPanel hosting.
-
-### 4. Create Admin User
-
-After deployment, create an admin user via phpMyAdmin:
+4. Run `php site/api/seed.php` to seed content (or skip to start empty)
+5. Edit `site/api/config.php` with your database credentials
+6. Upload the `site/` directory contents to `public_html/`
+7. Create an admin user:
 
 ```sql
 INSERT INTO users (name, email, password, role)
 VALUES ('Admin', 'admin@space.org.ug', '$2y$10$...hash...', 'admin');
-```
-
-Or use the signup form and update the role manually:
-
-```sql
-UPDATE users SET role = 'admin' WHERE email = 'admin@space.org.ug';
 ```
 
 ## API Endpoints

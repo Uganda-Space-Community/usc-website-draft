@@ -2,16 +2,16 @@
 // Database configuration — update these with your cPanel credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'usc_database');
-define('DB_USER', 'usc_user');
-define('DB_PASS', 'your_password_here');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 // CORS — restrict to your domain in production
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json; charset=utf-8');
+if (php_sapi_name() !== 'cli') header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+if (php_sapi_name() !== 'cli' && ($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
   http_response_code(204);
   exit;
 }
