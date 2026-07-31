@@ -229,7 +229,7 @@ body.dark-mode .btn-gold:hover { box-shadow: 0 2px 12px rgba(201,168,76,0.3); }
   position: absolute;
   bottom: -60px; right: -40px;
   width: 320px; height: 320px;
-  background: url('emblem.png') center/contain no-repeat;
+  background: url('../img/emblem.png') center/contain no-repeat;
   opacity: 0.1;
   pointer-events: none;
 }
