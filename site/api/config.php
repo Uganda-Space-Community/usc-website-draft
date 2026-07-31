@@ -52,7 +52,7 @@ function respond($data, $code = 200) {
 
 // Require authentication — returns user array
 function require_auth() {
-  session_start();
+  if (session_status() === PHP_SESSION_NONE) session_start();
   if (!isset($_SESSION['user_id'])) {
     respond(['error' => 'Authentication required'], 401);
   }
