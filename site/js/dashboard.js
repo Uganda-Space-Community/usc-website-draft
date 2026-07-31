@@ -656,10 +656,13 @@ const USC_DASH = (function () {
 
   function initSubmitQuill() {
     setTimeout(function() {
-      if (typeof Quill !== 'undefined' && document.getElementById('quill-content')) {
-        window._dashQuill = new Quill('#quill-content', {
+      if (typeof Quill === 'undefined') return;
+      window._dashQuills = {};
+      document.querySelectorAll('[id^="quill-"]').forEach(function (el) {
+        var name = el.id.replace('quill-', '');
+        window._dashQuills[name] = new Quill('#quill-' + name, {
           theme: 'snow',
-          placeholder: 'Write your article content here...',
+          placeholder: 'Write your content here...',
           modules: {
             toolbar: [
               [{ header: [1, 2, 3, false] }],
@@ -671,7 +674,7 @@ const USC_DASH = (function () {
             ]
           }
         });
-      }
+      });
     }, 100);
   }
 
@@ -712,7 +715,7 @@ const USC_DASH = (function () {
     var map = {
       event: [
         { name:'title', label:'Title', type:'text', required:true },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'date', label:'Date', type:'date', required:true },
         { name:'location', label:'Location', type:'text' },
         { name:'category', label:'Category', type:'select', options:[
@@ -725,7 +728,7 @@ const USC_DASH = (function () {
       ],
       program: [
         { name:'title', label:'Title', type:'text', required:true },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'start', label:'Start Date', type:'date' },
         { name:'end', label:'End Date', type:'date' },
         { name:'tags', label:'Tags', type:'text', help:'Comma-separated' },
@@ -735,7 +738,7 @@ const USC_DASH = (function () {
       ],
       project: [
         { name:'title', label:'Title', type:'text', required:true },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'status', label:'Status', type:'select', options:[
           {value:'Active',label:'Active'},{value:'Completed',label:'Completed'}
         ]},
@@ -748,7 +751,7 @@ const USC_DASH = (function () {
           {value:'NGO',label:'NGO'},{value:'Innovation Hub',label:'Innovation Hub'},
           {value:'Government',label:'Government'},{value:'Other',label:'Other'}
         ]},
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'website', label:'Website', type:'url' },
         { name:'location', label:'Location', type:'text' },
       ],
@@ -759,7 +762,7 @@ const USC_DASH = (function () {
           {value:'Policy',label:'Policy'},{value:'University',label:'University'},
           {value:'Infrastructure',label:'Infrastructure'},{value:'General',label:'General'}
         ]},
-        { name:'summary', label:'Summary', type:'textarea' },
+        { name:'summary', label:'Summary', type:'quill' },
       ],
       article: [
         { name:'title', label:'Title', type:'text', required:true },
@@ -768,7 +771,7 @@ const USC_DASH = (function () {
           {value:'Analysis',label:'Analysis'},{value:'Tutorial',label:'Tutorial'},
           {value:'Opinion',label:'Opinion'},{value:'Research',label:'Research'}
         ]},
-        { name:'summary', label:'Summary', type:'textarea' },
+        { name:'summary', label:'Summary', type:'quill' },
         { name:'content', label:'Content', type:'quill', tall:true },
       ],
       opportunity: [
@@ -778,7 +781,7 @@ const USC_DASH = (function () {
           {value:'Grant',label:'Grant'},{value:'Fellowship',label:'Fellowship'}
         ]},
         { name:'deadline', label:'Deadline', type:'date' },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'link', label:'Link URL', type:'url' },
       ],
     };
@@ -794,13 +797,17 @@ const USC_DASH = (function () {
       var type = document.getElementById('dash-submit-type').value;
       var fields = getSubmitFields(type);
       var payload = {};
-      // Get Quill content if available
-      if (window._dashQuill) {
-        var content = window._dashQuill.getText().trim();
-        if (content) payload.content = window._dashQuill.root.innerHTML;
+      // Get Quill content from all editors
+      if (window._dashQuills) {
+        Object.keys(window._dashQuills).forEach(function (name) {
+          var q = window._dashQuills[name];
+          var text = q.getText().trim();
+          if (text) payload[name] = q.root.innerHTML;
+        });
       }
       var valid = true;
       fields.forEach(function (f) {
+        if (f.type === 'quill') return; // already handled above
         var el = document.getElementById('sub-' + f.name);
         if (!el) return;
         var val = el.value.trim();
@@ -1032,12 +1039,15 @@ const USC_DASH = (function () {
 
     wrap.innerHTML = html;
 
-    // Init Quill if content field present
+    // Init Quill editors if present
     setTimeout(function() {
-      if (typeof Quill !== 'undefined' && document.getElementById('quill-content')) {
-        window._dashContentQuill = new Quill('#quill-content', {
+      if (typeof Quill === 'undefined') return;
+      window._dashQuills = {};
+      document.querySelectorAll('[id^="quill-"]').forEach(function (el) {
+        var name = el.id.replace('quill-', '');
+        window._dashQuills[name] = new Quill('#quill-' + name, {
           theme: 'snow',
-          placeholder: 'Write your article content here...',
+          placeholder: 'Write your content here...',
           modules: {
             toolbar: [
               [{ header: [1, 2, 3, false] }],
@@ -1049,21 +1059,25 @@ const USC_DASH = (function () {
             ]
           }
         });
-        if (payload.content) {
-          window._dashContentQuill.root.innerHTML = payload.content;
+        if (payload[name]) {
+          window._dashQuills[name].root.innerHTML = payload[name];
         }
-      }
+      });
     }, 100);
 
     document.getElementById('content-cancel-btn').addEventListener('click', function () { loadContentTable(slug); });
     document.getElementById('content-save-btn').addEventListener('click', async function () {
       var payload = {};
-      // Get Quill content if available
-      if (window._dashContentQuill) {
-        var content = window._dashContentQuill.getText().trim();
-        if (content) payload.content = window._dashContentQuill.root.innerHTML;
+      // Get Quill content from all editors
+      if (window._dashQuills) {
+        Object.keys(window._dashQuills).forEach(function (name) {
+          var q = window._dashQuills[name];
+          var text = q.getText().trim();
+          if (text) payload[name] = q.root.innerHTML;
+        });
       }
       fields.forEach(function (f) {
+        if (f.type === 'quill') return; // already handled above
         var el = document.getElementById('cf-' + f.name);
         if (el) payload[f.name] = el.value.trim();
       });
@@ -1088,11 +1102,11 @@ const USC_DASH = (function () {
           {value:'Physical',label:'Physical'},{value:'Virtual',label:'Virtual'},
           {value:'Workshop',label:'Workshop'},{value:'Competition',label:'Competition'}
         ]},
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
       ],
       program: [
         { name:'title', label:'Title', type:'text', required:true },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'start', label:'Start', type:'date' },
         { name:'end', label:'End', type:'date' },
         { name:'status', label:'Status', type:'select', options:[
@@ -1102,7 +1116,7 @@ const USC_DASH = (function () {
       ],
       project: [
         { name:'title', label:'Title', type:'text', required:true },
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'status', label:'Status', type:'select', options:[
           {value:'Active',label:'Active'},{value:'Completed',label:'Completed'}
         ]},
@@ -1114,7 +1128,7 @@ const USC_DASH = (function () {
           {value:'NGO',label:'NGO'},{value:'Innovation Hub',label:'Innovation Hub'},
           {value:'Government',label:'Government'},{value:'Other',label:'Other'}
         ]},
-        { name:'description', label:'Description', type:'textarea' },
+        { name:'description', label:'Description', type:'quill' },
         { name:'website', label:'Website', type:'url' },
         { name:'location', label:'Location', type:'text' },
       ],
@@ -1125,7 +1139,7 @@ const USC_DASH = (function () {
           {value:'Policy',label:'Policy'},{value:'University',label:'University'},
           {value:'Infrastructure',label:'Infrastructure'},{value:'General',label:'General'}
         ]},
-        { name:'summary', label:'Summary', type:'textarea' },
+        { name:'summary', label:'Summary', type:'quill' },
       ],
       article: [
         { name:'title', label:'Title', type:'text', required:true },
@@ -1134,7 +1148,7 @@ const USC_DASH = (function () {
           {value:'Analysis',label:'Analysis'},{value:'Tutorial',label:'Tutorial'},
           {value:'Opinion',label:'Opinion'},{value:'Research',label:'Research'}
         ]},
-        { name:'summary', label:'Summary', type:'textarea' },
+        { name:'summary', label:'Summary', type:'quill' },
         { name:'content', label:'Content', type:'quill', tall:true },
       ],
       opportunity: [
