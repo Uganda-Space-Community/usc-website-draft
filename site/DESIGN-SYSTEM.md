@@ -340,52 +340,41 @@ Dividers between: Mission→Pillars, Pillars→Events, Events→Updates, Updates
 
 ## 15. Dashboard Architecture
 
-### User Dashboard (`dashboard.html`)
+### Unified Dashboard (`dashboard.html`)
 
 | Aspect | Detail |
 |---|---|
 | Access | Any logged-in member |
-| Layout | Standard site (nav + hero + footer) |
-| URL | `dashboard.html` |
+| Layout | 260px dark sidebar + main content area (hash-based routing) |
+| URL | `dashboard.html#section` |
+| Sidebar | Role-limited: shows only sections the user can access |
 
-**Features:**
-- **Profile Editor**: Edit name, bio, interests, location, social links
-- **Password Change**: Current + new password form
-- **Live Profile Preview**: Real-time card showing avatar, name, email, location, interests
-- **Submissions Tracker**: Own submissions filtered by type, delete pending only
-- **Quick Submit Cards**: Links to calendar, launchpad, community, updates pages
+### Sections
 
-### Admin Panel (`admin.html`)
-
-| Aspect | Detail |
-|---|---|
-| Access | Curators + admins only |
-| Layout | 260px dark sidebar + main content area |
-| URL | `admin.html` |
-
-**Features:**
-- **Dashboard**: Record counts (submissions by status, programs, events, users) + recent reviews + recent submissions
-- **Config-Driven CRUD**: 10 resource types with dynamic form/table rendering
-- **Submission Review**: Individual approve/reject with notes, bulk review
-- **User Management**: Search, filter by role, change roles, suspend/unsuspend
-- **User Profile View**: Click user name → profile card + their submissions
-- **Site Settings**: Tagline, contact email, social links
-
-### Operational Differences
-
-| Operation | User Dashboard | Admin Panel |
+| Section | Access | Features |
 |---|---|---|
-| View own profile | ✓ (live preview) | — |
-| Edit own profile | ✓ | — |
-| Change own password | ✓ | — |
-| View any user profile | — | ✓ (click name) |
-| View own submissions | ✓ | — |
-| View all submissions | — | ✓ |
-| Delete own submissions | ✓ (pending only) | ✓ (any status) |
-| Edit any submission | — | ✓ |
-| Approve/reject submissions | — | ✓ |
-| Change user roles | — | ✓ |
-| Suspend users | — | ✓ |
-| Direct content create | — | ✓ (auto-approved) |
-| View activity log | — | ✓ (recent reviews/submissions) |
-| Site settings | — | ✓ |
+| `#profile` | All | Profile preview card, edit form (name, bio, location, social links), interests tag input with autofill, affiliations builder (org/acronym/role), connections builder (url/type), password change |
+| `#submissions` | All | Filter by type (event/program/project/org/news/article/opportunity), status badges, delete pending only |
+| `#submit` | All | Dynamic form by content type, Quill.js editor for article content |
+| `#review` | Curator+ | Pending submissions list, approve/reject with notes, bulk actions, type filtering |
+| `#content` | Curator+ | Browse all records by type, search, inline create/edit/delete |
+| `#users` | Admin | User table, search, role filter, role change dropdown, suspend/unsuspend |
+| `#audit` | Curator+ | Audit log table, filter by action type, date/user/action columns |
+| `#settings` | Admin | Site settings (tagline, contact, social URLs) |
+
+### Role Permissions
+
+| Operation | Member | Curator | Admin |
+|---|---|---|---|
+| View/edit own profile | ✓ | ✓ | ✓ |
+| Submit content | ✓ | ✓ | ✓ |
+| View own submissions | ✓ | ✓ | ✓ |
+| Review submissions | — | ✓ | ✓ |
+| Manage content | — | ✓ | ✓ |
+| View audit log | — | ✓ | ✓ |
+| Manage users | — | — | ✓ |
+| Site settings | — | — | ✓ |
+
+### Legacy Admin Panel (`admin.html`)
+
+Still functional but superseded by the unified dashboard. Uses `js/admin.js` for logic.
