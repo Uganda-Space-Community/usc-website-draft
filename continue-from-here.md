@@ -67,7 +67,7 @@ All architectural overhauls, site refinements, and documentation updates have be
 - **Database**: `usc_database` on XAMPP MySQL (root, no password)
 - **Key Accounts**:
   - Admin: `admin@space.org.ug` / `admin123`
-  - Curators & Members: `space2026` password
+  - All team: `space2026` password (emails: `name@space.org.ug`)
 
 ---
 

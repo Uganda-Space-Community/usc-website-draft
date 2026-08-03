@@ -103,18 +103,18 @@ mklink /J "C:\xampp\htdocs\usc" "M:\Dev\projects\New folder\uas\usc\site"
 | Email | Password | Role |
 |-------|----------|------|
 | admin@space.org.ug | admin123 | admin |
-| ronnie@spacejunkies.ug | space2026 | curator |
-| zoora@stellarview.ug | space2026 | curator |
-| halimah@aerobuddies.ug | space2026 | curator |
-| raymond@ktaadvocates.ug | space2026 | curator |
-| navneet@nileorbitals.ug | space2026 | curator |
-| duncan@noasquest.ug | space2026 | curator |
-| grace.nabbaale@mak.ac.ug | space2026 | member |
-| simon@hiaafrica.org | space2026 | member |
-| samuel@uas.ug | space2026 | member |
-| malcom@uas.ug | space2026 | member |
-| cosmas@uas.ug | space2026 | member |
-| brinton@stellarview.ug | space2026 | member |
+| ronnie@space.org.ug | space2026 | curator |
+| zoora@space.org.ug | space2026 | curator |
+| halimah@space.org.ug | space2026 | curator |
+| anguzu@space.org.ug | space2026 | curator |
+| navneet@space.org.ug | space2026 | curator |
+| twesigye@space.org.ug | space2026 | curator |
+| nabbaale@space.org.ug | space2026 | member |
+| simon@space.org.ug | space2026 | member |
+| samuel@space.org.ug | space2026 | member |
+| malcom@space.org.ug | space2026 | member |
+| bwengye@space.org.ug | space2026 | member |
+| ayebazibwe@space.org.ug | space2026 | member |
 
 > **Note:** The API credentials in `site/api/config.php` default to XAMPP's root user with no password. Update them for production.
 
