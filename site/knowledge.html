@@ -59,6 +59,7 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .res-card .res-meta .author{font-weight:500;color:var(--text-2)}
 .res-card .res-tags{display:flex;flex-wrap:wrap;gap:5px}
 .res-card .res-tag{font-size:0.68rem;padding:3px 9px;border-radius:10px;background:var(--bg-alt-subtle);color:var(--text-2);border:1px solid var(--border);font-weight:500}
+.res-card .res-source{font-size:0.74rem;font-weight:600;color:var(--gold);margin-top:12px}
 
 /* No Results */
 .no-results{grid-column:1/-1;text-align:center;padding:80px 24px;color:var(--text-3);font-size:0.95rem}
@@ -205,7 +206,7 @@ body.dark-mode .res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
   </div>
 
   <div class="stats-strip">
-    <div class="stat-item"><div class="n" id="stat-total">10</div><div class="l">Resources</div></div>
+    <div class="stat-item"><div class="n" id="stat-total">20</div><div class="l">Resources</div></div>
     <div class="stat-item"><div class="n" id="stat-papers">0</div><div class="l">Papers</div></div>
     <div class="stat-item"><div class="n" id="stat-policies">0</div><div class="l">Policies</div></div>
     <div class="stat-item"><div class="n" id="stat-tools">0</div><div class="l">Tools</div></div>
@@ -297,7 +298,8 @@ async function loadKnowledge(){
         date:k.date||'',
         tags:k.tags||[],
         img:k.image||'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
-        slug:k.slug||''
+        slug:k.slug||'',
+        url:k.url||''
       };
     });
     updateStats();
@@ -340,8 +342,9 @@ function renderCards(){
   }
   grid.innerHTML=filtered.map(function(r){
     var badgeClass='badge-'+catSlug(r.cat);
-    var link=r.slug?'knowledge.html?id='+r.slug:'#';
-    return '<a href="'+link+'" class="res-card">' +
+    var external=r.url?true:false;
+    var link=r.url||(r.slug?'knowledge.html?id='+r.slug:'#');
+    return '<a href="'+link+'"'+(external?' target="_blank" rel="noopener"':'')+' class="res-card">' +
       '<div class="res-card-img" style="background-image:url(\''+r.img+'\')">' +
         '<span class="badge '+badgeClass+'">'+r.cat+'</span>' +
       '</div>' +
@@ -353,6 +356,7 @@ function renderCards(){
           '<span>'+dateLabel(r.date)+'</span>' +
         '</div>' +
         '<div class="res-tags">'+r.tags.map(function(t){return '<span class="res-tag">'+t+'</span>'}).join('')+'</div>' +
+        (external?'<div class="res-source">Read full resource ↗</div>':'') +
       '</div>' +
     '</a>';
   }).join('');

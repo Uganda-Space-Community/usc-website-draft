@@ -83,7 +83,7 @@ site/
 ├── calendar.html             # Events calendar
 ├── launchpad.html            # Programs & projects
 ├── updates.html              # News, articles, opportunities
-├── knowledge.html            # Knowledge base (10 resources)
+├── knowledge.html            # Knowledge base (20 resources)
 ├── faq.html                  # FAQ with community Q&A, answer voting
 ├── about.html                # About the platform
 ├── member.html               # Individual member profile (dynamic)
