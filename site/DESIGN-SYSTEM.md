@@ -23,6 +23,8 @@
 | `--red` | `#D94F3D` | Warm accent (Ugandan flag) |
 | `--emerald` | `#1F8A5B` | Success/active status |
 | `--crimson` | `#B5342E` | Error/urgent status |
+| `#60A5FA` | (launch) | Launch/rocket status (LL2 events) — hardcoded |
+| `#C084FC` | (sky) | Night-sky events (ISS passes, celestial) — hardcoded |
 | `--star-color` | `rgba(150,155,165,0.18)` | Star field dots |
 
 ### Dark Mode
@@ -39,6 +41,8 @@
 | `--border-hover` | `rgba(255,255,255,0.12)` | Hover borders |
 | `--gold` | `#C9A84C` | Primary accent |
 | `--red` | `#E05A4A` | Warm accent |
+| `#60A5FA` | (launch) | Launch/rocket status (LL2 events) — hardcoded |
+| `#C084FC` | (sky) | Night-sky events (ISS passes, celestial) — hardcoded |
 | `--star-color` | `rgba(255,255,255,0.08)` | Star field dots |
 
 ### Color Rules
@@ -47,6 +51,8 @@
 - **Red:** Competition, urgency, national identity (Ugandan flag). Used sparingly.
 - **Emerald:** Active status, success indicators
 - **Crimson:** Error status, urgent alerts (use red `--red` for visual accent instead)
+- **Launch blue (`#60A5FA`):** Live launch data — launch badges, calendar dots, launch filter chip
+- **Sky purple (`#C084FC`):** Night-sky data — ISS flyovers and celestial events. Calendar dots (`dot-sky`), panel badges (`pe-badge-sky`), homepage list badges (`.launch-icon.sky-icon` with crescent-moon SVG), Night Sky filter chip
 
 ---
 
@@ -139,6 +145,25 @@
 |---|---|---|
 | `.filter-chips` | Horizontal row of pill buttons | Category filtering |
 | `.filter-chip` | Pill button, active state = gold fill | Individual filter |
+| `.filter-chip .dot` | 6px colored dot before label | Category color cue (calendar page) |
+
+### Calendar Event Type Colors
+
+| Type | Dot class | Badge class | Color |
+|---|---|---|---|
+| Community event | `.dot-event` | `.pe-badge-event` | Gold |
+| Cosmic | `.dot-cosmic` | `.pe-badge-cosmic` | Emerald |
+| Holiday | `.dot-holiday` | `.pe-badge-holiday` | Red |
+| Deadline | `.dot-deadline` | `.pe-badge-deadline` | Gray |
+| Launch | `.dot-launch` | `.pe-badge-launch` | Launch blue `#60A5FA` |
+| Night sky (ISS, celestial) | `.dot-sky` | `.pe-badge-sky` | Sky purple `#C084FC` |
+
+### Live Data Badges (Homepage Compact List)
+
+| Class | Style | Usage |
+|---|---|---|
+| `.launch-icon` | Small inline SVG + "Launch" label | Upcoming launches (rocket icon) |
+| `.launch-icon.sky-icon` | Same, purple | Night-sky items (crescent-moon icon) |
 
 ### Dividers
 

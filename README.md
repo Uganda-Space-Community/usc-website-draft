@@ -1,6 +1,31 @@
 # Uganda Space Community Platform
 
-A professional institutional website for Uganda's space ecosystem — connecting researchers, students, engineers, policymakers, and organizations across the country.
+A professional institutional website for Uganda's space ecosystem — connecting researchers, students, engineers, policymakers, and organizations across the country. It is the national hub for space news, events, learning resources, community networking, and live sky data — all in one place.
+
+## What the Platform Is For
+
+The USC platform is the digital home of Uganda's space ecosystem. Anyone with an interest in space — from school students to policymakers — can use it to discover, learn, connect, and contribute.
+
+| Audience | What they can do here |
+|----------|------------------------|
+| **Students & enthusiasts** | Follow launches and night-sky events (ISS flyovers over Kampala, eclipses, meteor showers), browse the knowledge base, join community events |
+| **Researchers & academics** | Share and discover papers, datasets, and course material; connect with peers via member profiles, interests, and affiliations |
+| **Engineers & startups** | Find programmes, projects, and opportunities; get their work seen by the national community |
+| **Policymakers & agencies** | Track ecosystem activity through the events calendar, updates feed, and published policies |
+| **Organizations** | Maintain a public profile, list events and programmes, and reach the community |
+| **Community organizers** | Promote events on the calendar and share announcements on the updates feed |
+| **Curators & admins** | Approve community submissions, manage content, moderate users, and audit changes |
+
+### Key capabilities
+
+- **Live space data** — NASA Astronomy Picture of the Day, upcoming global launches, space news (region-prioritized: Uganda first), ISS flyover predictions for Kampala, and curated night-sky events (eclipses, meteor showers, oppositions)
+- **Events calendar** — month / week / year views covering community events, cosmic events, holidays, deadlines, launches, and night-sky observations, with category filters
+- **Knowledge base** — curated papers, policies, tools, datasets, and guides
+- **Updates feed** — community announcements and articles, opportunities, and world space news
+- **Community directory** — member profiles with interests, affiliations, and connections; organization listings
+- **Programmes & projects** — active ecosystem initiatives such as World Space Week
+- **Community Q&A** — FAQ with upvoted answers and public question submission
+- **Member dashboards** — profile management, content submission with a review workflow (Quill.js editor), and curator/admin moderation tools
 
 ## Tech Stack
 
@@ -28,14 +53,17 @@ site/
 │   ├── admin.php             # Admin panel API (stats, review, user mgmt, content CRUD, settings)
 │   ├── audit.php             # Audit log (list entries, create entries)
 │   ├── upload.php            # File upload handler (images)
+│   ├── space.php             # Space API proxy (APOD, launches, news, ISS passes, celestial)
 │   ├── schema.sql            # Database schema (run in phpMyAdmin)
 │   ├── seed.php              # Seed DB from content.json (run once)
 │   └── seed-team.php         # Create team accounts + curator roles + authorship
+├── cache/                    # File cache for space API responses (.gitkeep tracked only)
 ├── css/
 │   ├── base.css              # Shared styles (nav, footer, buttons, dark mode, etc.)
 │   └── dashboard.css         # Dashboard layout, sidebar, forms, tables, tags input
 ├── data/
-│   └── content.json          # Centralized content data (1858+ lines)
+│   ├── content.json          # Centralized content data (1858+ lines)
+│   └── celestial-events.json # Curated night-sky events (eclipses, meteor showers, etc.)
 ├── img/                      # Images, emblem, uploads
 │   ├── uploads/              # User-uploaded images
 │   ├── emblem.png            # Site emblem (profile default avatar)
@@ -69,6 +97,25 @@ site/
 ├── privacy.html              # Privacy policy
 └── code-of-conduct.html      # Community code of conduct
 ```
+
+## Pages
+
+| Page | Purpose |
+|------|---------|
+| `index.html` | Homepage — mission slideshow, featured events, launches, night-sky highlights, announcements, and world space news |
+| `updates.html` | Updates feed — community announcements, articles, opportunities, and region-prioritized space news |
+| `calendar.html` | Events calendar — community events, cosmic events, holidays, deadlines, launches, ISS flyovers, and night-sky events (month/week/year views + filters) |
+| `launchpad.html` | Programmes & projects across the ecosystem |
+| `knowledge.html` | Knowledge base — papers, policies, tools, datasets, guides + Astronomy Picture of the Day + Night Sky Guide (ISS flyovers & celestial events) |
+| `community.html` | Community directory — member profiles and organizations |
+| `faq.html` | Community Q&A with answer voting and public question submission |
+| `about.html` | About the platform, challenges, and what USC does |
+| `dashboard.html` | Unified member/curator/admin dashboard |
+| `login.html` | Login / signup |
+| `event.html` · `news.html` | Detail pages for events and news |
+| `member.html` · `organization.html` | Detail pages for members and organizations |
+| `program.html` · `project.html` · `opportunity.html` | Detail pages for programmes, projects, and opportunities |
+| `terms.html` · `privacy.html` · `code-of-conduct.html` | Legal and community guidelines |
 
 ## Setup
 
