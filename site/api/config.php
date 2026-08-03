@@ -9,6 +9,7 @@ define('DB_NAME', getenv('USC_DB_NAME') ?: 'usc_database');
 define('DB_USER', getenv('USC_DB_USER') ?: 'root');
 define('DB_PASS', getenv('USC_DB_PASS') ?: '');
 define('APP_ORIGIN', getenv('USC_APP_ORIGIN') ?: 'https://space.org.ug');
+define('NASA_API_KEY', getenv('NASA_API_KEY') ?: 'DEMO_KEY');
 
 // ═══ Session Hardening ═══
 ini_set('session.cookie_httponly', 1);

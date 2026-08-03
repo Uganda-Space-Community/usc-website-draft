@@ -71,6 +71,7 @@
 .dot-cosmic{background:var(--emerald)}
 .dot-holiday{background:var(--red)}
 .dot-deadline{background:var(--text-3)}
+.dot-launch{background:#60a5fa}
 
 /* Filters below grid */
 .cal-filters{display:flex;gap:4px;flex-wrap:wrap;margin-top:16px}
@@ -103,6 +104,7 @@
 .pe-badge-cosmic{background:var(--emerald-dim);color:var(--emerald)}
 .pe-badge-holiday{background:var(--red-dim);color:var(--red)}
 .pe-badge-deadline{background:var(--bg-alt-subtle);color:var(--text-3)}
+.pe-badge-launch{background:rgba(96,165,250,0.1);color:#60a5fa}
 .pe-link{font-size:0.68rem;color:var(--gold);text-decoration:none}
 .pe-link:hover{text-decoration:underline}
 
@@ -222,6 +224,7 @@
     <button class="filter-chip" data-filter="cosmic"><span class="dot dot-cosmic"></span>Cosmic</button>
     <button class="filter-chip" data-filter="holiday"><span class="dot dot-holiday"></span>Holidays</button>
     <button class="filter-chip" data-filter="deadline"><span class="dot dot-deadline"></span>Deadlines</button>
+    <button class="filter-chip" data-filter="launch"><span class="dot dot-launch"></span>Launches</button>
   </div>
 
   <div class="section-divider" aria-hidden="true">
@@ -621,6 +624,26 @@ fetch('data/content.json')
     }
   })
   .catch(function(){});
+
+// Load upcoming launches from Launch Library 2
+fetch('/usc/api/space.php?action=launches')
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(data){
+    if(data&&data.launches){
+      data.launches.forEach(function(l){
+        var net=new Date(l.net);
+        var dateStr=net.getFullYear()+'-'+String(net.getMonth()+1).padStart(2,'0')+'-'+String(net.getDate()).padStart(2,'0');
+        events.push({
+          date:dateStr,
+          title:l.name,
+          type:'launch',
+          desc:l.provider+(l.location?' · '+l.location:'')
+        });
+      });
+      renderMonth();renderPanel();renderYear();updateStats();
+    }
+  })
+  .catch(function(e){console.error('Calendar launches fetch failed:',e)});
 
 // Modal open/close
 document.querySelectorAll('[data-modal]').forEach(btn=>{

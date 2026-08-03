@@ -472,6 +472,13 @@ body.dark-mode .icon-moon { display: none; }
 
 /* Events compact list (right side) */
 .events-compact { display: flex; flex-direction: column; }
+.events-scroll {
+  overflow-y: auto; max-height: 400px; padding-right: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.events-scroll::-webkit-scrollbar { width: 4px; }
+.events-scroll::-webkit-scrollbar-track { background: transparent; }
+.events-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 .event-compact {
   display: flex; gap: 16px; align-items: flex-start;
   padding: 20px 0; border-bottom: 1px solid var(--border);
@@ -568,7 +575,7 @@ body.dark-mode .icon-moon { display: none; }
 }
 .external-indicator {
   display: inline-flex; align-items: center; gap: 3px;
-  font-size: 0.6rem; color: var(--text-3); margin-top: 2px;
+  font-size: 0.6rem; color: var(--text-3); margin-left: 6px;
 }
 .external-indicator svg { width: 10px; height: 10px; }
 
@@ -1039,6 +1046,7 @@ body::before {
   .updates-grid { grid-template-columns: 1fr; gap: 28px; }
   .updates-featured { max-height: none; }
   .updates-list { max-height: 300px; }
+  .events-scroll { max-height: 300px; }
   .pc-grid { display: block; }
   .pc-programs { min-height: 460px; overflow: hidden; border-radius: var(--radius-lg); bottom: 30px; }
   .pc-projects-head { margin-bottom: 12px; }
@@ -1070,7 +1078,12 @@ body::before {
   .nav-bar .wrapper { padding: 0 12px; }
   .hero h1 { font-size: 1.8rem; }
   .hero-content { margin-left: 12px; max-width: calc(100vw - 24px); }
-}</style>
+}
+
+/* ═══ Launch badge in events compact ═══ */
+.event-compact .launch-icon{display:inline-flex;align-items:center;gap:3px;font-size:0.58rem;font-weight:600;color:#60a5fa;letter-spacing:0.04em;margin-top:2px}
+.event-compact .launch-icon svg{width:11px;height:11px}
+</style>
 </head>
 <body>
 
@@ -1311,7 +1324,8 @@ body::before {
           </div>
         </div>
       </div>
-      <div class="events-compact">
+      <div class="events-compact" id="events-compact-list">
+        <div class="events-scroll scroll-fade">
         <div class="event-compact">
           <div class="date">4 Oct</div>
           <div class="info">
@@ -1339,6 +1353,7 @@ body::before {
             <h4>Outdoor Stargazing Experience</h4>
             <div class="meta">Physical · 19:00 · Kampala</div>
           </div>
+        </div>
         </div>
         <a href="calendar" class="tc-view-all">Open Calendar →</a>
       </div>
@@ -1430,61 +1445,13 @@ body::before {
 
       <!-- External News (from around the world) -->
       <div>
-        <div class="updates-col-head">From Around the World <a href="#">Open →</a></div>
-        <div class="updates-list scroll-fade">
+        <div class="updates-col-head">From Around the World <a href="updates">View All →</a></div>
+        <div class="updates-list scroll-fade" id="world-news-list">
           <div class="updates-list-item">
             <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=200&q=60')"></div>
             <div class="updates-list-body">
-              <h5>Artemis III Crew Selection Announced</h5>
-              <div class="source">Space.com · 2 days ago</div>
-              <div class="external-indicator">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                External
-              </div>
-            </div>
-          </div>
-          <div class="updates-list-item">
-            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&q=60')"></div>
-            <div class="updates-list-body">
-              <h5>Mars Sample Return Mission Update</h5>
-              <div class="source">NASA.gov · 3 days ago</div>
-              <div class="external-indicator">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                External
-              </div>
-            </div>
-          </div>
-          <div class="updates-list-item">
-            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&q=60')"></div>
-            <div class="updates-list-body">
-              <h5>Europa Clipper Launch Date Confirmed</h5>
-              <div class="source">ESA.int · 5 days ago</div>
-              <div class="external-indicator">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                External
-              </div>
-            </div>
-          </div>
-          <div class="updates-list-item">
-            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=200&q=60')"></div>
-            <div class="updates-list-body">
-              <h5>Commercial Space Growth in Africa</h5>
-              <div class="source">SpaceNews · 1 week ago</div>
-              <div class="external-indicator">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                External
-              </div>
-            </div>
-          </div>
-          <div class="updates-list-item">
-            <div class="updates-list-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&q=60')"></div>
-            <div class="updates-list-body">
-              <h5>New Exoplanet Discovery in Habitable Zone</h5>
-              <div class="source">Nature · 1 week ago</div>
-              <div class="external-indicator">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                External
-              </div>
+              <h5>Loading space news...</h5>
+              <div class="source">Spaceflight News API</div>
             </div>
           </div>
         </div>
@@ -1509,6 +1476,7 @@ body::before {
       <h2>Projects &amp; Opportunities</h2>
       <p>Ongoing programs you can join and opportunities to participate.</p>
     </div>
+
     <div class="pc-grid">
         <div class="pc-programs" id="pc-programs">
         <div class="pc-projects-head" style="margin-bottom: 16px; position: relative; z-index: 1;">
@@ -1854,7 +1822,7 @@ USC.init();
                 </div>`;
               }).join('');
             }
-            const compactList = document.querySelector('.events-compact');
+            const compactList = document.getElementById('events-compact-list');
             if (compactList) {
               const today = new Date();
               const parseDate = function(d) {
@@ -1862,22 +1830,77 @@ USC.init();
                 var months = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
                 return new Date(parseInt(parts[2])||2026, months[parts[1]]||0, parseInt(parts[0])||1);
               };
-              const sorted = data.events.featured.slice().sort(function(a,b){
-                var da=Math.abs(parseDate(a.date)-today);
-                var db=Math.abs(parseDate(b.date)-today);
-                return da-db;
+              var uscEvents = data.events.featured.map(function(e){
+                var d = parseDate(e.date);
+                var slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+                var dateParts = e.date.split(' ');
+                return {
+                  date: d,
+                  dateStr: dateParts[0] + ' ' + dateParts[1].substring(0,3),
+                  title: e.title,
+                  meta: e.type + ' · ' + e.location,
+                  slug: slug,
+                  isLaunch: false
+                };
               });
-              compactList.innerHTML = sorted.slice(0,5).map(function(e){
-                const slug = e.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-                const dateParts = e.date.split(' ');
-                return '<div class="event-compact" style="cursor:pointer" onclick="window.location=\'events/'+slug+'\'">' +
-                  '<div class="date">' + dateParts[0] + ' ' + dateParts[1].substring(0,3) + '</div>' +
-                  '<div class="info">' +
-                    '<h4>' + e.title + '</h4>' +
-                    '<div class="meta">' + e.type + ' · ' + e.location + '</div>' +
-                  '</div>' +
-                '</div>';
-              }).join('') + '<a href="calendar" class="tc-view-all">Open Calendar →</a>';
+
+              function renderCompact(items) {
+                var day = 86400000;
+                var now = new Date().getTime();
+                var valid = items.filter(function(e){ return !isNaN(e.date.getTime()); });
+                var upcoming = valid.filter(function(e){ return e.date.getTime() >= now - day; })
+                                    .sort(function(a,b){ return a.date - b.date; });
+                var past = valid.filter(function(e){ return e.date.getTime() < now - day; })
+                                .sort(function(a,b){ return b.date - a.date; });
+                var launches = upcoming.filter(function(e){ return e.isLaunch; });
+                var uscOnly = upcoming.filter(function(e){ return !e.isLaunch; });
+                var shown = uscOnly.concat(launches.slice(0,3));
+                shown.sort(function(a,b){ return a.date - b.date; });
+                var merged = shown.concat(past).slice(0,9);
+                var itemsHtml = merged.map(function(e){
+                  var slugPart = e.isLaunch ? '' : 'events/' + e.slug + '\'';
+                  var onclick = e.isLaunch
+                    ? 'window.open(\''+e.url+'\',\'_blank\')'
+                    : 'window.location=\'' + slugPart;
+                  var launchBadge = e.isLaunch
+                    ? '<div class="launch-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg> Launch</div>'
+                    : '';
+                  return '<div class="event-compact" style="cursor:pointer" onclick="' + onclick + '">' +
+                    '<div class="date">' + e.dateStr + '</div>' +
+                    '<div class="info">' +
+                      '<h4>' + e.title + '</h4>' +
+                      '<div class="meta">' + e.meta + '</div>' +
+                      launchBadge +
+                    '</div>' +
+                  '</div>';
+                }).join('');
+                compactList.innerHTML = '<div class="events-scroll scroll-fade">' + itemsHtml + '</div><a href="calendar" class="tc-view-all">Open Calendar →</a>';
+              }
+
+              renderCompact(uscEvents);
+
+              var apiBase = window.location.pathname.replace(/\/[^\/]*$/, '/') + 'api/space.php';
+              fetch(apiBase + '?action=launches')
+                .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+                .then(function(d){
+                  if(d.launches && d.launches.length){
+                    var monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    var launches = d.launches.map(function(l){
+                      var net = new Date(l.net);
+                      return {
+                        date: net,
+                        dateStr: net.getDate() + ' ' + monthNames[net.getMonth()],
+                        title: l.name,
+                        meta: l.provider,
+                        url: 'https://ll.thespacedevs.com/2.2.0/launch/' + l.id,
+                        isLaunch: true
+                      };
+                    });
+                    var all = uscEvents.concat(launches);
+                    renderCompact(all);
+                  }
+                })
+                .catch(function(e){console.error('Launches fetch failed:',e)});
             }
           }
 
@@ -2002,6 +2025,41 @@ document.querySelectorAll('.filter-chips').forEach(chipGroup => {
     });
   });
 });
+
+// ═══ Live Space News ═══
+(function(){
+  var worldList = document.getElementById('world-news-list');
+  if (!worldList) return;
+
+  var apiBase = window.location.pathname.replace(/\/[^\/]*$/, '/') + 'api/space.php';
+  fetch(apiBase + '?action=news')
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+    .then(function(d){
+      if(d.error||d.fallback||!d.articles||!d.articles.length) return;
+      var externalSvg = '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+      function timeAgo(dateStr){
+        var diff=Date.now()-new Date(dateStr).getTime();
+        var days=Math.floor(diff/86400000);
+        if(days===0) return 'Today';
+        if(days===1) return 'Yesterday';
+        if(days<7) return days+' days ago';
+        var weeks=Math.floor(days/7);
+        if(weeks===1) return '1 week ago';
+        return weeks+' weeks ago';
+      }
+      worldList.innerHTML = d.articles.slice(0,6).map(function(a){
+        var img = a.image_url || 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=200&q=60';
+        return '<div class="updates-list-item" onclick="window.open(\''+a.url+'\',\'_blank\')" style="cursor:pointer">' +
+          '<div class="updates-list-img" style="background-image: url(\''+img+'\')"></div>' +
+          '<div class="updates-list-body">' +
+            '<h5>'+a.title+'</h5>' +
+            '<div class="source">'+a.news_site+' · '+timeAgo(a.published_at)+' <span class="external-indicator">'+externalSvg+' External</span></div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    })
+    .catch(function(e){console.error('News fetch failed:',e)});
+})();
 </script>
 
 </body>

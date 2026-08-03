@@ -179,7 +179,12 @@ body.dark-mode {
 .login-gate svg{margin-bottom:12px}
 .login-gate h3{font-size:1.1rem;margin-bottom:6px}
 .login-gate p{font-size:0.85rem;color:var(--text-2);margin-bottom:16px}
-.login-gate</style>
+
+/* ═══ Space News Cards ═══ */
+.content-card.space-news{border-color:rgba(96,165,250,0.15)}
+.content-card.space-news:hover{border-color:rgba(96,165,250,0.3)}
+.content-card.space-news .space-news-badge{display:flex;align-items:center;gap:4px;font-size:0.58rem;font-weight:600;color:#60a5fa;text-transform:uppercase;letter-spacing:0.06em;margin-top:8px}
+.content-card.space-news .space-news-badge svg{width:10px;height:10px}</style>
 </head>
 <body>
 
@@ -274,6 +279,9 @@ body.dark-mode {
         </div>
         <div class="filter-option" data-filter="type" data-value="opportunities">
           <div class="filter-radio"></div> Opportunities
+        </div>
+        <div class="filter-option" data-filter="type" data-value="space-news">
+          <div class="filter-radio"></div> Space News
         </div>
       </div>
       <div class="filter-section">
@@ -635,12 +643,58 @@ fetch('data/content.json')
     if (data.events && data.events.featured) {
       const upcomingSection = document.getElementById('upcoming-events');
       if (upcomingSection) {
-        const items = data.events.featured.slice(0, 3).map(e =>
-          `<div class="pinned-item"><h5>${e.title}</h5><div class="meta">${e.type || 'Event'} · ${e.date || ''}</div></div>`
-        ).join('');
+        const day=86400000, now=Date.now();
+        const items = data.events.featured
+          .map(e => ({e, d: parseDate(e.date)}))
+          .filter(x => x.d)
+          .sort((x,y) => {
+            const xu=x.d.getTime()>=now-day, yu=y.d.getTime()>=now-day;
+            if(xu!==yu) return xu?-1:1;
+            return xu?x.d-y.d:y.d-x.d;
+          })
+          .slice(0,3)
+          .map(x => `<div class="pinned-item"><h5>${x.e.title}</h5><div class="meta">${x.e.type || 'Event'} · ${x.e.date || ''}</div></div>`)
+          .join('');
         upcomingSection.innerHTML = `<h4>Upcoming</h4>${items}`;
       }
     }
+  })
+  .catch(() => {});
+
+// Load space news from SNAPI
+fetch('/usc/api/space.php?action=news')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (!data || !data.articles) return;
+    const ugandaKw = ['uganda','kampala','entebbe','makerere'];
+    const eastAfricaKw = ['kenya','tanzania','rwanda','burundi','south sudan','ethiopia','nairobi'];
+    const africaKw = ['africa','african','nigeria','south africa','algeria','morocco','ghana'];
+    function regionScore(text) {
+      const t = text.toLowerCase();
+      for (const w of ugandaKw) if (t.includes(w)) return 3;
+      for (const w of eastAfricaKw) if (t.includes(w)) return 2;
+      for (const w of africaKw) if (t.includes(w)) return 1;
+      return 0;
+    }
+    const sorted = data.articles.slice().sort((a, b) => {
+      const sa = regionScore(a.title + ' ' + a.summary);
+      const sb = regionScore(b.title + ' ' + b.summary);
+      return sb - sa;
+    });
+    sorted.forEach(a => {
+      cards.push({
+        type: 'space-news',
+        title: a.title,
+        desc: a.summary || '',
+        date: a.published_at ? new Date(a.published_at).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '',
+        cat: a.news_site || 'Space News',
+        img: a.image_url || '',
+        url: a.url,
+        programs: [],
+        external: true
+      });
+    });
+    filterCards();
   })
   .catch(() => {});
 
@@ -694,6 +748,29 @@ function parseDate(str){
   return new Date(parseInt(m[3]),months[m[2]]??0,parseInt(m[1]));
 }
 
+function sortCards(list){
+  const day=86400000;
+  const now=Date.now();
+  const getDate=c=>{const d=parseDate(c.date);return d?d.getTime():null};
+  const events=list.filter(c=>c.type==='events');
+  const others=list.filter(c=>c.type!=='events');
+  events.sort((a,b)=>{
+    const da=getDate(a),db=getDate(b);
+    if(da===null)return 1;
+    if(db===null)return -1;
+    const au=da>=now-day,bu=db>=now-day;
+    if(au!==bu)return au?-1:1;
+    return au?da-db:db-da;
+  });
+  others.sort((a,b)=>{
+    const da=getDate(a),db=getDate(b);
+    if(da===null)return 1;
+    if(db===null)return -1;
+    return db-da;
+  });
+  return events.concat(others);
+}
+
 function getActivePrograms(){
   return Array.from(document.querySelectorAll('.filter-option[data-filter="program"].active')).map(o=>o.dataset.value);
 }
@@ -728,20 +805,27 @@ function renderCards(filter,page){
     });
   }
 
+  filtered = sortCards(filtered);
+
   const totalPages=Math.max(1,Math.ceil(filtered.length/PER_PAGE));
   const start=(page-1)*PER_PAGE;
   const pageItems=filtered.slice(start,start+PER_PAGE);
-  grid.innerHTML=pageItems.map(c=>`
-    <a href="${c.url}" class="content-card" data-type="${c.type}">
+  grid.innerHTML=pageItems.map(c=>{
+    const isExternal=c.external||c.type==='space-news';
+    const externalHtml=isExternal?`<div class="space-news-badge"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> ${c.cat}</div>`:'';
+    const typeClass=c.type==='space-news'?' space-news':'';
+    return `
+    <a href="${c.url}" class="content-card${typeClass}" data-type="${c.type}" ${isExternal?'target="_blank" rel="noopener"':''}>
       <div class="content-card-img" style="background-image:url('${c.img}')"></div>
       <div class="content-card-body">
         <div class="cat">${c.cat}</div>
         <h4>${c.title}</h4>
         <p>${c.desc}</p>
         <div class="meta">${c.date}</div>
+        ${externalHtml}
       </div>
-    </a>
-  `).join('');
+    </a>`;
+  }).join('');
   renderPagination(totalPages,filter,page);
 }
 

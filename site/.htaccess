@@ -42,3 +42,8 @@ RewriteRule ^opportunities/(.+)$ opportunity.html?id=$1 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-z0-9-]+)$ $1.html [L]
+
+# Space API: /api/space → api/space.php (pass query string)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/space$ api/space.php [L,QSA]
