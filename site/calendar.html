@@ -72,6 +72,7 @@
 .dot-holiday{background:var(--red)}
 .dot-deadline{background:var(--text-3)}
 .dot-launch{background:#60a5fa}
+.dot-sky{background:#c084fc}
 
 /* Filters below grid */
 .cal-filters{display:flex;gap:4px;flex-wrap:wrap;margin-top:16px}
@@ -105,6 +106,7 @@
 .pe-badge-holiday{background:var(--red-dim);color:var(--red)}
 .pe-badge-deadline{background:var(--bg-alt-subtle);color:var(--text-3)}
 .pe-badge-launch{background:rgba(96,165,250,0.1);color:#60a5fa}
+.pe-badge-sky{background:rgba(192,132,252,0.12);color:#c084fc}
 .pe-link{font-size:0.68rem;color:var(--gold);text-decoration:none}
 .pe-link:hover{text-decoration:underline}
 
@@ -225,6 +227,7 @@
     <button class="filter-chip" data-filter="holiday"><span class="dot dot-holiday"></span>Holidays</button>
     <button class="filter-chip" data-filter="deadline"><span class="dot dot-deadline"></span>Deadlines</button>
     <button class="filter-chip" data-filter="launch"><span class="dot dot-launch"></span>Launches</button>
+    <button class="filter-chip" data-filter="sky"><span class="dot dot-sky"></span>Night Sky</button>
   </div>
 
   <div class="section-divider" aria-hidden="true">
@@ -644,6 +647,43 @@ fetch('/usc/api/space.php?action=launches')
     }
   })
   .catch(function(e){console.error('Calendar launches fetch failed:',e)});
+
+// Load night sky events: ISS passes + curated celestial events
+fetch('/usc/api/space.php?action=iss')
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(data){
+    if(data&&data.passes){
+      var pad=function(n){return String(n).padStart(2,'0')};
+      data.passes.forEach(function(p){
+        var t=new Date(p.max_elevation_time);
+        var ds=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+        var hm=pad(t.getHours())+':'+pad(t.getMinutes());
+        events.push({
+          date:ds,
+          title:'ISS flyover · max '+Math.round(p.max_elevation)+'°',
+          type:'sky',
+          desc:'Visible for '+Math.round(p.duration_min)+' min from Kampala. Look for a bright, steady light crossing the sky at '+hm+'.'
+        });
+      });
+      renderMonth();renderPanel();renderYear();updateStats();
+    }
+  })
+  .catch(function(e){console.error('Calendar ISS fetch failed:',e)});
+
+fetch('/usc/api/space.php?action=celestial')
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(data){
+    if(data&&data.events){
+      data.events.forEach(function(e){
+        var dupe=events.some(function(x){return x.date===e.date&&x.title===e.title});
+        if(!dupe){
+          events.push({date:e.date,title:e.title,type:'sky',desc:e.description||(e.visibility||'')});
+        }
+      });
+      renderMonth();renderPanel();renderYear();updateStats();
+    }
+  })
+  .catch(function(e){console.error('Calendar celestial fetch failed:',e)});
 
 // Modal open/close
 document.querySelectorAll('[data-modal]').forEach(btn=>{

@@ -1,0 +1,183 @@
+{
+  "source": "Curated from IMO meteor shower calendar, NASA eclipse data, and StarWalk 2026/2027 astronomy calendars. Refresh yearly.",
+  "updated": "2026-08-03",
+  "location_note": "Events are those visible from or notable from Uganda (equatorial latitude 0.3N).",
+  "events": [
+    {
+      "date": "2026-08-12",
+      "title": "Total Solar Eclipse",
+      "type": "Eclipse",
+      "time": "Daytime",
+      "description": "Totality crosses the Arctic, Greenland, Iceland and Spain. Uganda sees a small partial eclipse — never look directly without proper solar filters.",
+      "visibility": "Partial from Uganda"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Perseid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "After midnight",
+      "description": "Up to ~100 meteors per hour. Best after midnight when the radiant is higher. Moonlight-free viewing this year.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Partial Lunar Eclipse",
+      "type": "Eclipse",
+      "time": "Night",
+      "description": "A partial lunar eclipse visible across Europe, Africa and Asia. Uganda gets a good view of the Moon entering Earth's shadow.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "September Equinox",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "The Sun crosses the celestial equator. Around the equinox, day and night are nearly equal in length across Uganda.",
+      "visibility": "Global"
+    },
+    {
+      "date": "2026-10-04",
+      "title": "Saturn at Opposition",
+      "type": "Planet Event",
+      "time": "All night",
+      "description": "Saturn is closest and brightest, rising at sunset and visible all night through any telescope from Uganda's equatorial sky.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-10-21",
+      "title": "Orionid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "After midnight",
+      "description": "Moderate shower (up to ~20 meteors per hour) from Halley's Comet debris. A waning gibbous Moon sets after midnight, leaving darker skies.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-11-17",
+      "title": "Leonid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Early morning",
+      "description": "Up to ~15 meteors per hour with occasional bright fireballs. Best in the hours before dawn.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "Geminid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Night",
+      "description": "The year's most reliable shower — up to ~150 meteors per hour, visible from both hemispheres. A waxing crescent Moon sets early, so skies stay dark.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2026-12-21",
+      "title": "December Solstice",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "The longest night of the year in the Northern Hemisphere — a classic night for stargazing in Uganda.",
+      "visibility": "Global"
+    },
+    {
+      "date": "2027-01-03",
+      "title": "Quadrantid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Early morning",
+      "description": "Sharp, intense peak of up to ~110 meteors per hour, best observed in the hours before dawn.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-02-06",
+      "title": "Annular Solar Eclipse",
+      "type": "Eclipse",
+      "time": "Daytime",
+      "description": "Annular path crosses South America and the South Atlantic; western Africa may catch a partial phase. Requires proper solar filters.",
+      "visibility": "Partial from Africa"
+    },
+    {
+      "date": "2027-03-20",
+      "title": "March Equinox",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "The Sun crosses back over the celestial equator — day and night nearly equal across Uganda.",
+      "visibility": "Global"
+    },
+    {
+      "date": "2027-04-22",
+      "title": "Lyrid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "After midnight",
+      "description": "Up to ~18 meteors per hour from Comet Thatcher, occasionally with bright fireballs.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-05-06",
+      "title": "Eta Aquariid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Pre-dawn",
+      "description": "Debris from Halley's Comet; up to ~50 meteors per hour in the pre-dawn sky, well placed from equatorial latitudes.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-06-21",
+      "title": "June Solstice",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "Longest day in the Northern Hemisphere; Uganda's skies are nearly identical day-to-day thanks to the equator.",
+      "visibility": "Global"
+    },
+    {
+      "date": "2027-08-02",
+      "title": "Total Solar Eclipse — Africa",
+      "type": "Eclipse",
+      "time": "Daytime",
+      "description": "Totality crosses North Africa (Morocco to Egypt). Uganda sees a substantial partial eclipse — use proper solar filters only.",
+      "visibility": "Partial from Uganda"
+    },
+    {
+      "date": "2027-08-13",
+      "title": "Perseid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "After midnight",
+      "description": "The classic summer shower, up to ~100 meteors per hour from Uganda's night sky.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-09-23",
+      "title": "September Equinox",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "Another equinox — a fine excuse for an evening of skywatching.",
+      "visibility": "Global"
+    },
+    {
+      "date": "2027-10-22",
+      "title": "Orionid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "After midnight",
+      "description": "Halley's Comet debris again — up to ~20 meteors per hour.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-11-17",
+      "title": "Leonid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Early morning",
+      "description": "Up to ~15 meteors per hour; watch for bright Earthgrazers near dawn.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-12-14",
+      "title": "Geminid Meteor Shower Peak",
+      "type": "Meteor Shower",
+      "time": "Night",
+      "description": "Up to ~150 meteors per hour, one of the best shows of the year in Uganda.",
+      "visibility": "Visible from Uganda"
+    },
+    {
+      "date": "2027-12-21",
+      "title": "December Solstice",
+      "type": "Seasonal",
+      "time": "All day",
+      "description": "The year's longest night in the north — prime stargazing time.",
+      "visibility": "Global"
+    }
+  ]
+}

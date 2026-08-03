@@ -1,5 +1,6 @@
-usc-alpha/
+﻿usc-alpha/
 .DS_Store
 Thumbs.db
 
-site/cache/*.json
+site/cache/*
+!site/cache/.gitkeep

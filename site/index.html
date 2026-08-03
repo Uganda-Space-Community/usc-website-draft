@@ -1083,6 +1083,7 @@ body::before {
 /* ═══ Launch badge in events compact ═══ */
 .event-compact .launch-icon{display:inline-flex;align-items:center;gap:3px;font-size:0.58rem;font-weight:600;color:#60a5fa;letter-spacing:0.04em;margin-top:2px}
 .event-compact .launch-icon svg{width:11px;height:11px}
+.event-compact .launch-icon.sky-icon{color:#c084fc}
 </style>
 </head>
 <body>
@@ -1844,6 +1845,11 @@ USC.init();
                 };
               });
 
+              var liveItems = [];
+              function refreshCompact() {
+                renderCompact(uscEvents.concat(liveItems));
+              }
+
               function renderCompact(items) {
                 var day = 86400000;
                 var now = new Date().getTime();
@@ -1852,25 +1858,32 @@ USC.init();
                                     .sort(function(a,b){ return a.date - b.date; });
                 var past = valid.filter(function(e){ return e.date.getTime() < now - day; })
                                 .sort(function(a,b){ return b.date - a.date; });
+                var uscOnly = upcoming.filter(function(e){ return !e.isLaunch && !e.isSky; });
                 var launches = upcoming.filter(function(e){ return e.isLaunch; });
-                var uscOnly = upcoming.filter(function(e){ return !e.isLaunch; });
-                var shown = uscOnly.concat(launches.slice(0,3));
+                var sky = upcoming.filter(function(e){ return e.isSky; });
+                var shown = uscOnly.concat(launches.slice(0,5), sky);
                 shown.sort(function(a,b){ return a.date - b.date; });
-                var merged = shown.concat(past).slice(0,9);
+                var merged = shown.concat(past).slice(0,12);
                 var itemsHtml = merged.map(function(e){
-                  var slugPart = e.isLaunch ? '' : 'events/' + e.slug + '\'';
-                  var onclick = e.isLaunch
-                    ? 'window.open(\''+e.url+'\',\'_blank\')'
-                    : 'window.location=\'' + slugPart;
-                  var launchBadge = e.isLaunch
+                  var onclick;
+                  if (e.isLaunch) {
+                    onclick = 'window.open(\'' + e.url + '\',\'_blank\')';
+                  } else if (e.isSky) {
+                    onclick = 'window.location=\'calendar\'';
+                  } else {
+                    onclick = 'window.location=\'events/' + e.slug + '\'';
+                  }
+                  var badge = e.isLaunch
                     ? '<div class="launch-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg> Launch</div>'
-                    : '';
+                    : e.isSky
+                      ? '<div class="launch-icon sky-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Night Sky</div>'
+                      : '';
                   return '<div class="event-compact" style="cursor:pointer" onclick="' + onclick + '">' +
                     '<div class="date">' + e.dateStr + '</div>' +
                     '<div class="info">' +
                       '<h4>' + e.title + '</h4>' +
                       '<div class="meta">' + e.meta + '</div>' +
-                      launchBadge +
+                      badge +
                     '</div>' +
                   '</div>';
                 }).join('');
@@ -1896,11 +1909,55 @@ USC.init();
                         isLaunch: true
                       };
                     });
-                    var all = uscEvents.concat(launches);
-                    renderCompact(all);
+                    liveItems = liveItems.concat(launches);
+                    refreshCompact();
                   }
                 })
                 .catch(function(e){console.error('Launches fetch failed:',e)});
+
+                fetch(apiBase + '?action=iss')
+                  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+                  .then(function(d){
+                    if(d.passes && d.passes.length){
+                      var monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                      var issPasses = d.passes.slice(0,4).map(function(p){
+                        var t = new Date(p.max_elevation_time);
+                        return {
+                          date: t,
+                          dateStr: t.getDate() + ' ' + monthNames[t.getMonth()],
+                          title: 'ISS flyover · max ' + Math.round(p.max_elevation) + '°',
+                          meta: 'ISS · Kampala · ' + Math.round(p.duration_min) + ' min',
+                          isSky: true,
+                          isLaunch: false
+                        };
+                      });
+                      liveItems = liveItems.concat(issPasses);
+                      refreshCompact();
+                    }
+                  })
+                  .catch(function(e){console.error('ISS fetch failed:',e)});
+
+                fetch(apiBase + '?action=celestial')
+                  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+                  .then(function(d){
+                    if(d.events && d.events.length){
+                      var monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                      var skyEvents = d.events.slice(0,6).map(function(e){
+                        var dt = new Date(e.date + 'T00:00:00');
+                        return {
+                          date: dt,
+                          dateStr: dt.getDate() + ' ' + monthNames[dt.getMonth()],
+                          title: e.title,
+                          meta: e.type + ' · ' + (e.visibility || 'Night sky'),
+                          isSky: true,
+                          isLaunch: false
+                        };
+                      });
+                      liveItems = liveItems.concat(skyEvents);
+                      refreshCompact();
+                    }
+                  })
+                  .catch(function(e){console.error('Celestial fetch failed:',e)});
             }
           }
 

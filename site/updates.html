@@ -669,12 +669,15 @@ fetch('/usc/api/space.php?action=news')
     const ugandaKw = ['uganda','kampala','entebbe','makerere'];
     const eastAfricaKw = ['kenya','tanzania','rwanda','burundi','south sudan','ethiopia','nairobi'];
     const africaKw = ['africa','african','nigeria','south africa','algeria','morocco','ghana'];
+    const astroKw = ['astronomy','astronomical','stargazing','meteor','eclipse','telescope','observatory','constellation','comet','aurora','night sky','galaxy','nebula','exoplanet','lunar','mars rover','iss','space station'];
     function regionScore(text) {
       const t = text.toLowerCase();
+      let s = 0;
       for (const w of ugandaKw) if (t.includes(w)) return 3;
       for (const w of eastAfricaKw) if (t.includes(w)) return 2;
       for (const w of africaKw) if (t.includes(w)) return 1;
-      return 0;
+      for (const w of astroKw) if (t.includes(w)) s = Math.max(s, 1);
+      return s;
     }
     const sorted = data.articles.slice().sort((a, b) => {
       const sa = regionScore(a.title + ' ' + a.summary);

@@ -225,6 +225,20 @@ Old `.html` URLs automatically 301 redirect to clean URLs.
 |--------|------|-------------|
 | POST | Yes | Upload image file, returns `{ url: "img/uploads/..." }` |
 
+### Space API (`api/space.php`)
+
+Public proxy with file-based caching (cached JSON in `site/cache/`). Clean URL: `/api/space?action=...` (`.htaccess` rewrite).
+
+| Action | Source | Cache | Description |
+|--------|--------|-------|-------------|
+| `apod` | NASA APOD | 12h | Astronomy Picture of the Day; optional `&date=YYYY-MM-DD` |
+| `launches` | Launch Library 2 | 3h | Upcoming 25 launches, region-sorted (Uganda > E. Africa > Africa > Global) |
+| `news` | Spaceflight News API | 15min | Space news, region-sorted |
+| `iss` | Celestrak TLE + J2 propagator | 1h | Upcoming ISS flyover passes over Kampala (30s sampling, 8-day window, ≥10° elevation) |
+| `celestial` | `site/data/celestial-events.json` | — | Curated night-sky events (eclipses, meteor showers, oppositions) — future only |
+
+Set `NASA_API_KEY` env var (or edit `api/config.php`) for higher APOD rate limits.
+
 ## Dashboard Architecture
 
 The unified dashboard (`dashboard.html`) replaces the old separate admin panel:
